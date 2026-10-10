@@ -5,6 +5,7 @@
 //! The previous index is the job's only state: it carries first-seen dates
 //! and already-verified records forward, so a record is downloaded and checked
 //! once, when its version first appears.
+use crate::attempts::{Attempts, Due};
 use crate::config::Config;
 use crate::index::{self, DateSource, Index, Released, ServingClass, Snapshot, Tool, Version};
 use crate::registry;
@@ -28,6 +29,10 @@ pub struct Inputs<'a> {
     /// Restrict the run to these origins (`aqua:<package>`, `core:<provider>`).
     pub only: Option<BTreeSet<String>>,
     pub work: PathBuf,
+    /// Versions that failed before (`index/attempts.json`).
+    pub attempts: Attempts,
+    /// The oyzu revision `oyzu` was built from; a change retries failures.
+    pub engine_rev: Option<String>,
 }
 
 #[derive(Debug, Default, serde::Serialize)]
@@ -37,7 +42,10 @@ pub struct Report {
     pub verified_records: usize,
     pub verified_this_run: usize,
     pub verification_failed: Vec<String>,
+    /// Versions over this run's budget, left for the next run.
     pub deferred: usize,
+    /// Versions that failed recently and wait for their retry day.
+    pub waiting_retry: usize,
     pub listing_errors: Vec<String>,
     pub excluded: Vec<String>,
     pub id_conflicts: Vec<String>,
@@ -125,12 +133,12 @@ fn normalize(
 
 /// Repositories tag more than releases (`nightly-…`, `pkg/v3.1.0` for an SDK,
 /// `chart-3.9.1`). A recipe without a `version_filter` lets them through, so
-/// a version must start with a number (`1.2.3`, `2025-08-13T08-35-41Z`).
+/// a version must start with a number (`1.2.3`, `2025-08-13T08-35-41Z`), or
+/// be a word, a dot and a number, as MinIO tags every release
+/// (`RELEASE.2025-08-13T08-35-41Z`).
 fn looks_like_version(normalized: &str) -> bool {
-    normalized
-        .bytes()
-        .next()
-        .is_some_and(|b| b.is_ascii_digit())
+    let start = index::word_prefix(normalized).map_or(normalized, |(_, rest)| rest);
+    start.bytes().next().is_some_and(|b| b.is_ascii_digit())
         && !normalized.contains('/')
         && !normalized.contains('@')
 }
@@ -192,6 +200,18 @@ struct Pending {
     /// Upstream tags to resolve, which `tools resolve` takes as `--version`;
     /// for a core provider, its exact versions.
     tags: Vec<String>,
+    /// The normalized version of each tag, in the same order.
+    versions: Vec<String>,
+}
+
+/// A version the run would like to verify, before the budget is applied.
+struct Want {
+    due: Due,
+    /// Core providers first, then the launch set in file order.
+    rank: usize,
+    tool: usize,
+    tag: String,
+    version: String,
 }
 
 /// Where a pending tool's records come from.
@@ -228,7 +248,7 @@ fn candidates(
         .collect()
 }
 
-pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
+pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     let cfg = &inputs.config.index;
     let registry_bytes = std::fs::read(&inputs.registry_path)
         .with_context(|| format!("reading {}", inputs.registry_path.display()))?;
@@ -244,8 +264,37 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
     let mut report = Report::default();
     let mut tools: Vec<Tool> = Vec::new();
     let mut ids: BTreeSet<String> = BTreeSet::new();
-    let mut pending: Vec<Pending> = Vec::new();
-    let mut budget = cfg.verified.max_versions_per_run;
+    let mut attempts = inputs.attempts.clone();
+    let engine_rev = inputs.engine_rev.as_deref();
+    let due = |origin: &str, version: &str| {
+        attempts.due(
+            origin,
+            version,
+            inputs.now,
+            engine_rev,
+            cfg.verified.retry_after_days,
+        )
+    };
+    // Budget order: core providers, then the launch set as the file lists it
+    // (its groups put the most used tools first), not registry order.
+    let ranks: BTreeMap<String, usize> = cfg
+        .core
+        .keys()
+        .map(|p| format!("core:{p}"))
+        .chain(
+            inputs
+                .config
+                .launch_set
+                .tools
+                .iter()
+                .map(|t| aqua_id(&t.package)),
+        )
+        .enumerate()
+        .map(|(i, o)| (o, i))
+        .collect();
+    let rank_of = |origin: &str| ranks.get(origin).copied().unwrap_or(usize::MAX);
+    let mut wants: Vec<Want> = Vec::new();
+    let mut sources: BTreeMap<usize, PendingSource> = BTreeMap::new();
 
     // Core providers first, so they own their short names (`java`).
     for (provider, core) in &cfg.core {
@@ -272,17 +321,16 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         if core.verified {
             // Records come from `oyzu tools evidence --provider`, with the
             // record id `core:<provider>` the index carries as the origin.
-            let wanted = candidates(&versions, previous(&origin), &cfg.verified);
-            let take = wanted.len().min(budget);
-            report.deferred += wanted.len() - take;
-            budget -= take;
-            if take > 0 {
-                pending.push(Pending {
+            for v in candidates(&versions, previous(&origin), &cfg.verified) {
+                wants.push(Want {
+                    due: due(&origin, &v),
+                    rank: rank_of(&origin),
                     tool: tools.len(),
-                    source: PendingSource::Provider(provider.clone()),
-                    tags: wanted[..take].to_vec(),
+                    tag: v.clone(),
+                    version: v,
                 });
             }
+            sources.insert(tools.len(), PendingSource::Provider(provider.clone()));
         } else {
             for v in &mut versions {
                 v.sets.clear();
@@ -349,20 +397,18 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         } else {
             // Verify versions with no verified records yet: on a tool's first
             // run only the newest few, afterwards every new version.
-            let wanted: Vec<String> = candidates(&versions, prev, &cfg.verified)
-                .iter()
-                .filter_map(|v| tag_of.get(v).cloned())
-                .collect();
-            let take = wanted.len().min(budget);
-            report.deferred += wanted.len() - take;
-            budget -= take;
-            if take > 0 {
-                pending.push(Pending {
-                    tool: tools.len(),
-                    source: PendingSource::Package(package.name.clone()),
-                    tags: wanted[..take].to_vec(),
-                });
+            for v in candidates(&versions, prev, &cfg.verified) {
+                if let Some(tag) = tag_of.get(&v) {
+                    wants.push(Want {
+                        due: due(&origin, &v),
+                        rank: rank_of(&origin),
+                        tool: tools.len(),
+                        tag: tag.clone(),
+                        version: v,
+                    });
+                }
             }
+            sources.insert(tools.len(), PendingSource::Package(package.name.clone()));
         }
         tools.push(Tool {
             id,
@@ -370,6 +416,35 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
             serving_class: serving.class,
             versions,
         });
+    }
+
+    // New versions first (a tool's first records, then new releases), then
+    // retries that are due; within each, core providers and the launch set in
+    // order, newest version first. Recent failures wait for their retry day.
+    report.waiting_retry = wants.iter().filter(|w| w.due == Due::Wait).count();
+    wants.retain(|w| w.due != Due::Wait);
+    wants.sort_by_key(|w| (w.due, w.rank));
+    report.deferred += wants
+        .len()
+        .saturating_sub(cfg.verified.max_versions_per_run);
+    wants.truncate(cfg.verified.max_versions_per_run);
+    let mut pending: Vec<Pending> = Vec::new();
+    for w in wants {
+        match pending.iter_mut().find(|p| p.tool == w.tool) {
+            Some(p) => {
+                p.tags.push(w.tag);
+                p.versions.push(w.version);
+            }
+            None => pending.push(Pending {
+                tool: w.tool,
+                source: match &sources[&w.tool] {
+                    PendingSource::Package(p) => PendingSource::Package(p.clone()),
+                    PendingSource::Provider(p) => PendingSource::Provider(p.clone()),
+                },
+                tags: vec![w.tag],
+                versions: vec![w.version],
+            }),
+        }
     }
 
     let mut engine: Option<Value> = None;
@@ -401,6 +476,10 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
                     report
                         .verification_failed
                         .push(format!("{}: {e:#}", tool.origin));
+                    let reason: String = format!("{e:#}").chars().take(300).collect();
+                    for v in &p.versions {
+                        attempts.failed(&tool.origin, v, inputs.now, engine_rev, reason.clone());
+                    }
                     continue;
                 }
             };
@@ -416,19 +495,33 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
                     .or_default()
                     .push(record.clone());
             }
+            let mut updated = BTreeSet::new();
             for v in &mut tool.versions {
                 if let Some(mut records) = by_version.remove(&v.version) {
+                    updated.insert(v.version.clone());
                     records.sort_by(|a, b| a["platform"].as_str().cmp(&b["platform"].as_str()));
                     v.sets = records;
                     report.verified_this_run += 1;
-                    if !index::verified(v) {
-                        report.verification_failed.push(format!(
-                            "{} {}: {}",
-                            tool.origin,
-                            v.version,
-                            failure_reason(&v.sets)
-                        ));
+                    if index::verified(v) {
+                        attempts.clear(&tool.origin, &v.version);
+                    } else {
+                        let reason = failure_reason(&v.sets);
+                        report
+                            .verification_failed
+                            .push(format!("{} {}: {reason}", tool.origin, v.version));
+                        attempts.failed(&tool.origin, &v.version, inputs.now, engine_rev, reason);
                     }
+                }
+            }
+            for v in &p.versions {
+                if !updated.contains(v) {
+                    attempts.failed(
+                        &tool.origin,
+                        v,
+                        inputs.now,
+                        engine_rev,
+                        "oyzu returned no record for this version".into(),
+                    );
                 }
             }
         }
@@ -448,6 +541,19 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
                 v.sets.clear();
             }
         }
+    }
+
+    // Forget failures for versions that are verified now or left the index.
+    {
+        let by_origin: BTreeMap<&str, &Tool> =
+            tools.iter().map(|t| (t.origin.as_str(), t)).collect();
+        attempts.retain(|origin, version| {
+            by_origin.get(origin).is_some_and(|t| {
+                t.versions
+                    .iter()
+                    .any(|v| v.version == version && !index::verified(v))
+            }) || inputs.only.as_ref().is_some_and(|o| !o.contains(origin))
+        });
     }
 
     tools.sort_by(|a, b| a.id.cmp(&b.id));
@@ -485,13 +591,33 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         tools,
     };
     index.check()?;
-    Ok((index, report))
+    Ok((index, report, attempts))
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{canonical_id, failure_reason};
+    use super::{canonical_id, failure_reason, looks_like_version};
     use serde_json::json;
+
+    #[test]
+    fn release_tags_look_like_versions_and_others_do_not() {
+        for v in [
+            "1.2.3",
+            "2025-08-13T08-35-41Z",
+            "RELEASE.2025-08-13T08-35-41Z",
+        ] {
+            assert!(looks_like_version(v), "{v}");
+        }
+        for v in [
+            "nightly-2025",
+            "chart-3.9.1",
+            "pkg/v3.1.0",
+            "@biomejs/biome@2.0.0",
+            "lsp.x",
+        ] {
+            assert!(!looks_like_version(v), "{v}");
+        }
+    }
 
     #[test]
     fn a_failed_version_reports_its_first_failed_check() {

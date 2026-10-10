@@ -51,6 +51,7 @@ jobs:
           rev=$(sed -n 's/.*oyzu-recipe = .*rev = "\([0-9a-f]*\)".*/\1/p' Cargo.toml)
           cargo install --locked --git https://github.com/oyzuai/oyzu --rev "$rev" oyzu --root "$RUNNER_TEMP/oyzu"
           echo "$RUNNER_TEMP/oyzu/bin" >> "$GITHUB_PATH"
+          echo "OYZU_REV=$rev" >> "$GITHUB_ENV"
 
       - name: Build the job
         run: cargo build --release --locked
@@ -73,9 +74,12 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           previous=$([ -f index/index.json ] && echo "--previous index/index.json" || true)
+          # index/attempts.json holds versions that failed verification and
+          # why; they wait retry_after_days, or retry at once under a new pin.
           ./target/release/tool-index build $previous \
             --listing work/listing.json \
             --oyzu "$(command -v oyzu)" \
+            --attempts index/attempts.json --engine-rev "$OYZU_REV" \
             --out index > work/build-report.json
           cat work/build-report.json
 
@@ -107,7 +111,7 @@ jobs:
           git config user.name "${{ steps.bot.outputs.app-slug }}[bot]"
           git config user.email "${{ steps.bot.outputs.app-slug }}[bot]@users.noreply.github.com"
           git switch -c "$branch"
-          git add index/index.json index/NOTICE
+          git add index/index.json index/NOTICE index/attempts.json
           git commit -m "index: update $(date -u +%Y-%m-%d)"
           # Pushed with the bot token too, so the pushes run the `verify` check.
           git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch"

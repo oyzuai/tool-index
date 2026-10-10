@@ -212,7 +212,37 @@ impl Index {
 
 /// A pre-release version (`1.2.0-rc.1`), as the client decides it.
 pub fn prerelease(version: &str) -> bool {
-    version.contains('-')
+    let core = word_prefix(version).map_or(version, |(_, rest)| rest);
+    !date_version(core) && core.contains('-')
+}
+
+/// A version spelled `WORD.<number>…`, as MinIO tags every release
+/// (`RELEASE.2025-08-13T08-35-41Z`): the word and the rest.
+pub fn word_prefix(version: &str) -> Option<(&str, &str)> {
+    let (word, rest) = version.split_once('.')?;
+    (!word.is_empty()
+        && word.bytes().all(|b| b.is_ascii_alphabetic())
+        && rest.bytes().next().is_some_and(|b| b.is_ascii_digit()))
+    .then_some((word, rest))
+}
+
+/// A release named by its date, `2025-08-13` or `2025-08-13T08-35-41Z`,
+/// whose hyphens are not a pre-release suffix.
+fn date_version(v: &str) -> bool {
+    let b = v.as_bytes();
+    let digits =
+        |r: std::ops::Range<usize>| b.get(r).is_some_and(|s| s.iter().all(u8::is_ascii_digit));
+    b.len() >= 10
+        && digits(0..4)
+        && b[4] == b'-'
+        && digits(5..7)
+        && b[7] == b'-'
+        && digits(8..10)
+        && (b.len() == 10
+            || (b[10] == b'T'
+                && b[11..]
+                    .iter()
+                    .all(|c| c.is_ascii_digit() || matches!(c, b'-' | b':' | b'Z'))))
 }
 
 /// Whether a version's bytes were checked: a verified record, or only
@@ -236,6 +266,18 @@ pub fn record_hosts(record: &Value) -> BTreeSet<String> {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn dated_releases_are_not_prereleases() {
+        use super::prerelease;
+        assert!(prerelease("1.3.0-rc.1"));
+        assert!(!prerelease("1.3.0"));
+        assert!(!prerelease("RELEASE.2025-08-13T08-35-41Z"));
+        assert!(!prerelease("2025-08-13T08-35-41Z"));
+        assert!(!prerelease("2025-08-13"));
+        assert!(prerelease("2025-08-13-beta"));
+        assert!(prerelease("RELEASE.1.0-rc1"));
+    }
+
     use super::*;
 
     #[test]

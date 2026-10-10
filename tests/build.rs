@@ -1,7 +1,8 @@
 //! The build and review steps on a two-package snapshot, with a stand-in
 //! `oyzu` that emits fixed records, so no network is needed.
 use jiff::Timestamp;
-use oyzu_tool_index::build::{build, Inputs};
+use oyzu_tool_index::attempts::Attempts;
+use oyzu_tool_index::build::{build, Inputs, Report};
 use oyzu_tool_index::config::Config;
 use oyzu_tool_index::index::{verified, DateSource, Index, ServingClass};
 use oyzu_tool_index::resolve::Oyzu;
@@ -87,15 +88,19 @@ if [ "$3" = "evidence" ] && [ "$4" = "--provider" ]; then
   exit 0
 fi
 if [ "$3" = "evidence" ]; then
+  # A `fail` file beside this script keeps every record at the discovery tier.
+  if [ -f "$(dirname "$0")/fail" ]; then cat "$5"; exit 3; fi
   sed 's/"tier":"discovery"/"tier":"verified"/g' "$5"
   exit 0
 fi
 sets=""
 prev=""
+tool=""
 for a in "$@"; do
+  if [ "$prev" = "--tool" ]; then tool="$a"; fi
   if [ "$prev" = "--version" ]; then
     n="${a#v}"
-    r="{\"tool\":{\"id\":\"aqua:acme/tool\"},\"version\":{\"requested\":\"$a\",\"normalized\":\"$n\"},\"platform\":\"linux/amd64/gnu\",\"status\":\"resolved\",\"tier\":\"discovery\",\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/acme/tool/releases/download/$a/t.tar.gz\"}]}"
+    r="{\"tool\":{\"id\":\"aqua:$tool\"},\"version\":{\"requested\":\"$a\",\"normalized\":\"$n\"},\"platform\":\"linux/amd64/gnu\",\"status\":\"resolved\",\"tier\":\"discovery\",\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/acme/tool/releases/download/$a/t.tar.gz\"}]}"
     if [ -z "$sets" ]; then sets="$r"; else sets="$sets,$r"; fi
   fi
   prev="$a"
@@ -119,6 +124,22 @@ fn fixture(reviewed: bool) -> Fixture {
 
 /// [`fixture`] with extra `index.toml` and `serving.toml` text.
 fn fixture_with(reviewed: bool, index_extra: &str, serving_extra: &str) -> Fixture {
+    fixture_full(
+        reviewed,
+        index_extra,
+        serving_extra,
+        "[[tool]]\npackage = \"acme/tool\"\nname = \"tool\"\ngroup = \"Test\"\n",
+        10,
+    )
+}
+
+fn fixture_full(
+    reviewed: bool,
+    index_extra: &str,
+    serving_extra: &str,
+    launch_set: &str,
+    budget: usize,
+) -> Fixture {
     let dir = tempfile::tempdir().unwrap();
     let root = dir.path().to_owned();
     std::fs::write(root.join("registry.yaml"), REGISTRY).unwrap();
@@ -145,9 +166,10 @@ max_versions = 3
 source_kinds = ["github_release"]
 [verified]
 backfill = 2
-max_versions_per_run = 10
+max_versions_per_run = {budget}
 keep_records = 2
 include_prereleases = false
+retry_after_days = 7
 [signing]
 expires_days = 14
 {index_extra}"#,
@@ -156,11 +178,7 @@ expires_days = 14
         ),
     )
     .unwrap();
-    std::fs::write(
-        cfg.join("launch-set.toml"),
-        "[[tool]]\npackage = \"acme/tool\"\nname = \"tool\"\ngroup = \"Test\"\n",
-    )
-    .unwrap();
+    std::fs::write(cfg.join("launch-set.toml"), launch_set).unwrap();
     std::fs::write(
         cfg.join("serving.toml"),
         format!(
@@ -209,6 +227,17 @@ fn listing(tool: &[Listed], other: &[Listed]) -> Listing {
 }
 
 fn run(f: &Fixture, listing: Listing, previous: Option<Index>, now: &str) -> Index {
+    run_with(f, listing, previous, now, Attempts::default(), None).0
+}
+
+fn run_with(
+    f: &Fixture,
+    listing: Listing,
+    previous: Option<Index>,
+    now: &str,
+    attempts: Attempts,
+    engine_rev: Option<&str>,
+) -> (Index, Report, Attempts) {
     let oyzu = fake_oyzu(&f.root);
     build(Inputs {
         config: &f.config,
@@ -219,9 +248,10 @@ fn run(f: &Fixture, listing: Listing, previous: Option<Index>, now: &str) -> Ind
         oyzu: Some(Oyzu { binary: oyzu }),
         only: None,
         work: f.root.join("work"),
+        attempts,
+        engine_rev: engine_rev.map(str::to_owned),
     })
     .unwrap()
-    .0
 }
 
 #[test]
@@ -267,7 +297,11 @@ fn first_run_verifies_the_newest_releases_and_dates_the_rest() {
     // The pull request body counts every tool of a first index.
     assert_eq!(
         first.tools_with_new_versions.len(),
-        index.tools.iter().filter(|t| !t.versions.is_empty()).count()
+        index
+            .tools
+            .iter()
+            .filter(|t| !t.versions.is_empty())
+            .count()
     );
     assert!(!first.tools_with_new_versions.is_empty());
 }
@@ -463,4 +497,98 @@ fn an_unverified_core_provider_lists_versions_only() {
     let java = index.tool("oyzu:java").unwrap();
     assert_eq!(java.versions.len(), 1);
     assert!(java.versions[0].sets.is_empty());
+}
+
+/// The budget goes to the launch set in file order, not registry order, and
+/// to versions never tried before retries.
+#[test]
+fn the_budget_follows_the_launch_set_order() {
+    let launch = "[[tool]]\npackage = \"acme/other\"\ngroup = \"Test\"\n\
+                  [[tool]]\npackage = \"acme/tool\"\nname = \"tool\"\ngroup = \"Test\"\n";
+    let f = fixture_full(true, "", "", launch, 2);
+    let l = listing(
+        &[listed("v1.1.0", None), listed("v1.0.0", None)],
+        &[listed("v2.1", None), listed("v2.0", None)],
+    );
+    let (index, report, _) = run_with(
+        &f,
+        l,
+        None,
+        "2026-10-10T00:00:00Z",
+        Attempts::default(),
+        None,
+    );
+    let records = |id: &str| {
+        index
+            .tool(id)
+            .unwrap()
+            .versions
+            .iter()
+            .filter(|v| verified(v))
+            .count()
+    };
+    // acme/other comes second in the registry but first in the launch set.
+    assert_eq!((records("oyzu:acme/other"), records("oyzu:tool")), (2, 0));
+    assert_eq!(report.deferred, 2);
+}
+
+/// A version that fails verification is recorded with its reason, waits a
+/// week (or for a new oyzu), and its later success merges as routine.
+#[test]
+fn failed_versions_back_off_and_their_retry_is_routine() {
+    let f = fixture(true);
+    let l = || listing(&[listed("v1.0.0", None)], &[]);
+    std::fs::write(f.root.join("fail"), "").unwrap();
+    let (first, _, attempts) = run_with(
+        &f,
+        l(),
+        None,
+        "2026-10-01T00:00:00Z",
+        Attempts::default(),
+        Some("r1"),
+    );
+    let entry = attempts
+        .get("aqua:acme/tool", "1.0.0")
+        .expect("the failure is recorded");
+    assert_eq!(entry.attempts, 1);
+    assert_eq!(entry.reason, "no record reached the verified tier");
+
+    // The next day: nothing spent on it.
+    let (_, report, again) = run_with(
+        &f,
+        l(),
+        Some(first.clone()),
+        "2026-10-02T00:00:00Z",
+        attempts.clone(),
+        Some("r1"),
+    );
+    assert_eq!((report.verified_this_run, report.waiting_retry), (0, 1));
+    assert_eq!(again, attempts);
+
+    // A new oyzu retries at once; it still fails, so the count grows.
+    let (_, report, bumped) = run_with(
+        &f,
+        l(),
+        Some(first.clone()),
+        "2026-10-02T00:00:00Z",
+        attempts.clone(),
+        Some("r2"),
+    );
+    assert_eq!(report.verified_this_run, 1);
+    assert_eq!(bumped.get("aqua:acme/tool", "1.0.0").unwrap().attempts, 2);
+
+    // A week later it passes: the entry goes, and the change is routine.
+    std::fs::remove_file(f.root.join("fail")).unwrap();
+    let (fixed, _, after) = run_with(
+        &f,
+        l(),
+        Some(first.clone()),
+        "2026-10-08T00:00:00Z",
+        attempts,
+        Some("r1"),
+    );
+    assert!(verified(&fixed.tool("oyzu:tool").unwrap().versions[0]));
+    assert!(after.tools.is_empty());
+    let r = review(Some(&first), &fixed);
+    assert_eq!(r.decision, Decision::Routine, "{:?}", r.reasons);
 }

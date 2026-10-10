@@ -1,12 +1,10 @@
 //! `tool-index`: builds, reviews and stamps Oyzu's public tool index.
 //!
 //! A daily run is `fetch`, `list`, `build` and `review` (the job opens a pull
-//! request with the result); a merge, and a daily re-sign, run `stamp`, then
-//! cosign signs the stamped copy and `release` checks what is published. See
-//! README.md.
-use oyzu_tool_index::{
-    build, config, fetch, index, registry, release, resolve, review, stamp, versions,
-};
+//! request with the result). Releasing (`serial`, `stamp`, `release`) is the
+//! separate `tool-index-release` binary in `release-tool/`, which builds without
+//! private oyzu. See README.md.
+use oyzu_tool_index::{attempts, build, config, fetch, index, registry, resolve, review, versions};
 
 use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand};
@@ -73,6 +71,14 @@ enum Command {
         /// Skip resolve and evidence; carry verified records forward only.
         #[arg(long)]
         no_verify: bool,
+        /// Versions that failed verification before; the updated file is
+        /// written to `<out>/attempts.json`.
+        #[arg(long, default_value = "index/attempts.json")]
+        attempts: PathBuf,
+        /// The oyzu revision `--oyzu` was built from. Failures recorded under
+        /// another revision are retried at once.
+        #[arg(long)]
+        engine_rev: Option<String>,
         #[arg(long)]
         only: Vec<String>,
         /// Fixed clock for reproducible runs (RFC 3339).
@@ -91,36 +97,6 @@ enum Command {
         /// Also write the pull request body here.
         #[arg(long)]
         markdown: Option<PathBuf>,
-    },
-    /// Stamp a release copy of the committed index with `serial` and `expires`.
-    Stamp {
-        #[arg(long, default_value = "config")]
-        config: PathBuf,
-        /// The committed, unstamped index.
-        #[arg(long, default_value = "index/index.json")]
-        index: PathBuf,
-        /// The `index.json` of the latest release, if there is one.
-        #[arg(long)]
-        published: Option<PathBuf>,
-        /// Fixed clock for reproducible runs (RFC 3339).
-        #[arg(long)]
-        now: Option<Timestamp>,
-        /// Where the stamped copy goes.
-        #[arg(long)]
-        out: PathBuf,
-    },
-    /// Check a release directory (index.json, index.json.sigstore.json,
-    /// NOTICE) and print the release plan for tag `index-v<serial>`.
-    Release {
-        /// Directory holding the release assets.
-        #[arg(long)]
-        dir: PathBuf,
-        /// Report missing assets instead of failing.
-        #[arg(long)]
-        dry_run: bool,
-        /// Fixed clock for the expiry check (RFC 3339).
-        #[arg(long)]
-        now: Option<Timestamp>,
     },
 }
 
@@ -239,14 +215,17 @@ async fn main() -> Result<()> {
             previous,
             oyzu,
             no_verify,
+            attempts,
+            engine_rev,
             only,
             now,
             out,
         } => {
             let cfg = config::Config::load(&config)?;
+            let attempts = attempts::Attempts::read(&attempts)?;
             let listing: versions::Listing = serde_json::from_slice(&std::fs::read(&listing)?)?;
             let previous = previous.map(|p| index::Index::read(&p)).transpose()?;
-            let (index, report) = build::build(build::Inputs {
+            let (index, report, attempts) = build::build(build::Inputs {
                 config: &cfg,
                 registry_path: work.join("registry.yaml"),
                 listing,
@@ -255,9 +234,12 @@ async fn main() -> Result<()> {
                 oyzu: (!no_verify).then_some(resolve::Oyzu { binary: oyzu }),
                 only: (!only.is_empty()).then(|| only.into_iter().collect()),
                 work: work.join("records"),
+                attempts,
+                engine_rev,
             })?;
             std::fs::create_dir_all(&out)?;
             std::fs::write(out.join("index.json"), index.to_bytes()?)?;
+            std::fs::write(out.join("attempts.json"), attempts.to_bytes()?)?;
             std::fs::copy(work.join("NOTICE"), out.join("NOTICE")).context("run `fetch` first")?;
             print_json(&report)?;
         }
@@ -277,42 +259,6 @@ async fn main() -> Result<()> {
                 std::fs::write(path, review::markdown(&r))?;
             }
             print_json(&r)?;
-        }
-        Command::Stamp {
-            config,
-            index,
-            published,
-            now,
-            out,
-        } => {
-            let cfg = config::Config::load(&config)?;
-            let unstamped =
-                std::fs::read(&index).with_context(|| format!("reading {}", index.display()))?;
-            let published = published
-                .map(|p| std::fs::read(&p).with_context(|| format!("reading {}", p.display())))
-                .transpose()?;
-            let bytes = stamp::stamp(
-                &unstamped,
-                published.as_deref(),
-                now.unwrap_or_else(Timestamp::now),
-                cfg.index.signing.expires_days,
-            )?;
-            if let Some(parent) = out.parent() {
-                std::fs::create_dir_all(parent)?;
-            }
-            std::fs::write(&out, &bytes).with_context(|| format!("writing {}", out.display()))?;
-            let stamped: index::Index = serde_json::from_slice(&bytes)?;
-            print_json(&serde_json::json!({
-                "serial": stamped.serial,
-                "expires": stamped.expires,
-            }))?;
-        }
-        Command::Release { dir, dry_run, now } => {
-            print_json(&release::plan(
-                &dir,
-                now.unwrap_or_else(Timestamp::now),
-                dry_run,
-            )?)?;
         }
     }
     Ok(())

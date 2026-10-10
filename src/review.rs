@@ -4,7 +4,7 @@
 //!
 //! Anything else that changes what clients trust also waits: a new registry
 //! snapshot or resolve engine, a changed origin or serving class, a removed tool or
-//! version, and above all a changed record for a version already indexed.
+//! version, and above all a changed record for a version already verified.
 //!
 //! The release fields `serial` and `expires` are ignored, so a daily re-stamp
 //! never needs review.
@@ -130,8 +130,11 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
                         reasons.push(format!("{id} {} changes its release date", v.version));
                     }
                     // Records age out of the index (`keep_records`); dropping
-                    // them removes information and adds no trust.
-                    if o.sets.is_empty() {
+                    // them removes information and adds no trust. A version
+                    // that never reached the verified tier is retried
+                    // (`index/attempts.json`), and its new records are judged
+                    // like a new version's: new hosts still need review.
+                    if o.sets.is_empty() || (!verified(o) && o.sets != v.sets) {
                         added_records += v.sets.len();
                     } else if !v.sets.is_empty() && o.sets != v.sets {
                         reasons.push(format!(

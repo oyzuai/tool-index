@@ -59,6 +59,9 @@ pub struct Verified {
     /// Versions per tool whose records the index keeps, newest first.
     pub keep_records: usize,
     pub include_prereleases: bool,
+    /// Days a version that failed verification waits before it is tried
+    /// again with the same oyzu (`index/attempts.json`).
+    pub retry_after_days: i64,
 }
 
 #[derive(Debug, Deserialize)]
@@ -166,6 +169,10 @@ impl Config {
                 );
             }
         }
+        ensure!(
+            (1..=366).contains(&self.index.verified.retry_after_days),
+            "verified.retry_after_days must be between 1 and 366"
+        );
         ensure!(
             self.index.verified.keep_records >= self.index.verified.backfill,
             "verified.keep_records must be at least verified.backfill"
