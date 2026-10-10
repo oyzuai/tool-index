@@ -3,10 +3,12 @@
 # Runs on GitHub-hosted runners only (decided 2026-10-10): the repository is
 # public, and a self-hosted runner would let fork pull requests run code on it.
 #
-# The pull request is pushed, opened and auto-merged with the index bot's
-# token (secret INDEX_BOT_TOKEN), not github.token: events caused by
-# GITHUB_TOKEN start no workflows, so the required `verify` check would never
-# run and a merge would never trigger release.yml.
+# The pull request is pushed, opened and auto-merged as the oyzu-index-bot
+# GitHub App (secrets INDEX_BOT_APP_ID and INDEX_BOT_PRIVATE_KEY), not with
+# github.token: events caused by GITHUB_TOKEN start no workflows, so the
+# required `verify` check would never run and a merge would never trigger
+# release.yml. The App is a separate identity so a maintainer can approve its
+# needs-review pull requests.
 name: Build index
 
 on:
@@ -33,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # The bot token is used only in the last step; the build and the
+          # The bot token is minted only for the last step; the build and the
           # oyzu runs before it never see it.
           persist-credentials: false
 
@@ -85,15 +87,25 @@ jobs:
             --next index/index.json --markdown work/pr-body.md > work/review.json
           echo "decision=$(jq -r .decision work/review.json)" >> "$GITHUB_OUTPUT"
 
+      - name: Mint the index bot token
+        id: bot
+        if: steps.review.outputs.decision != 'no-change'
+        # v3.2.0
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        with:
+          app-id: ${{ secrets.INDEX_BOT_APP_ID }}
+          private-key: ${{ secrets.INDEX_BOT_PRIVATE_KEY }}
+          repositories: tool-index
+
       - name: Open the pull request
         if: steps.review.outputs.decision != 'no-change'
         env:
-          GH_TOKEN: ${{ secrets.INDEX_BOT_TOKEN }}
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
           DECISION: ${{ steps.review.outputs.decision }}
         run: |
           branch="index/$(date -u +%Y-%m-%d)"
-          git config user.name "oyzu-index-bot"
-          git config user.email "index-bot@users.noreply.github.com"
+          git config user.name "${{ steps.bot.outputs.app-slug }}[bot]"
+          git config user.email "${{ steps.bot.outputs.app-slug }}[bot]@users.noreply.github.com"
           git switch -c "$branch"
           git add index/index.json index/NOTICE
           git commit -m "index: update $(date -u +%Y-%m-%d)"
