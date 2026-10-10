@@ -188,16 +188,27 @@ async fn main() -> Result<()> {
                 if !only.is_empty() && !only.contains(&id) {
                     continue;
                 }
-                let listing = match provider.as_str() {
-                    "java" => versions::list_adoptium(&adoptium, core.max_versions)
-                        .await
-                        .unwrap_or_else(|e| versions::ToolListing {
-                            source: "adoptium".into(),
-                            versions: Vec::new(),
-                            error: Some(format!("{e:#}")),
-                        }),
+                let (source, listed) = match provider.as_str() {
+                    "java" => (
+                        "adoptium",
+                        versions::list_adoptium(&adoptium, core.max_versions).await,
+                    ),
+                    "node" => (
+                        "nodejs.org",
+                        versions::list_node(versions::NODE_CATALOG).await,
+                    ),
+                    "go" => ("go.dev", versions::list_go(versions::GO_CATALOG).await),
+                    "python" => (
+                        "python-build-standalone",
+                        versions::list_python(versions::PYTHON_RELEASE).await,
+                    ),
                     other => bail!("no lister for core provider {other}"),
                 };
+                let listing = listed.unwrap_or_else(|e| versions::ToolListing {
+                    source: source.into(),
+                    versions: Vec::new(),
+                    error: Some(format!("{e:#}")),
+                });
                 tools.insert(id, listing);
             }
             let listing = versions::Listing {

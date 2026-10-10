@@ -6,7 +6,7 @@
 //! and already-verified records forward, so a record is downloaded and checked
 //! once, when its version first appears.
 use crate::attempts::{Attempts, Due};
-use crate::config::Config;
+use crate::config::{Config, CoreProvider};
 use crate::index::{self, DateSource, Index, Released, ServingClass, Snapshot, Tool, Version};
 use crate::registry;
 use crate::resolve;
@@ -276,6 +276,69 @@ fn candidates(
         .collect()
 }
 
+/// A core provider's versions, newest first, cut to `max_versions`: overall,
+/// or per release line for the newest `lines` lines when it counts by line.
+fn keep_lines(versions: &mut Vec<Version>, core: &CoreProvider) {
+    if core.line.is_none() {
+        versions.truncate(core.max_versions);
+        return;
+    }
+    let mut lines: Vec<String> = Vec::new();
+    let mut counts: BTreeMap<String, usize> = BTreeMap::new();
+    versions.retain(|v| {
+        let line = core.line_of(&v.version).unwrap_or("").to_owned();
+        if !lines.contains(&line) {
+            lines.push(line.clone());
+        }
+        let n = counts.entry(line.clone()).or_default();
+        *n += 1;
+        core.lines
+            .is_none_or(|max| lines.iter().position(|l| *l == line).unwrap_or(0) < max)
+            && *n <= core.max_versions
+    });
+}
+
+/// [`candidates`] for a core provider: per release line when it counts by
+/// line, so a line without records gets its backfill even when newer lines
+/// have records. Lines take turns, so a short budget reaches every line.
+fn core_candidates(
+    versions: &[Version],
+    previous: Option<&Tool>,
+    core: &CoreProvider,
+    cfg: &crate::config::Verified,
+) -> Vec<String> {
+    if core.line.is_none() {
+        return candidates(versions, previous, cfg);
+    }
+    let mut lines: Vec<(&str, Vec<Version>)> = Vec::new();
+    for v in versions {
+        let line = core.line_of(&v.version).unwrap_or("");
+        match lines.iter_mut().find(|(l, _)| *l == line) {
+            Some((_, group)) => group.push(v.clone()),
+            None => lines.push((line, vec![v.clone()])),
+        }
+    }
+    let per_line: Vec<Vec<String>> = lines
+        .iter()
+        .map(|(line, group)| {
+            let previous = previous.map(|p| Tool {
+                versions: p
+                    .versions
+                    .iter()
+                    .filter(|v| core.line_of(&v.version) == Some(line))
+                    .cloned()
+                    .collect(),
+                ..p.clone()
+            });
+            candidates(group, previous.as_ref(), cfg)
+        })
+        .collect();
+    let longest = per_line.iter().map(Vec::len).max().unwrap_or(0);
+    (0..longest)
+        .flat_map(|i| per_line.iter().filter_map(move |c| c.get(i).cloned()))
+        .collect()
+}
+
 pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     let cfg = &inputs.config.index;
     let registry_bytes = std::fs::read(&inputs.registry_path)
@@ -340,7 +403,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             .map(|l| (l.version.clone(), l))
             .collect();
         let mut versions = merge(&listed, previous(&origin), &now);
-        versions.truncate(core.max_versions);
+        keep_lines(&mut versions, core);
         let id = format!(
             "oyzu:{}",
             core.names.first().map(String::as_str).unwrap_or(provider)
@@ -349,7 +412,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         if core.verified {
             // Records come from `oyzu tools evidence --provider`, with the
             // record id `core:<provider>` the index carries as the origin.
-            for v in candidates(&versions, previous(&origin), &cfg.verified) {
+            for v in core_candidates(&versions, previous(&origin), core, &cfg.verified) {
                 wants.push(Want {
                     due: due(&origin, &v),
                     rank: rank_of(&origin),
@@ -573,11 +636,22 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     // Records are kept for the newest versions only, which bounds the single
     // index file. An organization that approved an older version keeps the
     // digest it adopted; dropping records never adds trust, so it is routine.
+    // A core provider that counts by release line keeps them per line.
     for tool in &mut tools {
-        let mut kept = 0;
+        let core = tool
+            .origin
+            .strip_prefix("core:")
+            .and_then(|p| cfg.core.get(p))
+            .filter(|c| c.line.is_some());
+        let keep = core
+            .and_then(|c| c.keep_records)
+            .unwrap_or(cfg.verified.keep_records);
+        let mut kept: BTreeMap<String, usize> = BTreeMap::new();
         for v in tool.versions.iter_mut().filter(|v| !v.sets.is_empty()) {
-            if kept < cfg.verified.keep_records {
-                kept += 1;
+            let line = core.and_then(|c| c.line_of(&v.version)).unwrap_or("");
+            let n = kept.entry(line.to_owned()).or_default();
+            if *n < keep {
+                *n += 1;
             } else {
                 v.sets.clear();
             }
@@ -644,9 +718,90 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
 
 #[cfg(test)]
 mod tests {
-    use super::{canonical_id, failure_reason, keep_newest, looks_like_version};
-    use crate::index::Version;
+    use super::{
+        canonical_id, core_candidates, failure_reason, keep_lines, keep_newest, looks_like_version,
+    };
+    use crate::config::{CoreProvider, Verified};
+    use crate::index::{DateSource, Released, ServingClass, Tool, Version};
     use serde_json::json;
+
+    fn version(v: &str, verified: bool) -> Version {
+        Version {
+            version: v.into(),
+            released: Released {
+                time: "2025-09-01T00:00:00Z".into(),
+                source: DateSource::Publisher,
+            },
+            sets: if verified {
+                vec![json!({"tier": "verified", "status": "resolved"})]
+            } else {
+                vec![]
+            },
+            source: None,
+        }
+    }
+
+    fn node(lines: Option<usize>) -> CoreProvider {
+        CoreProvider {
+            names: vec!["node".into()],
+            max_versions: 2,
+            verified: true,
+            line: Some(1),
+            lines,
+            keep_records: Some(2),
+        }
+    }
+
+    const VERIFIED: Verified = Verified {
+        backfill: 1,
+        max_versions_per_run: 150,
+        keep_records: 10,
+        include_prereleases: false,
+        retry_after_days: 7,
+    };
+
+    #[test]
+    fn release_lines_keep_their_own_versions_and_backfill() {
+        let names = |vs: &[Version]| vs.iter().map(|v| v.version.clone()).collect::<Vec<_>>();
+        let listed = [
+            "24.9.0", "24.8.0", "24.7.0", "22.20.0", "22.19.0", "20.19.5",
+        ];
+        let mut versions: Vec<Version> = listed.iter().map(|v| version(v, false)).collect();
+        keep_lines(&mut versions, &node(Some(2)));
+        assert_eq!(names(&versions), ["24.9.0", "24.8.0", "22.20.0", "22.19.0"]);
+
+        // Line 24 has records; line 22 was listed before but never got any.
+        // By line, 22 gets its backfill while 24 verifies only its new release.
+        let previous = Tool {
+            id: "oyzu:node".into(),
+            origin: "core:node".into(),
+            serving_class: ServingClass::Direct,
+            source_mirror: false,
+            versions: vec![
+                version("24.8.0", true),
+                version("22.20.0", false),
+                version("22.19.0", false),
+            ],
+        };
+        let versions = vec![
+            version("24.9.0", false),
+            version("24.8.0", true),
+            version("22.20.0", false),
+            version("22.19.0", false),
+        ];
+        assert_eq!(
+            core_candidates(&versions, Some(&previous), &node(None), &VERIFIED),
+            ["24.9.0", "22.20.0"]
+        );
+        // Counted overall, the newer line's records leave 22 without any.
+        let mut flat = node(None);
+        flat.line = None;
+        flat.keep_records = None;
+        assert_eq!(
+            core_candidates(&versions, Some(&previous), &flat, &VERIFIED),
+            ["24.9.0"]
+        );
+    }
 
     #[test]
     fn preview_builds_do_not_crowd_out_releases() {

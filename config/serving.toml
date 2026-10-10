@@ -389,3 +389,23 @@ reviewed = false
 [tools."core:java"]
 license = "GPL-2.0-only WITH Classpath-exception-2.0"
 reviewed = false
+
+# Node.js: MIT, with permissively licensed bundled dependencies listed in the
+# archive's LICENSE (tool-licensing.md). Reviewed, `cache`; until then
+# `oyzu:node` is `direct`.
+[tools."core:node"]
+license = "MIT"
+reviewed = false
+
+# Go: BSD-3-Clause (the archive's LICENSE). Reviewed, `cache`.
+[tools."core:go"]
+license = "BSD-3-Clause"
+reviewed = false
+
+# python-build-standalone CPython: PSF-2.0, with bundled third-party libraries
+# (OpenSSL, SQLite, libffi, Tcl/Tk and others) whose licenses each
+# distribution lists in its PYTHON.json and licenses directory; check those
+# before review. Reviewed, `cache`.
+[tools."core:python"]
+license = "PSF-2.0"
+reviewed = false
