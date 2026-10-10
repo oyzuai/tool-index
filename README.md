@@ -81,8 +81,8 @@ The `verify` workflow recomputes the decision on every pull request and every
 review, and is the gate rulesets cannot express: a pull request labeled
 `routine` that is not routine fails it, and a pull request whose decision is
 `review` passes only once someone with write access has approved its current
-head commit. The build workflow opens and auto-merges pull requests with the
-bot token `INDEX_BOT_TOKEN`, because pull requests and merges made with
+head commit. The build workflow opens and auto-merges pull requests as the
+`oyzu-index-bot` GitHub App, because pull requests and merges made with
 `GITHUB_TOKEN` start no workflows: neither `verify` nor `release.yml` would
 run.
 
@@ -170,8 +170,9 @@ bundle naming `index.json`'s exact bytes).
 These settings are part of the trust model; keep them when changing the
 repository.
 
-- The secret `INDEX_BOT_TOKEN` holds the index bot's token, limited to this
-  repository (contents and pull requests, read and write). The bot must not be
+- The secrets `INDEX_BOT_APP_ID` and `INDEX_BOT_PRIVATE_KEY` are the
+  `oyzu-index-bot` GitHub App, installed on this repository only (contents and
+  pull requests, read and write). The bot must not be
   the maintainer who approves `needs-review` pull requests, since GitHub does
   not let an author approve their own pull request.
 - The secrets `OYZU_READ_APP_ID` and `OYZU_READ_APP_PRIVATE_KEY` belong to a
