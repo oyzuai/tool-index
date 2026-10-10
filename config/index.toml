@@ -51,6 +51,11 @@ expires_days = 14
 # `verified = true`: new versions get records from `oyzu tools evidence
 # --provider <name>` (backfill and budget as for the launch set), carried
 # under the `oyzu:` id with origin `core:<name>`.
+#
+# `line = N`: the first N version components name a release line. Then
+# `max_versions`, the backfill and `keep_records` count per line, and `lines`
+# keeps the newest lines, so `java@21` or `node@lts` finds verified records
+# even when newer lines have more releases.
 [core.java]
 # Eclipse Temurin JDK. oyzu installs it for linux/amd64/gnu,
 # darwin/arm64/native and windows/amd64/msvc; other platforms get
@@ -58,3 +63,38 @@ expires_days = 14
 names = ["java"]
 max_versions = 50
 verified = true
+line = 1
+keep_records = 3
+
+# Node.js from nodejs.org/dist, the archives `oyzu install node` uses,
+# verified against each release's SHASUMS256.txt. Lines are majors; 22.x and
+# the newer LTS lines are what `lts` and `lts/<codename>` select.
+[core.node]
+names = ["node"]
+max_versions = 30
+verified = true
+line = 1
+lines = 6
+keep_records = 3
+
+# Go from go.dev/dl, verified against each archive's `.sha256` sidecar. Lines
+# are minors (1.25); Go supports the newest two.
+[core.go]
+names = ["go"]
+max_versions = 30
+verified = true
+line = 2
+lines = 4
+keep_records = 3
+
+# CPython from python-build-standalone's current release (install_only
+# builds), verified against the release's SHA256SUMS. Lines are minors (3.13).
+# The publisher's current release carries one patch per minor; earlier
+# patches keep the records they were verified with.
+[core.python]
+names = ["python"]
+max_versions = 30
+verified = true
+line = 2
+lines = 6
+keep_records = 3

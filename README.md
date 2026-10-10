@@ -12,8 +12,8 @@ release will be `index-v1`.
 | Step | Command | Network |
 | --- | --- | --- |
 | Fetch the pinned aqua registry snapshot, its license (the `NOTICE`) and the mise name catalog, each checked against its pinned digest | `tool-index fetch` | yes |
-| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token, Adoptium for Java | `tool-index list` | yes |
-| Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider java` for new Java versions | `tool-index build` | evidence downloads |
+| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token; Adoptium, nodejs.org, go.dev and python-build-standalone for the core providers | `tool-index list` | yes |
+| Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider <name>` for new core-provider versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Stamp a release copy of the committed index with `serial` and `expires` | `tool-index stamp` | no |
 | Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign attest-blob`, `cosign verify-blob-attestation` | Sigstore |
@@ -51,16 +51,22 @@ The workflows in `.github/workflows` run these on GitHub-hosted runners.
 - **Discovery**: every other `github_release` and `http` package in the
   snapshot, with versions and dates only. A standalone client evaluates the
   recipe itself; managed mode only uses verified records.
-- **Core providers**: Java (Eclipse Temurin) is listed from Adoptium and
-  indexed as `oyzu:java` with origin `core:java`. With `verified = true` in
-  `config/index.toml` (set for Java), new versions are verified like a
+- **Core providers**: Oyzu's own providers, built into the job rather than
+  read from the registry, indexed as `oyzu:<name>` with origin `core:<name>`:
+  Java (Eclipse Temurin, listed from Adoptium), Node (nodejs.org/dist), Go
+  (go.dev/dl) and Python (python-build-standalone's current release), the
+  same feeds the CLI installs from. With `verified = true` in
+  `config/index.toml` (set for all four), new versions are verified like a
   launch-set tool (same `backfill` and per-run budget): `oyzu tools evidence
-  --provider java --version <v> --platform <p>…` builds the records from
-  Adoptium's GA listing and checks each archive against the publisher's
-  SHA-256 file. Records are produced for the platforms oyzu installs Temurin
-  on (Linux x86-64, macOS arm64, Windows x86-64); the other configured
-  platforms get `unsupported` records. Managed clients resolve `oyzu:java`
-  only from these records.
+  --provider <name> --version <v> --platform <p>…` builds the records from
+  the publisher's listing and checks each archive against the publisher's
+  SHA-256 file. Records are produced for the platforms oyzu installs these
+  providers on (Linux x86-64, macOS arm64, Windows x86-64); the other
+  configured platforms get `unsupported` records. With `line = N`, versions,
+  the backfill and the records kept count per release line (Node and Java by
+  major, Go and Python by minor), so `node@lts` or `java@21` finds verified
+  records even when newer lines release more often. Managed clients resolve
+  these providers only from their records; standalone clients prefer them.
 
 Versions a recipe does not cover (`version_filter`, `version_prefix`) are
 dropped with the same engine the CLI uses (`oyzu-recipe`, pinned to the same

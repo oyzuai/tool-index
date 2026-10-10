@@ -77,6 +77,31 @@ pub struct CoreProvider {
     /// provider is listed at the discovery tier (versions and dates only).
     #[serde(default)]
     pub verified: bool,
+    /// Leading version components that name a release line (`1`: Node 22,
+    /// `2`: Go 1.25). With it, `max_versions`, the backfill and the records
+    /// kept count per line, so every supported line keeps verified records,
+    /// not only the newest releases overall.
+    #[serde(default)]
+    pub line: Option<usize>,
+    /// The newest release lines kept (every listed line when unset). Needs `line`.
+    #[serde(default)]
+    pub lines: Option<usize>,
+    /// Versions per line whose records the index keeps (default
+    /// `verified.keep_records`). Needs `line`.
+    #[serde(default)]
+    pub keep_records: Option<usize>,
+}
+
+impl CoreProvider {
+    /// The release line of a version, when the provider counts by line.
+    pub fn line_of<'a>(&self, version: &'a str) -> Option<&'a str> {
+        let n = self.line?;
+        let end = version
+            .match_indices('.')
+            .nth(n - 1)
+            .map_or(version.len(), |(i, _)| i);
+        Some(&version[..end])
+    }
 }
 
 #[derive(Debug, Deserialize)]
@@ -170,6 +195,22 @@ impl Config {
             self.index.verified.keep_records >= self.index.verified.backfill,
             "verified.keep_records must be at least verified.backfill"
         );
+        for (name, core) in &self.index.core {
+            ensure!(
+                core.line.is_none_or(|n| (1..=3).contains(&n)),
+                "core.{name}.line must be 1, 2 or 3"
+            );
+            ensure!(
+                core.line.is_some() || (core.lines.is_none() && core.keep_records.is_none()),
+                "core.{name}: lines and keep_records need line"
+            );
+            ensure!(
+                core.keep_records
+                    .unwrap_or(self.index.verified.keep_records)
+                    >= self.index.verified.backfill,
+                "core.{name}.keep_records must be at least verified.backfill"
+            );
+        }
         let mut seen = BTreeSet::new();
         for t in &self.launch_set.tools {
             ensure!(
