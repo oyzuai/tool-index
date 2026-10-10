@@ -57,6 +57,10 @@ jobs:
         run: ./target/release/tool-index list --source github
 
       - name: Build index.json
+        env:
+          # `oyzu tools evidence` lists GitHub artifact attestations from the
+          # API; the token raises its rate limit (sent to api.github.com only).
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           previous=$([ -f index/index.json ] && echo "--previous index/index.json" || true)
           ./target/release/tool-index build $previous \

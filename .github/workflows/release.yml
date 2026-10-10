@@ -79,6 +79,14 @@ jobs:
             --certificate-oidc-issuer https://token.actions.githubusercontent.com \
             index.json
 
+      # Transport only: the CLI fetches this (about a twentieth of index.json's
+      # size, measured 2026-10-10) and checks the signature against the
+      # decompressed bytes. `tool-index release` checks it decompresses to
+      # exactly index.json.
+      - name: Compress
+        working-directory: release
+        run: zstd -19 -q -o index.json.zst index.json
+
       - name: Check the release assets
         id: plan
         run: |
@@ -94,4 +102,4 @@ jobs:
           NOTES: ${{ steps.plan.outputs.notes }}
         run: |
           gh release create "$TAG" --latest --title "$TAG" --notes "$NOTES" \
-            release/index.json release/index.json.sigstore.json release/NOTICE
+            release/index.json release/index.json.zst release/index.json.sigstore.json release/NOTICE
