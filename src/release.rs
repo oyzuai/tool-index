@@ -6,7 +6,7 @@
 //! signature is over the decompressed bytes), its cosign bundle
 //! `index.json.sigstore.json` and the registry's `NOTICE`. This
 //! module checks a release directory and prints the plan; the workflow
-//! publishes it with `gh release create` after `cosign verify-blob`.
+//! publishes it with `gh release create` after `cosign verify-blob-attestation`.
 use crate::index::Index;
 use anyhow::{bail, ensure, Context, Result};
 use base64::Engine as _;
@@ -49,7 +49,7 @@ pub struct Asset {
 ///
 /// The stamped index must be valid and unexpired at `now`. When the bundle is
 /// present, its statement must name `index.json`'s SHA-256 (the signature
-/// itself is checked by `cosign verify-blob` in the workflow). Without
+/// itself is checked by `cosign verify-blob-attestation` in the workflow). Without
 /// `dry_run`, every asset must exist.
 pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
     let index_bytes = std::fs::read(dir.join(INDEX))
