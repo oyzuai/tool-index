@@ -37,6 +37,11 @@ jobs:
           # oyzu runs before it never see it.
           persist-credentials: false
 
+      - uses: ./.github/actions/oyzu-read
+        with:
+          app-id: ${{ secrets.OYZU_READ_APP_ID }}
+          private-key: ${{ secrets.OYZU_READ_APP_PRIVATE_KEY }}
+
       - name: Install the pinned oyzu
         run: |
           # Placeholder until oyzu publishes signed release binaries: build it
@@ -47,6 +52,9 @@ jobs:
 
       - name: Build the job
         run: cargo build --release --locked
+
+      - name: Drop the oyzu read token
+        run: .github/actions/oyzu-read/done.sh
 
       - name: Fetch pinned inputs
         run: ./target/release/tool-index fetch

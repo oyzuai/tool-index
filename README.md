@@ -160,6 +160,13 @@ repository.
   repository (contents and pull requests, read and write). The bot must not be
   the maintainer who approves `needs-review` pull requests, since GitHub does
   not let an author approve their own pull request.
+- The secrets `OYZU_READ_APP_ID` and `OYZU_READ_APP_PRIVATE_KEY` belong to a
+  GitHub App installed on `oyzuai/oyzu` only, with Contents and Metadata
+  read-only. oyzu is private, and `oyzu-recipe` and the job's `oyzu` binary
+  are built from it. `.github/actions/oyzu-read` mints a one-hour token for
+  that one repository before the cargo steps, and `done.sh` removes it right
+  after, so no step that runs `oyzu` sees it. Fork pull requests get no
+  secrets and cannot build. Drop all of this once oyzu is public.
 - The `release` environment is limited to `main`.
 - A ruleset on `main` requires pull requests (no required approvals; the
   `verify` check gates index changes), the `verify` check and code-owner

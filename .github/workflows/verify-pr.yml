@@ -29,8 +29,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: ./.github/actions/oyzu-read
+        with:
+          app-id: ${{ secrets.OYZU_READ_APP_ID }}
+          private-key: ${{ secrets.OYZU_READ_APP_PRIVATE_KEY }}
       - run: cargo build --release --locked
       - run: cargo test --locked
+      - name: Drop the oyzu read token
+        run: .github/actions/oyzu-read/done.sh
       - name: Recompute the review decision
         id: review
         env:
