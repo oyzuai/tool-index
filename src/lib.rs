@@ -12,5 +12,6 @@ pub mod resolve;
 pub mod review;
 pub mod serial;
 pub mod serving;
+pub mod sources;
 pub mod stamp;
 pub mod versions;

@@ -47,6 +47,11 @@ pub struct Report {
     /// Versions that failed recently and wait for their retry day.
     pub waiting_retry: usize,
     pub listing_errors: Vec<String>,
+    /// Source archives found and hashed this run (`crate::sources`).
+    pub sources_recorded: usize,
+    /// Versions of `source_mirror` tools whose source archive was not found;
+    /// a proxy serves them directly from upstream.
+    pub source_failures: Vec<String>,
     pub excluded: Vec<String>,
     pub id_conflicts: Vec<String>,
 }
@@ -164,6 +169,7 @@ fn merge(listed: &[(String, &Listed)], previous: Option<&Tool>, now: &str) -> Ve
                 },
             },
             sets: Vec::new(),
+            source: None,
         });
     }
     let mut v: Vec<Version> = out.into_values().collect();
@@ -340,6 +346,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             id,
             origin,
             serving_class: serving.class,
+            source_mirror: serving.source_mirror,
             versions,
         });
     }
@@ -414,6 +421,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             id,
             origin,
             serving_class: serving.class,
+            source_mirror: serving.source_mirror,
             versions,
         });
     }
@@ -539,6 +547,13 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
                 kept += 1;
             } else {
                 v.sets.clear();
+            }
+        }
+        // A source archive goes with the records it backs, and only for a
+        // tool that still needs one.
+        for v in &mut tool.versions {
+            if !tool.source_mirror || v.sets.is_empty() {
+                v.source = None;
             }
         }
     }

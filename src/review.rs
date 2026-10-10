@@ -126,6 +126,9 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
                     touched.insert(id.to_string());
                 }
                 Some(o) => {
+                    if o.source.is_some() && o.source != v.source {
+                        reasons.push(format!("{id} {} changes its source archive", v.version));
+                    }
                     if o.released != v.released {
                         reasons.push(format!("{id} {} changes its release date", v.version));
                     }

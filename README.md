@@ -114,7 +114,18 @@ license shipped inside the archives.
 
 Temurin (`core:java`) is GPLv2 with the Classpath Exception: once reviewed it
 is `cache` with the matching source mirrored; until then `oyzu:java` is
-`direct`. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
+`direct`.
+
+**Source mirroring.** A reviewed tool whose license is GPL, LGPL or AGPL and
+whose class is `cache` is marked `source_mirror` in the index. For each of its
+versions with records, `tool-index build` finds the source archive (GitHub's
+tag archive for an aqua package, the Adoptium release's source package for
+Java, or the `source` URL template in the tool's `serving.toml` entry),
+downloads it once and records its URL, SHA-256 and size as the version's
+`source`. A delivery service stores those bytes beside the binary and serves
+a `source_mirror` version without a `source` directly from upstream. A changed
+archive for a version that already had one needs review. Nothing is mirrored
+until a copyleft tool is reviewed. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
 any tool id naming `oracle`, `graalvm` or `android` stays `direct` (or
 `excluded`) whatever `serving.toml` says.
 

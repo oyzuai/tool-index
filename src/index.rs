@@ -52,6 +52,11 @@ pub struct Tool {
     /// every record's `tool.id` equals it.
     pub origin: String,
     pub serving_class: ServingClass,
+    /// The license is copyleft and the tool is served from Oyzu's host, so a
+    /// copy may be served only beside its source archive: a proxy serves a
+    /// version without `source` directly from upstream instead.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub source_mirror: bool,
     /// Newest first.
     pub versions: Vec<Version>,
 }
@@ -75,6 +80,21 @@ pub struct Version {
     /// One record per platform, sorted by platform. Empty for tools at the
     /// discovery tier and for versions whose records have aged out.
     pub sets: Vec<Value>,
+    /// The upstream source archive for this version, fetched and hashed by
+    /// the job, for tools with `source_mirror`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source: Option<Source>,
+}
+
+/// A source archive a proxy mirrors beside a copyleft binary.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Source {
+    /// https URL of the archive.
+    pub url: String,
+    /// `sha256:<hex>` of the bytes the job downloaded.
+    pub sha256: String,
+    pub size: u64,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -151,6 +171,17 @@ impl Index {
                     tool.id,
                     v.version
                 );
+                if let Some(s) = &v.source {
+                    ensure!(
+                        tool.source_mirror
+                            && s.url.starts_with("https://")
+                            && s.sha256.len() == 71
+                            && s.sha256.starts_with("sha256:"),
+                        "{} {} has a malformed source, or one without source_mirror",
+                        tool.id,
+                        v.version
+                    );
+                }
                 let mut platform: Option<&str> = None;
                 for r in &v.sets {
                     let p = r["platform"].as_str().unwrap_or_default();

@@ -4,7 +4,9 @@
 //! request with the result). Releasing (`serial`, `stamp`, `release`) is the
 //! separate `tool-index-release` binary in `release-tool/`, which builds without
 //! private oyzu. See README.md.
-use oyzu_tool_index::{attempts, build, config, fetch, index, registry, resolve, review, versions};
+use oyzu_tool_index::{
+    attempts, build, config, fetch, index, registry, resolve, review, sources, versions,
+};
 
 use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand};
@@ -79,6 +81,9 @@ enum Command {
         /// another revision are retried at once.
         #[arg(long)]
         engine_rev: Option<String>,
+        /// Adoptium API, for Temurin's source archives.
+        #[arg(long, default_value = "https://api.adoptium.net")]
+        adoptium: String,
         #[arg(long)]
         only: Vec<String>,
         /// Fixed clock for reproducible runs (RFC 3339).
@@ -217,6 +222,7 @@ async fn main() -> Result<()> {
             no_verify,
             attempts,
             engine_rev,
+            adoptium,
             only,
             now,
             out,
@@ -237,6 +243,29 @@ async fn main() -> Result<()> {
                 attempts,
                 engine_rev,
             })?;
+            let (mut index, mut report) = (index, report);
+            if !no_verify {
+                // Copyleft tools served from Oyzu's host need their source
+                // archive beside each version (none until a person reviews one).
+                let client = reqwest::Client::builder()
+                    .user_agent("oyzu-tool-index")
+                    .build()?;
+                let mut found = Vec::new();
+                for want in sources::wanted(&index, &cfg) {
+                    let got = match sources::locate(&client, &adoptium, &want).await {
+                        Ok(url) => sources::fetch(&client, &url).await,
+                        Err(e) => Err(e),
+                    };
+                    match got {
+                        Ok(source) => found.push((want, source)),
+                        Err(e) => report
+                            .source_failures
+                            .push(format!("{} {}: {e:#}", want.tool, want.version)),
+                    }
+                }
+                report.sources_recorded = sources::apply(&mut index, &found);
+                index.check()?;
+            }
             std::fs::create_dir_all(&out)?;
             std::fs::write(out.join("index.json"), index.to_bytes()?)?;
             std::fs::write(out.join("attempts.json"), attempts.to_bytes()?)?;

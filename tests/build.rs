@@ -592,3 +592,90 @@ fn failed_versions_back_off_and_their_retry_is_routine() {
     let r = review(Some(&first), &fixed);
     assert_eq!(r.decision, Decision::Routine, "{:?}", r.reasons);
 }
+
+/// A reviewed copyleft tool served from Oyzu's host needs its source: the
+/// index marks it `source_mirror`, the job asks for each version's archive
+/// (GitHub's tag archive by default), and a changed archive needs review.
+#[test]
+fn copyleft_tools_get_their_source_archives() {
+    use oyzu_tool_index::index::Source;
+    use oyzu_tool_index::sources::{apply, wanted, Locator};
+    let f = fixture_with(true, "", "");
+    // MIT: no source needed.
+    let mit = run(
+        &f,
+        listing(&[listed("v1.0.0", None)], &[]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    assert!(!mit.tool("oyzu:tool").unwrap().source_mirror);
+    assert!(wanted(&mit, &f.config).is_empty());
+
+    let gpl = fixture_full(
+        true,
+        "",
+        "",
+        "[[tool]]\npackage = \"acme/tool\"\nname = \"tool\"\ngroup = \"Test\"\n",
+        10,
+    );
+    let mut cfg_text = std::fs::read_to_string(gpl.root.join("config/serving.toml")).unwrap();
+    cfg_text = cfg_text.replace("license = \"MIT\"", "license = \"GPL-3.0-only\"");
+    std::fs::write(gpl.root.join("config/serving.toml"), cfg_text).unwrap();
+    let gpl = Fixture {
+        config: Config::load(&gpl.root.join("config")).unwrap(),
+        ..gpl
+    };
+    let mut index = run(
+        &gpl,
+        listing(&[listed("v1.0.0", None)], &[]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let tool = index.tool("oyzu:tool").unwrap();
+    assert!(tool.source_mirror);
+    assert_eq!(tool.serving_class, ServingClass::Cache);
+    let wants = wanted(&index, &gpl.config);
+    assert_eq!(wants.len(), 1);
+    assert_eq!(
+        (wants[0].tag.as_str(), &wants[0].locator),
+        ("v1.0.0", &Locator::GithubArchive)
+    );
+
+    let before = index.clone();
+    let source = Source {
+        url: "https://github.com/acme/tool/archive/refs/tags/v1.0.0.tar.gz".into(),
+        sha256: format!("sha256:{}", "a".repeat(64)),
+        size: 10,
+    };
+    assert_eq!(apply(&mut index, &[(wants[0].clone(), source.clone())]), 1);
+    index.check().unwrap();
+    assert!(wanted(&index, &gpl.config).is_empty());
+    // Adding the archive is routine; changing it is not.
+    assert_eq!(review(Some(&before), &index).decision, Decision::Routine);
+    let mut changed = index.clone();
+    changed
+        .tools
+        .iter_mut()
+        .find(|t| t.id == "oyzu:tool")
+        .unwrap()
+        .versions[0]
+        .source
+        .as_mut()
+        .unwrap()
+        .sha256 = format!("sha256:{}", "b".repeat(64));
+    assert!(review(Some(&index), &changed)
+        .reasons
+        .iter()
+        .any(|r| r.contains("source archive")));
+    // The next run keeps the archive.
+    let next = run(
+        &gpl,
+        listing(&[listed("v1.0.0", None)], &[]),
+        Some(index.clone()),
+        "2026-10-02T00:00:00Z",
+    );
+    assert_eq!(
+        next.tool("oyzu:tool").unwrap().versions[0].source,
+        Some(source)
+    );
+}
