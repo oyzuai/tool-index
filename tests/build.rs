@@ -80,7 +80,7 @@ if [ "$3" = "evidence" ] && [ "$4" = "--provider" ]; then
   sets=""
   for v in $versions; do
     for p in $platforms; do
-      r="{\"tool\":{\"id\":\"core:$5\"},\"version\":{\"requested\":\"$v\",\"normalized\":\"$v\"},\"platform\":\"$p\",\"status\":\"resolved\",\"tier\":\"verified\",\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/adoptium/temurin-binaries/releases/download/$v/jdk.tar.gz\"}]}"
+      r="{\"tool\":{\"id\":\"core:$5\"},\"version\":{\"requested\":\"$v\",\"normalized\":\"$v\"},\"platform\":\"$p\",\"status\":\"resolved\",\"tier\":\"verified\",\"verified\":{\"status\":\"ok\"},\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/adoptium/temurin-binaries/releases/download/$v/jdk.tar.gz\"}]}"
       if [ -z "$sets" ]; then sets="$r"; else sets="$sets,$r"; fi
     done
   done
@@ -90,7 +90,7 @@ fi
 if [ "$3" = "evidence" ]; then
   # A `fail` file beside this script keeps every record at the discovery tier.
   if [ -f "$(dirname "$0")/fail" ]; then cat "$5"; exit 3; fi
-  sed 's/"tier":"discovery"/"tier":"verified"/g' "$5"
+  sed 's/"tier":"discovery"/"tier":"verified","verified":{"status":"ok"}/g' "$5"
   exit 0
 fi
 sets=""
@@ -678,4 +678,55 @@ fn copyleft_tools_get_their_source_archives() {
         next.tool("oyzu:tool").unwrap().versions[0].source,
         Some(source)
     );
+}
+
+/// A version whose Linux record verified but whose macOS one did not is
+/// retried for macOS only: filling it in is routine, changing the published
+/// Linux record is not.
+#[test]
+fn a_retry_fills_in_platforms_without_touching_verified_ones() {
+    let f = fixture(true);
+    let first = run(
+        &f,
+        listing(&[listed("v1.0.0", None)], &[]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let mut partial = first.clone();
+    let t = partial
+        .tools
+        .iter_mut()
+        .find(|t| t.id == "oyzu:tool")
+        .unwrap();
+    let mut mac = t.versions[0].sets[0].clone();
+    mac["platform"] = "darwin/arm64/native".into();
+    mac["tier"] = "discovery".into();
+    mac["verified"] = serde_json::json!({"status": "failed"});
+    t.versions[0].sets.insert(0, mac.clone());
+    assert!(!oyzu_tool_index::index::complete(&t.versions[0]));
+
+    let mut filled = partial.clone();
+    let t = filled
+        .tools
+        .iter_mut()
+        .find(|t| t.id == "oyzu:tool")
+        .unwrap();
+    t.versions[0].sets[0]["tier"] = "verified".into();
+    t.versions[0].sets[0]["verified"] = serde_json::json!({"status": "ok"});
+    assert!(oyzu_tool_index::index::complete(&t.versions[0]));
+    let r = review(Some(&partial), &filled);
+    assert_eq!(r.decision, Decision::Routine, "{:?}", r.reasons);
+    assert_eq!(r.added_records, 1);
+
+    let mut touched = filled.clone();
+    let t = touched
+        .tools
+        .iter_mut()
+        .find(|t| t.id == "oyzu:tool")
+        .unwrap();
+    t.versions[0].sets[1]["urls"][0]["url"] = "https://github.com/acme/tool/x".into();
+    assert!(review(Some(&partial), &touched)
+        .reasons
+        .iter()
+        .any(|x| x.contains("already published")));
 }

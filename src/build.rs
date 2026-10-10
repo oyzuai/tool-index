@@ -250,6 +250,8 @@ enum PendingSource {
 
 /// Versions to verify this run: on a tool's first run only the newest
 /// `backfill`, afterwards every version the previous index did not list.
+/// A version counts as done once every platform is settled
+/// ([`index::complete`]), so one whose Linux records failed is retried.
 /// Returns the candidates' normalized versions, newest first.
 fn candidates(
     versions: &[Version],
@@ -267,7 +269,7 @@ fn candidates(
         .filter(|v| cfg.include_prereleases || !index::prerelease(&v.version))
         .enumerate()
         .filter(|(i, v)| {
-            !index::verified(v)
+            !index::complete(v)
                 && (*i < cfg.backfill || (!first_run && !known.contains(v.version.as_str())))
         })
         .map(|(_, v)| v.version.clone())
@@ -527,10 +529,21 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             for v in &mut tool.versions {
                 if let Some(mut records) = by_version.remove(&v.version) {
                     updated.insert(v.version.clone());
+                    // A platform that verified before keeps its published
+                    // record; a retry only fills in the ones that did not.
+                    for r in &mut records {
+                        if let Some(old) = v
+                            .sets
+                            .iter()
+                            .find(|o| o["platform"] == r["platform"] && index::record_verified(o))
+                        {
+                            *r = old.clone();
+                        }
+                    }
                     records.sort_by(|a, b| a["platform"].as_str().cmp(&b["platform"].as_str()));
                     v.sets = records;
                     report.verified_this_run += 1;
-                    if index::verified(v) {
+                    if index::complete(v) {
                         attempts.clear(&tool.origin, &v.version);
                     } else {
                         let reason = failure_reason(&v.sets);
@@ -586,7 +599,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             by_origin.get(origin).is_some_and(|t| {
                 t.versions
                     .iter()
-                    .any(|v| v.version == version && !index::verified(v))
+                    .any(|v| v.version == version && !index::complete(v))
             }) || inputs.only.as_ref().is_some_and(|o| !o.contains(origin))
         });
     }

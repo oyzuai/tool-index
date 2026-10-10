@@ -57,7 +57,8 @@ breaks, and the index cannot expire for that reason.
   `max_versions_per_run` versions: versions never tried first, then failed
   versions whose retry is due, each in core-provider then launch-set file
   order (not registry order, which starved tools late in the alphabet). A
-  version that fails verification is recorded in `index/attempts.json` with
+  version counts as done once every platform is verified or `unsupported`; a
+  version with any platform still failing is recorded in `index/attempts.json` with
   the failed check and waits `retry_after_days` (7) before the next try, or
   is retried at once when the job's oyzu pin changes. Records are the exact
   `oyzu tools evidence` output, so their digests still verify. Records are
@@ -91,9 +92,9 @@ hosts already in the index. Everything else waits for a person: a new tool (a
 renamed id counts as a removed and a new tool), a new download host, a new
 registry snapshot or resolve engine, a changed origin or serving class, a
 removed tool or verified version, a changed release date, and any change to a
-verified version's records. New records for a version that had only
-discovery-tier records (a retry after a failure) count as added records, so a
-retry that succeeds merges as routine unless it brings a new host. `serial` and `expires` are ignored, so a re-stamp
+published verified record. A retry keeps a platform's verified record as it
+was and replaces only the others, whose new records count as added records, so
+a retry that succeeds merges as routine unless it brings a new host. `serial` and `expires` are ignored, so a re-stamp
 never needs review.
 
 The `verify` workflow recomputes the decision on every pull request and every

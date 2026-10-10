@@ -8,7 +8,7 @@
 //!
 //! The release fields `serial` and `expires` are ignored, so a daily re-stamp
 //! never needs review.
-use crate::index::{record_hosts, verified, Index, Tool};
+use crate::index::{record_hosts, record_verified, verified, Index, Tool};
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -133,13 +133,28 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
                         reasons.push(format!("{id} {} changes its release date", v.version));
                     }
                     // Records age out of the index (`keep_records`); dropping
-                    // them removes information and adds no trust. A version
-                    // that never reached the verified tier is retried
-                    // (`index/attempts.json`), and its new records are judged
+                    // them removes information and adds no trust. A platform
+                    // that did not reach the verified tier is retried
+                    // (`index/attempts.json`), and its new record is judged
                     // like a new version's: new hosts still need review.
-                    if o.sets.is_empty() || (!verified(o) && o.sets != v.sets) {
-                        added_records += v.sets.len();
-                    } else if !v.sets.is_empty() && o.sets != v.sets {
+                    if v.sets.is_empty() || o.sets == v.sets {
+                        continue;
+                    }
+                    // Per platform: a record that was verified must stay as
+                    // published; any other may be replaced, and counts as
+                    // added.
+                    let mut changed_verified = false;
+                    for r in &v.sets {
+                        match o.sets.iter().find(|x| x["platform"] == r["platform"]) {
+                            Some(x) if x == r => {}
+                            Some(x) if record_verified(x) => changed_verified = true,
+                            _ => added_records += 1,
+                        }
+                    }
+                    changed_verified |= o.sets.iter().any(|x| {
+                        record_verified(x) && !v.sets.iter().any(|r| r["platform"] == x["platform"])
+                    });
+                    if changed_verified {
                         reasons.push(format!(
                             "{id} {} changes records that were already published",
                             v.version

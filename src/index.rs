@@ -283,6 +283,21 @@ pub fn verified(v: &Version) -> bool {
         || (!v.sets.is_empty() && v.sets.iter().all(|r| r["status"] == "unsupported"))
 }
 
+/// Whether a record's bytes passed verification.
+pub fn record_verified(r: &Value) -> bool {
+    r["tier"] == "verified" && r["verified"]["status"] == "ok"
+}
+
+/// Whether every platform of a version is settled: verified, or
+/// `unsupported` (the recipe ships nothing for it). A version with some
+/// platforms still at the discovery tier is retried like a failed one.
+pub fn complete(v: &Version) -> bool {
+    !v.sets.is_empty()
+        && v.sets
+            .iter()
+            .all(|r| record_verified(r) || r["status"] == "unsupported")
+}
+
 /// Every https host a record names, for the review rule on new download hosts.
 pub fn record_hosts(record: &Value) -> BTreeSet<String> {
     record["urls"]
