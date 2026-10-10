@@ -44,6 +44,29 @@ pub struct Report {
 }
 
 const FILTER_PLATFORM: &str = "linux/amd64/gnu";
+
+/// Why a version's records did not reach the verified tier: the first failed
+/// check of the first record that has one, as `oyzu tools evidence` gave it.
+fn failure_reason(records: &[Value]) -> String {
+    records
+        .iter()
+        .find_map(|r| {
+            r["verified"]["results"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .find(|c| c["outcome"] == "failed")
+                .map(|c| {
+                    format!(
+                        "{} {}: {}",
+                        r["platform"].as_str().unwrap_or("?"),
+                        c["evidence"].as_str().unwrap_or("?"),
+                        c["detail"].as_str().unwrap_or("failed")
+                    )
+                })
+        })
+        .unwrap_or_else(|| "no record reached the verified tier".into())
+}
 /// Engine version recorded when no resolve ran and there is no previous index.
 /// The evaluator digest, which identifies the rules, is always computed.
 const ENGINE_FALLBACK_VERSION: &str = "0.1.0";
@@ -399,9 +422,12 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
                     v.sets = records;
                     report.verified_this_run += 1;
                     if !index::verified(v) {
-                        report
-                            .verification_failed
-                            .push(format!("{} {}", tool.origin, v.version));
+                        report.verification_failed.push(format!(
+                            "{} {}: {}",
+                            tool.origin,
+                            v.version,
+                            failure_reason(&v.sets)
+                        ));
                     }
                 }
             }
@@ -464,7 +490,24 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
 
 #[cfg(test)]
 mod tests {
-    use super::canonical_id;
+    use super::{canonical_id, failure_reason};
+    use serde_json::json;
+
+    #[test]
+    fn a_failed_version_reports_its_first_failed_check() {
+        let records = [json!({
+            "platform": "linux/amd64/gnu",
+            "verified": {"results": [
+                {"evidence": "checksum#0", "outcome": "verified", "detail": null},
+                {"evidence": "github-attestation#0", "outcome": "failed", "detail": "no inline bundle"}
+            ]}
+        })];
+        assert_eq!(
+            failure_reason(&records),
+            "linux/amd64/gnu github-attestation#0: no inline bundle"
+        );
+        assert_eq!(failure_reason(&[]), "no record reached the verified tier");
+    }
 
     #[test]
     fn ids_use_the_curated_name_then_the_package() {

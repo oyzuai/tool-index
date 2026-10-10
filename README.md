@@ -12,7 +12,7 @@ release will be `index-v1`.
 | Step | Command | Network |
 | --- | --- | --- |
 | Fetch the pinned aqua registry snapshot, its license (the `NOTICE`) and the mise name catalog, each checked against its pinned digest | `tool-index fetch` | yes |
-| List upstream versions: GitHub GraphQL in production, `git ls-remote` without a token, Adoptium for Java | `tool-index list` | yes |
+| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token, Adoptium for Java | `tool-index list` | yes |
 | Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider java` for new Java versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Stamp a release copy of the committed index with `serial` and `expires` | `tool-index stamp` | no |
@@ -81,7 +81,7 @@ The `verify` workflow recomputes the decision on every pull request and every
 review, and is the gate rulesets cannot express: a pull request labeled
 `routine` that is not routine fails it, and a pull request whose decision is
 `review` passes only once someone with write access has approved its current
-head commit. The build workflow opens and auto-merges pull requests as the
+head commit; the approval's run then re-runs the pull request's earlier failed run so it stops blocking the merge. The build workflow opens and auto-merges pull requests as the
 `oyzu-index-bot` GitHub App, because pull requests and merges made with
 `GITHUB_TOKEN` start no workflows: neither `verify` nor `release.yml` would
 run.
