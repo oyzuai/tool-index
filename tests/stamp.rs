@@ -4,7 +4,7 @@
 use base64::Engine as _;
 use jiff::Timestamp;
 use oyzu_tool_index::index::Index;
-use oyzu_tool_index::release::{check_bundle, plan, BUNDLE, INDEX, NOTICE};
+use oyzu_tool_index::release::{check_bundle, plan, BUNDLE, COMPRESSED, INDEX, NOTICE};
 use oyzu_tool_index::review::{review, Decision};
 use oyzu_tool_index::stamp::stamp;
 use serde_json::{json, Value};
@@ -96,6 +96,10 @@ fn review_ignores_serial_and_expires() {
     assert!(doc(&bytes).get("serial").is_none() && doc(&bytes).get("expires").is_none());
 }
 
+fn zstd(bytes: &[u8]) -> Vec<u8> {
+    ruzstd::encoding::compress_to_vec(bytes, ruzstd::encoding::CompressionLevel::Fastest)
+}
+
 fn bundle_for(index: &[u8]) -> Vec<u8> {
     let statement = json!({
         "_type": "https://in-toto.io/Statement/v1",
@@ -118,25 +122,29 @@ fn bundle_for(index: &[u8]) -> Vec<u8> {
 }
 
 #[test]
-fn release_lists_the_three_assets_for_the_serial_tag() {
+fn release_lists_the_four_assets_for_the_serial_tag() {
     let dir = tempfile::tempdir().unwrap();
     let index = stamp(&sample(), None, now(), 14).unwrap();
     std::fs::write(dir.path().join(INDEX), &index).unwrap();
     std::fs::write(dir.path().join(NOTICE), b"license\n").unwrap();
 
-    // Before signing, a dry run reports the missing bundle; a real run refuses.
+    // Before compressing and signing, a dry run reports both missing; a real run refuses.
     let dry = plan(dir.path(), now(), true).unwrap();
     assert_eq!(dry.tag, "index-v1");
-    assert_eq!(dry.missing, vec![BUNDLE.to_string()]);
+    assert_eq!(
+        dry.missing,
+        vec![COMPRESSED.to_string(), BUNDLE.to_string()]
+    );
     let err = plan(dir.path(), now(), false).unwrap_err();
     assert!(format!("{err:#}").contains(BUNDLE), "{err:#}");
 
+    std::fs::write(dir.path().join(COMPRESSED), zstd(&index)).unwrap();
     std::fs::write(dir.path().join(BUNDLE), bundle_for(&index)).unwrap();
     let p = plan(dir.path(), now(), false).unwrap();
     assert_eq!(p.serial, 1);
     assert!(p.missing.is_empty());
     let names: Vec<&str> = p.assets.iter().map(|a| a.name.as_str()).collect();
-    assert_eq!(names, [INDEX, BUNDLE, NOTICE]);
+    assert_eq!(names, [INDEX, COMPRESSED, BUNDLE, NOTICE]);
     assert!(p.command.starts_with("gh release create index-v1 --latest"));
 }
 
@@ -154,6 +162,18 @@ fn release_refuses_unstamped_expired_and_mismatched_copies() {
     let late: Timestamp = "2026-10-24T05:41:07Z".parse().unwrap();
     let err = plan(dir.path(), late, true).unwrap_err();
     assert!(format!("{err:#}").contains("expired"), "{err:#}");
+
+    // A compressed copy of other bytes, or not zstd at all, is refused.
+    std::fs::write(dir.path().join(COMPRESSED), zstd(&sample())).unwrap();
+    let err = plan(dir.path(), now(), true).unwrap_err();
+    assert!(
+        format!("{err:#}").contains("does not decompress to index.json"),
+        "{err:#}"
+    );
+    std::fs::write(dir.path().join(COMPRESSED), b"plain").unwrap();
+    let err = plan(dir.path(), now(), true).unwrap_err();
+    assert!(format!("{err:#}").contains("not zstd"), "{err:#}");
+    std::fs::write(dir.path().join(COMPRESSED), zstd(&index)).unwrap();
 
     // A bundle for other bytes (here the unstamped copy) is refused.
     std::fs::write(dir.path().join(BUNDLE), bundle_for(&sample())).unwrap();

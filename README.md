@@ -38,6 +38,11 @@ The workflows in `.github/workflows` run these on GitHub-hosted runners.
 ### Tiers
 
 - **Verified**: the 94-tool curated launch set in `config/launch-set.toml`.
+  A record is verified by the publisher's checksum or by a GitHub artifact
+  attestation (age, cargo-binstall and zizmor publish only attestations);
+  `oyzu tools evidence` lists attestations from the GitHub API with the
+  workflow's `GITHUB_TOKEN`. slsa-verifier publishes only a SLSA provenance
+  file, which `oyzu` cannot verify yet, so it stays at the discovery tier.
   When a tool joins, its newest `backfill` releases are resolved and
   downloaded; afterwards every new release is, once. Records are the exact
   `oyzu tools evidence` output, so their digests still verify. Records are
@@ -100,15 +105,18 @@ environment:
 3. runs `cosign sign-blob --yes --bundle index.json.sigstore.json index.json`
    (cosign v3, pinned through `sigstore/cosign-installer` by commit);
 4. runs `cosign verify-blob` against the identity the CLI pins;
-5. runs `tool-index release --dir release` and `gh release create
-   index-v<serial> --latest` with the three assets.
+5. compresses `index.json` with `zstd -19` into `index.json.zst`;
+6. runs `tool-index release --dir release` (which checks the compressed copy
+   decompresses to exactly `index.json`) and `gh release create
+   index-v<serial> --latest` with the four assets.
 
-A release has three assets in one flat directory, the same names a mirror
+A release has four assets in one flat directory, the same names a mirror
 such as `index.oyzu.dev` will serve later:
 
 | Asset | What it is |
 | --- | --- |
 | `index.json` | The stamped index |
+| `index.json.zst` | The same bytes, zstd-compressed; what the CLI fetches (it falls back to `index.json` on a 404). Transport only: the signature is over the decompressed bytes |
 | `index.json.sigstore.json` | The Sigstore bundle (v0.3): a DSSE-signed in-toto statement naming `index.json`'s SHA-256, with the certificate and Rekor entry |
 | `NOTICE` | The aqua registry's license text |
 
@@ -152,6 +160,13 @@ repository.
   repository (contents and pull requests, read and write). The bot must not be
   the maintainer who approves `needs-review` pull requests, since GitHub does
   not let an author approve their own pull request.
+- The secrets `OYZU_READ_APP_ID` and `OYZU_READ_APP_PRIVATE_KEY` belong to a
+  GitHub App installed on `oyzuai/oyzu` only, with Contents and Metadata
+  read-only. oyzu is private, and `oyzu-recipe` and the job's `oyzu` binary
+  are built from it. `.github/actions/oyzu-read` mints a one-hour token for
+  that one repository before the cargo steps, and `done.sh` removes it right
+  after, so no step that runs `oyzu` sees it. Fork pull requests get no
+  secrets and cannot build. Drop all of this once oyzu is public.
 - The `release` environment is limited to `main`.
 - A ruleset on `main` requires pull requests (no required approvals; the
   `verify` check gates index changes), the `verify` check and code-owner

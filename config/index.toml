@@ -36,6 +36,10 @@ backfill = 3
 max_versions_per_run = 150
 # Versions per tool whose records stay in the index; older versions keep their
 # date but lose their records, which bounds the single file.
+# Measured 2026-10-10 on a full build (2,214 tools, 71k versions): 19 MB with 3
+# versions of records per launch-set tool, 31 MB with 10; zstd -19 makes them
+# 0.9 MB and 1.4 MB. The CLI fetches the compressed copy and reuses a copy for
+# an hour, so the index stays one file (no per-tool split).
 keep_records = 10
 include_prereleases = false
 
