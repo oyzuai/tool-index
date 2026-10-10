@@ -75,16 +75,23 @@ jobs:
         with:
           cosign-release: v3.1.3
 
-      # The CLI accepts a DSSE in-toto statement of predicate type
-      # https://sigstore.dev/cosign/sign/v1 naming index.json's SHA-256.
-      # `cosign sign-blob` writes a plain message signature instead, so the
-      # statement is made with attest-blob and an empty predicate.
+      # The CLI accepts a DSSE envelope carrying an in-toto v1 statement
+      # (https://in-toto.io/Statement/v1) of predicate type
+      # https://sigstore.dev/cosign/sign/v1 that names index.json's SHA-256.
+      # `cosign sign-blob` writes a plain message signature, and attest-blob's
+      # own statement is in-toto v0.1, so the statement is written here and
+      # attest-blob only signs it.
       - name: Sign
         working-directory: release
         run: |
-          echo '{}' > ../predicate.json
-          cosign attest-blob --yes --type https://sigstore.dev/cosign/sign/v1 \
-            --predicate ../predicate.json --bundle index.json.sigstore.json index.json
+          jq -n --arg digest "$(sha256sum index.json | cut -d' ' -f1)" '{
+            _type: "https://in-toto.io/Statement/v1",
+            subject: [{name: "index.json", digest: {sha256: $digest}}],
+            predicateType: "https://sigstore.dev/cosign/sign/v1",
+            predicate: {}
+          }' > ../statement.json
+          cosign attest-blob --yes --statement ../statement.json \
+            --bundle index.json.sigstore.json index.json
 
       - name: Verify as the CLI will
         working-directory: release

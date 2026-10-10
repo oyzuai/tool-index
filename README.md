@@ -116,10 +116,12 @@ environment:
    (now + `signing.expires_days` in `config/index.toml`, 14). The committed
    copy never carries either field; `stamp` refuses one that does, and
    `review` fails on it;
-3. runs `cosign attest-blob --type https://sigstore.dev/cosign/sign/v1` with an
-   empty predicate, writing `index.json.sigstore.json` (`cosign sign-blob` would
-   write a message signature, which the CLI does not accept)
-   (cosign v3, pinned through `sigstore/cosign-installer` by commit);
+3. writes an in-toto v1 statement (predicate type
+   `https://sigstore.dev/cosign/sign/v1`, empty predicate) naming `index.json`'s
+   SHA-256 and signs it with `cosign attest-blob --statement`, writing
+   `index.json.sigstore.json`. `cosign sign-blob` would write a message
+   signature and attest-blob's own statement is in-toto v0.1; the CLI accepts
+   neither;
 4. runs `cosign verify-blob-attestation` against the identity the CLI pins;
 5. compresses `index.json` with `zstd -19` into `index.json.zst`;
 6. runs `tool-index release --dir release` (which checks the compressed copy
