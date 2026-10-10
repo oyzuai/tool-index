@@ -21,6 +21,19 @@ pub fn stamp(
     now: Timestamp,
     expires_days: i64,
 ) -> Result<Vec<u8>> {
+    stamp_after(unstamped, published, None, now, expires_days)
+}
+
+/// [`stamp`], also checking that `published` is the release tagged with the
+/// highest serial (`crate::serial::latest`): its serial must equal
+/// `latest_tag`, and there must be a published index exactly when a tag exists.
+pub fn stamp_after(
+    unstamped: &[u8],
+    published: Option<&[u8]>,
+    latest_tag: Option<u64>,
+    now: Timestamp,
+    expires_days: i64,
+) -> Result<Vec<u8>> {
     ensure!(
         (1..=366).contains(&expires_days),
         "signing.expires_days must be between 1 and 366"
@@ -30,6 +43,9 @@ pub fn stamp(
         bail!("the index already carries serial or expires; stamp the unstamped committed copy");
     }
     index.check()?;
+    if let (None, Some(tag)) = (published, latest_tag) {
+        bail!("index-v{tag} exists but no published index was given; refusing to reuse serial 1");
+    }
     let serial = match published {
         None => 1,
         Some(bytes) => {
@@ -38,6 +54,12 @@ pub fn stamp(
             let Some(previous) = doc.get("serial").and_then(Value::as_u64) else {
                 bail!("the published index has no serial");
             };
+            if let Some(tag) = latest_tag {
+                ensure!(
+                    previous == tag,
+                    "the published index has serial {previous}, but the highest release tag is index-v{tag}"
+                );
+            }
             previous
                 .checked_add(1)
                 .context("the published serial cannot grow")?

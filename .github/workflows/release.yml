@@ -39,26 +39,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/oyzu-read
-        with:
-          app-id: ${{ secrets.OYZU_READ_APP_ID }}
-          private-key: ${{ secrets.OYZU_READ_APP_PRIVATE_KEY }}
+      # release-tool/ builds from crates.io only. It needs nothing from
+      # private oyzuai/oyzu, so a broken oyzu read App cannot stop the daily
+      # re-sign and let the index expire.
+      - name: Build the release tool
+        run: cargo build --release --locked --manifest-path release-tool/Cargo.toml
 
-      - name: Build the job
-        run: cargo build --release --locked
-
-      - name: Drop the oyzu read token
-        run: .github/actions/oyzu-read/done.sh
-
-      - name: Download the published index
+      # The next serial follows the highest index-v<serial> tag, not the
+      # release GitHub marks latest (a person can move that). A gap, an odd
+      # index-v tag or a tag without its release stops the run.
+      - name: Download the index with the highest serial
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          git ls-remote --tags origin 'refs/tags/index-v*' |
+            sed -e 's#.*refs/tags/##' -e 's#\^{}$##' | sort -u > tags.txt
+          latest=$(./release-tool/target/release/tool-index-release serial --tags tags.txt)
           mkdir -p published
-          if gh release view --json tagName > /dev/null 2>&1; then
-            gh release download --pattern index.json --dir published
-          else
+          if [ "$latest" = 0 ]; then
             echo "No release yet: this is serial 1."
+          else
+            gh release download "index-v$latest" --pattern index.json --dir published
           fi
 
       # Same content, new serial and expiry: the daily run re-signs unchanged
@@ -66,7 +67,8 @@ jobs:
       - name: Stamp serial and expiry
         run: |
           published=$([ -f published/index.json ] && echo "--published published/index.json" || true)
-          ./target/release/tool-index stamp $published --index index/index.json --out release/index.json
+          ./release-tool/target/release/tool-index-release stamp $published --tags tags.txt \
+            --index index/index.json --out release/index.json
           cp index/NOTICE release/NOTICE
 
       - name: Install cosign
@@ -113,7 +115,7 @@ jobs:
       - name: Check the release assets
         id: plan
         run: |
-          ./target/release/tool-index release --dir release > plan.json
+          ./release-tool/target/release/tool-index-release release --dir release > plan.json
           cat plan.json
           echo "tag=$(jq -r .tag plan.json)" >> "$GITHUB_OUTPUT"
           echo "notes=Index serial $(jq -r .serial plan.json), expires $(jq -r .expires plan.json)" >> "$GITHUB_OUTPUT"

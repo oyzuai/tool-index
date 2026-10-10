@@ -157,6 +157,7 @@ mod tests {
             license: license.into(),
             class: class.map(str::to_owned),
             reviewed,
+            source: None,
             note: None,
         }
     }

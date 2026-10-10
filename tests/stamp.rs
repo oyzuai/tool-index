@@ -6,7 +6,7 @@ use jiff::Timestamp;
 use oyzu_tool_index::index::Index;
 use oyzu_tool_index::release::{check_bundle, plan, BUNDLE, COMPRESSED, INDEX, NOTICE};
 use oyzu_tool_index::review::{review, Decision};
-use oyzu_tool_index::stamp::stamp;
+use oyzu_tool_index::stamp::{stamp, stamp_after};
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};
 use std::path::Path;
@@ -185,4 +185,24 @@ fn release_refuses_unstamped_expired_and_mismatched_copies() {
         &index
     )
     .is_err());
+}
+
+/// The published copy must be the release with the highest `index-v` tag, so
+/// a moved "latest" marker or a stray tag cannot reuse or skip a serial.
+#[test]
+fn stamp_follows_the_highest_release_tag() {
+    let first = stamp(&sample(), None, now(), 14).unwrap();
+    let second = stamp(&sample(), Some(&first), now(), 14).unwrap();
+    // index-v2 is the highest tag and the copy given is serial 2.
+    let third = stamp_after(&sample(), Some(&second), Some(2), now(), 14).unwrap();
+    assert_eq!(doc(&third)["serial"], 3);
+    // "latest" pointed at index-v1 while index-v2 exists.
+    let err = stamp_after(&sample(), Some(&first), Some(2), now(), 14).unwrap_err();
+    assert!(err.to_string().contains("index-v2"), "{err}");
+    // A tag exists but no copy was downloaded: serial 1 would be reused.
+    assert!(stamp_after(&sample(), None, Some(2), now(), 14).is_err());
+    assert_eq!(
+        doc(&stamp_after(&sample(), None, None, now(), 14).unwrap())["serial"],
+        1
+    );
 }

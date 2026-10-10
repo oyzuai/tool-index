@@ -4,8 +4,11 @@ Builds, reviews and releases Oyzu's public tool index: the signed
 metadata (versions, release dates, download pointers, SHA-256 digests and
 serving classes) that the oyzu CLI reads instead of upstream feeds.
 
-Status: **pre-launch.** Nothing has been signed or published yet; the first
-release will be `index-v1`.
+Status: **live.** The daily job publishes signed releases `index-v<serial>`
+on this repository, and the oyzu CLI reads the latest by default. `index-v1`
+was signed with an in-toto v0.1 statement the CLI refuses; every later release
+is accepted. Each release expires 14 days after signing, and `release.yml`
+re-signs daily.
 
 ## What a run does
 
@@ -15,9 +18,10 @@ release will be `index-v1`.
 | List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token, Adoptium for Java | `tool-index list` | yes |
 | Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider java` for new Java versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
-| Stamp a release copy of the committed index with `serial` and `expires` | `tool-index stamp` | no |
+| Find the highest `index-v<serial>` tag, failing on a gap or an odd tag | `tool-index-release serial` | no |
+| Stamp a release copy of the committed index with `serial` and `expires` | `tool-index-release stamp` | no |
 | Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign attest-blob`, `cosign verify-blob-attestation` | Sigstore |
-| Check the release directory and print the release for tag `index-v<serial>` | `tool-index release` (`--dry-run` reports missing assets instead of failing) | no |
+| Check the release directory and print the release for tag `index-v<serial>` | `tool-index-release release` (`--dry-run` reports missing assets instead of failing) | no |
 | Publish (in `release.yml` only) | `gh release create` | GitHub |
 
 ### Format
@@ -34,6 +38,11 @@ exactly as `oyzu tools evidence` emitted it. The job checks the client's
 structural rules before it writes the file.
 
 The workflows in `.github/workflows` run these on GitHub-hosted runners.
+`tool-index` builds against `oyzu-recipe` from private oyzu; the release steps
+are a separate crate, `release-tool/` (binary `tool-index-release`), that
+shares the index, stamp, release and serial modules by path and builds from
+crates.io only. So the daily re-sign keeps working if the oyzu read App
+breaks, and the index cannot expire for that reason.
 
 ### Tiers
 
@@ -44,7 +53,14 @@ The workflows in `.github/workflows` run these on GitHub-hosted runners.
   workflow's `GITHUB_TOKEN`. slsa-verifier publishes only a SLSA provenance
   file, which `oyzu` cannot verify yet, so it stays at the discovery tier.
   When a tool joins, its newest `backfill` releases are resolved and
-  downloaded; afterwards every new release is, once. Records are the exact
+  downloaded; afterwards every new release is, once. A run verifies at most
+  `max_versions_per_run` versions: versions never tried first, then failed
+  versions whose retry is due, each in core-provider then launch-set file
+  order (not registry order, which starved tools late in the alphabet). A
+  version counts as done once every platform is verified or `unsupported`; a
+  version with any platform still failing is recorded in `index/attempts.json` with
+  the failed check and waits `retry_after_days` (7) before the next try, or
+  is retried at once when the job's oyzu pin changes. Records are the exact
   `oyzu tools evidence` output, so their digests still verify. Records are
   kept for each tool's newest `keep_records` versions (10); older versions
   keep their dates, which bounds the single index file.
@@ -64,7 +80,9 @@ The workflows in `.github/workflows` run these on GitHub-hosted runners.
 
 Versions a recipe does not cover (`version_filter`, `version_prefix`) are
 dropped with the same engine the CLI uses (`oyzu-recipe`, pinned to the same
-oyzu commit). Where a publisher gives no date, the index records the first run
+oyzu commit). A version must start with a number, or be a word, a dot and a
+number (MinIO's `RELEASE.2025-08-13T08-35-41Z`); a date-shaped version's
+hyphens do not make it a pre-release. Where a publisher gives no date, the index records the first run
 that saw the version (decided 2026-10-10).
 
 ### Review rules
@@ -74,7 +92,9 @@ hosts already in the index. Everything else waits for a person: a new tool (a
 renamed id counts as a removed and a new tool), a new download host, a new
 registry snapshot or resolve engine, a changed origin or serving class, a
 removed tool or verified version, a changed release date, and any change to a
-record already published. `serial` and `expires` are ignored, so a re-stamp
+published verified record. A retry keeps a platform's verified record as it
+was and replaces only the others, whose new records count as added records, so
+a retry that succeeds merges as routine unless it brings a new host. `serial` and `expires` are ignored, so a re-stamp
 never needs review.
 
 The `verify` workflow recomputes the decision on every pull request and every
@@ -95,7 +115,18 @@ license shipped inside the archives.
 
 Temurin (`core:java`) is GPLv2 with the Classpath Exception: once reviewed it
 is `cache` with the matching source mirrored; until then `oyzu:java` is
-`direct`. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
+`direct`.
+
+**Source mirroring.** A reviewed tool whose license is GPL, LGPL or AGPL and
+whose class is `cache` is marked `source_mirror` in the index. For each of its
+versions with records, `tool-index build` finds the source archive (GitHub's
+tag archive for an aqua package, the Adoptium release's source package for
+Java, or the `source` URL template in the tool's `serving.toml` entry),
+downloads it once and records its URL, SHA-256 and size as the version's
+`source`. A delivery service stores those bytes beside the binary and serves
+a `source_mirror` version without a `source` directly from upstream. A changed
+archive for a version that already had one needs review. Nothing is mirrored
+until a copyleft tool is reviewed. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
 any tool id naming `oracle`, `graalvm` or `android` stays `direct` (or
 `excluded`) whatever `serving.toml` says.
 
@@ -109,9 +140,12 @@ recorded in the public Rekor transparency log.
 On every change to `main` and once a day, `release.yml` in the `release`
 environment:
 
-1. downloads the latest release's `index.json`, if there is one, for its
-   `serial`;
-2. runs `tool-index stamp`, which writes `release/index.json`: the committed
+1. lists the `index-v*` tags and downloads the `index.json` of the highest
+   one, not of the release GitHub marks latest (a person can move that).
+   `tool-index-release serial` fails on a gap, a repeated serial or a malformed
+   `index-v` tag, and a tag without its release fails the download;
+2. runs `tool-index-release stamp --tags`, which checks the downloaded copy
+   carries that highest serial and writes `release/index.json`: the committed
    `index/index.json` plus `serial` (published serial + 1, or 1) and `expires`
    (now + `signing.expires_days` in `config/index.toml`, 14). The committed
    copy never carries either field; `stamp` refuses one that does, and
@@ -124,7 +158,7 @@ environment:
    neither;
 4. runs `cosign verify-blob-attestation` against the identity the CLI pins;
 5. compresses `index.json` with `zstd -19` into `index.json.zst`;
-6. runs `tool-index release --dir release` (which checks the compressed copy
+6. runs `tool-index-release release --dir release` (which checks the compressed copy
    decompresses to exactly `index.json`) and `gh release create
    index-v<serial> --latest` with the four assets.
 
@@ -156,16 +190,20 @@ $T list --source git --launch-set-only        # no token needed; no release date
 cargo build --manifest-path ../../oyzu/Cargo.toml --bin oyzu   # or any oyzu on PATH
 $T build --listing work/listing.json --oyzu ../../oyzu/target/debug/oyzu --out index
 $T review --next index/index.json
-$T stamp --out release/index.json            # add --published <latest index.json> after the first release
+cargo build --release --manifest-path release-tool/Cargo.toml
+R=./release-tool/target/release/tool-index-release
+git ls-remote --tags origin 'refs/tags/index-v*' | sed -e 's#.*refs/tags/##' -e 's#\^{}$##' | sort -u > tags.txt
+$R serial --tags tags.txt                    # then download that release's index.json into published/
+$R stamp --published published/index.json --tags tags.txt --out release/index.json
 cp index/NOTICE release/
-$T release --dir release --dry-run           # lists index.json.sigstore.json as missing until cosign signs
+$R release --dir release --dry-run           # lists index.json.sigstore.json as missing until cosign signs
 ```
 
 Signing needs the workflow's OIDC identity, so it is not run locally; a
 locally signed bundle would carry your identity, which no client accepts.
 
 `cargo test` covers the job without the network: build and review on a
-fixture registry, Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input), review
+fixture registry, budget order and retry back-off, Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input, following the highest tag), review
 ignoring the stamp, and the release check (assets present, unexpired, and a
 bundle naming `index.json`'s exact bytes).
 
@@ -185,7 +223,8 @@ repository.
   are built from it. `.github/actions/oyzu-read` mints a one-hour token for
   that one repository before the cargo steps, and `done.sh` removes it right
   after, so no step that runs `oyzu` sees it. Fork pull requests get no
-  secrets and cannot build. Drop all of this once oyzu is public.
+  secrets and cannot build. `release.yml` does not use it. Drop all of this
+  once oyzu is public.
 - The `release` environment is limited to `main`.
 - A ruleset on `main` requires pull requests (no required approvals; the
   `verify` check gates index changes), the `verify` check and code-owner

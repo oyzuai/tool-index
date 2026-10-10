@@ -59,6 +59,9 @@ pub struct Verified {
     /// Versions per tool whose records the index keeps, newest first.
     pub keep_records: usize,
     pub include_prereleases: bool,
+    /// Days a version that failed verification waits before it is tried
+    /// again with the same oyzu (`index/attempts.json`).
+    pub retry_after_days: i64,
 }
 
 #[derive(Debug, Deserialize)]
@@ -116,6 +119,12 @@ pub struct ServingEntry {
     /// Only a reviewed entry changes the class. Unreviewed entries are
     /// proposals: the tool stays `direct` and the license is shown.
     pub reviewed: bool,
+    /// Where the source archive is, for a copyleft tool served from Oyzu's
+    /// host: `github-archive`, `adoptium`, or a URL with `{tag}`, `{version}`
+    /// and `{repository}`. Defaults to GitHub's tag archive for an aqua
+    /// package and Adoptium for `core:java` (see `crate::sources`).
+    #[serde(default)]
+    pub source: Option<String>,
     /// For readers of the file; the job does not use it.
     #[serde(default)]
     #[allow(dead_code)]
@@ -166,6 +175,10 @@ impl Config {
                 );
             }
         }
+        ensure!(
+            (1..=366).contains(&self.index.verified.retry_after_days),
+            "verified.retry_after_days must be between 1 and 366"
+        );
         ensure!(
             self.index.verified.keep_records >= self.index.verified.backfill,
             "verified.keep_records must be at least verified.backfill"
