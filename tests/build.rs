@@ -262,7 +262,14 @@ fn first_run_verifies_the_newest_releases_and_dates_the_rest() {
     let other = index.tool("oyzu:acme/other").unwrap();
     assert_eq!(other.serving_class, ServingClass::Direct);
     assert!(other.versions.iter().all(|v| v.sets.is_empty()));
-    assert_eq!(review(None, &index).decision, Decision::Review);
+    let first = review(None, &index);
+    assert_eq!(first.decision, Decision::Review);
+    // The pull request body counts every tool of a first index.
+    assert_eq!(
+        first.tools_with_new_versions.len(),
+        index.tools.iter().filter(|t| !t.versions.is_empty()).count()
+    );
+    assert!(!first.tools_with_new_versions.is_empty());
 }
 
 #[test]

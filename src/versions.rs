@@ -212,6 +212,12 @@ fn source_name(mode: Mode) -> &'static str {
     }
 }
 
+/// Whether a GraphQL error is an owner's IP allow list refusing the token.
+/// Those repositories are listed again with `git ls-remote`.
+pub fn is_ip_allow_list(message: &str) -> bool {
+    message.contains("IP allow list")
+}
+
 /// Parses `git ls-remote --tags --refs` output.
 pub fn parse_ls_remote(output: &str) -> Vec<Listed> {
     let mut tags: Vec<Listed> = output
@@ -357,6 +363,12 @@ mod tests {
         assert!(looks_prerelease("cli/v2.0.0-beta"));
         assert!(!looks_prerelease("v1.2.3"));
         assert!(!looks_prerelease("2024-01-01"));
+    }
+
+    #[test]
+    fn ip_allow_list_errors_are_recognized() {
+        assert!(is_ip_allow_list("Although you appear to have the correct authorization credentials, the `Shopify` organization has an IP allow list enabled, and your IP address is not permitted to access this resource."));
+        assert!(!is_ip_allow_list("Could not resolve to a Repository with the name 'RoseSecurity/Kuzco'."));
     }
 
     #[test]

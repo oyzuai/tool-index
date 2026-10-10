@@ -17,9 +17,12 @@ on:
 permissions:
   contents: read
   pull-requests: read
+  actions: write   # re-run the pull request's own verify run after an approval
 
+# One group per event, so re-running the pull_request run after an approval
+# does not cancel the review run that started it.
 concurrency:
-  group: verify-${{ github.event.pull_request.number }}
+  group: verify-${{ github.event.pull_request.number }}-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
@@ -85,3 +88,20 @@ jobs:
             exit 1
           fi
           echo "approved by: $approvers"
+
+      # A review starts its own run, which GitHub lists beside the pull
+      # request's earlier failed run for the same commit; the earlier failure
+      # keeps blocking the merge until it is re-run. Re-run it once the
+      # approval has passed here.
+      - name: Re-run the pull request's earlier verify
+        if: github.event_name == 'pull_request_review' && steps.review.outputs.decision == 'review'
+        # A fork's review run gets a read-only token; the approval itself passed.
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          gh run list --repo "$GITHUB_REPOSITORY" --workflow verify-pr.yml \
+            --commit "$HEAD_SHA" --event pull_request --limit 1 \
+            --json databaseId,conclusion --jq '.[] | select(.conclusion != "success") | .databaseId' |
+            while read -r id; do gh run rerun "$id" --repo "$GITHUB_REPOSITORY"; done

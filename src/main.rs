@@ -176,7 +176,28 @@ async fn main() -> Result<()> {
                 "github" => {
                     let token = std::env::var("GITHUB_TOKEN")
                         .context("GITHUB_TOKEN is required for --source github")?;
-                    versions::list_github(&packages, &github_api, &token, 50).await?
+                    let mut tools =
+                        versions::list_github(&packages, &github_api, &token, 50).await?;
+                    // An owner with an IP allow list refuses the Actions
+                    // token, but its tags are still public over git.
+                    let blocked: Vec<registry::Package> = packages
+                        .iter()
+                        .filter(|p| {
+                            tools
+                                .get(&versions::aqua_id(&p.name))
+                                .and_then(|t| t.error.as_deref())
+                                .is_some_and(versions::is_ip_allow_list)
+                        })
+                        .cloned()
+                        .collect();
+                    if !blocked.is_empty() {
+                        for (id, listing) in versions::list_git(&blocked, 16).await? {
+                            if listing.error.is_none() {
+                                tools.insert(id, listing);
+                            }
+                        }
+                    }
+                    tools
                 }
                 "git" => versions::list_git(&packages, 16).await?,
                 other => bail!("unknown source {other}"),

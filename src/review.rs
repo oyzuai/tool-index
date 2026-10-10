@@ -54,7 +54,12 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
                 .flat_map(|t| &t.versions)
                 .map(|v| v.sets.len())
                 .sum(),
-            tools_with_new_versions: Vec::new(),
+            tools_with_new_versions: next
+                .tools
+                .iter()
+                .filter(|t| !t.versions.is_empty())
+                .map(|t| t.id.clone())
+                .collect(),
         };
     };
     if prev.snapshot != next.snapshot {
