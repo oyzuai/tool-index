@@ -13,7 +13,7 @@ release will be `index-v1`.
 | --- | --- | --- |
 | Fetch the pinned aqua registry snapshot, its license (the `NOTICE`) and the mise name catalog, each checked against its pinned digest | `tool-index fetch` | yes |
 | List upstream versions: GitHub GraphQL in production, `git ls-remote` without a token, Adoptium for Java | `tool-index list` | yes |
-| Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions | `tool-index build` | evidence downloads |
+| Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider java` for new Java versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Stamp a release copy of the committed index with `serial` and `expires` | `tool-index stamp` | no |
 | Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign sign-blob`, `cosign verify-blob` | Sigstore |
@@ -51,8 +51,16 @@ The workflows in `.github/workflows` run these on GitHub-hosted runners.
 - **Discovery**: every other `github_release` and `http` package in the
   snapshot, with versions and dates only. A standalone client evaluates the
   recipe itself; managed mode only uses verified records.
-- **Core providers**: Java (Temurin) is listed from Adoptium at the discovery
-  tier. Full Java records wait for the artifact-set schema to accept core ids.
+- **Core providers**: Java (Eclipse Temurin) is listed from Adoptium and
+  indexed as `oyzu:java` with origin `core:java`. With `verified = true` in
+  `config/index.toml` (set for Java), new versions are verified like a
+  launch-set tool (same `backfill` and per-run budget): `oyzu tools evidence
+  --provider java --version <v> --platform <p>…` builds the records from
+  Adoptium's GA listing and checks each archive against the publisher's
+  SHA-256 file. Records are produced for the platforms oyzu installs Temurin
+  on (Linux x86-64, macOS arm64, Windows x86-64); the other configured
+  platforms get `unsupported` records. Managed clients resolve `oyzu:java`
+  only from these records.
 
 Versions a recipe does not cover (`version_filter`, `version_prefix`) are
 dropped with the same engine the CLI uses (`oyzu-recipe`, pinned to the same
@@ -84,6 +92,12 @@ run.
 **proposal** (`reviewed = false`). An unreviewed tool stays `direct`; the index
 shows the proposed license. A person sets `reviewed = true` after checking the
 license shipped inside the archives.
+
+Temurin (`core:java`) is GPLv2 with the Classpath Exception: once reviewed it
+is `cache` with the matching source mirrored; until then `oyzu:java` is
+`direct`. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
+any tool id naming `oracle`, `graalvm` or `android` stays `direct` (or
+`excluded`) whatever `serving.toml` says.
 
 ### Signing
 
@@ -147,7 +161,7 @@ Signing needs the workflow's OIDC identity, so it is not run locally; a
 locally signed bundle would carry your identity, which no client accepts.
 
 `cargo test` covers the job without the network: build and review on a
-fixture registry, stamping (serial, expiry, refusing a stamped input), review
+fixture registry, Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input), review
 ignoring the stamp, and the release check (assets present, unexpired, and a
 bundle naming `index.json`'s exact bytes).
 

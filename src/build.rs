@@ -9,7 +9,7 @@ use crate::config::Config;
 use crate::index::{self, DateSource, Index, Released, ServingClass, Snapshot, Tool, Version};
 use crate::registry;
 use crate::resolve;
-use crate::serving::serving_for;
+use crate::serving::serving_for_tool;
 use crate::versions::{aqua_id, Listed, Listing};
 use anyhow::{Context, Result};
 use jiff::Timestamp;
@@ -165,9 +165,44 @@ fn listing_for<'a>(listing: &'a Listing, origin: &str, report: &mut Report) -> &
 
 struct Pending {
     tool: usize,
-    package: String,
-    /// Upstream tags to resolve, which `tools resolve` takes as `--version`.
+    source: PendingSource,
+    /// Upstream tags to resolve, which `tools resolve` takes as `--version`;
+    /// for a core provider, its exact versions.
     tags: Vec<String>,
+}
+
+/// Where a pending tool's records come from.
+enum PendingSource {
+    /// A registry package: `oyzu tools resolve`, then `oyzu tools evidence`.
+    Package(String),
+    /// A core provider: `oyzu tools evidence --provider <name>`.
+    Provider(String),
+}
+
+/// Versions to verify this run: on a tool's first run only the newest
+/// `backfill`, afterwards every version the previous index did not list.
+/// Returns the candidates' normalized versions, newest first.
+fn candidates(
+    versions: &[Version],
+    previous: Option<&Tool>,
+    cfg: &crate::config::Verified,
+) -> Vec<String> {
+    let first_run = previous.is_none_or(|p| p.versions.iter().all(|v| v.sets.is_empty()));
+    let known: BTreeSet<&str> = previous
+        .into_iter()
+        .flat_map(|p| &p.versions)
+        .map(|v| v.version.as_str())
+        .collect();
+    versions
+        .iter()
+        .filter(|v| cfg.include_prereleases || !index::prerelease(&v.version))
+        .enumerate()
+        .filter(|(i, v)| {
+            !index::verified(v)
+                && (*i < cfg.backfill || (!first_run && !known.contains(v.version.as_str())))
+        })
+        .map(|(_, v)| v.version.clone())
+        .collect()
 }
 
 pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
@@ -195,7 +230,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         if !wanted(&origin) {
             continue;
         }
-        let serving = serving_for(inputs.config.serving.tools.get(&origin));
+        let serving = serving_for_tool(&origin, inputs.config.serving.tools.get(&origin));
         if serving.class == ServingClass::Excluded {
             report.excluded.push(origin);
             continue;
@@ -211,8 +246,25 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
             core.names.first().map(String::as_str).unwrap_or(provider)
         );
         ids.insert(id.clone());
-        // Core records need the artifact-set schema to accept core ids; until
-        // then core tools list versions only.
+        if core.verified {
+            // Records come from `oyzu tools evidence --provider`, with the
+            // record id `core:<provider>` the index carries as the origin.
+            let wanted = candidates(&versions, previous(&origin), &cfg.verified);
+            let take = wanted.len().min(budget);
+            report.deferred += wanted.len() - take;
+            budget -= take;
+            if take > 0 {
+                pending.push(Pending {
+                    tool: tools.len(),
+                    source: PendingSource::Provider(provider.clone()),
+                    tags: wanted[..take].to_vec(),
+                });
+            }
+        } else {
+            for v in &mut versions {
+                v.sets.clear();
+            }
+        }
         tools.push(Tool {
             id,
             origin,
@@ -229,7 +281,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         {
             continue;
         }
-        let serving = serving_for(inputs.config.serving.tools.get(&origin));
+        let serving = serving_for_tool(&origin, inputs.config.serving.tools.get(&origin));
         if serving.class == ServingClass::Excluded {
             report.excluded.push(origin);
             continue;
@@ -274,31 +326,18 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         } else {
             // Verify versions with no verified records yet: on a tool's first
             // run only the newest few, afterwards every new version.
-            let first_run = prev.is_none_or(|p| p.versions.iter().all(|v| v.sets.is_empty()));
-            let known: BTreeSet<&str> = prev
-                .into_iter()
-                .flat_map(|p| &p.versions)
-                .map(|v| v.version.as_str())
-                .collect();
-            let candidates: Vec<String> = versions
+            let wanted: Vec<String> = candidates(&versions, prev, &cfg.verified)
                 .iter()
-                .filter(|v| cfg.verified.include_prereleases || !index::prerelease(&v.version))
-                .enumerate()
-                .filter(|(i, v)| {
-                    !index::verified(v)
-                        && (*i < cfg.verified.backfill
-                            || (!first_run && !known.contains(v.version.as_str())))
-                })
-                .filter_map(|(_, v)| tag_of.get(&v.version).cloned())
+                .filter_map(|v| tag_of.get(v).cloned())
                 .collect();
-            let take = candidates.len().min(budget);
-            report.deferred += candidates.len() - take;
+            let take = wanted.len().min(budget);
+            report.deferred += wanted.len() - take;
             budget -= take;
             if take > 0 {
                 pending.push(Pending {
                     tool: tools.len(),
-                    package: package.name.clone(),
-                    tags: candidates[..take].to_vec(),
+                    source: PendingSource::Package(package.name.clone()),
+                    tags: wanted[..take].to_vec(),
                 });
             }
         }
@@ -315,15 +354,25 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report)> {
         std::fs::create_dir_all(&inputs.work)?;
         for p in &pending {
             let tool = &mut tools[p.tool];
-            let doc = match resolve::resolve_and_verify(
-                oyzu,
-                &inputs.registry_path,
-                &cfg.aqua_registry,
-                &p.package,
-                &p.tags,
-                &cfg.platforms,
-                &inputs.work,
-            ) {
+            let result = match &p.source {
+                PendingSource::Package(package) => resolve::resolve_and_verify(
+                    oyzu,
+                    &inputs.registry_path,
+                    &cfg.aqua_registry,
+                    package,
+                    &p.tags,
+                    &cfg.platforms,
+                    &inputs.work,
+                ),
+                PendingSource::Provider(provider) => resolve::provider_evidence(
+                    oyzu,
+                    provider,
+                    &p.tags,
+                    &cfg.platforms,
+                    &inputs.work,
+                ),
+            };
+            let doc = match result {
                 Ok(d) => d,
                 Err(e) => {
                     report

@@ -90,6 +90,31 @@ fn parse_class(text: &str) -> ServingClass {
     }
 }
 
+/// Products whose license forbids redistribution by a proxy whatever a
+/// supplement says: Oracle JDK, Oracle GraalVM (and, conservatively, any
+/// GraalVM) and the Android SDK. A tool id naming one of them is never above
+/// `direct`.
+const NEVER_PROXIED: &[&str] = &["oracle", "graalvm", "android"];
+
+/// Whether a tool id (`core:<provider>`, `aqua:<package>`) names a product
+/// that is never proxied.
+pub fn never_proxied(id: &str) -> bool {
+    let id = id.to_ascii_lowercase();
+    NEVER_PROXIED.iter().any(|name| id.contains(name))
+}
+
+/// The serving class for the tool `id`, from its supplement entry.
+pub fn serving_for_tool(id: &str, entry: Option<&ServingEntry>) -> Serving {
+    let mut serving = serving_for(entry);
+    if never_proxied(id) && !matches!(serving.class, ServingClass::Direct | ServingClass::Excluded)
+    {
+        serving.class = ServingClass::Direct;
+        serving.basis = "never proxied".into();
+        serving.source_mirror = false;
+    }
+    serving
+}
+
 pub fn serving_for(entry: Option<&ServingEntry>) -> Serving {
     match entry {
         None => Serving {
@@ -171,6 +196,43 @@ mod tests {
         );
         let s = serving_for(Some(&entry("MIT", Some("excluded"), false)));
         assert_eq!(s.class, ServingClass::Excluded);
+    }
+
+    #[test]
+    fn oracle_graalvm_and_android_are_never_proxied() {
+        let cache = entry("Apache-2.0", Some("cache"), true);
+        for id in [
+            "core:oracle-jdk",
+            "aqua:graalvm/graalvm-ce-builds",
+            "core:android-sdk",
+            "aqua:Oracle/Something",
+        ] {
+            let s = serving_for_tool(id, Some(&cache));
+            assert_eq!(
+                (s.class, s.basis.as_str()),
+                (ServingClass::Direct, "never proxied"),
+                "{id}"
+            );
+        }
+        let excluded = entry("LicenseRef-Oracle", Some("excluded"), true);
+        assert_eq!(
+            serving_for_tool("core:oracle-jdk", Some(&excluded)).class,
+            ServingClass::Excluded
+        );
+        // Temurin is GPLv2 with the Classpath Exception: cached with its source
+        // mirrored once a person reviews it, direct until then.
+        let temurin = entry("GPL-2.0-only WITH Classpath-exception-2.0", None, true);
+        let s = serving_for_tool("core:java", Some(&temurin));
+        assert_eq!((s.class, s.source_mirror), (ServingClass::Cache, true));
+        let s = serving_for_tool(
+            "core:java",
+            Some(&entry(
+                "GPL-2.0-only WITH Classpath-exception-2.0",
+                None,
+                false,
+            )),
+        );
+        assert_eq!(s.class, ServingClass::Direct);
     }
 
     #[test]
