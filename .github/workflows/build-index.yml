@@ -1,0 +1,100 @@
+# Daily index build.
+#
+# Runs on GitHub-hosted runners only (decided 2026-10-10): the repository is
+# public, and a self-hosted runner would let fork pull requests run code on it.
+#
+# The pull request is pushed, opened and auto-merged with the index bot's
+# token (secret INDEX_BOT_TOKEN), not github.token: events caused by
+# GITHUB_TOKEN start no workflows, so the required `verify` check would never
+# run and a merge would never trigger release.yml.
+name: Build index
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-index
+  cancel-in-progress: false
+
+env:
+  # The oyzu release whose `tools resolve` and `tools evidence` produce the
+  # records. Pin it with its digest once oyzu publishes releases.
+  OYZU_VERSION: "0.1.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The bot token is used only in the last step; the build and the
+          # oyzu runs before it never see it.
+          persist-credentials: false
+
+      - name: Install the pinned oyzu
+        run: |
+          # Placeholder until oyzu publishes signed release binaries: build it
+          # from the commit pinned in Cargo.toml for oyzu-recipe.
+          rev=$(sed -n 's/.*oyzu-recipe = .*rev = "\([0-9a-f]*\)".*/\1/p' Cargo.toml)
+          cargo install --locked --git https://github.com/oyzuai/oyzu --rev "$rev" oyzu --root "$RUNNER_TEMP/oyzu"
+          echo "$RUNNER_TEMP/oyzu/bin" >> "$GITHUB_PATH"
+
+      - name: Build the job
+        run: cargo build --release --locked
+
+      - name: Fetch pinned inputs
+        run: ./target/release/tool-index fetch
+
+      - name: List versions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: ./target/release/tool-index list --source github
+
+      - name: Build index.json
+        run: |
+          previous=$([ -f index/index.json ] && echo "--previous index/index.json" || true)
+          ./target/release/tool-index build $previous \
+            --listing work/listing.json \
+            --oyzu "$(command -v oyzu)" \
+            --out index > work/build-report.json
+          cat work/build-report.json
+
+      - name: Review rules
+        id: review
+        run: |
+          previous=$(git show HEAD:index/index.json > work/previous.json 2>/dev/null && echo "--previous work/previous.json" || true)
+          ./target/release/tool-index review $previous \
+            --next index/index.json --markdown work/pr-body.md > work/review.json
+          echo "decision=$(jq -r .decision work/review.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Open the pull request
+        if: steps.review.outputs.decision != 'no-change'
+        env:
+          GH_TOKEN: ${{ secrets.INDEX_BOT_TOKEN }}
+          DECISION: ${{ steps.review.outputs.decision }}
+        run: |
+          branch="index/$(date -u +%Y-%m-%d)"
+          git config user.name "oyzu-index-bot"
+          git config user.email "index-bot@users.noreply.github.com"
+          git switch -c "$branch"
+          git add index/index.json index/NOTICE
+          git commit -m "index: update $(date -u +%Y-%m-%d)"
+          # Pushed with the bot token too, so the pushes run the `verify` check.
+          git push --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$branch"
+          label=$([ "$DECISION" = routine ] && echo routine || echo needs-review)
+          gh pr create --title "Index update $(date -u +%Y-%m-%d)" \
+            --body-file work/pr-body.md --label "$label" --head "$branch" || \
+            gh pr edit "$branch" --body-file work/pr-body.md --add-label "$label"
+          # Routine bumps merge on their own once required checks pass. The
+          # ruleset requires the `verify` check, which holds a needs-review
+          # pull request until someone with write access approves it; the bot
+          # must not be on the ruleset's bypass list.
+          if [ "$DECISION" = routine ]; then
+            gh pr merge "$branch" --auto --squash
+          fi

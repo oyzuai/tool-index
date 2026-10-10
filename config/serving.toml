@@ -1,0 +1,388 @@
+# Serving-class supplement: which tools an Oyzu proxy may store and serve.
+# Classes and rules were decided 2026-10-10 (project notes, tool-licensing.md):
+# permissive licenses map to `cache`, copyleft to `cache` with the source
+# mirrored, BSL/FSL to `cache-source-available`, and anything unknown to
+# `direct`. `class` overrides the mapping.
+#
+# Every entry below is a PROPOSAL (`reviewed = false`) read from each
+# repository's declared license; nobody has checked the license inside the
+# shipped archives yet. Until a person sets `reviewed = true`, the tool stays
+# `direct` and the index only shows the proposed license.
+#
+# Not listed, so `direct`: oven-sh/bun (bundles LGPL WebKit components; needs a
+# closer look) and snyk/cli (binary terms differ from the repository license).
+# Oracle JDK, Oracle GraalVM and the Android SDK are never proxied.
+
+[tools."aqua:cli/cli"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:jqlang/jq"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:mikefarah/yq"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:junegunn/fzf"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:astral-sh/uv"]
+license = "MIT OR Apache-2.0"
+reviewed = false
+
+[tools."aqua:astral-sh/ruff"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:go-task/task"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:jesseduffield/lazygit"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:starship/starship"]
+license = "ISC"
+reviewed = false
+
+[tools."aqua:evilmartians/lefthook"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:dprint/dprint"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:charmbracelet/gum"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:atuinsh/atuin"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:ClementTsang/bottom"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:FiloSottile/age"]
+license = "BSD-3-Clause"
+reviewed = false
+
+[tools."aqua:getsops/sops"]
+license = "MPL-2.0"
+reviewed = false
+
+[tools."aqua:goreleaser/goreleaser"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:watchexec/watchexec"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:biomejs/biome"]
+license = "MIT OR Apache-2.0"
+reviewed = false
+
+[tools."aqua:nektos/act"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:hashicorp/terraform"]
+license = "BUSL-1.1"
+reviewed = false
+
+[tools."aqua:hashicorp/packer"]
+license = "BUSL-1.1"
+reviewed = false
+
+[tools."aqua:hashicorp/vault"]
+license = "BUSL-1.1"
+reviewed = false
+
+[tools."aqua:hashicorp/consul"]
+license = "BUSL-1.1"
+reviewed = false
+
+[tools."aqua:hashicorp/nomad"]
+license = "BUSL-1.1"
+reviewed = false
+
+[tools."aqua:opentofu/opentofu"]
+license = "MPL-2.0"
+reviewed = false
+
+[tools."aqua:gruntwork-io/terragrunt"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:pulumi/pulumi"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:terraform-linters/tflint"]
+license = "MPL-2.0"
+reviewed = false
+
+[tools."aqua:terraform-docs/terraform-docs"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:infracost/infracost"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:open-policy-agent/opa"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:open-policy-agent/conftest"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:kubernetes/kubernetes/kubectl"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:helm/helm"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:kubernetes-sigs/kind"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:kubernetes-sigs/krew"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:derailed/k9s"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:ahmetb/kubectx"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:fluxcd/flux2"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:argoproj/argo-cd"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:cilium/cilium-cli"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:stern/stern"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:yannh/kubeconform"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:helmfile/helmfile"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:kubescape/kubescape"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:loft-sh/vcluster"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:kyverno/kyverno"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:k3d-io/k3d"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:eksctl-io/eksctl"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:cert-manager/cmctl"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:velero-io/velero"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:kubernetes/minikube"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:sigstore/cosign"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:anchore/syft"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:anchore/grype"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:aquasecurity/trivy"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:hadolint/hadolint"]
+license = "GPL-3.0-only"
+reviewed = false
+
+[tools."aqua:docker/compose"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:ko-build/ko"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:oras-project/oras"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:google/go-containerregistry"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:slsa-framework/slsa-verifier"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:ossf/scorecard"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:smallstep/cli"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:google/osv-scanner"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:securego/gosec"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:trufflesecurity/trufflehog"]
+license = "AGPL-3.0-only"
+reviewed = false
+
+[tools."aqua:gitleaks/gitleaks"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:wagoodman/dive"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:golangci/golangci-lint"]
+license = "GPL-3.0-only"
+reviewed = false
+
+[tools."aqua:rhysd/actionlint"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:suzuki-shunsuke/pinact"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:zizmorcore/zizmor"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:google/yamlfmt"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:bufbuild/buf"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:golang-migrate/migrate"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:pressly/goose"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:hairyhenderson/gomplate"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:nextest-rs/nextest/cargo-nextest"]
+license = "Apache-2.0 OR MIT"
+reviewed = false
+
+[tools."aqua:mozilla/sccache"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:cargo-bins/cargo-binstall"]
+license = "GPL-3.0-only"
+reviewed = false
+
+[tools."aqua:digitalocean/doctl"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:hetznercloud/cli"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:superfly/flyctl"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:temporalio/cli"]
+license = "MIT"
+reviewed = false
+
+[tools."aqua:nats-io/natscli"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:minio/mc"]
+license = "AGPL-3.0-only"
+reviewed = false
+
+[tools."aqua:caddyserver/caddy"]
+license = "Apache-2.0"
+reviewed = false
+
+[tools."aqua:grafana/k6"]
+license = "AGPL-3.0-only"
+reviewed = false
+
+[tools."aqua:restic/restic"]
+license = "BSD-2-Clause"
+reviewed = false
+
+[tools."aqua:rclone/rclone"]
+license = "MIT"
+reviewed = false
+
+# Eclipse Temurin: GPLv2 with the Classpath Exception; Adoptium publishes the
+# matching source per release, which a caching proxy mirrors.
+[tools."core:java"]
+license = "GPL-2.0-only WITH Classpath-exception-2.0"
+reviewed = false

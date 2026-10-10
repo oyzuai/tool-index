@@ -1,0 +1,49 @@
+# Pins and limits for the tool index job. Changing a pin is a reviewed change:
+# the job's pull request then waits for a person (see src/review.rs).
+
+# Platforms the verified tier resolves and downloads. musl is not supported in
+# the first release (decided 2026-10-10).
+platforms = ["linux/amd64/gnu", "linux/arm64/gnu", "darwin/arm64/native", "darwin/amd64/native", "windows/amd64/msvc"]
+
+# The registry snapshot every aqua record is resolved from. Bumping the tag
+# needs the new file's digest; `tool-index fetch` refuses any other bytes.
+[aqua_registry]
+source = "aquaproj/aqua-registry"
+tag = "v4.573.0"
+digest = "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228"
+registry_url = "https://raw.githubusercontent.com/aquaproj/aqua-registry/{tag}/registry.yaml"
+license_url = "https://raw.githubusercontent.com/aquaproj/aqua-registry/{tag}/LICENSE"
+
+# Short names, from the same mise release oyzu pins in
+# src/tools/development/declare/short_names.rs. Keep the two in step.
+[names]
+source = "mise"
+version = "2026.10.5"
+digest = "sha256:ee67f0e98cb4bcca979cfc31aed712b351c1632796e25d63c33a43f198dae98a"
+url = "https://static.crates.io/crates/mise/mise-2026.10.5.crate"
+
+[discovery]
+# Newest versions kept per tool. The index is one file at launch (decided
+# 2026-10-10), so this bounds its size.
+max_versions = 50
+# Binary recipes the CLI can install. Build-from-source kinds are left out.
+source_kinds = ["github_release", "http"]
+
+[verified]
+# Newest versions downloaded and checked when a tool joins the launch set.
+backfill = 3
+# Most versions verified in one run; the rest wait for the next run.
+max_versions_per_run = 150
+# Versions per tool whose records stay in the index; older versions keep their
+# date but lose their records, which bounds the single file.
+keep_records = 10
+include_prereleases = false
+
+[signing]
+# Expiry of targets, snapshot and timestamp. The job re-signs daily.
+expires_days = 14
+
+# Core providers, built into the job rather than read from the registry.
+[core.java]
+names = ["java"]
+max_versions = 50

@@ -1,0 +1,39 @@
+[package]
+name = "oyzu-tool-index"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+description = "Builds, reviews and stamps Oyzu's public tool index for signed release"
+license = "Apache-2.0"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "tool-index"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+base64 = "0.22"
+clap = { version = "4.5", features = ["derive"] }
+flate2 = "1.1"
+hex = "0.4"
+jiff = { version = "0.2", features = ["serde"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+serde_json_canonicalizer = "0.3.2"
+serde_yaml = "0.9"
+sha2 = "0.10"
+tar = { version = "0.4", default-features = false }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs", "process"] }
+toml = "0.8"
+# The resolve engine, used in-process to apply each recipe's version rules to
+# listed tags. Pinned to the same oyzu commit as the `oyzu` binary the job runs.
+oyzu-recipe = { git = "https://github.com/oyzuai/oyzu", rev = "f3b115485fa7650e9ac17817b89732bdd0ea8f4a" }
+url = "2"
+
+[dev-dependencies]
+tempfile = "3.20"

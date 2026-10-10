@@ -1,0 +1,73 @@
+# Required check on every pull request to the index repository. It recomputes
+# the review decision from the base branch, so a pull request labeled routine
+# that is not routine fails instead of auto-merging.
+#
+# It is also the needs-review gate, because rulesets cannot require a review
+# only for some pull requests: when the recomputed decision is `review`, the
+# check passes only once someone with write access has approved the pull
+# request's current head commit. A review re-runs it.
+name: Verify
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: verify-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: cargo build --release --locked
+      - run: cargo test --locked
+      - name: Recompute the review decision
+        id: review
+        env:
+          BASE: ${{ github.event.pull_request.base.ref }}
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          git show "origin/$BASE:index/index.json" > previous.json
+          ./target/release/tool-index review --previous previous.json --next index/index.json > review.json
+          decision=$(jq -r .decision review.json)
+          echo "decision: $decision"
+          jq -r '.reasons[]' review.json
+          case ",$LABELS," in
+            *,routine,*) [ "$decision" != review ] || { echo "labeled routine but needs review"; exit 1; } ;;
+          esac
+          echo "decision=$decision" >> "$GITHUB_OUTPUT"
+
+      - name: Require an approval from someone with write access
+        if: steps.review.outputs.decision == 'review'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Each reviewer's latest decisive review (approve, request changes,
+          # dismissed) counts, and only for the current head commit.
+          approvers=$(
+            gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR/reviews" \
+              --jq '.[] | select(.state != "COMMENTED" and .state != "PENDING") | "\(.user.login) \(.state) \(.commit_id)"' |
+            awk '{ last[$1] = $2 " " $3 } END { for (u in last) print u, last[u] }' |
+            while read -r user state commit; do
+              [ "$state" = APPROVED ] && [ "$commit" = "$HEAD_SHA" ] || continue
+              permission=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$user/permission" --jq .permission)
+              case "$permission" in admin|write) echo "$user" ;; esac
+            done
+          )
+          if [ -z "$approvers" ]; then
+            echo "This update needs review: approve the current commit (write access required)."
+            exit 1
+          fi
+          echo "approved by: $approvers"

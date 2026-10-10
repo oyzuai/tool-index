@@ -1,0 +1,1201 @@
+{
+  "format": 1,
+  "kind": "tool-index",
+  "engine": {
+    "evaluator_digest": "sha256:165bb6fcd82c9d433ea0388ed02f0fa0658fa70765ffab362c206bab497dfa05",
+    "name": "oyzu",
+    "version": "0.1.0"
+  },
+  "snapshot": {
+    "source": "aquaproj/aqua-registry",
+    "tag": "v4.573.0",
+    "commit": null,
+    "form": "merged-file",
+    "digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228"
+  },
+  "tools": [
+    {
+      "id": "oyzu:burntsushi/ripgrep",
+      "origin": "aqua:BurntSushi/ripgrep",
+      "serving_class": "direct",
+      "versions": [
+        {
+          "version": "15.2.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "15.1.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "15.0.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        }
+      ]
+    },
+    {
+      "id": "oyzu:gh",
+      "origin": "aqua:cli/cli",
+      "serving_class": "direct",
+      "versions": [
+        {
+          "version": "2.102.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.102.0_macOS_amd64/bin/gh"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:59b8a676392ddac3ef646233f15f53b50bae87843bdee445c85ba69b24826949",
+                "full": "sha256:fa7dfa33de90362e6d5ff515708c7264b284cd7a1436a5fc0b53a84094c7f13a"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.102.0_macOS_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_macOS_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:b245f24eb2bf5f75b426b4c26da3651a107f8d5b6f4fddfbfccc5679041378b3",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "b245f24eb2bf5f75b426b4c26da3651a107f8d5b6f4fddfbfccc5679041378b3"
+                  },
+                  "size": 15995994
+                },
+                "lock": {
+                  "evidence_digest": "sha256:afe49e9affa232faa8212aed035417166f6ade9b9470acb53d4dbd28c0504e8d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:b245f24eb2bf5f75b426b4c26da3651a107f8d5b6f4fddfbfccc5679041378b3",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `github-attestation` verifier; the evidence is declared but unchecked",
+                    "evidence": "github-attestation#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.102.0",
+                "requested": "v2.102.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.102.0_macOS_arm64/bin/gh"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:67cd947c18813b32b4830807b733dc2d9e8ada2f29d617ebe9826ee22a8b56f7",
+                "full": "sha256:e1e90d16fccc5417f32556c2664b621bed18a8655b127ae6ae2dacbc93f58130"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.102.0_macOS_arm64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_macOS_arm64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:da922c20d1792e5b2cbf375593d7a658acf034c12c84e007e71c76ef959c337e",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "da922c20d1792e5b2cbf375593d7a658acf034c12c84e007e71c76ef959c337e"
+                  },
+                  "size": 14359983
+                },
+                "lock": {
+                  "evidence_digest": "sha256:afe49e9affa232faa8212aed035417166f6ade9b9470acb53d4dbd28c0504e8d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:da922c20d1792e5b2cbf375593d7a658acf034c12c84e007e71c76ef959c337e",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `github-attestation` verifier; the evidence is declared but unchecked",
+                    "evidence": "github-attestation#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.102.0",
+                "requested": "v2.102.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.102.0_linux_amd64/bin/gh"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:e4eba6aae1b2a17c7ca254baaa8712c91ea252475397a35a4c4768b397e1abe6",
+                "full": "sha256:2dc648e243f38bacab22e3fe620c99773b956c01a62b0c16616339427eceb5ee"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.102.0_linux_amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386"
+                  },
+                  "size": 15319960
+                },
+                "lock": {
+                  "evidence_digest": "sha256:afe49e9affa232faa8212aed035417166f6ade9b9470acb53d4dbd28c0504e8d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:bb766f710eef8ede859c18578c72c327597cd4c8a85b06001b1f3843c6019386",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `github-attestation` verifier; the evidence is declared but unchecked",
+                    "evidence": "github-attestation#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.102.0",
+                "requested": "v2.102.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.102.0_linux_arm64/bin/gh"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:5e1579cdace4c730effb28b63b3cb37dc5e579686b1e0118ec5dccbee6cfbb7d",
+                "full": "sha256:9a0d3f2aac59c3c83b687e880ec14beea529efaeccef37db5617c2e7d3323992"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.102.0_linux_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_linux_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484"
+                  },
+                  "size": 13917794
+                },
+                "lock": {
+                  "evidence_digest": "sha256:afe49e9affa232faa8212aed035417166f6ade9b9470acb53d4dbd28c0504e8d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:7862c86c72f43df3a2d93ddde6f473285b4e2af61b494849846827e513ef6484",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `github-attestation` verifier; the evidence is declared but unchecked",
+                    "evidence": "github-attestation#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.102.0",
+                "requested": "v2.102.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "bin/gh.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:d784d17a4a59e0003e0993b4077e89d33eb35caa32fec17e5343ad7d2ee485c3",
+                "full": "sha256:219d626948faf95c0504d1c57971c70bb03c61b08436f0e6627c3fdc52b1d6bc"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.102.0_windows_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_windows_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.102.0/gh_2.102.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4"
+                  },
+                  "size": 15512013
+                },
+                "lock": {
+                  "evidence_digest": "sha256:afe49e9affa232faa8212aed035417166f6ade9b9470acb53d4dbd28c0504e8d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `github-attestation` verifier; the evidence is declared but unchecked",
+                    "evidence": "github-attestation#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.102.0",
+                "requested": "v2.102.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
+          "version": "2.101.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.100.0",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        }
+      ]
+    },
+    {
+      "id": "oyzu:terraform",
+      "origin": "aqua:hashicorp/terraform",
+      "serving_class": "direct",
+      "versions": [
+        {
+          "version": "1.17.0-rc1",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.17.0-beta2",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.17.0-beta1",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.16.5",
+          "released": {
+            "time": "2026-10-10T10:00:00Z",
+            "source": "first-seen"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "terraform",
+                    "origin": "default",
+                    "src": "terraform"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:ea922511885db44317bd42fda138c61b92ee3302d7dc75aab15f96952f1cb7fc",
+                "full": "sha256:d031052961c7489d237eda128d84e21cc23f56ec3ed1f3b5434f4b607f786d9e"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "terraform_1.16.5_darwin_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:dd2fc5f3e43b2533f18043b817c714dba64f84a3803aaafc100203e4711f33d7",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "http",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hashicorp/terraform",
+                "name": "hashicorp/terraform",
+                "publisher": "hashicorp",
+                "repository": "hashicorp/terraform"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_darwin_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_SHA256SUMS"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:9809158e481cf2d3a8433e59179f397b8edb5172397711bd98f6bb32edcaf53b",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "9809158e481cf2d3a8433e59179f397b8edb5172397711bd98f6bb32edcaf53b"
+                  },
+                  "size": 37599968
+                },
+                "lock": {
+                  "evidence_digest": "sha256:909485e738f17e345047a74c06644a5a5b5f1d6e5bf2a4d10e0d416342db8e77",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:9809158e481cf2d3a8433e59179f397b8edb5172397711bd98f6bb32edcaf53b",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.16.5",
+                "requested": "v1.16.5",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "terraform",
+                    "origin": "default",
+                    "src": "terraform"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:66c7fdad9a51d2bb2338fe053683fc865b08adbf2cd16e9ec51673fb6a722393",
+                "full": "sha256:794549720504ab9e6e7a8f6d1abce4394ff5766362c302ce6668ab35fd21f20d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "terraform_1.16.5_darwin_arm64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:dd2fc5f3e43b2533f18043b817c714dba64f84a3803aaafc100203e4711f33d7",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "http",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hashicorp/terraform",
+                "name": "hashicorp/terraform",
+                "publisher": "hashicorp",
+                "repository": "hashicorp/terraform"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_darwin_arm64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_SHA256SUMS"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:ecdef65e24193d627f27c39baeda31295f08c938d8a3d4764f442fb916d4b7dc",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "ecdef65e24193d627f27c39baeda31295f08c938d8a3d4764f442fb916d4b7dc"
+                  },
+                  "size": 33895240
+                },
+                "lock": {
+                  "evidence_digest": "sha256:909485e738f17e345047a74c06644a5a5b5f1d6e5bf2a4d10e0d416342db8e77",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:ecdef65e24193d627f27c39baeda31295f08c938d8a3d4764f442fb916d4b7dc",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.16.5",
+                "requested": "v1.16.5",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "terraform",
+                    "origin": "default",
+                    "src": "terraform"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:f99f2849d3ac46066074ef95ccafeff014360fcb2bb189df3d65d1b156d34b64",
+                "full": "sha256:7830d808969b003bafdcc310a8a1f21c9a47692df7d6ebcbc10b17acff9daacc"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "terraform_1.16.5_linux_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:dd2fc5f3e43b2533f18043b817c714dba64f84a3803aaafc100203e4711f33d7",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "http",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hashicorp/terraform",
+                "name": "hashicorp/terraform",
+                "publisher": "hashicorp",
+                "repository": "hashicorp/terraform"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_linux_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_SHA256SUMS"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:2bc2fcfff033265c9e02ca0351f01794eb122f62a9b2a49a3294b9e49eaab5e4",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "2bc2fcfff033265c9e02ca0351f01794eb122f62a9b2a49a3294b9e49eaab5e4"
+                  },
+                  "size": 36363219
+                },
+                "lock": {
+                  "evidence_digest": "sha256:909485e738f17e345047a74c06644a5a5b5f1d6e5bf2a4d10e0d416342db8e77",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:2bc2fcfff033265c9e02ca0351f01794eb122f62a9b2a49a3294b9e49eaab5e4",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.16.5",
+                "requested": "v1.16.5",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "terraform",
+                    "origin": "default",
+                    "src": "terraform"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:2aeb41336eb20a904c1dcddcca7599d99648dca1c3f6cc670e4b6503b4b591c1",
+                "full": "sha256:72e5543234c68c5020940f01791d71447edb82e145c8d62e6a586ca4a3c11659"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "terraform_1.16.5_linux_arm64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:dd2fc5f3e43b2533f18043b817c714dba64f84a3803aaafc100203e4711f33d7",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "http",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hashicorp/terraform",
+                "name": "hashicorp/terraform",
+                "publisher": "hashicorp",
+                "repository": "hashicorp/terraform"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_linux_arm64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_SHA256SUMS"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:61a50b00485ee4810cf20581ef080fc54d34d666e175c58d9a10501c65c1ccde",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "61a50b00485ee4810cf20581ef080fc54d34d666e175c58d9a10501c65c1ccde"
+                  },
+                  "size": 32576164
+                },
+                "lock": {
+                  "evidence_digest": "sha256:909485e738f17e345047a74c06644a5a5b5f1d6e5bf2a4d10e0d416342db8e77",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:61a50b00485ee4810cf20581ef080fc54d34d666e175c58d9a10501c65c1ccde",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.16.5",
+                "requested": "v1.16.5",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "terraform",
+                    "origin": "default",
+                    "src": "terraform.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:53c1fea2d92ea7d132f91c61132a85514d0b75cb99a916aa9511127149eba651",
+                "full": "sha256:7ec1c693db00611191a05f3546d2cdce5e674ca2b90b1687f31ee389f64f9801"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "terraform_1.16.5_windows_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:dd2fc5f3e43b2533f18043b817c714dba64f84a3803aaafc100203e4711f33d7",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "http",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hashicorp/terraform",
+                "name": "hashicorp/terraform",
+                "publisher": "hashicorp",
+                "repository": "hashicorp/terraform"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_windows_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://releases.hashicorp.com/terraform/1.16.5/terraform_1.16.5_SHA256SUMS"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:01700102b7291f95c0ab61394b55bfd5f57a12ac65632c2c1958691c8cf438ef",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "01700102b7291f95c0ab61394b55bfd5f57a12ac65632c2c1958691c8cf438ef"
+                  },
+                  "size": 36763886
+                },
+                "lock": {
+                  "evidence_digest": "sha256:909485e738f17e345047a74c06644a5a5b5f1d6e5bf2a4d10e0d416342db8e77",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:01700102b7291f95c0ab61394b55bfd5f57a12ac65632c2c1958691c8cf438ef",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.16.5",
+                "requested": "v1.16.5",
+                "source": "requested"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

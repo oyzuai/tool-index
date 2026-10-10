@@ -1,0 +1,469 @@
+# The verified tier: Oyzu's curated launch set (approved as the starting list
+# 2026-10-10). New versions of these
+# tools are downloaded and checked as they appear; other packages are indexed
+# at the discovery tier (versions and dates only).
+#
+# `name` is the tool's curated short name, its id `oyzu:<name>`: the mise
+# catalog's primary name, as the oyzu CLI's table has it
+# (src/tools/development_backend/names.rs). A tool without one, because its
+# name would collide with an Oyzu core tool or it has no catalog name, and
+# every discovery-tier tool, is `oyzu:<owner>/<repo>`.
+
+[[tool]]
+package = "cli/cli"
+name = "gh"
+group = "Developer CLI"
+
+[[tool]]
+package = "jqlang/jq"
+name = "jq"
+group = "Developer CLI"
+
+[[tool]]
+package = "mikefarah/yq"
+name = "yq"
+group = "Developer CLI"
+
+[[tool]]
+package = "junegunn/fzf"
+name = "fzf"
+group = "Developer CLI"
+
+[[tool]]
+package = "astral-sh/uv"
+name = "uv"
+group = "Developer CLI"
+
+[[tool]]
+package = "astral-sh/ruff"
+name = "ruff"
+group = "Developer CLI"
+
+[[tool]]
+package = "go-task/task"
+name = "task"
+group = "Developer CLI"
+
+[[tool]]
+package = "jesseduffield/lazygit"
+name = "lazygit"
+group = "Developer CLI"
+
+[[tool]]
+package = "starship/starship"
+name = "starship"
+group = "Developer CLI"
+
+[[tool]]
+package = "evilmartians/lefthook"
+name = "lefthook"
+group = "Developer CLI"
+
+[[tool]]
+package = "dprint/dprint"
+name = "dprint"
+group = "Developer CLI"
+
+[[tool]]
+package = "charmbracelet/gum"
+name = "gum"
+group = "Developer CLI"
+
+[[tool]]
+package = "atuinsh/atuin"
+name = "atuin"
+group = "Developer CLI"
+
+[[tool]]
+package = "ClementTsang/bottom"
+name = "bottom"
+group = "Developer CLI"
+
+[[tool]]
+package = "FiloSottile/age"
+name = "age"
+group = "Developer CLI"
+
+[[tool]]
+package = "getsops/sops"
+name = "sops"
+group = "Developer CLI"
+
+[[tool]]
+package = "goreleaser/goreleaser"
+name = "goreleaser"
+group = "Developer CLI"
+
+[[tool]]
+package = "watchexec/watchexec"
+name = "watchexec"
+group = "Developer CLI"
+
+[[tool]]
+package = "oven-sh/bun"
+group = "Developer CLI"
+
+[[tool]]
+package = "biomejs/biome"
+name = "biome"
+group = "Developer CLI"
+
+[[tool]]
+package = "nektos/act"
+name = "act"
+group = "Developer CLI"
+
+[[tool]]
+package = "hashicorp/terraform"
+name = "terraform"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "hashicorp/packer"
+name = "packer"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "hashicorp/vault"
+name = "vault"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "hashicorp/consul"
+name = "consul"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "hashicorp/nomad"
+name = "nomad"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "opentofu/opentofu"
+name = "opentofu"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "gruntwork-io/terragrunt"
+name = "terragrunt"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "pulumi/pulumi"
+name = "pulumi"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "terraform-linters/tflint"
+name = "tflint"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "terraform-docs/terraform-docs"
+name = "terraform-docs"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "infracost/infracost"
+name = "infracost"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "open-policy-agent/opa"
+name = "opa"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "open-policy-agent/conftest"
+name = "conftest"
+group = "Infrastructure as code"
+
+[[tool]]
+package = "kubernetes/kubernetes/kubectl"
+group = "Kubernetes"
+
+[[tool]]
+package = "helm/helm"
+group = "Kubernetes"
+
+[[tool]]
+package = "kubernetes-sigs/kind"
+name = "kind"
+group = "Kubernetes"
+
+[[tool]]
+package = "kubernetes-sigs/krew"
+name = "krew"
+group = "Kubernetes"
+
+[[tool]]
+package = "derailed/k9s"
+name = "k9s"
+group = "Kubernetes"
+
+[[tool]]
+package = "ahmetb/kubectx"
+name = "kubectx"
+group = "Kubernetes"
+
+[[tool]]
+package = "fluxcd/flux2"
+name = "flux2"
+group = "Kubernetes"
+
+[[tool]]
+package = "argoproj/argo-cd"
+name = "argocd"
+group = "Kubernetes"
+
+[[tool]]
+package = "cilium/cilium-cli"
+name = "cilium-cli"
+group = "Kubernetes"
+
+[[tool]]
+package = "stern/stern"
+name = "stern"
+group = "Kubernetes"
+
+[[tool]]
+package = "yannh/kubeconform"
+name = "kubeconform"
+group = "Kubernetes"
+
+[[tool]]
+package = "helmfile/helmfile"
+name = "helmfile"
+group = "Kubernetes"
+
+[[tool]]
+package = "kubescape/kubescape"
+group = "Kubernetes"
+
+[[tool]]
+package = "loft-sh/vcluster"
+name = "vcluster"
+group = "Kubernetes"
+
+[[tool]]
+package = "kyverno/kyverno"
+name = "kyverno"
+group = "Kubernetes"
+
+[[tool]]
+package = "k3d-io/k3d"
+group = "Kubernetes"
+
+[[tool]]
+package = "eksctl-io/eksctl"
+name = "eksctl"
+group = "Kubernetes"
+
+[[tool]]
+package = "cert-manager/cmctl"
+name = "cmctl"
+group = "Kubernetes"
+
+[[tool]]
+package = "velero-io/velero"
+name = "velero"
+group = "Kubernetes"
+
+[[tool]]
+package = "kubernetes/minikube"
+name = "minikube"
+group = "Kubernetes"
+
+[[tool]]
+package = "sigstore/cosign"
+name = "cosign"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "anchore/syft"
+name = "syft"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "anchore/grype"
+name = "grype"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "aquasecurity/trivy"
+name = "trivy"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "hadolint/hadolint"
+name = "hadolint"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "docker/compose"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "ko-build/ko"
+name = "ko"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "oras-project/oras"
+name = "oras"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "google/go-containerregistry"
+name = "go-containerregistry"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "slsa-framework/slsa-verifier"
+name = "slsa-verifier"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "ossf/scorecard"
+name = "scorecard"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "smallstep/cli"
+name = "step"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "google/osv-scanner"
+name = "osv-scanner"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "securego/gosec"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "trufflesecurity/trufflehog"
+name = "trufflehog"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "gitleaks/gitleaks"
+name = "gitleaks"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "wagoodman/dive"
+name = "dive"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "snyk/cli"
+name = "snyk"
+group = "Containers and supply chain"
+
+[[tool]]
+package = "golangci/golangci-lint"
+name = "golangci-lint"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "rhysd/actionlint"
+name = "actionlint"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "suzuki-shunsuke/pinact"
+name = "pinact"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "zizmorcore/zizmor"
+name = "zizmor"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "google/yamlfmt"
+name = "yamlfmt"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "bufbuild/buf"
+name = "buf"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "golang-migrate/migrate"
+name = "gomigrate"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "pressly/goose"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "hairyhenderson/gomplate"
+name = "gomplate"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "nextest-rs/nextest/cargo-nextest"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "mozilla/sccache"
+name = "sccache"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "cargo-bins/cargo-binstall"
+name = "cargo-binstall"
+group = "Linting, build and data tooling"
+
+[[tool]]
+package = "digitalocean/doctl"
+name = "doctl"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "hetznercloud/cli"
+name = "hcloud"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "superfly/flyctl"
+name = "flyctl"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "temporalio/cli"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "nats-io/natscli"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "minio/mc"
+name = "mc"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "caddyserver/caddy"
+name = "caddy"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "grafana/k6"
+name = "k6"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "restic/restic"
+name = "restic"
+group = "Service CLIs and servers"
+
+[[tool]]
+package = "rclone/rclone"
+name = "rclone"
+group = "Service CLIs and servers"
