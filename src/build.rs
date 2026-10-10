@@ -148,6 +148,26 @@ fn looks_like_version(normalized: &str) -> bool {
         && !normalized.contains('@')
 }
 
+/// Pre-releases kept per tool, beside `discovery.max_versions` releases.
+const MAX_PRERELEASES: usize = 5;
+
+/// Keeps the newest `max` versions, of which at most [`MAX_PRERELEASES`]
+/// pre-releases. flyctl tags thousands of `v2026.9.26-pr5241.1` preview
+/// builds that sort above its `v0.4.115` releases and would otherwise fill
+/// the list.
+fn keep_newest(versions: &mut Vec<Version>, max: usize) {
+    let mut pre = 0;
+    versions.retain(|v| {
+        if index::prerelease(&v.version) {
+            pre += 1;
+            pre <= MAX_PRERELEASES
+        } else {
+            true
+        }
+    });
+    versions.truncate(max);
+}
+
 /// Merges listed versions with the previous entry. A known version keeps its
 /// date and records; a new one is dated by the publisher or first seen now.
 fn merge(listed: &[(String, &Listed)], previous: Option<&Tool>, now: &str) -> Vec<Version> {
@@ -396,7 +416,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             }
         }
         let mut versions = merge(&listed, prev, &now);
-        versions.truncate(cfg.discovery.max_versions);
+        keep_newest(&mut versions, cfg.discovery.max_versions);
         if !is_launch {
             for v in &mut versions {
                 v.sets.clear();
@@ -611,8 +631,26 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
 
 #[cfg(test)]
 mod tests {
-    use super::{canonical_id, failure_reason, looks_like_version};
+    use super::{canonical_id, failure_reason, keep_newest, looks_like_version};
+    use crate::index::Version;
     use serde_json::json;
+
+    #[test]
+    fn preview_builds_do_not_crowd_out_releases() {
+        let mut versions: Vec<Version> = (0..40)
+            .map(|i| format!("2026.9.{i}-pr5241.1"))
+            .chain(["0.4.115".to_owned(), "0.4.114".to_owned()])
+            .map(|v| {
+                let released = json!({"time": "2026-10-01", "source": "publisher"});
+                serde_json::from_value(json!({"version": v, "released": released, "sets": []}))
+                    .unwrap()
+            })
+            .collect();
+        keep_newest(&mut versions, 6);
+        let kept: Vec<_> = versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(kept.len(), 6);
+        assert_eq!(&kept[5..], ["0.4.115"]);
+    }
 
     #[test]
     fn release_tags_look_like_versions_and_others_do_not() {
