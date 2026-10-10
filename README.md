@@ -16,7 +16,7 @@ release will be `index-v1`.
 | Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider java` for new Java versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Stamp a release copy of the committed index with `serial` and `expires` | `tool-index stamp` | no |
-| Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign sign-blob`, `cosign verify-blob` | Sigstore |
+| Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign attest-blob`, `cosign verify-blob-attestation` | Sigstore |
 | Check the release directory and print the release for tag `index-v<serial>` | `tool-index release` (`--dry-run` reports missing assets instead of failing) | no |
 | Publish (in `release.yml` only) | `gh release create` | GitHub |
 
@@ -116,9 +116,11 @@ environment:
    (now + `signing.expires_days` in `config/index.toml`, 14). The committed
    copy never carries either field; `stamp` refuses one that does, and
    `review` fails on it;
-3. runs `cosign sign-blob --yes --bundle index.json.sigstore.json index.json`
+3. runs `cosign attest-blob --type https://sigstore.dev/cosign/sign/v1` with an
+   empty predicate, writing `index.json.sigstore.json` (`cosign sign-blob` would
+   write a message signature, which the CLI does not accept)
    (cosign v3, pinned through `sigstore/cosign-installer` by commit);
-4. runs `cosign verify-blob` against the identity the CLI pins;
+4. runs `cosign verify-blob-attestation` against the identity the CLI pins;
 5. compresses `index.json` with `zstd -19` into `index.json.zst`;
 6. runs `tool-index release --dir release` (which checks the compressed copy
    decompresses to exactly `index.json`) and `gh release create
