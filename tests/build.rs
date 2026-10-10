@@ -66,6 +66,26 @@ fn fake_oyzu(dir: &Path) -> PathBuf {
     let path = dir.join("oyzu");
     let script = r#"#!/bin/sh
 # usage: oyzu --json tools resolve ... | oyzu --json tools evidence --set FILE
+#        oyzu --json tools evidence --provider NAME --version V... --platform P...
+if [ "$3" = "evidence" ] && [ "$4" = "--provider" ]; then
+  versions=""
+  platforms=""
+  prev=""
+  for a in "$@"; do
+    if [ "$prev" = "--version" ]; then versions="$versions $a"; fi
+    if [ "$prev" = "--platform" ]; then platforms="$platforms $a"; fi
+    prev="$a"
+  done
+  sets=""
+  for v in $versions; do
+    for p in $platforms; do
+      r="{\"tool\":{\"id\":\"core:$5\"},\"version\":{\"requested\":\"$v\",\"normalized\":\"$v\"},\"platform\":\"$p\",\"status\":\"resolved\",\"tier\":\"verified\",\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/adoptium/temurin-binaries/releases/download/$v/jdk.tar.gz\"}]}"
+      if [ -z "$sets" ]; then sets="$r"; else sets="$sets,$r"; fi
+    done
+  done
+  printf '{"format":1,"kind":"artifact-sets","engine":{"name":"oyzu","version":"test","evaluator_digest":"sha256:ee"},"sets":[%s]}' "$sets"
+  exit 0
+fi
 if [ "$3" = "evidence" ]; then
   sed 's/"tier":"discovery"/"tier":"verified"/g' "$5"
   exit 0
@@ -94,6 +114,11 @@ struct Fixture {
 }
 
 fn fixture(reviewed: bool) -> Fixture {
+    fixture_with(reviewed, "", "")
+}
+
+/// [`fixture`] with extra `index.toml` and `serving.toml` text.
+fn fixture_with(reviewed: bool, index_extra: &str, serving_extra: &str) -> Fixture {
     let dir = tempfile::tempdir().unwrap();
     let root = dir.path().to_owned();
     std::fs::write(root.join("registry.yaml"), REGISTRY).unwrap();
@@ -125,7 +150,7 @@ keep_records = 2
 include_prereleases = false
 [signing]
 expires_days = 14
-"#,
+{index_extra}"#,
             digest(REGISTRY.as_bytes()),
             digest(&names)
         ),
@@ -138,7 +163,9 @@ expires_days = 14
     .unwrap();
     std::fs::write(
         cfg.join("serving.toml"),
-        format!("[tools.\"aqua:acme/tool\"]\nlicense = \"MIT\"\nreviewed = {reviewed}\n"),
+        format!(
+            "[tools.\"aqua:acme/tool\"]\nlicense = \"MIT\"\nreviewed = {reviewed}\n{serving_extra}"
+        ),
     )
     .unwrap();
     let config = Config::load(&cfg).unwrap();
@@ -332,4 +359,101 @@ fn the_sample_index_is_valid() {
     )
     .unwrap();
     assert!(index.tool("oyzu:terraform").is_some());
+}
+
+const JAVA: &str = "[core.java]\nnames = [\"java\"]\nmax_versions = 5\nverified = true\n";
+const TEMURIN: &str = "[tools.\"core:java\"]\nlicense = \"GPL-2.0-only WITH Classpath-exception-2.0\"\nreviewed = false\n";
+
+fn with_java(mut l: Listing, versions: &[&str]) -> Listing {
+    l.tools.insert(
+        "core:java".into(),
+        ToolListing {
+            source: "adoptium".into(),
+            versions: versions.iter().map(|v| listed(v, None)).collect(),
+            error: None,
+        },
+    );
+    l
+}
+
+/// Java is indexed as `oyzu:java` with origin `core:java`, and its records
+/// come from `oyzu tools evidence --provider java`: the newest releases on the
+/// first run, then only new ones.
+#[test]
+fn java_records_come_from_provider_evidence() {
+    let f = fixture_with(true, JAVA, TEMURIN);
+    let first = run(
+        &f,
+        with_java(listing(&[], &[]), &["21.0.8", "21.0.7", "17.0.16"]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    first.check().unwrap();
+    let java = first.tool("oyzu:java").unwrap();
+    assert_eq!(java.origin, "core:java");
+    // Unreviewed Temurin stays direct.
+    assert_eq!(java.serving_class, ServingClass::Direct);
+    let checked: Vec<_> = java
+        .versions
+        .iter()
+        .filter(|v| verified(v))
+        .map(|v| v.version.as_str())
+        .collect();
+    assert_eq!(checked, ["21.0.8", "21.0.7"], "backfill 2");
+    assert_eq!(java.versions[0].sets[0]["tool"]["id"], "core:java");
+    assert_eq!(java.versions[0].sets[0]["platform"], "linux/amd64/gnu");
+
+    let second = run(
+        &f,
+        with_java(
+            listing(&[], &[]),
+            &["21.0.9", "21.0.8", "21.0.7", "17.0.16"],
+        ),
+        Some(first.clone()),
+        "2026-10-10T00:00:00Z",
+    );
+    let java = second.tool("oyzu:java").unwrap();
+    let new = java
+        .versions
+        .iter()
+        .find(|v| v.version == "21.0.9")
+        .unwrap();
+    assert!(verified(new));
+    assert!(java
+        .versions
+        .iter()
+        .find(|v| v.version == "17.0.16")
+        .unwrap()
+        .sets
+        .is_empty());
+    let r = review(Some(&first), &second);
+    assert_eq!(r.decision, Decision::Routine, "{:?}", r.reasons);
+
+    // Reviewed, Temurin is cached with its source mirrored.
+    let reviewed = fixture_with(true, JAVA, &TEMURIN.replace("false", "true"));
+    let index = run(
+        &reviewed,
+        with_java(listing(&[], &[]), &["21.0.8"]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    assert_eq!(
+        index.tool("oyzu:java").unwrap().serving_class,
+        ServingClass::Cache
+    );
+}
+
+/// Without `verified`, a core provider lists versions only.
+#[test]
+fn an_unverified_core_provider_lists_versions_only() {
+    let f = fixture_with(true, &JAVA.replace("verified = true\n", ""), TEMURIN);
+    let index = run(
+        &f,
+        with_java(listing(&[], &[]), &["21.0.8"]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let java = index.tool("oyzu:java").unwrap();
+    assert_eq!(java.versions.len(), 1);
+    assert!(java.versions[0].sets.is_empty());
 }

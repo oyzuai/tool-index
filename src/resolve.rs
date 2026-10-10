@@ -1,6 +1,8 @@
 //! Running the public `oyzu tools resolve` and `oyzu tools evidence` commands,
 //! so the index holds exactly the records a user would get running them on
-//! the same snapshot (TOOLIDX-01).
+//! the same snapshot (TOOLIDX-01). Core providers (`core:java`) have no
+//! registry recipe: `oyzu tools evidence --provider` builds their records from
+//! the publisher and verifies them in one step.
 use crate::config::RegistryPin;
 use anyhow::{bail, ensure, Context, Result};
 use serde_json::Value;
@@ -79,5 +81,30 @@ pub fn resolve_and_verify(
         "--set".into(),
         discovery.display().to_string(),
     ];
+    run(oyzu, &args, &verified)
+}
+
+/// Records of a core provider (`java`) for exact `versions`, built and
+/// verified by `oyzu tools evidence --provider`.
+pub fn provider_evidence(
+    oyzu: &Oyzu,
+    provider: &str,
+    versions: &[String],
+    platforms: &[String],
+    work: &Path,
+) -> Result<Value> {
+    let verified = work.join(format!("core__{provider}.verified.json"));
+    let mut args: Vec<String> = vec![
+        "tools".into(),
+        "evidence".into(),
+        "--provider".into(),
+        provider.into(),
+    ];
+    for v in versions {
+        args.extend(["--version".into(), v.clone()]);
+    }
+    for p in platforms {
+        args.extend(["--platform".into(), p.clone()]);
+    }
     run(oyzu, &args, &verified)
 }

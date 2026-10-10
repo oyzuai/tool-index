@@ -44,6 +44,13 @@ include_prereleases = false
 expires_days = 14
 
 # Core providers, built into the job rather than read from the registry.
+# `verified = true`: new versions get records from `oyzu tools evidence
+# --provider <name>` (backfill and budget as for the launch set), carried
+# under the `oyzu:` id with origin `core:<name>`.
 [core.java]
+# Eclipse Temurin JDK. oyzu installs it for linux/amd64/gnu,
+# darwin/arm64/native and windows/amd64/msvc; other platforms get
+# `unsupported` records.
 names = ["java"]
 max_versions = 50
+verified = true

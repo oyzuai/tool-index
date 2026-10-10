@@ -72,6 +72,11 @@ pub struct Signing {
 pub struct CoreProvider {
     pub names: Vec<String>,
     pub max_versions: usize,
+    /// Verify new versions like a launch-set tool: `oyzu tools evidence
+    /// --provider <name>` builds and checks their records. Otherwise the
+    /// provider is listed at the discovery tier (versions and dates only).
+    #[serde(default)]
+    pub verified: bool,
 }
 
 #[derive(Debug, Deserialize)]

@@ -11,7 +11,9 @@
 #
 # Not listed, so `direct`: oven-sh/bun (bundles LGPL WebKit components; needs a
 # closer look) and snyk/cli (binary terms differ from the repository license).
-# Oracle JDK, Oracle GraalVM and the Android SDK are never proxied.
+# Oracle JDK, Oracle GraalVM and the Android SDK are never proxied: the job
+# keeps any tool id naming oracle, graalvm or android at `direct` (or
+# `excluded`) whatever its entry says (src/serving.rs, NEVER_PROXIED).
 
 [tools."aqua:cli/cli"]
 license = "MIT"
@@ -382,7 +384,8 @@ license = "MIT"
 reviewed = false
 
 # Eclipse Temurin: GPLv2 with the Classpath Exception; Adoptium publishes the
-# matching source per release, which a caching proxy mirrors.
+# matching source per release, which a caching proxy mirrors. Reviewed, this
+# maps to `cache` with the source mirrored; until then `oyzu:java` is `direct`.
 [tools."core:java"]
 license = "GPL-2.0-only WITH Classpath-exception-2.0"
 reviewed = false
