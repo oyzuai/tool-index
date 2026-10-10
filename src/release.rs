@@ -1,8 +1,10 @@
 //! The release step (Sigstore signing contract, decided 2026-10-10).
 //!
 //! A release of `oyzuai/tool-index` is tag `index-v<serial>`, marked latest,
-//! with three assets in one flat directory: the stamped `index.json`, its
-//! cosign bundle `index.json.sigstore.json` and the registry's `NOTICE`. This
+//! with four assets in one flat directory: the stamped `index.json`, the same
+//! bytes compressed with zstd (`index.json.zst`, which the CLI fetches; the
+//! signature is over the decompressed bytes), its cosign bundle
+//! `index.json.sigstore.json` and the registry's `NOTICE`. This
 //! module checks a release directory and prints the plan; the workflow
 //! publishes it with `gh release create` after `cosign verify-blob`.
 use crate::index::Index;
@@ -15,10 +17,11 @@ use sha2::{Digest, Sha256};
 use std::path::Path;
 
 pub const INDEX: &str = "index.json";
+pub const COMPRESSED: &str = "index.json.zst";
 pub const BUNDLE: &str = "index.json.sigstore.json";
 pub const NOTICE: &str = "NOTICE";
 /// Every asset of a release, in upload order.
-pub const ASSETS: [&str; 3] = [INDEX, BUNDLE, NOTICE];
+pub const ASSETS: [&str; 4] = [INDEX, COMPRESSED, BUNDLE, NOTICE];
 
 pub const BUNDLE_MEDIA_TYPE: &str = "application/vnd.dev.sigstore.bundle.v0.3+json";
 pub const PAYLOAD_TYPE: &str = "application/vnd.in-toto+json";
@@ -70,6 +73,9 @@ pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
             _ => missing.push(name.to_string()),
         }
     }
+    if !missing.contains(&COMPRESSED.to_string()) {
+        check_compressed(&std::fs::read(dir.join(COMPRESSED))?, &index_bytes)?;
+    }
     if !missing.contains(&BUNDLE.to_string()) {
         check_bundle(&std::fs::read(dir.join(BUNDLE))?, &index_bytes)?;
     }
@@ -93,6 +99,23 @@ pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
         missing,
         dry_run,
     })
+}
+
+/// `index.json.zst` decompresses to exactly the stamped `index.json`.
+pub fn check_compressed(compressed: &[u8], index: &[u8]) -> Result<()> {
+    use std::io::Read as _;
+    let decoder = ruzstd::decoding::StreamingDecoder::new(compressed)
+        .map_err(|e| anyhow::anyhow!("{COMPRESSED} is not zstd: {e}"))?;
+    let mut bytes = Vec::new();
+    decoder
+        .take(index.len() as u64 + 1)
+        .read_to_end(&mut bytes)
+        .with_context(|| format!("decompressing {COMPRESSED}"))?;
+    ensure!(
+        bytes == index,
+        "{COMPRESSED} does not decompress to index.json"
+    );
+    Ok(())
 }
 
 /// The bundle is a v0.3 DSSE bundle whose in-toto statement names the

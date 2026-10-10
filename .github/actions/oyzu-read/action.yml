@@ -1,0 +1,39 @@
+# Lets git and cargo fetch the private oyzuai/oyzu repository, which the
+# `oyzu-recipe` dependency and the job's `oyzu` binary come from. This repo is
+# public, so its own github.token cannot read oyzu.
+#
+# The credential is a GitHub App installed on oyzuai/oyzu only, with
+# Contents: read. The token minted here is scoped to that one repository and
+# expires within an hour. Workflows remove it with `done.sh`
+# (next to this file) as soon as cargo has fetched, so later steps (which run oyzu
+# on upstream data) never see it.
+#
+# Fork pull requests get no secrets, so this fails for them; the index repo
+# takes changes from its own branches only.
+name: Read oyzuai/oyzu
+description: Mint a read-only token for oyzuai/oyzu and route git and cargo through it
+inputs:
+  app-id:
+    description: secrets.OYZU_READ_APP_ID
+    required: true
+  private-key:
+    description: secrets.OYZU_READ_APP_PRIVATE_KEY
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: token
+      uses: actions/create-github-app-token@v2
+      with:
+        app-id: ${{ inputs.app-id }}
+        private-key: ${{ inputs.private-key }}
+        owner: oyzuai
+        repositories: oyzu
+        permission-contents: read
+    - shell: bash
+      env:
+        TOKEN: ${{ steps.token.outputs.token }}
+      run: |
+        git config --global "url.https://x-access-token:${TOKEN}@github.com/oyzuai/oyzu.insteadOf" https://github.com/oyzuai/oyzu
+        # cargo's built-in git client ignores insteadOf; the git CLI honors it.
+        echo CARGO_NET_GIT_FETCH_WITH_CLI=true >> "$GITHUB_ENV"
