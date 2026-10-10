@@ -805,7 +805,7 @@ checksum = "384b8ab6d37215f3c5301a95a4accb5d64aa607f1fcb26a11b5303878451b4fe"
 [[package]]
 name = "oyzu-recipe"
 version = "0.1.0"
-source = "git+https://github.com/oyzuai/oyzu?rev=524245aa06df676a0627db29736db29226aaf222#524245aa06df676a0627db29736db29226aaf222"
+source = "git+https://github.com/oyzuai/oyzu?rev=5e2248cbde92be6e38643d2984e0619370527a71#5e2248cbde92be6e38643d2984e0619370527a71"
 dependencies = [
  "regex",
  "semver",

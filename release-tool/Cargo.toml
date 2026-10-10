@@ -1,0 +1,29 @@
+# The release workflow's own binary: stamps, checks and picks the serial of a
+# release without building anything from private oyzuai/oyzu, so re-signing
+# keeps working if the oyzu read App breaks (it shares the parent crate's
+# index, stamp, release and serial modules by path).
+[package]
+name = "oyzu-tool-index-release"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+description = "Stamps and checks Oyzu's public tool index for signed release"
+license = "Apache-2.0"
+publish = false
+
+[[bin]]
+name = "tool-index-release"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+base64 = "0.22"
+clap = { version = "4.5", features = ["derive"] }
+hex = "0.4"
+jiff = { version = "0.2", features = ["serde"] }
+ruzstd = { version = "0.9", default-features = false, features = ["std"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+sha2 = "0.10"
+toml = "0.8"
+url = "2"

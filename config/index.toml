@@ -32,8 +32,12 @@ source_kinds = ["github_release", "http"]
 [verified]
 # Newest versions downloaded and checked when a tool joins the launch set.
 backfill = 3
-# Most versions verified in one run; the rest wait for the next run.
-max_versions_per_run = 150
+# Most versions verified in one run; the rest wait for the next run. New
+# versions go first, then due retries, each in core-provider then launch-set
+# order. 150 verified about 50 tools in 5 minutes (2026-10-10, first run); 400
+# covers every launch-set tool's backfill plus new releases and core providers
+# in one run, well inside the job's 180-minute limit.
+max_versions_per_run = 400
 # Versions per tool whose records stay in the index; older versions keep their
 # date but lose their records, which bounds the single file.
 # Measured 2026-10-10 on a full build (2,214 tools, 71k versions): 19 MB with 3
@@ -42,6 +46,9 @@ max_versions_per_run = 150
 # an hour, so the index stays one file (no per-tool split).
 keep_records = 10
 include_prereleases = false
+# A version that failed verification is retried after this many days, or at
+# once when the job's oyzu pin changes (index/attempts.json says why it failed).
+retry_after_days = 7
 
 [signing]
 # Expiry of targets, snapshot and timestamp. The job re-signs daily.
