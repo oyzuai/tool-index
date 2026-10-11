@@ -1,0 +1,278 @@
+{
+  "format": 1,
+  "tools": {
+    "aqua:argoproj/argo-cd": {
+      "3.1.16": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23499"
+      },
+      "3.2.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23455"
+      },
+      "3.2.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23491"
+      },
+      "3.2.2": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23487"
+      },
+      "3.2.3": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23439"
+      },
+      "3.2.4": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23343"
+      },
+      "3.2.5": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23439"
+      },
+      "3.2.6": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23535"
+      },
+      "3.2.7": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23527"
+      },
+      "3.2.8": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23799"
+      },
+      "3.2.9": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23623"
+      }
+    },
+    "aqua:atuinsh/atuin": {
+      "17.0.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "17.1.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "17.2.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "17.2.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "18.0.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "18.0.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "18.0.2": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "18.1.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      },
+      "18.2.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+      }
+    },
+    "aqua:caddyserver/caddy": {
+      "1.0.3": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: HTTP 404 Not Found"
+      },
+      "1.0.4": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: HTTP 404 Not Found"
+      },
+      "2.0.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      },
+      "2.1.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      },
+      "2.1.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      },
+      "2.2.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      },
+      "2.2.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      },
+      "2.3.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/arm64/native artifact: HTTP 404 Not Found"
+      }
+    },
+    "aqua:golang-migrate/migrate": {
+      "4.20.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native artifact: HTTP 404 Not Found"
+      }
+    },
+    "aqua:ko-build/ko": {
+      "0.19.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: provenance file: HTTP 404 Not Found"
+      },
+      "0.19.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 25375"
+      }
+    },
+    "aqua:ossf/scorecard": {
+      "5.3.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22839"
+      },
+      "5.4.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22875"
+      },
+      "5.5.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22931"
+      }
+    },
+    "aqua:suzuki-shunsuke/pinact": {
+      "4.1.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23103"
+      },
+      "4.1.1": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22419"
+      },
+      "5.0.0": {
+        "first_failed": "2026-10-11T10:04:54.495778694Z",
+        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+        "attempts": 1,
+        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 30307"
+      }
+    }
+  }
+}
