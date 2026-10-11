@@ -37,7 +37,8 @@ jobs:
     environment: release
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      # v4.4.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       # release-tool/ builds from crates.io only. It needs nothing from
       # private oyzuai/oyzu, so a broken oyzu read App cannot stop the daily
