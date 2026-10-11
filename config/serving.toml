@@ -5,10 +5,11 @@
 # `direct`. `class` overrides the mapping.
 #
 # Every entry below was reviewed 2026-10-10 (serving-class review, slice 4
-# Q4): each declared license was checked against the license text in the
-# repository at a release tag, and against the license files inside the
-# shipped linux/amd64 archive where the index had records. Two entries are
-# overridden to `direct`: minio/mc and core:python (see their notes).
+# Q4; the core providers from Maven on, 2026-10-11): each declared license was
+# checked against the license text in the repository at a release tag, and
+# against the license files inside the shipped linux/amd64 archive where one
+# could be fetched. Three entries are overridden to `direct`: minio/mc,
+# core:python and core:gradle (see their notes).
 #
 # Not listed, so `direct`: oven-sh/bun (bundles LGPL WebKit components; needs a
 # closer look) and snyk/cli (binary terms differ from the repository license).
@@ -416,3 +417,75 @@ license = "PSF-2.0"
 reviewed = true
 class = "direct"
 note = "python-build-standalone statically links Berkeley DB 6.0.19 (AGPL-3.0) into _dbm; served direct until counsel answers (review D5, 2026-10-10)."
+
+# Apache Maven 3.9.11 bin archive: Apache-2.0; the 25 bundled jars' license
+# files are Apache-2.0, MIT, BSD, EPL-2.0 (Eclipse Sisu) and CDDL-1.0 (the
+# javax.annotation API), all file-level at most and unmodified: `cache`.
+[tools."core:maven"]
+license = "Apache-2.0"
+reviewed = true
+
+# Gradle 9.1.0 bin archive: Apache-2.0, but its LICENSE lists two bundled
+# LGPL-2.1 jars (org.samba.jcifs:jcifs and JetBrains' modified trove4j), whose
+# sources are not in Gradle's own source distribution. The job mirrors one
+# source archive per version, so Gradle stays `direct` for now.
+[tools."core:gradle"]
+license = "Apache-2.0"
+reviewed = true
+class = "direct"
+note = "Bundles LGPL-2.1 jcifs and trove4j, whose sources Gradle's -src archive lacks; served direct until counsel answers or those sources are mirrored (2026-10-11)."
+
+# Helm: Apache-2.0 (LICENSE in helm/helm). get.helm.sh archive not opened.
+[tools."core:helm"]
+license = "Apache-2.0"
+reviewed = true
+
+# kubectl 1.34.1 from dl.k8s.io: Apache-2.0; its Go modules are Apache-2.0,
+# MIT, BSD and ISC: `cache`.
+[tools."core:kubectl"]
+license = "Apache-2.0"
+reviewed = true
+
+# k3d 5.8.3: MIT; its Go modules are permissive apart from hashicorp/hcl
+# (MPL-2.0, file-level): `cache`.
+[tools."core:k3d"]
+license = "MIT"
+reviewed = true
+
+# Liquibase 5.x: FSL-1.1-ALv2 (LICENSE.txt in the 5.0.1 archive); bundled
+# jars are Apache-2.0, EPL-2.0 and MPL-2.0 (H2). The GPL-2.0 with Classpath
+# Exception in its license notes is the Temurin JDK the installers bundle,
+# which the tar.gz the CLI installs does not contain.
+# 4.x was Apache-2.0, but the class is per tool: `cache-source-available`
+# (review D8; counsel question as for BUSL in C1).
+[tools."core:liquibase"]
+license = "FSL-1.1-ALv2"
+reviewed = true
+
+# Tailscale: BSD-3-Clause (LICENSE in tailscale/tailscale). Oyzu installs only
+# the Linux tarball of the open-source tailscale and tailscaled, never the
+# closed GUI clients; pkgs.tailscale.com archive not opened.
+[tools."core:tailscale"]
+license = "BSD-3-Clause"
+reviewed = true
+
+# npm 11.6.2: Artistic-2.0, which allows verbatim redistribution; its 200
+# bundled packages are ISC, MIT, Apache-2.0, BlueOak-1.0.0, BSD, CC0-1.0 and
+# CC-BY-3.0 (spdx-exceptions' data): `cache`.
+[tools."core:npm"]
+license = "Artistic-2.0"
+reviewed = true
+
+# pnpm 10.18.0 (@pnpm/<platform>, a single executable with Node.js inside):
+# MIT: `cache`.
+[tools."core:pnpm"]
+license = "MIT"
+reviewed = true
+
+# Rust 1.90.0 rustc, cargo and rust-std: MIT OR Apache-2.0. rustc ships LLVM
+# (Apache-2.0 WITH LLVM-exception); cargo statically links libgit2, whose GPL
+# carries a linking exception. The GPL entries in COPYRIGHT.html are in-tree
+# GCC sources for the gcc backend, which these components do not ship: `cache`.
+[tools."core:rust"]
+license = "MIT OR Apache-2.0"
+reviewed = true
