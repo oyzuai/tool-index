@@ -384,6 +384,18 @@ fn core_candidates(
         .collect()
 }
 
+/// A core provider's settled versions with records on a platform the job's
+/// oyzu now installs but whose record says an earlier oyzu did not
+/// (`verified.recheck_platforms`), newest first.
+fn recheck(versions: &[Version], platforms: &[String]) -> Vec<String> {
+    versions
+        .iter()
+        .filter(|v| v.withdrawn.is_none() && index::complete(v))
+        .filter(|v| index::engine_unsupported(v, platforms))
+        .map(|v| v.version.clone())
+        .collect()
+}
+
 pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     let cfg = &inputs.config.index;
     let registry_bytes = std::fs::read(&inputs.registry_path)
@@ -411,6 +423,9 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             engine_rev,
             cfg.verified.retry_after_days,
         )
+    };
+    let recheckable = |origin: &str, v: &Version| {
+        origin.starts_with("core:") && index::engine_unsupported(v, &cfg.verified.recheck_platforms)
     };
     // Budget order: core providers, then the launch set as the file lists it
     // (its groups put the most used tools first), not registry order.
@@ -459,14 +474,32 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         if core.verified {
             // Records come from `oyzu tools evidence --provider`, with the
             // record id `core:<provider>` the index carries as the origin.
-            for v in core_candidates(&versions, previous(&origin), core, &cfg.verified) {
+            let mut chosen = core_candidates(&versions, previous(&origin), core, &cfg.verified);
+            for v in &chosen {
                 wants.push(Want {
-                    due: due(&origin, &v),
+                    due: due(&origin, v),
                     rank: rank_of(&origin),
                     tool: tools.len(),
                     tag: v.clone(),
-                    version: v,
+                    version: v.clone(),
                 });
+            }
+            // Settled versions an older oyzu could not install on a platform
+            // this one can, checked once per oyzu revision.
+            for v in recheck(&versions, &cfg.verified.recheck_platforms) {
+                let checked = attempts
+                    .get(&origin, &v)
+                    .is_some_and(|a| a.engine.as_deref() == engine_rev);
+                if !checked && !chosen.contains(&v) {
+                    chosen.push(v.clone());
+                    wants.push(Want {
+                        due: Due::Retry,
+                        rank: rank_of(&origin),
+                        tool: tools.len(),
+                        tag: v.clone(),
+                        version: v,
+                    });
+                }
             }
             sources.insert(tools.len(), PendingSource::Provider(provider.clone()));
         } else {
@@ -654,7 +687,16 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
                     records.sort_by(|a, b| a["platform"].as_str().cmp(&b["platform"].as_str()));
                     v.sets = records;
                     report.verified_this_run += 1;
-                    if index::complete(v) {
+                    if index::complete(v) && recheckable(&tool.origin, v) {
+                        // Remember the check so this oyzu does not repeat it.
+                        attempts.failed(
+                            &tool.origin,
+                            &v.version,
+                            inputs.now,
+                            engine_rev,
+                            "this oyzu does not install it on a rechecked platform".into(),
+                        );
+                    } else if index::complete(v) {
                         attempts.clear(&tool.origin, &v.version);
                     } else {
                         let reason = failure_reason(&v.sets);
@@ -726,9 +768,11 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             tools.iter().map(|t| (t.origin.as_str(), t)).collect();
         attempts.retain(|origin, version| {
             by_origin.get(origin).is_some_and(|t| {
-                t.versions
-                    .iter()
-                    .any(|v| v.version == version && !index::complete(v) && v.withdrawn.is_none())
+                t.versions.iter().any(|v| {
+                    v.version == version
+                        && v.withdrawn.is_none()
+                        && (!index::complete(v) || recheckable(origin, v))
+                })
             }) || inputs.only.as_ref().is_some_and(|o| !o.contains(origin))
         });
     }
@@ -821,6 +865,7 @@ mod tests {
         keep_records: 10,
         include_prereleases: false,
         retry_after_days: 7,
+        recheck_platforms: Vec::new(),
     };
 
     #[test]

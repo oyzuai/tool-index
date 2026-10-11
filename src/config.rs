@@ -63,6 +63,12 @@ pub struct Verified {
     /// Days a version that failed verification waits before it is tried
     /// again with the same oyzu (`index/attempts.json`).
     pub retry_after_days: i64,
+    /// Platforms the job's oyzu installs core providers on that an earlier
+    /// oyzu did not. A kept core-provider version whose record says oyzu does
+    /// not install it there (`PLATFORM_UNSUPPORTED`) is verified again, once
+    /// per oyzu revision (`index/attempts.json` remembers the check).
+    #[serde(default)]
+    pub recheck_platforms: Vec<String>,
 }
 
 #[derive(Debug, Deserialize)]

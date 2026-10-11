@@ -81,6 +81,11 @@ if [ "$3" = "evidence" ] && [ "$4" = "--provider" ]; then
   for v in $versions; do
     for p in $platforms; do
       r="{\"tool\":{\"id\":\"core:$5\"},\"version\":{\"requested\":\"$v\",\"normalized\":\"$v\"},\"platform\":\"$p\",\"status\":\"resolved\",\"tier\":\"verified\",\"verified\":{\"status\":\"ok\"},\"urls\":[{\"role\":\"artifact\",\"url\":\"https://github.com/adoptium/temurin-binaries/releases/download/$v/jdk.tar.gz\"}]}"
+      # An `arm64-unsupported` file beside this script plays an oyzu that
+      # does not install the provider on linux/arm64.
+      if [ "$p" = "linux/arm64/gnu" ] && [ -f "$(dirname "$0")/arm64-unsupported" ]; then
+        r="{\"tool\":{\"id\":\"core:$5\"},\"version\":{\"requested\":\"$v\",\"normalized\":\"$v\"},\"platform\":\"$p\",\"status\":\"unsupported\",\"tier\":\"discovery\",\"reason\":{\"code\":\"PLATFORM_UNSUPPORTED\",\"detail\":\"this oyzu build does not install it\"},\"urls\":[]}"
+      fi
       if [ -z "$sets" ]; then sets="$r"; else sets="$sets,$r"; fi
     done
   done
@@ -1089,4 +1094,101 @@ fn every_withdrawal_change_needs_review() {
     assert!(review(Some(&unverified), &gone)
         .reasons
         .contains(&"oyzu:tool 1.0.0 is removed while withdrawn".to_owned()));
+}
+
+/// A platform the job's oyzu newly installs (`verified.recheck_platforms`):
+/// settled core-provider versions an older oyzu recorded as unsupported there
+/// are verified again, once per oyzu revision.
+#[test]
+fn records_an_older_oyzu_could_not_install_are_rechecked_once() {
+    let mut f = fixture_with(true, JAVA, TEMURIN);
+    let cfg = f.root.join("config");
+    let text = std::fs::read_to_string(cfg.join("index.toml"))
+        .unwrap()
+        .replace(
+            r#"platforms = ["linux/amd64/gnu"]"#,
+            r#"platforms = ["linux/amd64/gnu", "linux/arm64/gnu"]"#,
+        )
+        .replace(
+            "retry_after_days = 7\n",
+            "retry_after_days = 7\nrecheck_platforms = [\"linux/arm64/gnu\"]\n",
+        );
+    std::fs::write(cfg.join("index.toml"), text).unwrap();
+    f.config = Config::load(&cfg).unwrap();
+    let java = || with_java(listing(&[], &[]), &["21.0.8", "21.0.7"]);
+    let arm64 = |i: &Index, v: &str| {
+        i.tool("oyzu:java")
+            .unwrap()
+            .versions
+            .iter()
+            .find(|x| x.version == v)
+            .unwrap()
+            .sets
+            .iter()
+            .find(|r| r["platform"] == "linux/arm64/gnu")
+            .unwrap()["status"]
+            .clone()
+    };
+
+    // An older oyzu settles both versions with linux/arm64 unsupported.
+    let marker = f.root.join("arm64-unsupported");
+    std::fs::write(&marker, "").unwrap();
+    let (old, _, attempts) = run_with(
+        &f,
+        java(),
+        None,
+        "2026-10-01T00:00:00Z",
+        Attempts::default(),
+        Some("a"),
+    );
+    assert_eq!(arm64(&old, "21.0.8"), "unsupported");
+    // Records the same oyzu wrote are not checked again.
+    let (same, report, attempts) = run_with(
+        &f,
+        java(),
+        Some(old),
+        "2026-10-20T00:00:00Z",
+        attempts,
+        Some("a"),
+    );
+    assert_eq!(report.verified_this_run, 0, "written by this oyzu");
+    // Another oyzu checks them once, and remembers it when they stay
+    // unsupported.
+    let (same, report, attempts) = run_with(
+        &f,
+        java(),
+        Some(same),
+        "2026-10-21T00:00:00Z",
+        attempts,
+        Some("b"),
+    );
+    assert_eq!(report.verified_this_run, 2);
+    let (same, report, attempts) = run_with(
+        &f,
+        java(),
+        Some(same),
+        "2026-11-20T00:00:00Z",
+        attempts,
+        Some("b"),
+    );
+    assert_eq!(
+        report.verified_this_run, 0,
+        "checked once per oyzu revision"
+    );
+
+    // A newer oyzu installs it there: both versions gain the record and the
+    // check is forgotten.
+    std::fs::remove_file(&marker).unwrap();
+    let (new, report, attempts) = run_with(
+        &f,
+        java(),
+        Some(same),
+        "2026-11-21T00:00:00Z",
+        attempts,
+        Some("c"),
+    );
+    assert_eq!(report.verified_this_run, 2);
+    assert_eq!(arm64(&new, "21.0.8"), "resolved");
+    assert_eq!(arm64(&new, "21.0.7"), "resolved");
+    assert!(attempts.get("core:java", "21.0.8").is_none());
 }

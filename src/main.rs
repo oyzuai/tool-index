@@ -211,7 +211,10 @@ async fn main() -> Result<()> {
                         "services.gradle.org",
                         versions::list_gradle(versions::GRADLE_CATALOG).await,
                     ),
-                    other => match (versions::npm_package(other), versions::tag_repository(other)) {
+                    other => match (
+                        versions::npm_package(other),
+                        versions::tag_repository(other),
+                    ) {
                         (Some(package), _) => (
                             "registry.npmjs.org",
                             versions::list_npm(versions::NPM_REGISTRY, package).await,

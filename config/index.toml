@@ -49,6 +49,11 @@ include_prereleases = false
 # A version that failed verification is retried after this many days, or at
 # once when the job's oyzu pin changes (index/attempts.json says why it failed).
 retry_after_days = 7
+# Platforms this job's oyzu installs core providers on that an earlier oyzu
+# did not. Kept versions whose records say oyzu does not install them there
+# are verified again, once per oyzu revision. linux/arm64/gnu was added with
+# the oyzu pin of 2026-10-11, after Java, Node, Go and Python had records.
+recheck_platforms = ["linux/arm64/gnu"]
 
 [signing]
 # Expiry of targets, snapshot and timestamp. The job re-signs daily.
