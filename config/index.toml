@@ -105,3 +105,88 @@ verified = true
 line = 2
 lines = 6
 keep_records = 3
+
+# Oyzu's other archive providers, Maven through Rust below: each record names
+# the archive the CLI installs, from the same publisher, checked against the
+# publisher's published checksum by `oyzu tools evidence --provider`.
+#
+# Apache Maven from archive.apache.org. Lines are minors (3.9).
+[core.maven]
+names = ["maven"]
+max_versions = 20
+verified = true
+line = 2
+lines = 3
+keep_records = 3
+
+# Gradle from services.gradle.org. Lines are majors.
+[core.gradle]
+names = ["gradle"]
+max_versions = 30
+verified = true
+line = 1
+lines = 3
+keep_records = 3
+
+# Helm from get.helm.sh; versions are helm/helm's release tags. Lines are
+# minors.
+[core.helm]
+names = ["helm"]
+max_versions = 20
+verified = true
+line = 2
+lines = 4
+keep_records = 3
+
+# kubectl from dl.k8s.io; versions are kubernetes/kubernetes release tags. Lines are minors; the
+# newest four cover Kubernetes' supported releases and version skew.
+[core.kubectl]
+names = ["kubectl"]
+max_versions = 20
+verified = true
+line = 2
+lines = 4
+keep_records = 3
+
+# k3d from its GitHub releases.
+[core.k3d]
+names = ["k3d"]
+max_versions = 20
+verified = true
+
+# Liquibase from its GitHub releases. 5.x is FSL-1.1 (source-available).
+[core.liquibase]
+names = ["liquibase"]
+max_versions = 20
+verified = true
+
+# Tailscale's stable track (even minors) from pkgs.tailscale.com.
+[core.tailscale]
+names = ["tailscale"]
+max_versions = 20
+verified = true
+
+# npm and pnpm from the npm registry. Lines are majors.
+[core.npm]
+names = ["npm"]
+max_versions = 30
+verified = true
+line = 1
+lines = 3
+keep_records = 3
+
+[core.pnpm]
+names = ["pnpm"]
+max_versions = 30
+verified = true
+line = 1
+lines = 3
+keep_records = 3
+
+# Rust toolchains from static.rust-lang.org: each record carries the
+# component tarballs the CLI installs, with the sha256 the release's channel
+# manifest gives them. Versions are rust-lang/rust release tags.
+[core.rust]
+names = ["rust"]
+max_versions = 20
+verified = true

@@ -203,7 +203,24 @@ async fn main() -> Result<()> {
                         "python-build-standalone",
                         versions::list_python(versions::PYTHON_RELEASE).await,
                     ),
-                    other => bail!("no lister for core provider {other}"),
+                    "maven" => (
+                        "archive.apache.org",
+                        versions::list_maven(&versions::MAVEN_LISTINGS).await,
+                    ),
+                    "gradle" => (
+                        "services.gradle.org",
+                        versions::list_gradle(versions::GRADLE_CATALOG).await,
+                    ),
+                    other => match (versions::npm_package(other), versions::tag_repository(other)) {
+                        (Some(package), _) => (
+                            "registry.npmjs.org",
+                            versions::list_npm(versions::NPM_REGISTRY, package).await,
+                        ),
+                        (None, Some(repository)) => {
+                            ("git-tags", versions::list_tags(other, repository).await)
+                        }
+                        (None, None) => bail!("no lister for core provider {other}"),
+                    },
                 };
                 let listing = listed.unwrap_or_else(|e| versions::ToolListing {
                     source: source.into(),

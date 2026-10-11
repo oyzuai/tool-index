@@ -15,7 +15,7 @@ re-signs daily.
 | Step | Command | Network |
 | --- | --- | --- |
 | Fetch the pinned aqua registry snapshot, its license (the `NOTICE`) and the mise name catalog, each checked against its pinned digest | `tool-index fetch` | yes |
-| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token; Adoptium, nodejs.org, go.dev and python-build-standalone for the core providers | `tool-index list` | yes |
+| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token; for the core providers, Adoptium, nodejs.org, go.dev, python-build-standalone, archive.apache.org (Maven), services.gradle.org and the npm registry, and `git ls-remote` of the publisher's tags for Helm, kubectl, k3d, Liquibase, Tailscale and Rust | `tool-index list` | yes |
 | Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider <name>` for new core-provider versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Find the highest `index-v<serial>` tag, failing on a gap or an odd tag | `tool-index-release serial` | no |
@@ -73,17 +73,24 @@ breaks, and the index cannot expire for that reason.
 - **Core providers**: Oyzu's own providers, built into the job rather than
   read from the registry, indexed as `oyzu:<name>` with origin `core:<name>`:
   Java (Eclipse Temurin, listed from Adoptium), Node (nodejs.org/dist), Go
-  (go.dev/dl) and Python (python-build-standalone's current release), the
-  same feeds the CLI installs from. With `verified = true` in
-  `config/index.toml` (set for all four), new versions are verified like a
+  (go.dev/dl), Python (python-build-standalone's current release), Maven
+  (archive.apache.org), Gradle (services.gradle.org), npm and pnpm (the npm
+  registry), the same feeds the CLI installs from, and Helm, kubectl, k3d,
+  Liquibase, Tailscale (stable track) and Rust, listed from the publisher's
+  release tags because the CLI asks those publishers only for one exact
+  version. Rust records carry the toolchain component tarballs the CLI
+  installs, with the digests of the release's channel manifest. With
+  `verified = true` in `config/index.toml` (set for all of them), new
+  versions are verified like a
   launch-set tool (same `backfill` and per-run budget): `oyzu tools evidence
   --provider <name> --version <v> --platform <p>…` builds the records from
   the publisher's listing and checks each archive against the publisher's
-  SHA-256 file. Records are produced for the platforms oyzu installs these
-  providers on (Linux x86-64, macOS arm64, Windows x86-64); the other
-  configured platforms get `unsupported` records. With `line = N`, versions,
-  the backfill and the records kept count per release line (Node and Java by
-  major, Go and Python by minor), so `node@lts` or `java@21` finds verified
+  SHA-256 file. Records are produced for the platforms oyzu installs each
+  provider on (Linux x86-64 and arm64, macOS arm64, Windows x86-64, where
+  the publisher ships them); the other configured platforms get
+  `unsupported` records. With `line = N`, versions, the backfill and the
+  records kept count per release line (Node, Java, Gradle, npm and pnpm by
+  major; Go, Python, Maven, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
   records even when newer lines release more often. Managed clients resolve
   these providers only from their records; standalone clients prefer them.
 
