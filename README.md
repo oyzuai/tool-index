@@ -63,7 +63,11 @@ breaks, and the index cannot expire for that reason.
   version counts as done once every platform is verified or `unsupported`; a
   version with any platform still failing is recorded in `index/attempts.json` with
   the failed check and waits `retry_after_days` (7) before the next try, or
-  is retried at once when the job's oyzu pin changes. Records are the exact
+  is retried at once when the job's oyzu pin changes. A core-provider
+  version whose record says oyzu does not install it on one of
+  `recheck_platforms` (`linux/arm64/gnu`, added to oyzu after Java, Node, Go
+  and Python had records) is verified again once per oyzu pin;
+  `index/attempts.json` remembers the check. Records are the exact
   `oyzu tools evidence` output, so their digests still verify. Records are
   kept for each tool's newest `keep_records` versions (10); older versions
   keep their dates, which bounds the single index file.

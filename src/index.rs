@@ -329,6 +329,19 @@ pub fn complete(v: &Version) -> bool {
             .all(|r| record_verified(r) || r["status"] == "unsupported")
 }
 
+/// Whether a version has records on one of `platforms` that say the oyzu
+/// which wrote them does not install the tool there (`PLATFORM_UNSUPPORTED`).
+/// A newer oyzu may, so the job checks these again (`verified.recheck_platforms`).
+pub fn engine_unsupported(v: &Version, platforms: &[String]) -> bool {
+    v.sets.iter().any(|r| {
+        r["status"] == "unsupported"
+            && r["reason"]["code"] == "PLATFORM_UNSUPPORTED"
+            && r["platform"]
+                .as_str()
+                .is_some_and(|p| platforms.iter().any(|q| q == p))
+    })
+}
+
 /// Every https host a record names, for the review rule on new download hosts.
 pub fn record_hosts(record: &Value) -> BTreeSet<String> {
     record["urls"]

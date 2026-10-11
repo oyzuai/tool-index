@@ -663,7 +663,10 @@ pub async fn list_tags(provider: &str, repository: &str) -> Result<ToolListing> 
     if !output.status.success() {
         bail!("{}", String::from_utf8_lossy(&output.stderr).trim());
     }
-    Ok(parse_tags(provider, &String::from_utf8_lossy(&output.stdout)))
+    Ok(parse_tags(
+        provider,
+        &String::from_utf8_lossy(&output.stdout),
+    ))
 }
 
 /// Tags that name an exact release (`v3.19.0`, Rust's `1.90.0`). Tailscale's
@@ -849,7 +852,11 @@ mod tests {
 
         let out = "a\trefs/tags/v1.88.3\nb\trefs/tags/v1.89.1\nc\trefs/tags/v1.86.0\n";
         let tailscale = parse_tags("tailscale", out);
-        let names: Vec<_> = tailscale.versions.iter().map(|v| v.version.as_str()).collect();
+        let names: Vec<_> = tailscale
+            .versions
+            .iter()
+            .map(|v| v.version.as_str())
+            .collect();
         assert_eq!(names, ["1.88.3", "1.86.0"]);
     }
 }
