@@ -23,17 +23,13 @@ concurrency:
   group: build-index
   cancel-in-progress: false
 
-env:
-  # The oyzu release whose `tools resolve` and `tools evidence` produce the
-  # records. Pin it with its digest once oyzu publishes releases.
-  OYZU_VERSION: "0.1.0"
-
 jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v4
+      # v4.4.0
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           # The bot token is minted only for the last step; the build and the
           # oyzu runs before it never see it.
