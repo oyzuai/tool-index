@@ -1,6 +1,7 @@
 //! The job's checked-in configuration: `config/index.toml` (pins and limits),
 //! `config/launch-set.toml` (the verified tier) and `config/serving.toml`
-//! (the people-maintained license and serving-class supplement).
+//! (the people-maintained license and serving-class supplement), plus the
+//! optional `config/withdrawn.toml` (versions withdrawn from the index).
 use anyhow::{bail, ensure, Context, Result};
 use serde::Deserialize;
 use std::collections::{BTreeMap, BTreeSet};
@@ -156,10 +157,96 @@ pub struct ServingEntry {
     pub note: Option<String>,
 }
 
+/// `config/withdrawn.toml`: versions people withdrew from the index. A
+/// withdrawn version stays listed, with its records and the reason, so
+/// clients can refuse it by name.
+#[derive(Debug, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Withdrawals {
+    #[serde(default, rename = "version")]
+    pub versions: Vec<Withdrawal>,
+}
+
+#[derive(Debug, Clone, Deserialize, PartialEq, Eq)]
+#[serde(deny_unknown_fields)]
+pub struct Withdrawal {
+    /// Canonical index id (`oyzu:golang-migrate`).
+    pub tool: String,
+    /// Normalized version, as the index lists it.
+    pub version: String,
+    /// Shown to people the client refuses; at most 512 characters.
+    pub reason: String,
+}
+
+impl Withdrawals {
+    /// Reads and checks the file; a missing file withdraws nothing.
+    pub fn read(path: &Path) -> Result<Self> {
+        if !path.exists() {
+            return Ok(Self::default());
+        }
+        let w: Self = read_toml(path)?;
+        w.check()
+            .with_context(|| format!("checking {}", path.display()))?;
+        Ok(w)
+    }
+
+    fn check(&self) -> Result<()> {
+        let mut seen = BTreeSet::new();
+        for w in &self.versions {
+            ensure!(
+                crate::index::valid_id(&w.tool),
+                "{:?} is not an oyzu: tool id",
+                w.tool
+            );
+            ensure!(!w.version.is_empty(), "{} has an empty version", w.tool);
+            ensure!(
+                crate::index::valid_withdrawn_reason(&w.reason),
+                "{} {}: the reason must be 1 to {} characters",
+                w.tool,
+                w.version,
+                crate::index::MAX_WITHDRAWN_REASON
+            );
+            ensure!(
+                seen.insert((&w.tool, &w.version)),
+                "{} {} is withdrawn twice",
+                w.tool,
+                w.version
+            );
+        }
+        Ok(())
+    }
+
+    /// Withdrawals naming a tool or version `index` does not list, as
+    /// `<tool> <version>`.
+    pub fn not_indexed(&self, index: &crate::index::Index) -> Vec<String> {
+        self.versions
+            .iter()
+            .filter(|w| {
+                index
+                    .tool(&w.tool)
+                    .is_none_or(|t| !t.versions.iter().any(|v| v.version == w.version))
+            })
+            .map(|w| format!("{} {}", w.tool, w.version))
+            .collect()
+    }
+
+    /// Reasons by tool id, then version.
+    pub fn by_tool(&self) -> BTreeMap<&str, BTreeMap<&str, &str>> {
+        let mut out: BTreeMap<&str, BTreeMap<&str, &str>> = BTreeMap::new();
+        for w in &self.versions {
+            out.entry(&w.tool)
+                .or_default()
+                .insert(&w.version, &w.reason);
+        }
+        out
+    }
+}
+
 pub struct Config {
     pub index: IndexConfig,
     pub launch_set: LaunchSet,
     pub serving: ServingSupplement,
+    pub withdrawn: Withdrawals,
 }
 
 fn read_toml<T: for<'de> Deserialize<'de>>(path: &Path) -> Result<T> {
@@ -174,6 +261,7 @@ impl Config {
             index: read_toml(&dir.join("index.toml"))?,
             launch_set: read_toml(&dir.join("launch-set.toml"))?,
             serving: read_toml(&dir.join("serving.toml"))?,
+            withdrawn: Withdrawals::read(&dir.join("withdrawn.toml"))?,
         };
         config.check()?;
         Ok(config)

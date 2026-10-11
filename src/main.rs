@@ -95,6 +95,10 @@ enum Command {
     },
     /// Decide whether an index change is routine or needs a person.
     Review {
+        /// Read for `withdrawn.toml` only; withdrawals the index does not
+        /// list are noted in the pull request body.
+        #[arg(long, default_value = "config")]
+        config: PathBuf,
         #[arg(long)]
         previous: Option<PathBuf>,
         #[arg(long)]
@@ -284,6 +288,7 @@ async fn main() -> Result<()> {
             print_json(&report)?;
         }
         Command::Review {
+            config,
             previous,
             next,
             markdown,
@@ -294,7 +299,8 @@ async fn main() -> Result<()> {
             if next.stamped() {
                 bail!("the index under review carries serial or expires; only release copies are stamped");
             }
-            let r = review::review(previous.as_ref(), &next);
+            let withdrawals = config::Withdrawals::read(&config.join("withdrawn.toml"))?;
+            let r = review::review_with(previous.as_ref(), &next, &withdrawals);
             if let Some(path) = markdown {
                 std::fs::write(path, review::markdown(&r))?;
             }

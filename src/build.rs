@@ -54,6 +54,10 @@ pub struct Report {
     pub source_failures: Vec<String>,
     pub excluded: Vec<String>,
     pub id_conflicts: Vec<String>,
+    /// Versions marked withdrawn (`config/withdrawn.toml`).
+    pub withdrawn: usize,
+    /// Withdrawals naming a tool or version the built index does not list.
+    pub withdrawals_not_indexed: Vec<String>,
 }
 
 const FILTER_PLATFORM: &str = "linux/amd64/gnu";
@@ -190,11 +194,48 @@ fn merge(listed: &[(String, &Listed)], previous: Option<&Tool>, now: &str) -> Ve
             },
             sets: Vec::new(),
             source: None,
+            withdrawn: None,
         });
     }
     let mut v: Vec<Version> = out.into_values().collect();
     v.sort_by(order);
     v
+}
+
+/// Marks the versions people withdrew (`config/withdrawn.toml`) and clears
+/// the mark from any they no longer list. Runs after trimming: a withdrawn
+/// version the previous index listed is put back even when upstream stopped
+/// listing it or `max_versions` dropped it, so clients can still refuse it by
+/// name.
+fn withdraw(
+    versions: &mut Vec<Version>,
+    previous: Option<&Tool>,
+    reasons: Option<&BTreeMap<&str, &str>>,
+) {
+    let reason_of = |v: &str| {
+        reasons.and_then(|r| r.get(v)).map(|r| index::Withdrawn {
+            reason: (*r).to_owned(),
+        })
+    };
+    for v in versions.iter_mut() {
+        v.withdrawn = reason_of(&v.version);
+    }
+    let Some(prev) = previous else { return };
+    let mut added = false;
+    for old in &prev.versions {
+        if let Some(w) = reason_of(&old.version) {
+            if !versions.iter().any(|v| v.version == old.version) {
+                versions.push(Version {
+                    withdrawn: Some(w),
+                    ..old.clone()
+                });
+                added = true;
+            }
+        }
+    }
+    if added {
+        versions.sort_by(order);
+    }
 }
 
 /// The canonical id for a package, as the oyzu CLI spells it in the lock:
@@ -250,6 +291,7 @@ enum PendingSource {
 
 /// Versions to verify this run: on a tool's first run only the newest
 /// `backfill`, afterwards every version the previous index did not list.
+/// Withdrawn versions are never candidates.
 /// A version counts as done once every platform is settled
 /// ([`index::complete`]), so one whose Linux records failed is retried.
 /// Returns the candidates' normalized versions, newest first.
@@ -266,6 +308,9 @@ fn candidates(
         .collect();
     versions
         .iter()
+        // A withdrawn version is never verified again; it keeps the records
+        // it has.
+        .filter(|v| v.withdrawn.is_none())
         .filter(|v| cfg.include_prereleases || !index::prerelease(&v.version))
         .enumerate()
         .filter(|(i, v)| {
@@ -351,6 +396,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     let now = inputs.now.to_string();
     let wanted = |origin: &str| inputs.only.as_ref().is_none_or(|o| o.contains(origin));
     let previous = |origin: &str| inputs.previous.as_ref().and_then(|p| p.by_origin(origin));
+    let withdrawn = inputs.config.withdrawn.by_tool();
 
     let mut report = Report::default();
     let mut tools: Vec<Tool> = Vec::new();
@@ -402,12 +448,13 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             .iter()
             .map(|l| (l.version.clone(), l))
             .collect();
-        let mut versions = merge(&listed, previous(&origin), &now);
-        keep_lines(&mut versions, core);
         let id = format!(
             "oyzu:{}",
             core.names.first().map(String::as_str).unwrap_or(provider)
         );
+        let mut versions = merge(&listed, previous(&origin), &now);
+        keep_lines(&mut versions, core);
+        withdraw(&mut versions, previous(&origin), withdrawn.get(id.as_str()));
         ids.insert(id.clone());
         if core.verified {
             // Records come from `oyzu tools evidence --provider`, with the
@@ -482,6 +529,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         }
         let mut versions = merge(&listed, prev, &now);
         keep_newest(&mut versions, cfg.discovery.max_versions);
+        withdraw(&mut versions, prev, withdrawn.get(id.as_str()));
         if !is_launch {
             for v in &mut versions {
                 v.sets.clear();
@@ -636,7 +684,9 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
     // Records are kept for the newest versions only, which bounds the single
     // index file. An organization that approved an older version keeps the
     // digest it adopted; dropping records never adds trust, so it is routine.
-    // A core provider that counts by release line keeps them per line.
+    // A core provider that counts by release line keeps them per line. A
+    // withdrawn version keeps its records and does not count, so clients can
+    // still match a digest to it.
     for tool in &mut tools {
         let core = tool
             .origin
@@ -647,7 +697,11 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             .and_then(|c| c.keep_records)
             .unwrap_or(cfg.verified.keep_records);
         let mut kept: BTreeMap<String, usize> = BTreeMap::new();
-        for v in tool.versions.iter_mut().filter(|v| !v.sets.is_empty()) {
+        for v in tool
+            .versions
+            .iter_mut()
+            .filter(|v| !v.sets.is_empty() && v.withdrawn.is_none())
+        {
             let line = core.and_then(|c| c.line_of(&v.version)).unwrap_or("");
             let n = kept.entry(line.to_owned()).or_default();
             if *n < keep {
@@ -665,7 +719,8 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         }
     }
 
-    // Forget failures for versions that are verified now or left the index.
+    // Forget failures for versions that are verified now, withdrawn (never
+    // retried) or left the index.
     {
         let by_origin: BTreeMap<&str, &Tool> =
             tools.iter().map(|t| (t.origin.as_str(), t)).collect();
@@ -673,7 +728,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
             by_origin.get(origin).is_some_and(|t| {
                 t.versions
                     .iter()
-                    .any(|v| v.version == version && !index::complete(v))
+                    .any(|v| v.version == version && !index::complete(v) && v.withdrawn.is_none())
             }) || inputs.only.as_ref().is_some_and(|o| !o.contains(origin))
         });
     }
@@ -713,6 +768,13 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         tools,
     };
     index.check()?;
+    report.withdrawn = index
+        .tools
+        .iter()
+        .flat_map(|t| &t.versions)
+        .filter(|v| v.withdrawn.is_some())
+        .count();
+    report.withdrawals_not_indexed = inputs.config.withdrawn.not_indexed(&index);
     Ok((index, report, attempts))
 }
 
@@ -738,6 +800,7 @@ mod tests {
                 vec![]
             },
             source: None,
+            withdrawn: None,
         }
     }
 

@@ -34,8 +34,11 @@ otherwise `oyzu:<owner>/<repo>` lowercased), with its `origin`
 (`aqua:<package>` or `core:<provider>`), serving class, and normalized versions
 newest first. Each version carries its release date (`publisher` or
 `first-seen`) and, at the verified tier, one artifact-set record per platform
-exactly as `oyzu tools evidence` emitted it. The job checks the client's
-structural rules before it writes the file.
+exactly as `oyzu tools evidence` emitted it. A withdrawn version also
+carries `"withdrawn": {"reason": "..."}` (a reason of 1 to 512 characters; see
+[Withdrawals](#withdrawals)); the field is omitted otherwise, so an index
+without withdrawals is byte-identical to one built before the field existed.
+The job checks the client's structural rules before it writes the file.
 
 The workflows in `.github/workflows` run these on GitHub-hosted runners.
 `tool-index` builds against `oyzu-recipe` from private oyzu; the release steps
@@ -91,13 +94,44 @@ number (MinIO's `RELEASE.2025-08-13T08-35-41Z`); a date-shaped version's
 hyphens do not make it a pre-release. Where a publisher gives no date, the index records the first run
 that saw the version (decided 2026-10-10).
 
+### Withdrawals
+
+`config/withdrawn.toml` lists versions people withdrew from the index, one
+`[[version]]` table each (the file ships with none, and a missing file
+withdraws nothing):
+
+```toml
+[[version]]
+tool = "oyzu:golang-migrate"   # canonical index id
+version = "4.20.0"             # normalized, as the index lists it
+reason = "upstream release assets were deleted (404)"
+```
+
+The job refuses the file when a `tool` is not an `oyzu:` id, a `reason` is
+empty or over 512 characters, or a tool and version are listed twice. Each
+matching version in `index.json` gains `withdrawn` with the reason and keeps
+its records (`sets`), so a client can still match a digest to it and refuse it
+by name; the CLI skips it when resolving a constraint and refuses an exact
+request or a lock naming it (`TOOL_VERSION_WITHDRAWN`). While listed, a
+withdrawn version the previous index had is never dropped (not when upstream
+stops listing it, not by `discovery.max_versions`), is never verified again
+(it takes no budget and its `index/attempts.json` entry is forgotten), and its
+records never age out under `keep_records` (nor count toward it). Removing the
+entry lifts the withdrawal; the version then ages out like any other. An
+entry naming a tool or version the built index does not list does not fail
+the build: the build report lists it under `withdrawals_not_indexed`, and
+`tool-index review` (which reads `withdrawn.toml` from `--config`, default
+`config`) notes it in the pull request body.
+
 ### Review rules
 
 Routine pull requests merge automatically: new versions of indexed tools from
 hosts already in the index. Everything else waits for a person: a new tool (a
 renamed id counts as a removed and a new tool), a new download host, a new
 registry snapshot or resolve engine, a changed origin or serving class, a
-removed tool or verified version, a changed release date, and any change to a
+removed tool or verified version, a changed release date, a version withdrawn,
+no longer withdrawn or with a changed withdrawal reason (each listed in the
+pull request body), a withdrawn version leaving the index, and any change to a
 published verified record. A retry keeps a platform's verified record as it
 was and replaces only the others, whose new records count as added records, so
 a retry that succeeds merges as routine unless it brings a new host. `serial` and `expires` are ignored, so a re-stamp
@@ -209,7 +243,8 @@ Signing needs the workflow's OIDC identity, so it is not run locally; a
 locally signed bundle would carry your identity, which no client accepts.
 
 `cargo test` covers the job without the network: build and review on a
-fixture registry, budget order and retry back-off, Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input, following the highest tag), review
+fixture registry, budget order and retry back-off, withdrawals (kept, never
+re-verified, records kept, reviewed), Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input, following the highest tag), review
 ignoring the stamp, and the release check (assets present, unexpired, and a
 bundle naming `index.json`'s exact bytes).
 
