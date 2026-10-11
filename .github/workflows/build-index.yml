@@ -116,9 +116,9 @@ jobs:
             --body-file work/pr-body.md --label "$label" --head "$branch" || \
             gh pr edit "$branch" --body-file work/pr-body.md --add-label "$label"
           # Routine bumps merge on their own once required checks pass. The
-          # ruleset requires the `verify` check, which holds a needs-review
-          # pull request until someone with write access approves it; the bot
-          # must not be on the ruleset's bypass list.
+          # ruleset requires the `index-review` status, which stays pending on
+          # a needs-review pull request until someone with write access
+          # approves it; the bot must not be on the ruleset's bypass list.
           if [ "$DECISION" = routine ]; then
             gh pr merge "$branch" --auto --squash
           fi
