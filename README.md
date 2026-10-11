@@ -138,10 +138,14 @@ a retry that succeeds merges as routine unless it brings a new host. `serial` an
 never needs review.
 
 The `verify` workflow recomputes the decision on every pull request and every
-review, and is the gate rulesets cannot express: a pull request labeled
-`routine` that is not routine fails it, and a pull request whose decision is
-`review` passes only once someone with write access has approved its current
-head commit; the approval's run then re-runs the pull request's earlier failed run so it stops blocking the merge. The build workflow opens and auto-merges pull requests as the
+review. Its `verify` check fails only on a real problem: a broken build or
+test, or a pull request labeled `routine` that is not routine. The needs-review
+gate, which rulesets cannot express, is the separate `index-review` commit
+status: success when the decision needs no review or someone with write access
+has approved the current head commit, pending ("Needs review") otherwise. A
+valid `needs-review` update therefore shows `verify` green and `index-review`
+pending until it is approved, and the approval's run turns the status green.
+The build workflow opens and auto-merges pull requests as the
 `oyzu-index-bot` GitHub App, because pull requests and merges made with
 `GITHUB_TOKEN` start no workflows: neither `verify` nor `release.yml` would
 run.
@@ -268,8 +272,9 @@ repository.
   once oyzu is public.
 - The `release` environment is limited to `main`.
 - A ruleset on `main` requires pull requests (no required approvals; the
-  `verify` check gates index changes), the `verify` check and code-owner
-  review, blocks force-push and deletion, and gives the bot no bypass.
+  `index-review` status gates index changes), the `verify` check, the
+  `index-review` status (source: GitHub Actions) and code-owner review, blocks
+  force-push and deletion, and gives the bot no bypass.
   `CODEOWNERS` covers `.github/`, so the signing workflow cannot change
   without a maintainer.
 - Auto-merge is allowed. Runners are GitHub-hosted only.
