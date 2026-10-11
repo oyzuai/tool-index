@@ -65,8 +65,8 @@ expires_days = 14
 # even when newer lines have more releases.
 [core.java]
 # Eclipse Temurin JDK. oyzu installs it for linux/amd64/gnu,
-# darwin/arm64/native and windows/amd64/msvc; other platforms get
-# `unsupported` records.
+# linux/arm64/gnu, darwin/arm64/native and windows/amd64/msvc; other
+# platforms get `unsupported` records.
 names = ["java"]
 max_versions = 50
 verified = true

@@ -35,7 +35,7 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread", "fs", "process
 toml = "0.8"
 # The resolve engine, used in-process to apply each recipe's version rules to
 # listed tags. Pinned to the same oyzu commit as the `oyzu` binary the job runs.
-oyzu-recipe = { git = "https://github.com/oyzuai/oyzu", rev = "813dc7b58d367ebdb378988504c495c36938ff42" }
+oyzu-recipe = { git = "https://github.com/oyzuai/oyzu", rev = "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab" }
 url = "2"
 
 [dev-dependencies]
