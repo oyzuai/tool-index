@@ -9,7 +9,11 @@
 //! - `git ls-remote` (fallback, no token): tags only, no dates.
 //! - Adoptium for the Java core provider; the Node.js dist catalog, the Go
 //!   download catalog and python-build-standalone's current release for the
-//!   Node, Go and Python core providers (the same feeds the CLI reads).
+//!   Node, Go and Python core providers; Apache's Maven archive, Gradle's
+//!   version catalog and the npm registry for Maven, Gradle, npm and pnpm (the
+//!   same feeds the CLI reads); and the publisher's git tags for Helm, kubectl,
+//!   k3d, Liquibase, Tailscale and Rust, whose CLI installs ask the publisher
+//!   only for one exact version.
 use crate::registry::Package;
 use anyhow::{bail, Context, Result};
 use serde::{Deserialize, Serialize};
@@ -445,8 +449,9 @@ pub fn parse_go(body: &Value) -> ToolListing {
 
 /// The python-build-standalone release triples the CLI installs; a version
 /// is listed only when the release ships it for all of them.
-const PYTHON_TRIPLES: [&str; 3] = [
+const PYTHON_TRIPLES: [&str; 4] = [
     "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
     "aarch64-apple-darwin",
     "x86_64-pc-windows-msvc",
 ];
@@ -497,6 +502,191 @@ pub fn parse_python(tag: &str, sums: &str) -> ToolListing {
         .collect();
     versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
     listing("python-build-standalone", versions)
+}
+
+pub const MAVEN_LISTINGS: [&str; 2] = [
+    "https://archive.apache.org/dist/maven/maven-3/",
+    "https://archive.apache.org/dist/maven/maven-4/",
+];
+pub const GRADLE_CATALOG: &str = "https://services.gradle.org/versions/all";
+pub const NPM_REGISTRY: &str = "https://registry.npmjs.org";
+
+/// Maven releases from Apache's archive directory listings (`3.9.11/`).
+pub async fn list_maven(urls: &[&str]) -> Result<ToolListing> {
+    let mut pages = Vec::new();
+    for url in urls {
+        pages.push(String::from_utf8_lossy(&get(url, 1 << 20).await?).into_owned());
+    }
+    Ok(parse_maven(&pages))
+}
+
+pub fn parse_maven(pages: &[String]) -> ToolListing {
+    let mut versions: Vec<Listed> = Vec::new();
+    for page in pages {
+        for part in page.split("href=\"").skip(1) {
+            let Some(version) = part.split('"').next().and_then(|h| h.strip_suffix('/')) else {
+                continue;
+            };
+            if exact_release(version) && !versions.iter().any(|l| l.version == version) {
+                versions.push(Listed {
+                    version: version.to_owned(),
+                    published_at: None,
+                    prerelease: false,
+                });
+            }
+        }
+    }
+    versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
+    listing("archive.apache.org", versions)
+}
+
+/// Final Gradle releases from Gradle's version catalog. Gradle names some
+/// releases with two components (`8.14`), so those count as exact here.
+pub async fn list_gradle(url: &str) -> Result<ToolListing> {
+    let body: Value = serde_json::from_slice(&get(url, 8 << 20).await?)?;
+    Ok(parse_gradle(&body))
+}
+
+pub fn parse_gradle(body: &Value) -> ToolListing {
+    let flag = |r: &Value, k: &str| r[k].as_bool() == Some(true);
+    let named = |r: &Value, k: &str| r[k].as_str().is_some_and(|s| !s.is_empty());
+    let mut versions: Vec<Listed> = body
+        .as_array()
+        .into_iter()
+        .flatten()
+        .filter(|r| {
+            !["snapshot", "nightly", "releaseNightly", "broken"]
+                .iter()
+                .any(|k| flag(r, k))
+                && !named(r, "rcFor")
+                && !named(r, "milestoneFor")
+        })
+        .filter_map(|r| {
+            let version = r["version"].as_str()?;
+            let parts: Vec<&str> = version.split('.').collect();
+            let numeric = (2..=3).contains(&parts.len())
+                && parts
+                    .iter()
+                    .all(|p| !p.is_empty() && p.bytes().all(|b| b.is_ascii_digit()));
+            numeric.then(|| Listed {
+                version: version.to_owned(),
+                // `buildTime` is `20250704133624+0000`; the day is enough.
+                published_at: r["buildTime"]
+                    .as_str()
+                    .and_then(|t| t.get(..8))
+                    .and_then(|d| {
+                        format!("{}-{}-{}", &d[..4], &d[4..6], &d[6..])
+                            .parse::<jiff::civil::Date>()
+                            .ok()
+                    })
+                    .map(|d| format!("{d}T00:00:00Z")),
+                prerelease: false,
+            })
+        })
+        .collect();
+    versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
+    listing("services.gradle.org", versions)
+}
+
+/// The npm registry package whose versions list a package manager. pnpm
+/// ships per-platform executables released together, so the linux/amd64
+/// package lists them.
+pub fn npm_package(provider: &str) -> Option<&'static str> {
+    match provider {
+        "npm" => Some("npm"),
+        "pnpm" => Some("@pnpm/linux-x64"),
+        _ => None,
+    }
+}
+
+/// Releases of one npm registry package, from its abbreviated metadata.
+pub async fn list_npm(registry: &str, package: &str) -> Result<ToolListing> {
+    let client = reqwest::Client::builder()
+        .user_agent("oyzu-tool-index")
+        .build()?;
+    let url = format!("{registry}/{}", package.replace('/', "%2f"));
+    let body = client
+        .get(&url)
+        .header("accept", "application/vnd.npm.install-v1+json")
+        .send()
+        .await?
+        .error_for_status()?
+        .bytes()
+        .await?;
+    anyhow::ensure!(body.len() <= 64 << 20, "{url} is larger than 64 MiB");
+    Ok(parse_npm(&serde_json::from_slice(&body)?))
+}
+
+pub fn parse_npm(body: &Value) -> ToolListing {
+    let mut versions: Vec<Listed> = body["versions"]
+        .as_object()
+        .into_iter()
+        .flatten()
+        .map(|(v, _)| v.as_str())
+        .filter(|v| exact_release(v))
+        .map(|version| Listed {
+            version: version.to_owned(),
+            published_at: None,
+            prerelease: false,
+        })
+        .collect();
+    versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
+    listing("registry.npmjs.org", versions)
+}
+
+/// The repository whose release tags list a provider's versions, for the
+/// providers whose CLI install asks the publisher only for one exact version.
+pub fn tag_repository(provider: &str) -> Option<&'static str> {
+    match provider {
+        "helm" => Some("helm/helm"),
+        "kubectl" => Some("kubernetes/kubernetes"),
+        "k3d" => Some("k3d-io/k3d"),
+        "liquibase" => Some("liquibase/liquibase"),
+        "tailscale" => Some("tailscale/tailscale"),
+        "rust" => Some("rust-lang/rust"),
+        _ => None,
+    }
+}
+
+/// Exact releases from a repository's tags (`git ls-remote`, no token).
+pub async fn list_tags(provider: &str, repository: &str) -> Result<ToolListing> {
+    let output = tokio::process::Command::new("git")
+        .args([
+            "ls-remote",
+            "--tags",
+            "--refs",
+            &format!("https://github.com/{repository}"),
+        ])
+        .env("GIT_TERMINAL_PROMPT", "0")
+        .output()
+        .await?;
+    if !output.status.success() {
+        bail!("{}", String::from_utf8_lossy(&output.stderr).trim());
+    }
+    Ok(parse_tags(provider, &String::from_utf8_lossy(&output.stdout)))
+}
+
+/// Tags that name an exact release (`v3.19.0`, Rust's `1.90.0`). Tailscale's
+/// odd minors are its unstable track, which the CLI does not install.
+pub fn parse_tags(provider: &str, output: &str) -> ToolListing {
+    let versions = parse_ls_remote(output)
+        .into_iter()
+        .filter_map(|l| {
+            let version = l.version.strip_prefix('v').unwrap_or(&l.version);
+            let stable = provider != "tailscale"
+                || version
+                    .split('.')
+                    .nth(1)
+                    .and_then(|m| m.parse::<u64>().ok())
+                    .is_some_and(|m| m % 2 == 0);
+            (exact_release(version) && stable).then(|| Listed {
+                version: version.to_owned(),
+                published_at: None,
+                prerelease: false,
+            })
+        })
+        .collect();
+    listing("git-tags", versions)
 }
 
 #[cfg(test)]
@@ -618,5 +808,48 @@ mod tests {
         let python = parse_python(tag, &sums);
         let names: Vec<_> = python.versions.iter().map(|v| v.version.as_str()).collect();
         assert_eq!(names, ["3.13.7", "3.9.23"], "3.14.0 lacks two platforms");
+    }
+
+    #[test]
+    fn maven_gradle_and_npm_list_final_releases() {
+        let maven = parse_maven(&[
+            r#"<a href="../">../</a><a href="3.9.10/">3.9.10/</a><a href="3.9.11/">3.9.11/</a><a href="3.0-alpha-1/">x</a>"#.into(),
+            r#"<a href="4.0.0-rc-4/">4.0.0-rc-4/</a><a href="4.0.0/">4.0.0/</a>"#.into(),
+        ]);
+        let names: Vec<_> = maven.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["4.0.0", "3.9.11", "3.9.10"]);
+
+        let gradle = parse_gradle(&json!([
+            {"version": "9.2.0-20251020", "snapshot": true},
+            {"version": "9.1.0", "buildTime": "20250918084416+0000"},
+            {"version": "9.1.0-rc-1", "rcFor": "9.1.0"},
+            {"version": "8.14", "buildTime": "20250425090241+0000"},
+            {"version": "8.13", "broken": true}
+        ]));
+        let names: Vec<_> = gradle.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["9.1.0", "8.14"]);
+        assert_eq!(
+            gradle.versions[0].published_at.as_deref(),
+            Some("2025-09-18T00:00:00Z")
+        );
+
+        let npm = parse_npm(&json!({"versions": {
+            "10.9.3": {}, "11.6.2": {}, "11.0.0-pre.1": {}, "9.9.4": {}
+        }}));
+        let names: Vec<_> = npm.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["11.6.2", "10.9.3", "9.9.4"]);
+    }
+
+    #[test]
+    fn release_tags_drop_pre_releases_and_tailscale_unstable() {
+        let out = "a\trefs/tags/v3.19.0\nb\trefs/tags/v3.19.0-rc.1\nc\trefs/tags/v4.0.1\nd\trefs/tags/1.90.0\n";
+        let helm = parse_tags("helm", out);
+        let names: Vec<_> = helm.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["4.0.1", "3.19.0", "1.90.0"]);
+
+        let out = "a\trefs/tags/v1.88.3\nb\trefs/tags/v1.89.1\nc\trefs/tags/v1.86.0\n";
+        let tailscale = parse_tags("tailscale", out);
+        let names: Vec<_> = tailscale.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["1.88.3", "1.86.0"]);
     }
 }
