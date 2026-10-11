@@ -1,0 +1,23 @@
+# Versions withdrawn from the tool index. Changing this file is a reviewed
+# change: the job's pull request then waits for a person (see src/review.rs).
+#
+# A withdrawn version stays in index.json with its records and gains
+# `"withdrawn": {"reason": "..."}`, so clients can still match a digest to it
+# and refuse it by name; resolving a constraint (latest, a prefix, a range)
+# skips it. While listed here, the version is never dropped from the index
+# (even when upstream stops listing it or `discovery.max_versions` would trim
+# it), never verified again, and its records never age out under
+# `verified.keep_records`. Remove the entry to restore the version.
+#
+# Each entry names the canonical index id (`oyzu:...`, as index.json lists
+# it), the normalized version, and a reason of 1 to 512 characters shown to
+# the people the client refuses. A tool and version may be listed once. An
+# entry the built index does not list is ignored by the build and noted in the
+# pull request body.
+#
+# [[version]]
+# tool = "oyzu:golang-migrate"
+# version = "4.20.0"
+# reason = "upstream release assets were deleted (404)"
+#
+# No version is withdrawn: this file has no entries (an empty list).
