@@ -136,7 +136,7 @@ max_versions = 20
 verified = true
 line = 2
 lines = 4
-keep_records = 2
+keep_records = 3
 
 # kubectl from dl.k8s.io; versions are kubernetes/kubernetes release tags. Lines are minors; the
 # newest four cover Kubernetes' supported releases and version skew.
@@ -146,7 +146,7 @@ max_versions = 20
 verified = true
 line = 2
 lines = 4
-keep_records = 2
+keep_records = 3
 
 # k3d from its GitHub releases.
 [core.k3d]
