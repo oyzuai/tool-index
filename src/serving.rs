@@ -28,6 +28,7 @@ const PERMISSIVE: &[&str] = &[
     "Zlib",
     "PSF-2.0",
     "BSL-1.0",
+    "Artistic-2.0",
 ];
 /// Redistributable when the matching source is mirrored beside the binary.
 const COPYLEFT: &[&str] = &[
@@ -179,6 +180,10 @@ mod tests {
         );
         assert_eq!(
             class_for_license("GPL-3.0-only OR MIT"),
+            (ServingClass::Cache, false)
+        );
+        assert_eq!(
+            class_for_license("Artistic-2.0"),
             (ServingClass::Cache, false)
         );
         assert_eq!(
