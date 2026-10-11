@@ -81,9 +81,6 @@ enum Command {
         /// another revision are retried at once.
         #[arg(long)]
         engine_rev: Option<String>,
-        /// Adoptium API, for Temurin's source archives.
-        #[arg(long, default_value = "https://api.adoptium.net")]
-        adoptium: String,
         #[arg(long)]
         only: Vec<String>,
         /// Fixed clock for reproducible runs (RFC 3339).
@@ -237,7 +234,6 @@ async fn main() -> Result<()> {
             no_verify,
             attempts,
             engine_rev,
-            adoptium,
             only,
             now,
             out,
@@ -267,7 +263,7 @@ async fn main() -> Result<()> {
                     .build()?;
                 let mut found = Vec::new();
                 for want in sources::wanted(&index, &cfg) {
-                    let got = match sources::locate(&client, &adoptium, &want).await {
+                    let got = match sources::locate(&want) {
                         Ok(url) => sources::fetch(&client, &url).await,
                         Err(e) => Err(e),
                     };

@@ -14,7 +14,6 @@
 use crate::config::Config;
 use crate::index::{Index, Source};
 use anyhow::{bail, ensure, Context, Result};
-use serde_json::Value;
 use sha2::{Digest, Sha256};
 
 /// Largest source archive the job downloads (OpenJDK's is about 110 MB).
@@ -26,7 +25,8 @@ pub enum Locator {
     /// GitHub's archive of the release tag:
     /// `https://github.com/<repository>/archive/refs/tags/<tag>.tar.gz`.
     GithubArchive,
-    /// The `source` package of the Adoptium release (Temurin).
+    /// The `jdk-sources` package Adoptium attaches to the GitHub release
+    /// that holds the record's artifact (Temurin).
     Adoptium,
     /// A URL with `{tag}`, `{version}` and `{repository}` replaced.
     Template(String),
@@ -56,6 +56,8 @@ pub struct Want {
     pub tag: String,
     /// The records' `tool.repository`, when the source is GitHub.
     pub repository: Option<String>,
+    /// The resolved record's artifact URL.
+    pub artifact: Option<String>,
     pub locator: Locator,
 }
 
@@ -86,6 +88,12 @@ pub fn wanted(index: &Index, config: &Config) -> Vec<Want> {
                     .unwrap_or(&v.version)
                     .to_owned(),
                 repository: record["tool"]["repository"].as_str().map(str::to_owned),
+                artifact: record["urls"].as_array().and_then(|urls| {
+                    urls.iter()
+                        .find(|u| u["role"] == "artifact")
+                        .and_then(|u| u["url"].as_str())
+                        .map(str::to_owned)
+                }),
                 locator: locator.clone(),
             });
         }
@@ -93,8 +101,8 @@ pub fn wanted(index: &Index, config: &Config) -> Vec<Want> {
     out
 }
 
-/// The archive URL for a want; Adoptium needs its API (`adoptium` base).
-pub async fn locate(client: &reqwest::Client, adoptium: &str, want: &Want) -> Result<String> {
+/// The archive URL for a want.
+pub fn locate(want: &Want) -> Result<String> {
     let url = match &want.locator {
         Locator::GithubArchive => {
             let Some(repo) = &want.repository else {
@@ -113,32 +121,39 @@ pub async fn locate(client: &reqwest::Client, adoptium: &str, want: &Want) -> Re
                 want.repository.as_deref().unwrap_or_default(),
             ),
         Locator::Adoptium => {
-            let api = format!(
-                "{adoptium}/v3/assets/version/{}?image_type=jdk&vendor=eclipse&release_type=ga&project=jdk&page_size=1",
-                want.version
-            );
-            let body: Value = client
-                .get(&api)
-                .send()
-                .await?
-                .error_for_status()?
-                .json()
-                .await
-                .with_context(|| format!("reading {api}"))?;
-            adoptium_source(&body)?
+            let Some(artifact) = &want.artifact else {
+                bail!("the records name no artifact");
+            };
+            temurin_source(artifact)?
         }
     };
     ensure!(url.starts_with("https://"), "source URL {url} is not https");
     Ok(url)
 }
 
-/// The `source.link` of the first release in an Adoptium assets response.
-pub fn adoptium_source(body: &Value) -> Result<String> {
-    body.as_array()
-        .and_then(|a| a.first())
-        .and_then(|r| r["source"]["link"].as_str())
-        .map(str::to_owned)
-        .context("the Adoptium release lists no source package")
+/// The source package beside a Temurin JDK artifact: in the same GitHub
+/// release, `OpenJDK21U-jdk_x64_linux_hotspot_21.0.8_9.tar.gz` has
+/// `OpenJDK21U-jdk-sources_21.0.8_9.tar.gz`. Adoptium's assets API is not
+/// used: it matches only full versions with a build number, so a plain
+/// `21.0.8` finds nothing.
+pub fn temurin_source(artifact: &str) -> Result<String> {
+    let (dir, file) = artifact
+        .rsplit_once('/')
+        .context("the artifact URL has no file name")?;
+    let parsed = (|| {
+        let (major, rest) = file.split_once("-jdk_")?;
+        // <arch>_<os>_hotspot_<version>_<build>.<ext>
+        let (_, rest) = rest.split_once("_hotspot_")?;
+        let stem = rest
+            .strip_suffix(".tar.gz")
+            .or_else(|| rest.strip_suffix(".zip"))?;
+        Some(format!("{dir}/{major}-jdk-sources_{stem}.tar.gz"))
+    })();
+    ensure!(
+        dir.starts_with("https://github.com/adoptium/") && parsed.is_some(),
+        "{artifact} is not a Temurin JDK release asset"
+    );
+    Ok(parsed.unwrap())
 }
 
 /// Downloads `url` and returns its digest and size, refusing anything over
@@ -180,7 +195,6 @@ pub fn apply(index: &mut Index, found: &[(Want, Source)]) -> usize {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use serde_json::json;
 
     #[test]
     fn locators_default_by_origin() {
@@ -200,18 +214,22 @@ mod tests {
     }
 
     #[test]
-    fn adoptium_names_the_source_package() {
-        let body = json!([{
-            "release_name": "jdk-21.0.8+9",
-            "source": {
-                "link": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jdk-sources_21.0.8_9.tar.gz",
-                "name": "OpenJDK21U-jdk-sources_21.0.8_9.tar.gz",
-                "size": 115_000_000
-            }
-        }]);
-        assert!(adoptium_source(&body)
-            .unwrap()
-            .ends_with("jdk-sources_21.0.8_9.tar.gz"));
-        assert!(adoptium_source(&json!([{"release_name": "x"}])).is_err());
+    fn temurin_source_sits_beside_the_jdk() {
+        assert_eq!(
+            temurin_source("https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1+1/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.12.1_1.tar.gz").unwrap(),
+            "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1+1/OpenJDK21U-jdk-sources_21.0.12.1_1.tar.gz"
+        );
+        assert_eq!(
+            temurin_source("https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25+36/OpenJDK25U-jdk_x64_windows_hotspot_25_36.zip").unwrap(),
+            "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25+36/OpenJDK25U-jdk-sources_25_36.tar.gz"
+        );
+        assert!(temurin_source(
+            "https://github.com/adoptium/temurin21-binaries/releases/download/x/jdk.tar.gz"
+        )
+        .is_err());
+        assert!(
+            temurin_source("https://example.com/OpenJDK21U-jdk_x64_linux_hotspot_21_9.tar.gz")
+                .is_err()
+        );
     }
 }
