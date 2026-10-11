@@ -4,11 +4,13 @@
 //!
 //! Anything else that changes what clients trust also waits: a new registry
 //! snapshot or resolve engine, a changed origin or serving class, a removed tool or
-//! version, and above all a changed record for a version already verified.
+//! version, a version withdrawn or no longer withdrawn (`config/withdrawn.toml`),
+//! and above all a changed record for a version already verified.
 //!
 //! The release fields `serial` and `expires` are ignored, so a daily re-stamp
 //! never needs review.
-use crate::index::{record_hosts, record_verified, verified, Index, Tool};
+use crate::config::Withdrawals;
+use crate::index::{record_hosts, record_verified, verified, Index, Tool, Version};
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -28,6 +30,22 @@ pub struct Review {
     pub added_versions: usize,
     pub added_records: usize,
     pub tools_with_new_versions: Vec<String>,
+    /// For the pull request body; they do not change the decision.
+    pub notes: Vec<String>,
+}
+
+/// The reason line for a change in a version's `withdrawn`, if any.
+fn withdrawal_change(id: &str, old: Option<&Version>, new: &Version) -> Option<String> {
+    let before = old.and_then(|o| o.withdrawn.as_ref());
+    match (before, &new.withdrawn) {
+        (None, Some(w)) => Some(format!("{id} {} is withdrawn: {}", new.version, w.reason)),
+        (Some(_), None) => Some(format!("{id} {} is no longer withdrawn", new.version)),
+        (Some(a), Some(b)) if a != b => Some(format!(
+            "{id} {} changes its withdrawal reason to: {}",
+            new.version, b.reason
+        )),
+        _ => None,
+    }
 }
 
 fn hosts(tool: &Tool) -> BTreeSet<String> {
@@ -39,14 +57,40 @@ fn hosts(tool: &Tool) -> BTreeSet<String> {
 }
 
 pub fn review(previous: Option<&Index>, next: &Index) -> Review {
+    review_with(previous, next, &Withdrawals::default())
+}
+
+/// [`review`], also noting withdrawals (`config/withdrawn.toml`) that name a
+/// tool or version `next` does not list: the build ignores them, so a person
+/// should correct or remove the entry.
+pub fn review_with(previous: Option<&Index>, next: &Index, withdrawals: &Withdrawals) -> Review {
+    let mut r = decide(previous, next);
+    r.notes.extend(
+        withdrawals
+            .not_indexed(next)
+            .into_iter()
+            .map(|w| format!("config/withdrawn.toml names {w}, which the index does not list")),
+    );
+    r
+}
+
+fn decide(previous: Option<&Index>, next: &Index) -> Review {
     let mut reasons = Vec::new();
     let mut added_versions = 0;
     let mut added_records = 0;
     let mut touched = BTreeSet::new();
     let Some(prev) = previous else {
+        let mut reasons = vec!["first index: every tool is new".to_owned()];
+        for t in &next.tools {
+            reasons.extend(
+                t.versions
+                    .iter()
+                    .filter_map(|v| withdrawal_change(&t.id, None, v)),
+            );
+        }
         return Review {
             decision: Decision::Review,
-            reasons: vec!["first index: every tool is new".into()],
+            reasons,
             added_versions: next.tools.iter().map(|t| t.versions.len()).sum(),
             added_records: next
                 .tools
@@ -60,6 +104,7 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
                 .filter(|t| !t.versions.is_empty())
                 .map(|t| t.id.clone())
                 .collect(),
+            notes: Vec::new(),
         };
     };
     if prev.snapshot != next.snapshot {
@@ -116,10 +161,16 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
             // oldest is routine. A verified version disappearing is not.
             if verified(old_versions[v]) {
                 reasons.push(format!("{id} {v} is removed after it was verified"));
+            } else if old_versions[v].withdrawn.is_some() {
+                reasons.push(format!("{id} {v} is removed while withdrawn"));
             }
         }
         for v in &new.versions {
-            match old_versions.get(v.version.as_str()) {
+            let old = old_versions.get(v.version.as_str()).copied();
+            if let Some(change) = withdrawal_change(id, old, v) {
+                reasons.push(change);
+            }
+            match old {
                 None => {
                     added_versions += 1;
                     added_records += v.sets.len();
@@ -182,6 +233,7 @@ pub fn review(previous: Option<&Index>, next: &Index) -> Review {
         added_versions,
         added_records,
         tools_with_new_versions: touched.into_iter().collect(),
+        notes: Vec::new(),
     }
 }
 
@@ -205,6 +257,12 @@ pub fn markdown(r: &Review) -> String {
             r.added_records,
             r.tools_with_new_versions.len()
         ));
+    }
+    if !r.notes.is_empty() {
+        s.push_str("\nNotes:\n\n");
+        for note in &r.notes {
+            s.push_str(&format!("- {note}\n"));
+        }
     }
     s
 }

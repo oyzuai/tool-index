@@ -84,6 +84,28 @@ pub struct Version {
     /// the job, for tools with `source_mirror`.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub source: Option<Source>,
+    /// Set when people withdrew the version (`config/withdrawn.toml`). It
+    /// keeps its records, so a client can match a digest to it and refuse it
+    /// by name; resolving a constraint skips it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub withdrawn: Option<Withdrawn>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(deny_unknown_fields)]
+pub struct Withdrawn {
+    /// Why, for the people the client refuses: 1 to
+    /// [`MAX_WITHDRAWN_REASON`] characters.
+    pub reason: String,
+}
+
+/// Longest withdrawal reason, in characters.
+pub const MAX_WITHDRAWN_REASON: usize = 512;
+
+/// A withdrawal reason is non-empty and at most [`MAX_WITHDRAWN_REASON`]
+/// characters.
+pub fn valid_withdrawn_reason(reason: &str) -> bool {
+    !reason.is_empty() && reason.chars().count() <= MAX_WITHDRAWN_REASON
 }
 
 /// A source archive a proxy mirrors beside a copyleft binary.
@@ -180,6 +202,15 @@ impl Index {
                         "{} {} has a malformed source, or one without source_mirror",
                         tool.id,
                         v.version
+                    );
+                }
+                if let Some(w) = &v.withdrawn {
+                    ensure!(
+                        valid_withdrawn_reason(&w.reason),
+                        "{} {} has a withdrawal reason that is empty or over {} characters",
+                        tool.id,
+                        v.version,
+                        MAX_WITHDRAWN_REASON
                     );
                 }
                 let mut platform: Option<&str> = None;

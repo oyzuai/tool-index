@@ -730,3 +730,363 @@ fn a_retry_fills_in_platforms_without_touching_verified_ones() {
         .iter()
         .any(|x| x.contains("already published")));
 }
+
+/// Writes `config/withdrawn.toml` and reloads the configuration.
+fn set_withdrawn(f: &mut Fixture, text: &str) {
+    let cfg = f.root.join("config");
+    std::fs::write(cfg.join("withdrawn.toml"), text).unwrap();
+    f.config = Config::load(&cfg).unwrap();
+}
+
+fn withdrawal(tool: &str, version: &str, reason: &str) -> String {
+    format!("[[version]]\ntool = \"{tool}\"\nversion = \"{version}\"\nreason = \"{reason}\"\n")
+}
+
+/// The shipped file has no entries and parses; a missing file withdraws
+/// nothing; bad entries are refused.
+#[test]
+fn withdrawn_toml_is_checked() {
+    let shipped = Config::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("config")).unwrap();
+    assert!(shipped.withdrawn.versions.is_empty());
+    assert!(Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("config/withdrawn.toml")
+        .exists());
+
+    let mut f = fixture(true);
+    assert!(
+        f.config.withdrawn.versions.is_empty(),
+        "no file, no entries"
+    );
+    // 512 characters (not bytes) is the limit.
+    set_withdrawn(&mut f, &withdrawal("oyzu:tool", "1.0.0", &"é".repeat(512)));
+    assert_eq!(f.config.withdrawn.versions.len(), 1);
+
+    let cfg = f.root.join("config");
+    let refused = |text: &str| {
+        std::fs::write(cfg.join("withdrawn.toml"), text).unwrap();
+        format!("{:#}", Config::load(&cfg).err().expect(text))
+    };
+    assert!(refused(&withdrawal("aqua:acme/tool", "1.0.0", "x")).contains("not an oyzu: tool id"));
+    assert!(refused(&withdrawal("oyzu:Tool", "1.0.0", "x")).contains("not an oyzu: tool id"));
+    assert!(refused(&withdrawal("oyzu:tool", "1.0.0", "")).contains("reason"));
+    assert!(refused(&withdrawal("oyzu:tool", "1.0.0", &"x".repeat(513))).contains("reason"));
+    assert!(refused(&withdrawal("oyzu:tool", "", "x")).contains("empty version"));
+    let twice = withdrawal("oyzu:tool", "1.0.0", "a") + &withdrawal("oyzu:tool", "1.0.0", "b");
+    assert!(refused(&twice).contains("withdrawn twice"));
+    assert!(refused(
+        "[[version]]\ntool = \"oyzu:tool\"\nversion = \"1\"\nreason = \"x\"\nnote = \"y\"\n"
+    )
+    .contains("parsing"));
+}
+
+/// `withdrawn` is omitted when unset, round-trips when set, and its reason
+/// must be 1 to 512 characters.
+#[test]
+fn the_index_checks_withdrawal_reasons() {
+    use oyzu_tool_index::index::Withdrawn;
+    let f = fixture(true);
+    let mut index = run(
+        &f,
+        listing(&[listed("v1.0.0", None)], &[]),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let bytes = index.to_bytes().unwrap();
+    assert!(!String::from_utf8(bytes).unwrap().contains("withdrawn"));
+    let set = |index: &mut Index, reason: String| {
+        index
+            .tools
+            .iter_mut()
+            .find(|t| t.id == "oyzu:tool")
+            .unwrap()
+            .versions[0]
+            .withdrawn = Some(Withdrawn { reason });
+    };
+    set(&mut index, "upstream assets deleted (404)".into());
+    index.check().unwrap();
+    let text = String::from_utf8(index.to_bytes().unwrap()).unwrap();
+    assert!(text
+        .contains("\"withdrawn\": {\n            \"reason\": \"upstream assets deleted (404)\""));
+    let back: Index = serde_json::from_str(&text).unwrap();
+    assert_eq!(back, index);
+    set(&mut index, "ü".repeat(512));
+    index.check().unwrap();
+    set(&mut index, String::new());
+    assert!(index.check().is_err());
+    set(&mut index, "x".repeat(513));
+    assert!(index.check().is_err());
+    // Unknown fields inside `withdrawn` are refused, like everywhere else.
+    let bad = text.replace(
+        "\"reason\": \"upstream assets deleted (404)\"",
+        "\"reason\": \"x\", \"by\": \"y\"",
+    );
+    assert!(serde_json::from_str::<Index>(&bad).is_err());
+}
+
+/// A withdrawn version stays in the index with its records even after
+/// upstream stops listing it and `max_versions` would trim it, and its
+/// records do not age out under `keep_records`. Withdrawing needs review.
+#[test]
+fn a_withdrawn_version_is_kept_with_its_records() {
+    let mut f = fixture(true);
+    let first = run(
+        &f,
+        listing(
+            &[
+                listed("v1.2.0", None),
+                listed("v1.1.0", None),
+                listed("v1.0.0", None),
+            ],
+            &[],
+        ),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let old = first.tool("oyzu:tool").unwrap().versions[1].clone();
+    assert_eq!(old.version, "1.1.0");
+    assert!(verified(&old));
+
+    set_withdrawn(&mut f, &withdrawal("oyzu:tool", "1.1.0", "assets deleted"));
+    // Upstream drops 1.1.0 and 1.0.0; three newer releases fill max_versions.
+    let (second, report, _) = run_with(
+        &f,
+        listing(
+            &[
+                listed("v1.5.0", None),
+                listed("v1.4.0", None),
+                listed("v1.3.0", None),
+                listed("v1.2.0", None),
+            ],
+            &[],
+        ),
+        Some(first.clone()),
+        "2026-10-02T00:00:00Z",
+        Attempts::default(),
+        None,
+    );
+    second.check().unwrap();
+    let tool = second.tool("oyzu:tool").unwrap();
+    let names: Vec<_> = tool.versions.iter().map(|v| v.version.as_str()).collect();
+    assert_eq!(names, ["1.5.0", "1.4.0", "1.3.0", "1.1.0"]);
+    let w = &tool.versions[3];
+    assert_eq!(w.withdrawn.as_ref().unwrap().reason, "assets deleted");
+    assert_eq!(w.sets, old.sets, "records kept, not re-verified");
+    assert_eq!(w.released, old.released);
+    // keep_records = 2 counts only the versions that are not withdrawn.
+    let with_records: Vec<_> = tool
+        .versions
+        .iter()
+        .filter(|v| !v.sets.is_empty())
+        .map(|v| v.version.as_str())
+        .collect();
+    assert_eq!(with_records, ["1.5.0", "1.4.0", "1.1.0"]);
+    assert_eq!(report.verified_this_run, 3);
+    assert_eq!(report.withdrawn, 1);
+    assert!(report.withdrawals_not_indexed.is_empty());
+
+    let r = review(Some(&first), &second);
+    assert_eq!(r.decision, Decision::Review);
+    assert!(
+        r.reasons
+            .contains(&"oyzu:tool 1.1.0 is withdrawn: assets deleted".to_owned()),
+        "{:?}",
+        r.reasons
+    );
+    assert!(oyzu_tool_index::review::markdown(&r)
+        .contains("- oyzu:tool 1.1.0 is withdrawn: assets deleted\n"));
+
+    // The next run keeps it as it is: no change.
+    let third = run(
+        &f,
+        listing(
+            &[
+                listed("v1.5.0", None),
+                listed("v1.4.0", None),
+                listed("v1.3.0", None),
+            ],
+            &[],
+        ),
+        Some(second.clone()),
+        "2026-10-03T00:00:00Z",
+    );
+    assert_eq!(third, second);
+    assert_eq!(review(Some(&second), &third).decision, Decision::NoChange);
+
+    // Lifting the withdrawal lets the version age out again, which needs
+    // review because it was verified.
+    set_withdrawn(&mut f, "");
+    let fourth = run(
+        &f,
+        listing(&[listed("v1.5.0", None)], &[]),
+        Some(third.clone()),
+        "2026-10-04T00:00:00Z",
+    );
+    assert!(fourth
+        .tool("oyzu:tool")
+        .unwrap()
+        .versions
+        .iter()
+        .all(|v| v.version != "1.1.0" && v.withdrawn.is_none()));
+    assert_eq!(review(Some(&third), &fourth).decision, Decision::Review);
+}
+
+/// A withdrawn version is never verified: not as a failed version due for a
+/// retry, not as a new one, and its failure record is forgotten.
+#[test]
+fn a_withdrawn_version_is_never_verified() {
+    let mut f = fixture(true);
+    let l = || listing(&[listed("v1.0.0", None)], &[]);
+    std::fs::write(f.root.join("fail"), "").unwrap();
+    let (first, _, attempts) = run_with(
+        &f,
+        l(),
+        None,
+        "2026-10-01T00:00:00Z",
+        Attempts::default(),
+        Some("r1"),
+    );
+    assert!(attempts.get("aqua:acme/tool", "1.0.0").is_some());
+    std::fs::remove_file(f.root.join("fail")).unwrap();
+
+    set_withdrawn(&mut f, &withdrawal("oyzu:tool", "1.0.0", "broken release"));
+    // A new oyzu would retry at once, and a week later it would be due.
+    for (now, engine) in [
+        ("2026-10-02T00:00:00Z", "r2"),
+        ("2026-10-09T00:00:00Z", "r1"),
+    ] {
+        let (index, report, after) = run_with(
+            &f,
+            l(),
+            Some(first.clone()),
+            now,
+            attempts.clone(),
+            Some(engine),
+        );
+        assert_eq!(
+            (report.verified_this_run, report.waiting_retry),
+            (0, 0),
+            "{engine}"
+        );
+        assert!(after.tools.is_empty(), "the failure is forgotten");
+        let v = &index.tool("oyzu:tool").unwrap().versions[0];
+        assert!(!verified(v));
+        assert_eq!(v.withdrawn.as_ref().unwrap().reason, "broken release");
+    }
+
+    // On a tool's first run, a withdrawn version is skipped and the backfill
+    // takes the next releases.
+    let mut g = fixture(true);
+    set_withdrawn(&mut g, &withdrawal("oyzu:tool", "1.2.0", "bad"));
+    let index = run(
+        &g,
+        listing(
+            &[
+                listed("v1.2.0", None),
+                listed("v1.1.0", None),
+                listed("v1.0.0", None),
+            ],
+            &[],
+        ),
+        None,
+        "2026-10-01T00:00:00Z",
+    );
+    let checked: Vec<_> = index
+        .tool("oyzu:tool")
+        .unwrap()
+        .versions
+        .iter()
+        .map(|v| (v.version.as_str(), verified(v), v.withdrawn.is_some()))
+        .collect();
+    assert_eq!(
+        checked,
+        [
+            ("1.2.0", false, true),
+            ("1.1.0", true, false),
+            ("1.0.0", true, false)
+        ]
+    );
+}
+
+/// A withdrawal of a tool or version the index does not list does not fail
+/// the build; the report and the pull request body name it.
+#[test]
+fn a_withdrawal_the_index_does_not_list_is_noted() {
+    use oyzu_tool_index::review::{markdown, review_with};
+    let mut f = fixture(true);
+    set_withdrawn(
+        &mut f,
+        &(withdrawal("oyzu:nope", "1.0.0", "x") + &withdrawal("oyzu:tool", "9.9.9", "y")),
+    );
+    let (index, report, _) = run_with(
+        &f,
+        listing(&[listed("v1.0.0", None)], &[]),
+        None,
+        "2026-10-01T00:00:00Z",
+        Attempts::default(),
+        None,
+    );
+    assert_eq!(
+        report.withdrawals_not_indexed,
+        ["oyzu:nope 1.0.0", "oyzu:tool 9.9.9"]
+    );
+    assert_eq!(report.withdrawn, 0);
+    let r = review_with(Some(&index), &index, &f.config.withdrawn);
+    assert_eq!(r.decision, Decision::NoChange);
+    assert_eq!(r.notes.len(), 2);
+    let body = markdown(&r);
+    assert!(
+        body.contains("config/withdrawn.toml names oyzu:tool 9.9.9, which the index does not list"),
+        "{body}"
+    );
+}
+
+/// Adding, lifting or rewording a withdrawal each needs a person, with a
+/// line in the pull request body.
+#[test]
+fn every_withdrawal_change_needs_review() {
+    let mut f = fixture(true);
+    let l = || listing(&[listed("v1.1.0", None), listed("v1.0.0", None)], &[]);
+    let plain = run(&f, l(), None, "2026-10-01T00:00:00Z");
+    set_withdrawn(&mut f, &withdrawal("oyzu:tool", "1.0.0", "first reason"));
+    let withdrawn = run(&f, l(), Some(plain.clone()), "2026-10-02T00:00:00Z");
+    set_withdrawn(&mut f, &withdrawal("oyzu:tool", "1.0.0", "second reason"));
+    let reworded = run(&f, l(), Some(withdrawn.clone()), "2026-10-03T00:00:00Z");
+    set_withdrawn(&mut f, "");
+    let lifted = run(&f, l(), Some(reworded.clone()), "2026-10-04T00:00:00Z");
+    assert_eq!(lifted, plain, "lifting restores the index byte for byte");
+
+    for (before, after, line) in [
+        (
+            &plain,
+            &withdrawn,
+            "oyzu:tool 1.0.0 is withdrawn: first reason",
+        ),
+        (
+            &withdrawn,
+            &reworded,
+            "oyzu:tool 1.0.0 changes its withdrawal reason to: second reason",
+        ),
+        (&reworded, &lifted, "oyzu:tool 1.0.0 is no longer withdrawn"),
+    ] {
+        let r = review(Some(before), after);
+        assert_eq!(r.decision, Decision::Review, "{line}");
+        assert_eq!(r.reasons, [line.to_owned()]);
+        assert!(oyzu_tool_index::review::markdown(&r).contains(&format!("- {line}\n")));
+    }
+
+    // A withdrawn version that leaves the index needs review even without
+    // records.
+    let mut gone = withdrawn.clone();
+    let t = gone.tools.iter_mut().find(|t| t.id == "oyzu:tool").unwrap();
+    t.versions.retain(|v| v.version != "1.0.0");
+    let mut unverified = withdrawn.clone();
+    let t = unverified
+        .tools
+        .iter_mut()
+        .find(|t| t.id == "oyzu:tool")
+        .unwrap();
+    t.versions[1].sets.clear();
+    assert!(review(Some(&unverified), &gone)
+        .reasons
+        .contains(&"oyzu:tool 1.0.0 is removed while withdrawn".to_owned()));
+}
