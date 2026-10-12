@@ -163,14 +163,14 @@ run.
 
 ### Serving classes
 
-`config/serving.toml` holds each launch-set tool's declared license as a
-**proposal** (`reviewed = false`). An unreviewed tool stays `direct`; the index
-shows the proposed license. A person sets `reviewed = true` after checking the
-license shipped inside the archives.
+`config/serving.toml` holds each launch-set tool's declared license and its
+serving class. Every entry has been reviewed (`reviewed = true`, serving-class
+review of 2026-10-10); an entry added later starts as a proposal
+(`reviewed = false`) and stays `direct` until a person checks the license
+shipped inside the archives and sets `reviewed = true`.
 
-Temurin (`core:java`) is GPLv2 with the Classpath Exception: once reviewed it
-is `cache` with the matching source mirrored; until then `oyzu:java` is
-`direct`.
+Temurin (`core:java`) is GPLv2 with the Classpath Exception: it is `cache` with
+the matching source mirrored.
 
 **Source mirroring.** A reviewed tool whose license is GPL, LGPL or AGPL and
 whose class is `cache` is marked `source_mirror` in the index. For each of its
@@ -180,8 +180,7 @@ release for Java, or the `source` URL template in the tool's `serving.toml` entr
 downloads it once and records its URL, SHA-256 and size as the version's
 `source`. A delivery service stores those bytes beside the binary and serves
 a `source_mirror` version without a `source` directly from upstream. A changed
-archive for a version that already had one needs review. Nothing is mirrored
-until a copyleft tool is reviewed. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
+archive for a version that already had one needs review. Oracle JDK, Oracle GraalVM and the Android SDK are never proxied:
 any tool id naming `oracle`, `graalvm` or `android` stays `direct` (or
 `excluded`) whatever `serving.toml` says.
 
@@ -290,5 +289,4 @@ repository.
   without a maintainer.
 - Auto-merge is allowed. Runners are GitHub-hosted only.
 
-Not yet done: review of the serving-class proposals in `config/serving.toml`.
 Later: serve the same release files from `index.oyzu.dev`.
