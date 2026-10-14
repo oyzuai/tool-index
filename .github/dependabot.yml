@@ -1,19 +1,72 @@
-# The release helper is independent of the root crate's private Git dependency.
+# Keep Cargo jobs separate: the root crate has a private Oyzu Git dependency.
+# oyzu-recipe revisions must remain aligned with the workflow Oyzu binary pin.
+# Private dependency access and Dependabot CI credentials require separate administrator setup.
 version: 2
 updates:
-  - package-ecosystem: cargo
-    directory: /release-tool
-    schedule:
-      interval: daily
-      time: "06:40"
-      timezone: America/New_York
-    open-pull-requests-limit: 3
-    assignees: [micahlmartin]
-    groups:
-      routine-dependencies:
-        applies-to: version-updates
-        patterns: ["*"]
-        update-types: [minor, patch]
-      security-dependencies:
-        applies-to: security-updates
-        patterns: ["*"]
+- package-ecosystem: cargo
+  directory: /
+  schedule:
+    interval: daily
+    time: 06:40
+    timezone: America/New_York
+  open-pull-requests-limit: 3
+  assignees:
+  - micahlmartin
+  groups:
+    routine-dependencies:
+      applies-to: version-updates
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+    security-dependencies:
+      applies-to: security-updates
+      patterns:
+      - '*'
+  ignore:
+  - dependency-name: oyzu-recipe
+- package-ecosystem: cargo
+  directory: /release-tool
+  schedule:
+    interval: daily
+    time: 06:40
+    timezone: America/New_York
+  open-pull-requests-limit: 3
+  assignees:
+  - micahlmartin
+  groups:
+    routine-dependencies:
+      applies-to: version-updates
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+    security-dependencies:
+      applies-to: security-updates
+      patterns:
+      - '*'
+- package-ecosystem: github-actions
+  directories:
+  - /
+  - /.github/actions/oyzu-read
+  schedule:
+    interval: daily
+    time: 06:40
+    timezone: America/New_York
+  open-pull-requests-limit: 3
+  assignees:
+  - micahlmartin
+  groups:
+    routine-dependencies:
+      applies-to: version-updates
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+    security-dependencies:
+      applies-to: security-updates
+      patterns:
+      - '*'
