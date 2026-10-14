@@ -21997,6 +21997,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.1.299",
+          "released": {
+            "time": "2026-10-14T02:49:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.1.296",
           "released": {
             "time": "2026-10-09T19:28:59Z",
@@ -22384,14 +22392,6 @@
           "version": "2.1.237",
           "released": {
             "time": "2026-08-20T00:54:41Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.1.236",
-          "released": {
-            "time": "2026-08-19T20:02:05Z",
             "source": "publisher"
           },
           "sets": []
@@ -42949,6 +42949,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.0.87",
+          "released": {
+            "time": "2026-10-13T23:08:11Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.0.86",
           "released": {
             "time": "2026-10-09T22:22:06Z",
@@ -43336,14 +43344,6 @@
           "version": "0.0.38",
           "released": {
             "time": "2026-05-20T00:16:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.37",
-          "released": {
-            "time": "2026-05-16T05:58:31Z",
             "source": "publisher"
           },
           "sets": []
@@ -53532,6 +53532,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.38.0",
+          "released": {
+            "time": "2026-10-14T08:49:11.135257801Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
           "version": "2.37.13",
           "released": {
             "time": "2026-10-13T10:40:30.012573449Z",
@@ -53922,14 +53930,6 @@
             "source": "first-seen"
           },
           "sets": []
-        },
-        {
-          "version": "2.36.15",
-          "released": {
-            "time": "2026-10-10T14:46:59.567059913Z",
-            "source": "first-seen"
-          },
-          "sets": []
         }
       ]
     },
@@ -53938,6 +53938,14 @@
       "origin": "aqua:aws/aws-sam-cli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.169.0",
+          "released": {
+            "time": "2026-10-13T21:41:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.168.0",
           "released": {
@@ -54326,14 +54334,6 @@
           "version": "1.130.0",
           "released": {
             "time": "2024-11-21T22:23:28Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.129.0",
-          "released": {
-            "time": "2024-11-14T00:51:51Z",
             "source": "publisher"
           },
           "sets": []
@@ -55159,6 +55159,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.11.1-preview.20261013.1",
+          "released": {
+            "time": "2026-10-13T21:44:16Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.11.1-preview.20261012.1",
           "released": {
             "time": "2026-10-13T00:15:41Z",
@@ -55186,14 +55194,6 @@
           "version": "2.11.1-preview.20261009.1",
           "released": {
             "time": "2026-10-10T00:10:29Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.11.1-preview.20261008.2",
-          "released": {
-            "time": "2026-10-09T00:21:40Z",
             "source": "publisher"
           },
           "sets": []
@@ -59101,6 +59101,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.17.16",
+          "released": {
+            "time": "2026-10-13T18:06:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.17.15",
           "released": {
             "time": "2026-06-17T17:08:46Z",
@@ -59488,14 +59496,6 @@
           "version": "0.0.9",
           "released": {
             "time": "2022-04-20T17:11:55Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.8",
-          "released": {
-            "time": "2022-04-19T16:39:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -79291,6 +79291,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.3.29",
+          "released": {
+            "time": "2026-10-14T08:49:11.135257801Z",
+            "source": "first-seen"
+          },
+          "sets": []
+        },
+        {
           "version": "3.3.28",
           "released": {
             "time": "2026-10-12T10:53:37.076086902Z",
@@ -79676,14 +79684,6 @@
         },
         {
           "version": "3.2.515",
-          "released": {
-            "time": "2026-10-11T10:04:54.495778694Z",
-            "source": "first-seen"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.2.514",
           "released": {
             "time": "2026-10-11T10:04:54.495778694Z",
             "source": "first-seen"
@@ -87202,6 +87202,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.262.0",
+          "released": {
+            "time": "2026-10-13T22:11:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.261.0",
           "released": {
             "time": "2026-10-02T14:52:21Z",
@@ -87589,14 +87597,6 @@
           "version": "1.225.0",
           "released": {
             "time": "2025-02-04T21:35:19Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.224.1",
-          "released": {
-            "time": "2025-02-05T16:59:13Z",
             "source": "publisher"
           },
           "sets": []
@@ -99307,6 +99307,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.57.0",
+          "released": {
+            "time": "2026-10-14T07:33:22Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.56.3",
           "released": {
             "time": "2026-10-12T07:38:26Z",
@@ -99697,14 +99705,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "1.18.1",
-          "released": {
-            "time": "2026-04-02T22:15:43Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -99713,6 +99713,14 @@
       "origin": "aqua:carvel-dev/imgpkg",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.49.0",
+          "released": {
+            "time": "2026-10-13T11:18:22Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.48.3",
           "released": {
@@ -100104,14 +100112,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.36.1",
-          "released": {
-            "time": "2023-03-23T23:03:13Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -100120,6 +100120,14 @@
       "origin": "aqua:carvel-dev/kapp",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.66.1",
+          "released": {
+            "time": "2026-10-13T11:16:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.65.4",
           "released": {
@@ -100508,14 +100516,6 @@
           "version": "0.54.0",
           "released": {
             "time": "2022-11-22T12:15:01Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.53.11",
-          "released": {
-            "time": "2023-10-19T11:59:12Z",
             "source": "publisher"
           },
           "sets": []
@@ -102322,6 +102322,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "13.4.0",
+          "released": {
+            "time": "2026-10-14T04:10:44Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "13.3.0",
           "released": {
             "time": "2026-10-02T20:03:54Z",
@@ -102357,6 +102365,14 @@
           "version": "13.0.0",
           "released": {
             "time": "2026-08-13T14:15:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "12.8.6",
+          "released": {
+            "time": "2026-10-14T04:11:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -102701,22 +102717,6 @@
           "version": "11.4.2",
           "released": {
             "time": "2025-07-02T17:35:03Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "11.4.1",
-          "released": {
-            "time": "2025-06-17T02:40:50Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "11.4.0",
-          "released": {
-            "time": "2025-06-16T12:08:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -104268,6 +104268,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.122.2",
+          "released": {
+            "time": "2026-10-14T03:55:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.122.1",
+          "released": {
+            "time": "2026-10-13T20:46:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.122.0",
           "released": {
             "time": "2026-10-09T15:33:40Z",
@@ -104647,22 +104663,6 @@
           "version": "1.105.2",
           "released": {
             "time": "2026-07-31T12:07:58Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.105.1",
-          "released": {
-            "time": "2026-07-30T09:12:19Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.105.0",
-          "released": {
-            "time": "2026-07-28T11:14:25Z",
             "source": "publisher"
           },
           "sets": []
@@ -106785,6 +106785,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "20261013160716",
+          "released": {
+            "time": "2026-10-13T16:11:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "20261013062845",
           "released": {
             "time": "2026-10-13T06:32:58Z",
@@ -107172,14 +107180,6 @@
           "version": "20260601073046",
           "released": {
             "time": "2026-06-01T07:34:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "20260528080058",
-          "released": {
-            "time": "2026-05-28T08:04:46Z",
             "source": "publisher"
           },
           "sets": []
@@ -132512,6 +132512,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.4.2",
+          "released": {
+            "time": "2026-10-13T22:35:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.4.1",
           "released": {
             "time": "2026-09-24T23:40:25Z",
@@ -132523,6 +132531,14 @@
           "version": "2.4.0",
           "released": {
             "time": "2026-09-16T20:08:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.3.7",
+          "released": {
+            "time": "2026-10-13T22:46:58Z",
             "source": "publisher"
           },
           "sets": []
@@ -132579,6 +132595,14 @@
           "version": "2.3.0",
           "released": {
             "time": "2026-04-30T19:35:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.2.10",
+          "released": {
+            "time": "2026-10-13T22:45:01Z",
             "source": "publisher"
           },
           "sets": []
@@ -132744,6 +132768,14 @@
           "sets": []
         },
         {
+          "version": "2.0.14",
+          "released": {
+            "time": "2026-10-13T22:26:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.0.13",
           "released": {
             "time": "2026-09-24T23:04:56Z",
@@ -132875,38 +132907,6 @@
           "version": "1.7.34",
           "released": {
             "time": "2026-07-09T23:41:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.33",
-          "released": {
-            "time": "2026-06-18T23:18:30Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.32",
-          "released": {
-            "time": "2026-05-20T21:30:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.31",
-          "released": {
-            "time": "2026-04-14T17:01:36Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.30",
-          "released": {
-            "time": "2025-12-18T00:23:24Z",
             "source": "publisher"
           },
           "sets": []
@@ -132919,6 +132919,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.4.2",
+          "released": {
+            "time": "2026-10-13T22:35:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.4.1",
           "released": {
             "time": "2026-09-24T23:40:25Z",
@@ -132930,6 +132938,14 @@
           "version": "2.4.0",
           "released": {
             "time": "2026-09-16T20:08:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.3.7",
+          "released": {
+            "time": "2026-10-13T22:46:58Z",
             "source": "publisher"
           },
           "sets": []
@@ -132986,6 +133002,14 @@
           "version": "2.3.0",
           "released": {
             "time": "2026-04-30T19:35:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.2.10",
+          "released": {
+            "time": "2026-10-13T22:45:01Z",
             "source": "publisher"
           },
           "sets": []
@@ -133151,6 +133175,14 @@
           "sets": []
         },
         {
+          "version": "2.0.14",
+          "released": {
+            "time": "2026-10-13T22:26:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.0.13",
           "released": {
             "time": "2026-09-24T23:04:56Z",
@@ -133282,38 +133314,6 @@
           "version": "1.7.34",
           "released": {
             "time": "2026-07-09T23:41:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.33",
-          "released": {
-            "time": "2026-06-18T23:18:30Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.32",
-          "released": {
-            "time": "2026-05-20T21:30:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.31",
-          "released": {
-            "time": "2026-04-14T17:01:36Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.30",
-          "released": {
-            "time": "2025-12-18T00:23:24Z",
             "source": "publisher"
           },
           "sets": []
@@ -152388,6 +152388,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.19.0-rc.1",
+          "released": {
+            "time": "2026-10-13T21:57:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.18.2",
           "released": {
             "time": "2026-08-21T13:56:57Z",
@@ -152503,14 +152511,6 @@
           "version": "1.16.0",
           "released": {
             "time": "2025-09-16T15:45:01Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.16.0-rc.1",
-          "released": {
-            "time": "2025-07-17T14:02:25Z",
             "source": "publisher"
           },
           "sets": []
@@ -153455,6 +153455,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.27.0",
+          "released": {
+            "time": "2026-10-13T20:52:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.26.0",
           "released": {
             "time": "2026-10-08T21:33:34Z",
@@ -153842,14 +153850,6 @@
           "version": "1.9.2",
           "released": {
             "time": "2026-07-28T19:47:45Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.9.1",
-          "released": {
-            "time": "2026-07-27T23:12:29Z",
             "source": "publisher"
           },
           "sets": []
@@ -156181,6 +156181,14 @@
           "sets": []
         },
         {
+          "version": "0.39.0-snapshot+20261014032011-340607a4",
+          "released": {
+            "time": "2026-10-14T03:55:19Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.39.0-snapshot+20261013032632-a53fb244",
           "released": {
             "time": "2026-10-13T04:01:53Z",
@@ -156208,14 +156216,6 @@
           "version": "0.39.0-snapshot+20261009032357-bed69991",
           "released": {
             "time": "2026-10-09T04:01:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.39.0-snapshot+20261008032415-5b724fb3",
-          "released": {
-            "time": "2026-10-08T03:58:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -171125,6 +171125,510 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "1.185.0",
+          "released": {
+            "time": "2026-10-13T13:05:08Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:3136025e9603351bd4be2be098d1eb0c324273c7e559281e18882d353ba4ca93",
+                "full": "sha256:d25244cf03dba376fb5ca2db34cc4dff73147e472769cd19f205de8d64ad6454"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-1.185.0-darwin-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-darwin-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:9c1189ee96bf490dbbf2d1baab9d6f1fb6f3341cde6dd736347702d54d583a24",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "9c1189ee96bf490dbbf2d1baab9d6f1fb6f3341cde6dd736347702d54d583a24"
+                  },
+                  "size": 24157363
+                },
+                "lock": {
+                  "evidence_digest": "sha256:6b90500263fb2e5e4a783424c7bf83c9ed7c239e2c17e24784b097a7c0ee8bab",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:9c1189ee96bf490dbbf2d1baab9d6f1fb6f3341cde6dd736347702d54d583a24",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.185.0",
+                "requested": "v1.185.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:c9dfe02e0f8274a31804a06e70f3442f4bdd34ea9643c9cfbc49a65aea90a9ce",
+                "full": "sha256:93de3fbfe847a1f90c92f441061259de55dd69b003737748e844a82e0e5a4be4"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-1.185.0-darwin-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-darwin-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d57a4e07e83f6cb44d3d598274d9b577217675d95d0014f66d08271c804cd98f",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d57a4e07e83f6cb44d3d598274d9b577217675d95d0014f66d08271c804cd98f"
+                  },
+                  "size": 22681443
+                },
+                "lock": {
+                  "evidence_digest": "sha256:6b90500263fb2e5e4a783424c7bf83c9ed7c239e2c17e24784b097a7c0ee8bab",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:d57a4e07e83f6cb44d3d598274d9b577217675d95d0014f66d08271c804cd98f",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.185.0",
+                "requested": "v1.185.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:1f4aad25783040a2f817a5ad7580f49558c8a92d11f5c63a410eee08501938c6",
+                "full": "sha256:d974ff01783f0cb4600f1f26207d52751bef2d93ed024b616ea115e4a1339604"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-1.185.0-linux-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-linux-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:caf03c52f25d821794638460012d7ae1cd7b665796015f0f8311106f8e566be8",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "caf03c52f25d821794638460012d7ae1cd7b665796015f0f8311106f8e566be8"
+                  },
+                  "size": 23088576
+                },
+                "lock": {
+                  "evidence_digest": "sha256:6b90500263fb2e5e4a783424c7bf83c9ed7c239e2c17e24784b097a7c0ee8bab",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:caf03c52f25d821794638460012d7ae1cd7b665796015f0f8311106f8e566be8",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.185.0",
+                "requested": "v1.185.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:22111ffc96e4b3e5acadcb7c1994ed69ac66f5805f5b387136e4810d3546dd28",
+                "full": "sha256:2dcc4234cdbffbb587182b7c5e42c2fcea089fba2e9b1ce38507f321e587419f"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-1.185.0-linux-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-linux-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a0feffea34fb519d3c14da4673ed038978b8d6fbd1b88f4b12a2f414dcd49da4",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a0feffea34fb519d3c14da4673ed038978b8d6fbd1b88f4b12a2f414dcd49da4"
+                  },
+                  "size": 21125345
+                },
+                "lock": {
+                  "evidence_digest": "sha256:6b90500263fb2e5e4a783424c7bf83c9ed7c239e2c17e24784b097a7c0ee8bab",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:a0feffea34fb519d3c14da4673ed038978b8d6fbd1b88f4b12a2f414dcd49da4",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.185.0",
+                "requested": "v1.185.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:96f192431d5018574cd87ceaee269bcdd970245adf983f75c8876ca903b5cfd4",
+                "full": "sha256:4f1f2fee7e4e17645734c6cb4e86464f0f7fd87e1eed3020cb17602f9312fd6f"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-1.185.0-windows-amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-windows-amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.185.0/doctl-1.185.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:664c0dae59fe96f754ec205b02e89949a18a13cf6f44d62f66e5a9a490de7b89",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "664c0dae59fe96f754ec205b02e89949a18a13cf6f44d62f66e5a9a490de7b89"
+                  },
+                  "size": 23518264
+                },
+                "lock": {
+                  "evidence_digest": "sha256:6b90500263fb2e5e4a783424c7bf83c9ed7c239e2c17e24784b097a7c0ee8bab",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:664c0dae59fe96f754ec205b02e89949a18a13cf6f44d62f66e5a9a490de7b89",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.185.0",
+                "requested": "v1.185.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "1.184.0",
           "released": {
             "time": "2026-10-13T05:22:43Z",
@@ -175818,503 +176322,7 @@
             "time": "2026-06-16T10:31:29Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:d556ef5bf01c3d1ed742d0d3c7f67171eb06350dae1e7df0523a91a8c4732666",
-                "full": "sha256:266940610857d8da9450184040624349f0fe3f863fbe4ad7fcbf6971381d1599"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-1.162.0-darwin-amd64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-darwin-amd64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:d8c9f15bc1fe407cbe5c003ec56a411ef42137d5dab0681d44c386ec41309b78",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "d8c9f15bc1fe407cbe5c003ec56a411ef42137d5dab0681d44c386ec41309b78"
-                  },
-                  "size": 19088619
-                },
-                "lock": {
-                  "evidence_digest": "sha256:7259f56be1764393d30d7f51c6b86ff3ce2f3d639744310deef6e05ef4e13bbc",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:d8c9f15bc1fe407cbe5c003ec56a411ef42137d5dab0681d44c386ec41309b78",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "1.162.0",
-                "requested": "v1.162.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:9d26eb872a0fc4a1a8f19f21826f48aa4f5422b06d54e06d865fad30b01ffb4f",
-                "full": "sha256:9b50c0c0e662c3fae90310c394a28605fce7cbb329f1fb3754e25ac476c049ee"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-1.162.0-darwin-arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-darwin-arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:c8d365eb27728f2230e942fea0a1849c254cd6e62dcdb0af9099b3d76f4cf49b",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "c8d365eb27728f2230e942fea0a1849c254cd6e62dcdb0af9099b3d76f4cf49b"
-                  },
-                  "size": 17917888
-                },
-                "lock": {
-                  "evidence_digest": "sha256:7259f56be1764393d30d7f51c6b86ff3ce2f3d639744310deef6e05ef4e13bbc",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:c8d365eb27728f2230e942fea0a1849c254cd6e62dcdb0af9099b3d76f4cf49b",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "1.162.0",
-                "requested": "v1.162.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:6fad3a8cd7c02e45b42b1660860d2f6a448e90f4f2d3501355009aa8dc9d8604",
-                "full": "sha256:1859da32e826a65a553df8ccb2ddd7ef7414fbf8609ca7a839f798a4fcfc90e1"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-1.162.0-linux-amd64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-linux-amd64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:338ad0796fb7a7e20f2e833d88d6daa40d5d6372b39ca54d327e212ff20bc236",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "338ad0796fb7a7e20f2e833d88d6daa40d5d6372b39ca54d327e212ff20bc236"
-                  },
-                  "size": 18239436
-                },
-                "lock": {
-                  "evidence_digest": "sha256:7259f56be1764393d30d7f51c6b86ff3ce2f3d639744310deef6e05ef4e13bbc",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:338ad0796fb7a7e20f2e833d88d6daa40d5d6372b39ca54d327e212ff20bc236",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "1.162.0",
-                "requested": "v1.162.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:c6d40dd9c545bcad48983d1653e056de98a6f0c69184fb283e71c4c2f4f22b93",
-                "full": "sha256:aa3f94fa40469ed05d7aa1b6574e51b11a38aaf0cde198d7bd67f1ac4a4595fb"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-1.162.0-linux-arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-linux-arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:d222ef5d21740a6c88d067976b06b5899c840cffeb42aa6b367d6e3810bb868c",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "d222ef5d21740a6c88d067976b06b5899c840cffeb42aa6b367d6e3810bb868c"
-                  },
-                  "size": 16693229
-                },
-                "lock": {
-                  "evidence_digest": "sha256:7259f56be1764393d30d7f51c6b86ff3ce2f3d639744310deef6e05ef4e13bbc",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:d222ef5d21740a6c88d067976b06b5899c840cffeb42aa6b367d6e3810bb868c",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "1.162.0",
-                "requested": "v1.162.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl.exe"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:007475493068a003b046a155a4ffc3709f11e5477947a761736d77bdcc3b8e11",
-                "full": "sha256:7ad3b6cff122c7333fcfc430a00f5aa2d3ee8644f7d64e3037cc465939d5451c"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-1.162.0-windows-amd64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-windows-amd64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v1.162.0/doctl-1.162.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:1747741036b0fe4b36dd3f16d0f2b80d47ef6be4080702beb4bd243591169cd4",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "1747741036b0fe4b36dd3f16d0f2b80d47ef6be4080702beb4bd243591169cd4"
-                  },
-                  "size": 18641835
-                },
-                "lock": {
-                  "evidence_digest": "sha256:7259f56be1764393d30d7f51c6b86ff3ce2f3d639744310deef6e05ef4e13bbc",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:1747741036b0fe4b36dd3f16d0f2b80d47ef6be4080702beb4bd243591169cd4",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "1.162.0",
-                "requested": "v1.162.0",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "1.161.0",
@@ -176472,14 +176480,6 @@
           "version": "1.140.0",
           "released": {
             "time": "2025-08-21T10:58:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.139.0",
-          "released": {
-            "time": "2025-08-14T09:42:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -178602,6 +178602,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.35.0",
+          "released": {
+            "time": "2026-10-13T23:31:18Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.34.2",
           "released": {
             "time": "2026-10-09T14:54:57Z",
@@ -178989,14 +178997,6 @@
           "version": "2.10.0",
           "released": {
             "time": "2026-07-15T16:21:17Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.9.0",
-          "released": {
-            "time": "2026-07-14T21:33:24Z",
             "source": "publisher"
           },
           "sets": []
@@ -195710,6 +195710,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.11.5-nightly.202610140625.065c76361",
+          "released": {
+            "time": "2026-10-14T06:32:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.11.5-nightly.202610130630.4203b3d42",
           "released": {
             "time": "2026-10-13T06:39:36Z",
@@ -195737,14 +195745,6 @@
           "version": "0.11.5-nightly.202610090628.b4d2443bf",
           "released": {
             "time": "2026-10-09T06:35:24Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.11.5-nightly.202610080629.ee0ec53d1",
-          "released": {
-            "time": "2026-10-08T06:36:35Z",
             "source": "publisher"
           },
           "sets": []
@@ -198688,6 +198688,14 @@
       "origin": "aqua:esengine/DeepSeek-Reasonix",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "2.39.0",
+          "released": {
+            "time": "2026-10-14T01:27:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "2.38.0",
           "released": {
@@ -204293,6 +204301,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.70.0",
+          "released": {
+            "time": "2026-10-14T08:39:27Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.69.0",
           "released": {
             "time": "2026-09-25T11:18:44Z",
@@ -204680,14 +204696,6 @@
           "version": "2.39.1",
           "released": {
             "time": "2025-03-20T15:45:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.39.0",
-          "released": {
-            "time": "2025-03-20T02:04:54Z",
             "source": "publisher"
           },
           "sets": []
@@ -213742,6 +213750,535 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "0.4.117",
+          "released": {
+            "time": "2026-10-13T19:13:23Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:d7bf6f4778b73632a811b8dfd0c73adda5f427e28a8080adec4ccae60e8a2550",
+                "full": "sha256:7fb8715a56b5cc6a98acea8897bcdf5de2dadc5217a536ef5d972e3d769fed5d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.4.117_macOS_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_macOS_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:637b435466b977ae42a43bdaa65568974775719ebcab1edb1c4647e3583f21a7",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "637b435466b977ae42a43bdaa65568974775719ebcab1edb1c4647e3583f21a7"
+                  },
+                  "size": 53778495
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a61c478e65bb619a174312ed4d79f4f47517349f8f7311ee751b4ddb7bd3bc0",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:637b435466b977ae42a43bdaa65568974775719ebcab1edb1c4647e3583f21a7",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.4.117",
+                "requested": "v0.4.117",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:36ccd56ce20bd6f148805a559be4f46e31ba1b077ed850941c34fd25593135ab",
+                "full": "sha256:37526ca2016d2e9f645f8b8d93fc4c1aab0e068c777805cdcd8429ca1c053a9c"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.4.117_macOS_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_macOS_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:9004d6ef13d0a1469be36c5c15416351e014d731dd9a9e0c12269cf02c778682",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "9004d6ef13d0a1469be36c5c15416351e014d731dd9a9e0c12269cf02c778682"
+                  },
+                  "size": 50764530
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a61c478e65bb619a174312ed4d79f4f47517349f8f7311ee751b4ddb7bd3bc0",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:9004d6ef13d0a1469be36c5c15416351e014d731dd9a9e0c12269cf02c778682",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.4.117",
+                "requested": "v0.4.117",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:1c4f5fffae44b15b707c3bce9b8aa1ba6cb8e1c8b8857dd8328fbce38716c505",
+                "full": "sha256:1f436349df876eca397b934cf6db8bdc65ff6ca195a70fe7ad8b3b96bac27b3e"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.4.117_Linux_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_Linux_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:fe4ec2dbd1d125578e2902f70931fca6670e325cfb658706324492d681986f2c",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "fe4ec2dbd1d125578e2902f70931fca6670e325cfb658706324492d681986f2c"
+                  },
+                  "size": 51081824
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a61c478e65bb619a174312ed4d79f4f47517349f8f7311ee751b4ddb7bd3bc0",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:fe4ec2dbd1d125578e2902f70931fca6670e325cfb658706324492d681986f2c",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.4.117",
+                "requested": "v0.4.117",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:73fa9d02dd6659732a0e8bc99a24a46a0eb006e8858077f545b004004320c0da",
+                "full": "sha256:135353b819ca70a8b070ca9aa8ac70f0938868e323e881eee0b08a75b914c0ac"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.4.117_Linux_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_Linux_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:2f7371ba710b62c0dd44aa2890e9e3cc2859b67cba948e5f2dc251146db62cb8",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "2f7371ba710b62c0dd44aa2890e9e3cc2859b67cba948e5f2dc251146db62cb8"
+                  },
+                  "size": 47003467
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a61c478e65bb619a174312ed4d79f4f47517349f8f7311ee751b4ddb7bd3bc0",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:2f7371ba710b62c0dd44aa2890e9e3cc2859b67cba948e5f2dc251146db62cb8",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.4.117",
+                "requested": "v0.4.117",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl.exe"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:a690967b39bcde6ba66dba0eef7c690a0c096c04cd674022dc0da1d80ff7d7c6",
+                "full": "sha256:7cbdf9f1fe0d6025173375c851160f9e86fe9baa849cda59ee0b0673a4381323"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.4.117_Windows_x86_64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_Windows_x86_64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.4.117/flyctl_0.4.117_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:fa092ed734bb36a3df0ce606f071a7f14ccbfac312a32535e76cf0ff3eda889e",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "fa092ed734bb36a3df0ce606f071a7f14ccbfac312a32535e76cf0ff3eda889e"
+                  },
+                  "size": 51722641
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a61c478e65bb619a174312ed4d79f4f47517349f8f7311ee751b4ddb7bd3bc0",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:fa092ed734bb36a3df0ce606f071a7f14ccbfac312a32535e76cf0ff3eda889e",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.4.117",
+                "requested": "v0.4.117",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "0.4.116",
           "released": {
             "time": "2026-10-12T19:14:21Z",
@@ -216213,14 +216750,6 @@
           "version": "0.4.67",
           "released": {
             "time": "2026-07-06T19:42:20Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.4.66",
-          "released": {
-            "time": "2026-07-03T01:07:12Z",
             "source": "publisher"
           },
           "sets": []
@@ -235863,6 +236392,46 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.0.98-2",
+          "released": {
+            "time": "2026-10-14T04:26:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.98-1",
+          "released": {
+            "time": "2026-10-14T00:46:57Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.98-0",
+          "released": {
+            "time": "2026-10-13T21:45:09Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.97",
+          "released": {
+            "time": "2026-10-13T18:37:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.97-3",
+          "released": {
+            "time": "2026-10-13T16:25:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.0.97-2",
           "released": {
             "time": "2026-10-13T01:09:14Z",
@@ -235871,41 +236440,9 @@
           "sets": []
         },
         {
-          "version": "1.0.97-1",
-          "released": {
-            "time": "2026-10-12T22:56:58Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.97-0",
-          "released": {
-            "time": "2026-10-12T20:45:05Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
           "version": "1.0.96",
           "released": {
             "time": "2026-10-12T18:52:01Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.96-2",
-          "released": {
-            "time": "2026-10-10T02:13:47Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.96-1",
-          "released": {
-            "time": "2026-10-10T00:12:22Z",
             "source": "publisher"
           },
           "sets": []
@@ -236037,6 +236574,14 @@
       "origin": "aqua:github/copilot-language-server-release",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.554.0",
+          "released": {
+            "time": "2026-10-14T04:42:40Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.553.0",
           "released": {
@@ -236425,14 +236970,6 @@
           "version": "1.525.0",
           "released": {
             "time": "2026-07-23T01:50:50Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.524.0",
-          "released": {
-            "time": "2026-07-21T03:22:46Z",
             "source": "publisher"
           },
           "sets": []
@@ -253683,6 +254220,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.168.0",
+          "released": {
+            "time": "2026-10-13T17:24:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.167.0",
           "released": {
             "time": "2026-09-28T15:20:52Z",
@@ -254070,14 +254615,6 @@
           "version": "0.148.0",
           "released": {
             "time": "2025-07-08T14:00:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.147.9",
-          "released": {
-            "time": "2025-06-23T08:43:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -254090,6 +254627,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.168.0",
+          "released": {
+            "time": "2026-10-13T17:24:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.167.0",
           "released": {
             "time": "2026-09-28T15:20:52Z",
@@ -254477,14 +255022,6 @@
           "version": "0.148.0",
           "released": {
             "time": "2025-07-08T14:00:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.147.9",
-          "released": {
-            "time": "2025-06-23T08:43:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -254497,6 +255034,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.168.0",
+          "released": {
+            "time": "2026-10-13T17:24:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.167.0",
           "released": {
             "time": "2026-09-28T15:20:52Z",
@@ -254884,14 +255429,6 @@
           "version": "0.148.0",
           "released": {
             "time": "2025-07-08T14:00:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.147.9",
-          "released": {
-            "time": "2025-06-23T08:43:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -262400,6 +262937,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.3.5",
+          "released": {
+            "time": "2026-10-14T03:16:53Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.3.4",
           "released": {
             "time": "2026-10-13T05:09:33Z",
@@ -262787,14 +263332,6 @@
           "version": "1.1.3",
           "released": {
             "time": "2026-07-16T01:01:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.1.2",
-          "released": {
-            "time": "2026-07-13T23:26:02Z",
             "source": "publisher"
           },
           "sets": []
@@ -277318,6 +277855,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.49.0",
+          "released": {
+            "time": "2026-10-13T22:00:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.48.0",
           "released": {
             "time": "2026-09-17T20:51:15Z",
@@ -283861,6 +284406,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.84.3",
+          "released": {
+            "time": "2026-10-14T05:31:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.84.1",
           "released": {
             "time": "2026-10-07T13:48:48Z",
@@ -284248,14 +284801,6 @@
           "version": "1.59.1",
           "released": {
             "time": "2023-11-28T16:17:16Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.59.0",
-          "released": {
-            "time": "2023-10-20T18:12:18Z",
             "source": "publisher"
           },
           "sets": []
@@ -313460,6 +314005,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.9.4",
+          "released": {
+            "time": "2026-10-13T15:41:22Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.9.3",
           "released": {
             "time": "2026-09-29T19:29:23Z",
@@ -313847,14 +314400,6 @@
           "version": "0.3.2",
           "released": {
             "time": "2026-04-03T19:16:20Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.3.1",
-          "released": {
-            "time": "2026-04-03T14:40:39Z",
             "source": "publisher"
           },
           "sets": []
@@ -326700,6 +327245,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.1.3",
+          "released": {
+            "time": "2026-10-14T06:47:23Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.1.2",
           "released": {
             "time": "2026-09-11T15:54:02Z",
@@ -327087,14 +327640,6 @@
           "version": "0.0.23",
           "released": {
             "time": "2023-10-12T17:39:54Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.22",
-          "released": {
-            "time": "2023-10-06T19:42:58Z",
             "source": "publisher"
           },
           "sets": []
@@ -348510,6 +349055,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2026.10.9",
+          "released": {
+            "time": "2026-10-13T14:53:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2026.10.8",
           "released": {
             "time": "2026-10-11T10:05:39Z",
@@ -348897,14 +349450,6 @@
           "version": "2026.7.15",
           "released": {
             "time": "2026-07-27T18:51:46Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2026.7.14",
-          "released": {
-            "time": "2026-07-26T16:26:10Z",
             "source": "publisher"
           },
           "sets": []
@@ -361168,6 +361713,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.29.5",
+          "released": {
+            "time": "2026-10-13T13:05:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.29.4",
           "released": {
             "time": "2026-09-23T19:36:28Z",
@@ -365255,6 +365808,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.24.4",
+          "released": {
+            "time": "2026-10-13T12:35:16Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.24.3",
           "released": {
             "time": "2026-10-13T08:00:16Z",
@@ -365642,14 +366203,6 @@
           "version": "1.2.1",
           "released": {
             "time": "2025-07-22T12:56:30Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.2.0",
-          "released": {
-            "time": "2025-07-22T12:35:28Z",
             "source": "publisher"
           },
           "sets": []
@@ -416156,6 +416709,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.7.21",
+          "released": {
+            "time": "2026-10-13T21:19:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.7.20",
           "released": {
             "time": "2026-08-26T22:54:52Z",
@@ -416543,14 +417104,6 @@
           "version": "0.5.12",
           "released": {
             "time": "2022-12-02T19:07:48Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.5.11",
-          "released": {
-            "time": "2022-12-02T17:09:00Z",
             "source": "publisher"
           },
           "sets": []
@@ -426216,9 +426769,33 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.37.0",
+          "released": {
+            "time": "2026-10-14T05:45:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.36.1",
+          "released": {
+            "time": "2026-10-14T05:35:34Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.36.0",
           "released": {
             "time": "2026-07-11T17:10:35Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.35.4",
+          "released": {
+            "time": "2026-10-14T05:32:09Z",
             "source": "publisher"
           },
           "sets": []
@@ -426243,6 +426820,14 @@
           "version": "1.35.1",
           "released": {
             "time": "2025-12-23T16:02:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.34.5",
+          "released": {
+            "time": "2026-10-14T05:29:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -426579,30 +427164,6 @@
           "version": "0.3.0",
           "released": {
             "time": "2017-03-15T21:01:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.3.0-beta.0",
-          "released": {
-            "time": "2017-03-02T01:11:25Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.3.0-alpha.1",
-          "released": {
-            "time": "2017-02-17T22:36:25Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.3.0-alpha.0",
-          "released": {
-            "time": "2017-01-27T19:00:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -430349,6 +430910,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.10.0-beta.0",
+          "released": {
+            "time": "2026-10-13T10:58:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.10.0-alpha.0",
           "released": {
             "time": "2026-09-04T14:38:20Z",
@@ -430392,14 +430961,6 @@
           "version": "1.9.0-rc.0",
           "released": {
             "time": "2026-07-02T17:16:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.9.0-beta.0",
-          "released": {
-            "time": "2026-05-21T18:51:49Z",
             "source": "publisher"
           },
           "sets": []
@@ -431809,6 +432370,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.96.0",
+          "released": {
+            "time": "2026-10-13T13:37:44Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.95.0",
           "released": {
             "time": "2026-10-12T13:49:16Z",
@@ -432199,14 +432768,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "1.63.0",
-          "released": {
-            "time": "2026-09-03T08:19:46Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -432215,6 +432776,14 @@
       "origin": "aqua:kunchenguid/treehouse",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "3.1.3",
+          "released": {
+            "time": "2026-10-13T13:49:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "3.1.2",
           "released": {
@@ -451467,6 +452036,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.17.1-rc2",
+          "released": {
+            "time": "2026-10-13T21:36:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.17.1-rc1",
           "released": {
             "time": "2026-10-12T17:52:48Z",
@@ -451502,14 +452079,6 @@
           "version": "0.17.0-rc4",
           "released": {
             "time": "2026-07-13T00:43:07Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.17.0-rc3",
-          "released": {
-            "time": "2026-07-05T21:22:28Z",
             "source": "publisher"
           },
           "sets": []
@@ -472861,6 +473430,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.273.0",
+          "released": {
+            "time": "2026-10-13T18:09:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.272.0",
           "released": {
             "time": "2026-10-11T13:46:03Z",
@@ -473248,14 +473825,6 @@
           "version": "3.226.0",
           "released": {
             "time": "2026-07-01T13:11:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.225.0",
-          "released": {
-            "time": "2026-06-30T21:36:08Z",
             "source": "publisher"
           },
           "sets": []
@@ -475956,6 +476525,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.141.1",
+          "released": {
+            "time": "2026-10-13T21:53:53Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.141.0",
           "released": {
             "time": "2026-10-07T11:01:16Z",
@@ -476343,14 +476920,6 @@
           "version": "1.109.0",
           "released": {
             "time": "2026-02-04T21:08:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.108.2",
-          "released": {
-            "time": "2026-01-23T21:43:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -486071,6 +486640,14 @@
       "origin": "aqua:mongodb/mongodb-atlas-cli/mongocli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.59.2",
+          "released": {
+            "time": "2026-10-13T17:19:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.59.1",
           "released": {
@@ -526732,6 +527309,14 @@
           "sets": []
         },
         {
+          "version": "1.37.3",
+          "released": {
+            "time": "2026-10-13T14:58:45Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.37.2",
           "released": {
             "time": "2026-10-07T11:54:29Z",
@@ -526751,6 +527336,14 @@
           "version": "1.37.0",
           "released": {
             "time": "2026-09-14T09:06:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.36.4",
+          "released": {
+            "time": "2026-10-13T14:58:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -528116,6 +528709,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.40.4",
+          "released": {
+            "time": "2026-10-12T19:00:12Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.40.4-rc1",
           "released": {
             "time": "2026-10-12T19:00:12Z",
@@ -528503,14 +529104,6 @@
           "version": "0.23.3",
           "released": {
             "time": "2026-05-12T03:48:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.23.2",
-          "released": {
-            "time": "2026-05-07T20:23:10Z",
             "source": "publisher"
           },
           "sets": []
@@ -532852,6 +533445,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.163.0-alpha.9",
+          "released": {
+            "time": "2026-10-13T15:47:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.163.0-alpha.8",
+          "released": {
+            "time": "2026-10-13T13:14:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.163.0-alpha.5",
           "released": {
             "time": "2026-10-10T00:26:59Z",
@@ -532876,14 +533485,6 @@
           "sets": []
         },
         {
-          "version": "0.163.0-alpha.1",
-          "released": {
-            "time": "2026-10-08T21:07:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
           "version": "0.162.1",
           "released": {
             "time": "2026-10-09T19:44:51Z",
@@ -532895,14 +533496,6 @@
           "version": "0.162.0",
           "released": {
             "time": "2026-10-08T18:55:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.162.0-alpha.9",
-          "released": {
-            "time": "2026-10-03T01:24:32Z",
             "source": "publisher"
           },
           "sets": []
@@ -533010,6 +533603,14 @@
       "origin": "aqua:openai/tart",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "2.41.0",
+          "released": {
+            "time": "2026-10-13T21:18:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "2.40.1",
           "released": {
@@ -533398,14 +533999,6 @@
           "version": "2.19.1",
           "released": {
             "time": "2024-10-25T19:49:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.19.0",
-          "released": {
-            "time": "2024-10-25T14:09:19Z",
             "source": "publisher"
           },
           "sets": []
@@ -537086,17 +537679,17 @@
           "sets": []
         },
         {
-          "version": "0.15.7-alpha-f1b41f7",
+          "version": "0.15.7-alpha-fc375c5",
           "released": {
-            "time": "2026-10-11T16:44:10Z",
+            "time": "2026-10-13T15:21:24Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "0.15.7-alpha-edee1d0",
+          "version": "0.15.7-alpha-f906187",
           "released": {
-            "time": "2026-10-12T16:36:48Z",
+            "time": "2026-10-14T06:41:17Z",
             "source": "publisher"
           },
           "sets": []
@@ -577291,6 +577884,14 @@
           "sets": []
         },
         {
+          "version": "7.6.7",
+          "released": {
+            "time": "2026-10-13T20:37:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "7.6.6",
           "released": {
             "time": "2026-09-08T20:28:01Z",
@@ -577342,6 +577943,14 @@
           "version": "7.6.0",
           "released": {
             "time": "2026-03-18T18:49:57Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "7.5.12",
+          "released": {
+            "time": "2026-10-13T20:05:29Z",
             "source": "publisher"
           },
           "sets": []
@@ -577438,6 +578047,14 @@
           "version": "7.5.0",
           "released": {
             "time": "2025-01-23T20:21:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "7.4.21",
+          "released": {
+            "time": "2026-10-13T20:03:13Z",
             "source": "publisher"
           },
           "sets": []
@@ -577622,30 +578239,6 @@
           "version": "7.3.9",
           "released": {
             "time": "2023-10-26T17:57:23Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "7.3.8",
-          "released": {
-            "time": "2023-10-10T17:15:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "7.3.7",
-          "released": {
-            "time": "2023-09-19T16:28:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "7.3.6",
-          "released": {
-            "time": "2023-07-13T22:39:48Z",
             "source": "publisher"
           },
           "sets": []
@@ -578030,6 +578623,14 @@
       "origin": "aqua:pre-commit/pre-commit",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "4.7.0",
+          "released": {
+            "time": "2026-10-13T15:35:39Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "4.6.2",
           "released": {
@@ -578418,14 +579019,6 @@
           "version": "2.10.1",
           "released": {
             "time": "2021-02-06T21:24:48Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.10.0",
-          "released": {
-            "time": "2021-01-27T20:50:43Z",
             "source": "publisher"
           },
           "sets": []
@@ -599061,6 +599654,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.16.0-rc.3",
+          "released": {
+            "time": "2026-10-13T14:01:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.16.0-rc.2",
           "released": {
             "time": "2026-10-08T12:28:21Z",
@@ -599112,14 +599713,6 @@
           "version": "2.15.0-rc.3",
           "released": {
             "time": "2026-06-25T16:47:24Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.15.0-rc.2",
-          "released": {
-            "time": "2026-04-20T18:33:46Z",
             "source": "publisher"
           },
           "sets": []
@@ -609670,6 +610263,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.21.2-nightly20261013+dc637d46",
+          "released": {
+            "time": "2026-10-13T23:45:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.21.2-nightly20261013+57791672",
           "released": {
             "time": "2026-10-13T01:59:48Z",
@@ -609697,14 +610298,6 @@
           "version": "0.21.2-nightly20261009+ec7ffa2a",
           "released": {
             "time": "2026-10-09T00:22:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.21.2-nightly20261008+4f19a4a0",
-          "released": {
-            "time": "2026-10-08T00:13:57Z",
             "source": "publisher"
           },
           "sets": []
@@ -612455,6 +613048,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.3.0",
+          "released": {
+            "time": "2026-10-13T17:54:19Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.3.0-rc.1",
           "released": {
             "time": "2026-10-07T13:57:11Z",
@@ -612842,14 +613443,6 @@
           "version": "0.4.5",
           "released": {
             "time": "2025-11-28T06:42:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.4.4",
-          "released": {
-            "time": "2025-11-28T05:26:13Z",
             "source": "publisher"
           },
           "sets": []
@@ -613465,6 +614058,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.3.0",
+          "released": {
+            "time": "2026-10-14T01:54:01Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.2.0",
           "released": {
             "time": "2026-09-19T15:37:05Z",
@@ -613852,14 +614453,6 @@
           "version": "0.7.2",
           "released": {
             "time": "2020-01-26T12:42:05Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.7.1",
-          "released": {
-            "time": "2019-12-18T10:24:03Z",
             "source": "publisher"
           },
           "sets": []
@@ -614792,6 +615385,22 @@
       "origin": "aqua:rtk-ai/rtk",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.0.0",
+          "released": {
+            "time": "2026-10-13T19:51:12Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.52.0",
+          "released": {
+            "time": "2026-10-13T10:53:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.51.0",
           "released": {
@@ -617841,6 +618450,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.25.11",
+          "released": {
+            "time": "2026-10-13T18:11:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.25.10",
           "released": {
             "time": "2026-10-13T08:07:41Z",
@@ -618228,14 +618845,6 @@
           "version": "0.20.26",
           "released": {
             "time": "2026-08-27T09:28:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.20.25",
-          "released": {
-            "time": "2026-08-10T02:19:07Z",
             "source": "publisher"
           },
           "sets": []
@@ -680958,6 +681567,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "4.10.0",
+          "released": {
+            "time": "2026-10-13T15:15:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "4.9.0",
           "released": {
             "time": "2026-10-02T22:01:49Z",
@@ -684257,6 +684874,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.27.4",
+          "released": {
+            "time": "2026-10-14T01:32:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.27.3",
           "released": {
             "time": "2026-10-13T01:15:33Z",
@@ -684644,14 +685269,6 @@
           "version": "1.14.1",
           "released": {
             "time": "2026-09-06T13:37:35Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.14.0",
-          "released": {
-            "time": "2026-09-06T05:21:21Z",
             "source": "publisher"
           },
           "sets": []
@@ -695270,6 +695887,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "17.2.1",
+          "released": {
+            "time": "2026-10-13T20:22:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "17.2.0",
           "released": {
             "time": "2026-10-06T17:10:36Z",
@@ -695657,14 +696282,6 @@
           "version": "14.14.2",
           "released": {
             "time": "2026-03-06T14:19:07Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "14.14.1",
-          "released": {
-            "time": "2026-03-05T23:01:12Z",
             "source": "publisher"
           },
           "sets": []
@@ -713653,6 +714270,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.0.0-next.9",
+          "released": {
+            "time": "2026-10-13T15:28:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "3.0.0-next.8",
+          "released": {
+            "time": "2026-10-13T15:01:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "3.0.0-next.7",
+          "released": {
+            "time": "2026-10-13T10:43:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.0.0-next.6",
           "released": {
             "time": "2026-10-12T21:14:27Z",
@@ -713664,30 +714305,6 @@
           "version": "3.0.0-next.5",
           "released": {
             "time": "2026-10-12T15:15:37Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.0.0-next.4",
-          "released": {
-            "time": "2026-10-09T15:42:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.0.0-next.3",
-          "released": {
-            "time": "2026-10-09T09:15:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.0.0-next.2",
-          "released": {
-            "time": "2026-10-08T10:27:49Z",
             "source": "publisher"
           },
           "sets": []
@@ -764177,6 +764794,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.34.5",
+          "released": {
+            "time": "2026-10-13T15:19:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.34.4",
           "released": {
             "time": "2026-10-05T05:02:47Z",
@@ -764564,14 +765189,6 @@
           "version": "0.28.2",
           "released": {
             "time": "2026-06-03T21:04:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.28.1",
-          "released": {
-            "time": "2026-06-02T14:32:18Z",
             "source": "publisher"
           },
           "sets": []
@@ -772120,41 +772737,41 @@
       "serving_class": "direct",
       "versions": [
         {
-          "version": "4.214.0-canary.1",
+          "version": "4.214.0-canary.9",
           "released": {
-            "time": "2026-10-13T08:51:05Z",
+            "time": "2026-10-13T19:50:29Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.213.0-rc.1",
+          "version": "4.214.0-canary.8",
           "released": {
-            "time": "2026-10-12T07:11:46Z",
+            "time": "2026-10-13T19:08:00Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.213.0-canary.31",
+          "version": "4.214.0-canary.7",
           "released": {
-            "time": "2026-10-12T05:38:06Z",
+            "time": "2026-10-13T15:25:08Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.213.0-canary.30",
+          "version": "4.214.0-canary.6",
           "released": {
-            "time": "2026-10-11T08:48:49Z",
+            "time": "2026-10-13T14:53:58Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.213.0-canary.29",
+          "version": "4.214.0-canary.5",
           "released": {
-            "time": "2026-10-10T21:04:51Z",
+            "time": "2026-10-13T14:29:10Z",
             "source": "publisher"
           },
           "sets": []
@@ -777331,6 +777948,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.37.0",
+          "released": {
+            "time": "2026-10-13T10:53:27Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.36.0",
           "released": {
             "time": "2026-08-03T11:01:25Z",
@@ -777718,14 +778343,6 @@
           "version": "2.9.1",
           "released": {
             "time": "2023-07-12T14:27:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.8.0",
-          "released": {
-            "time": "2023-06-21T09:05:06Z",
             "source": "publisher"
           },
           "sets": []
@@ -780002,6 +780619,635 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "0.13.1",
+          "released": {
+            "time": "2026-10-14T05:15:30Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "uv",
+                    "origin": "recipe",
+                    "src": "uv-x86_64-apple-darwin/uv"
+                  },
+                  {
+                    "name": "uvx",
+                    "origin": "recipe",
+                    "src": "uv-x86_64-apple-darwin/uvx"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:bc917f676922b3cd53b3d16a1fb75bc264e264ceda0205c4b27012b2c4f590c1",
+                "full": "sha256:d434133405d47e83b694f32beeb7ec398dc597cc80377d0b8ca2a44b78ff2ee7"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "uv-x86_64-apple-darwin.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "astral-sh/uv/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:4214a3ed975bebf0ca79a1170ef7520a4b371fb8c41b26e6713980aa77d4d14a",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:astral-sh/uv",
+                "name": "astral-sh/uv",
+                "publisher": "astral-sh",
+                "repository": "astral-sh/uv"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-apple-darwin.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-apple-darwin.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:bb7b805bdcf3d0bc8c74ceb94569e6b3e8aa35bd492acdbb9d46bf46d9d4ff6b",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "bb7b805bdcf3d0bc8c74ceb94569e6b3e8aa35bd492acdbb9d46bf46d9d4ff6b"
+                  },
+                  "size": 17491796
+                },
+                "lock": {
+                  "evidence_digest": "sha256:19cf094307795dabdf80fbffea250a4d59b122cbce498655cc43d3407e6fb349",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:bb7b805bdcf3d0bc8c74ceb94569e6b3e8aa35bd492acdbb9d46bf46d9d4ff6b",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/astral-sh/uv/.github/workflows/release.yml@refs/heads/main",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[3]",
+                "normalized": "0.13.1",
+                "requested": "0.13.1",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "uv",
+                    "origin": "recipe",
+                    "src": "uv-aarch64-apple-darwin/uv"
+                  },
+                  {
+                    "name": "uvx",
+                    "origin": "recipe",
+                    "src": "uv-aarch64-apple-darwin/uvx"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:99d379f8f790c5a656c3e6c018b80a4042aaa7ed720b0247c757ca33262646f7",
+                "full": "sha256:769b2b18a9dab5010292831f2eed5de65b21a177cb16b577dd3635664b1c7874"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "uv-aarch64-apple-darwin.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "astral-sh/uv/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:4214a3ed975bebf0ca79a1170ef7520a4b371fb8c41b26e6713980aa77d4d14a",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:astral-sh/uv",
+                "name": "astral-sh/uv",
+                "publisher": "astral-sh",
+                "repository": "astral-sh/uv"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-aarch64-apple-darwin.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-aarch64-apple-darwin.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:cfe454573412ff7380d15fc7dae5997ab53ffce72fce0a78e91ddbc84001acd2",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "cfe454573412ff7380d15fc7dae5997ab53ffce72fce0a78e91ddbc84001acd2"
+                  },
+                  "size": 14280170
+                },
+                "lock": {
+                  "evidence_digest": "sha256:19cf094307795dabdf80fbffea250a4d59b122cbce498655cc43d3407e6fb349",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:cfe454573412ff7380d15fc7dae5997ab53ffce72fce0a78e91ddbc84001acd2",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/astral-sh/uv/.github/workflows/release.yml@refs/heads/main",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[3]",
+                "normalized": "0.13.1",
+                "requested": "0.13.1",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "uv",
+                    "origin": "recipe",
+                    "src": "uv-x86_64-unknown-linux-musl/uv"
+                  },
+                  {
+                    "name": "uvx",
+                    "origin": "recipe",
+                    "src": "uv-x86_64-unknown-linux-musl/uvx"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:d352a33154b068458afc351e529325c79b2cc0449b1a50d805160d7faa967924",
+                "full": "sha256:2879ee45a02c033af1948bfc77123c2b06fb2aa0edc41161cc9585e8b2db8a55"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "uv-x86_64-unknown-linux-musl.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "astral-sh/uv/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:4214a3ed975bebf0ca79a1170ef7520a4b371fb8c41b26e6713980aa77d4d14a",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:astral-sh/uv",
+                "name": "astral-sh/uv",
+                "publisher": "astral-sh",
+                "repository": "astral-sh/uv"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-unknown-linux-musl.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-unknown-linux-musl.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:6c86040a8f045ab9adc9e3ec4cdafa03fd00e9a988ed2bf28971c7fc2d0debd0",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "6c86040a8f045ab9adc9e3ec4cdafa03fd00e9a988ed2bf28971c7fc2d0debd0"
+                  },
+                  "size": 18745521
+                },
+                "lock": {
+                  "evidence_digest": "sha256:19cf094307795dabdf80fbffea250a4d59b122cbce498655cc43d3407e6fb349",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:6c86040a8f045ab9adc9e3ec4cdafa03fd00e9a988ed2bf28971c7fc2d0debd0",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/astral-sh/uv/.github/workflows/release.yml@refs/heads/main",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[3]",
+                "normalized": "0.13.1",
+                "requested": "0.13.1",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "uv",
+                    "origin": "recipe",
+                    "src": "uv-aarch64-unknown-linux-musl/uv"
+                  },
+                  {
+                    "name": "uvx",
+                    "origin": "recipe",
+                    "src": "uv-aarch64-unknown-linux-musl/uvx"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:580b4be0eea84ee8e83492c898dbc480c39314f54dbf8646862ccc8b87bb4f56",
+                "full": "sha256:a14e341cd54601b3c6b99f79a22494748ad2e445da6e28ab12d18375c2094d51"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "uv-aarch64-unknown-linux-musl.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "astral-sh/uv/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:4214a3ed975bebf0ca79a1170ef7520a4b371fb8c41b26e6713980aa77d4d14a",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:astral-sh/uv",
+                "name": "astral-sh/uv",
+                "publisher": "astral-sh",
+                "repository": "astral-sh/uv"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-aarch64-unknown-linux-musl.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-aarch64-unknown-linux-musl.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:345a8308e4d1835cdfaadf692836fd3137a6d45864773f05ad7bf59442b1ba16",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "345a8308e4d1835cdfaadf692836fd3137a6d45864773f05ad7bf59442b1ba16"
+                  },
+                  "size": 17262001
+                },
+                "lock": {
+                  "evidence_digest": "sha256:19cf094307795dabdf80fbffea250a4d59b122cbce498655cc43d3407e6fb349",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:345a8308e4d1835cdfaadf692836fd3137a6d45864773f05ad7bf59442b1ba16",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/astral-sh/uv/.github/workflows/release.yml@refs/heads/main",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[3]",
+                "normalized": "0.13.1",
+                "requested": "0.13.1",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "uv",
+                    "origin": "recipe",
+                    "src": "uv.exe"
+                  },
+                  {
+                    "name": "uvx",
+                    "origin": "recipe",
+                    "src": "uvx.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:fe749bce5c585ed2f68c715b2441207620fbb9f8fcfcedbc593206b096bb7e23",
+                "full": "sha256:99c65654e8ee27af776b170cbc1b67a578b46a33f18e33a060625fc0cf40938c"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "uv-x86_64-pc-windows-msvc.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "astral-sh/uv/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:4214a3ed975bebf0ca79a1170ef7520a4b371fb8c41b26e6713980aa77d4d14a",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:astral-sh/uv",
+                "name": "astral-sh/uv",
+                "publisher": "astral-sh",
+                "repository": "astral-sh/uv"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-pc-windows-msvc.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/astral-sh/uv/releases/download/0.13.1/uv-x86_64-pc-windows-msvc.zip.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:3b2661a463a5baea7f5076ea2b25ab71d77f36a6c0d809e5350651792f80a672",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "3b2661a463a5baea7f5076ea2b25ab71d77f36a6c0d809e5350651792f80a672"
+                  },
+                  "size": 15308685
+                },
+                "lock": {
+                  "evidence_digest": "sha256:19cf094307795dabdf80fbffea250a4d59b122cbce498655cc43d3407e6fb349",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:3b2661a463a5baea7f5076ea2b25ab71d77f36a6c0d809e5350651792f80a672",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/astral-sh/uv/.github/workflows/release.yml@refs/heads/main",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[3]",
+                "normalized": "0.13.1",
+                "requested": "0.13.1",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "0.13.0",
           "released": {
             "time": "2026-10-09T19:49:55Z",
@@ -782252,14 +783498,6 @@
           "version": "0.11.11",
           "released": {
             "time": "2026-05-06T20:08:24Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.11.10",
-          "released": {
-            "time": "2026-05-05T20:24:27Z",
             "source": "publisher"
           },
           "sets": []
@@ -792339,6 +793577,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.39.1",
+          "released": {
+            "time": "2026-10-13T19:52:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.39.0",
           "released": {
             "time": "2026-10-09T18:57:59Z",
@@ -792726,14 +793972,6 @@
           "version": "0.22.0",
           "released": {
             "time": "2026-03-23T17:26:43Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.21.4",
-          "released": {
-            "time": "2026-03-20T14:18:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -793560,6 +794798,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.9.0",
+          "released": {
+            "time": "2026-10-13T22:44:03Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.8.0",
           "released": {
             "time": "2026-09-04T23:11:49Z",
@@ -793947,14 +795193,6 @@
           "version": "0.6",
           "released": {
             "time": "2023-09-08T05:27:15Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.5",
-          "released": {
-            "time": "2023-08-02T04:59:12Z",
             "source": "publisher"
           },
           "sets": []
@@ -798574,6 +799812,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.27.6-alpha.1",
+          "released": {
+            "time": "2026-10-13T15:36:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.27.5",
+          "released": {
+            "time": "2026-10-13T12:43:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.27.5-alpha.1",
+          "released": {
+            "time": "2026-10-13T12:35:16Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.27.4",
           "released": {
             "time": "2026-10-13T02:15:18Z",
@@ -798617,22 +799879,6 @@
           "version": "2.27.1",
           "released": {
             "time": "2026-10-10T20:08:58Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.27.1-alpha.1",
-          "released": {
-            "time": "2026-10-10T20:04:09Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.27.0-alpha.1",
-          "released": {
-            "time": "2026-10-10T19:24:08Z",
             "source": "publisher"
           },
           "sets": []
@@ -804930,6 +806176,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.9.0",
+          "released": {
+            "time": "2026-10-13T10:42:46Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.8.0",
           "released": {
             "time": "2026-10-09T09:13:28Z",
@@ -805320,14 +806574,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "2.69.1",
-          "released": {
-            "time": "2026-05-27T06:44:41Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -805702,6 +806948,38 @@
       "origin": "aqua:whisper-sec/whisper-cli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.223.3",
+          "released": {
+            "time": "2026-10-14T03:38:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.223.2",
+          "released": {
+            "time": "2026-10-13T22:28:11Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.223.1",
+          "released": {
+            "time": "2026-10-13T20:29:32Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.223.0",
+          "released": {
+            "time": "2026-10-13T14:57:23Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.222.0",
           "released": {
