@@ -1,0 +1,19 @@
+# The release helper is independent of the root crate's private Git dependency.
+version: 2
+updates:
+  - package-ecosystem: cargo
+    directory: /release-tool
+    schedule:
+      interval: daily
+      time: "06:40"
+      timezone: America/New_York
+    open-pull-requests-limit: 3
+    assignees: [micahlmartin]
+    groups:
+      routine-dependencies:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: [minor, patch]
+      security-dependencies:
+        applies-to: security-updates
+        patterns: ["*"]
