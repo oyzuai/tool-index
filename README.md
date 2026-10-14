@@ -290,3 +290,15 @@ repository.
 - Auto-merge is allowed. Runners are GitHub-hosted only.
 
 Later: serve the same release files from `index.oyzu.dev`.
+
+## Dependency maintenance
+
+The [Dependabot configuration](.github/dependabot.yml) maintains the root Cargo crate, the independent `release-tool` crate, workflows, and the local `oyzu-read` action. The two Cargo jobs are separate so a private-source access failure in the root job does not stop release-helper updates.
+
+Routine version checks run on weekdays around 06:40 America/New_York. Minor and patch updates are grouped; major upgrades remain individual proposals. Security updates use a separate group and do not wait for the version-update schedule. Each update block allows three open routine PRs and assigns proposals to `micahlmartin`; GitHub applies a separate limit to security-update PRs. Review, applicable verification and existing merge requirements still apply.
+
+Dependabot alerts and security updates must also be enabled in repository settings; the YAML does not enable those switches. Use the standard GitHub runner for update jobs. The configuration becomes active after it reaches the default branch.
+
+The root crate depends on private `oyzuai/oyzu` source. Verify that Dependabot can read that dependency before treating the root job as operational; unavailable private-source access is a failed update job, not a clean result. The `oyzu-recipe` revision is intentionally ignored by automatic updates because it must be changed with the workflow's matching Oyzu binary pin.
+
+Actions secrets are not automatically available to Dependabot-triggered checks. The existing private-source checkout needs approved Dependabot credential setup before those PR checks can build the root crate. Keep the read-only App and existing verification gates; do not run Dependabot changes with elevated `pull_request_target` privileges as a workaround. This configuration adds no credential, access grant, auto-merge rule, or signing change.
