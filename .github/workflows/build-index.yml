@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 180
     steps:
       # v4.4.0
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           # The bot token is minted only for the last step; the build and the
           # oyzu runs before it never see it.
@@ -91,7 +91,7 @@ jobs:
         id: bot
         if: steps.review.outputs.decision != 'no-change'
         # v3.2.0
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510
         with:
           app-id: ${{ secrets.INDEX_BOT_APP_ID }}
           private-key: ${{ secrets.INDEX_BOT_PRIVATE_KEY }}
