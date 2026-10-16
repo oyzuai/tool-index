@@ -81,13 +81,6 @@
       }
     },
     "aqua:atuinsh/atuin": {
-      "17.0.1": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
-        "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
-      },
       "17.1.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
         "last_attempt": "2026-10-11T10:04:54.495778694Z",
