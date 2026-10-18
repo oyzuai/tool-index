@@ -25,9 +25,10 @@ pub const MAX_CATALOG_BYTES: usize = 4 * 1024 * 1024;
 pub const MAX_VALIDITY_SECONDS: i64 = 31 * 24 * 3600;
 pub const MAX_MATCHER_NODES: usize = 32;
 pub const MAX_MATCHER_DEPTH: usize = 4;
-/// The official naming authority, whose packages live under
-/// `ghcr.io/oyzuai/plugins/<name>`.
-pub const OFFICIAL_AUTHORITY: &str = "oyzu";
+/// The official publisher. Its packages, and only its packages, are routed
+/// from `ghcr.io/oyzuai/plugins/<name>`.
+pub const OFFICIAL_PUBLISHER: &str = "oyzu";
+const OFFICIAL_REPOSITORY: &str = "ghcr.io/oyzuai/plugins/";
 
 // ---------------------------------------------------------------- types
 
@@ -69,7 +70,6 @@ pub struct CatalogContent {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Package {
-    pub authority: String,
     pub publisher: String,
     pub name: String,
     pub maintainer: String,
@@ -361,6 +361,10 @@ impl Matcher {
                 count("detections.match", items, 2, 16)?;
                 items.iter().try_for_each(Self::check)
             }
+            Self::Not(inner) if matches!(**inner, Self::Not(_)) => Err(invalid(
+                "detections.match",
+                "a not directly inside a not is refused; write the inner matcher",
+            )),
             Self::Not(inner) => inner.check(),
         }
     }
@@ -779,8 +783,13 @@ fn platform_key(os: Os, arch: Arch, abi: Option<Abi>) -> (String, String, String
 
 /// `sha256:` of the RFC 8785 canonical JSON of `content`.
 pub fn content_digest(content: &CatalogContent) -> Result<String> {
+    canonical_digest(&serde_json::to_value(content)?)
+}
+
+/// `sha256:` of the RFC 8785 canonical JSON of any catalog value.
+pub fn canonical_digest(value: &Value) -> Result<String> {
     let mut canonical = Vec::new();
-    write_canonical(&serde_json::to_value(content)?, &mut canonical)?;
+    write_canonical(value, &mut canonical)?;
     Ok(sha256(&canonical))
 }
 
@@ -833,12 +842,20 @@ impl Catalog {
             bytes.len() <= MAX_CATALOG_BYTES,
             "the plugin catalog is larger than {MAX_CATALOG_BYTES} bytes"
         );
-        let catalog: Self = serde_json::from_slice(bytes).context("parsing the plugin catalog")?;
-        catalog.check()?;
+        let value: Value = serde_json::from_slice(bytes).context("parsing the plugin catalog")?;
+        let catalog: Self =
+            serde_json::from_value(value.clone()).context("decoding the plugin catalog")?;
+        // The digest covers the content as signed, not a re-serialization.
+        catalog.check_against(&canonical_digest(&value["content"])?)?;
         Ok(catalog)
     }
 
+    /// Checks a typed catalog, computing the digest from its typed content.
     pub fn check(&self) -> Result<()> {
+        self.check_against(&content_digest(&self.content)?)
+    }
+
+    fn check_against(&self, computed: &str) -> Result<()> {
         ensure_rule(
             (1..=(1u64 << 53) - 1).contains(&self.serial),
             "serial",
@@ -855,7 +872,7 @@ impl Catalog {
         )?;
         digest("content_digest", &self.content_digest)?;
         ensure_rule(
-            self.content_digest == content_digest(&self.content)?,
+            self.content_digest == computed,
             "content_digest",
             "does not match the canonical JSON of content",
         )?;
@@ -871,7 +888,7 @@ impl CatalogContent {
         count("detections", &self.detections, 0, 4096)?;
         count("withdrawals", &self.withdrawals, 0, 4096)?;
         for package in &self.packages {
-            package.check(&self.authority)?;
+            package.check()?;
         }
         let ids: Vec<_> = self.packages.iter().map(Package::id).collect();
         ascending("packages", &ids, |a, b| a.cmp(b))?;
@@ -967,17 +984,36 @@ impl CatalogContent {
             .collect();
         ascending("withdrawals", &keys, |a, b| {
             a.0.cmp(b.0).then_with(|| compare_versions(a.1, b.1))
-        })
+        })?;
+
+        // The lock matches a selection by root digest, so one root names one
+        // release of a package, listed or withdrawn.
+        let mut roots: Vec<(String, &str)> = self
+            .packages
+            .iter()
+            .flat_map(|p| {
+                let id = p.id();
+                p.releases
+                    .iter()
+                    .map(move |r| (id.clone(), r.root_digest.as_str()))
+            })
+            .collect();
+        roots.extend(
+            self.withdrawals
+                .iter()
+                .map(|w| (w.package.clone(), w.root_digest.as_str())),
+        );
+        roots.sort();
+        ensure_rule(
+            !roots.windows(2).any(|pair| pair[0] == pair[1]),
+            "root_digest",
+            "names more than one release of a package",
+        )
     }
 }
 
 impl Package {
-    fn check(&self, authority: &str) -> Result<()> {
-        ensure_rule(
-            self.authority == authority,
-            "packages.authority",
-            "must equal content.authority",
-        )?;
+    fn check(&self) -> Result<()> {
         component("packages.publisher", &self.publisher)?;
         component("packages.name", &self.name)?;
         bounded("packages.maintainer", &self.maintainer, 1, 256)?;
@@ -989,10 +1025,7 @@ impl Package {
         ascending("packages.releases", &versions, |a, b| {
             compare_versions(a, b)
         })?;
-        // Release identity is the root digest: two versions of a package never
-        // share one, or a lock pinned to a digest would be ambiguous.
-        let roots: Vec<_> = self.releases.iter().map(|r| &r.root_digest).collect();
-        unique("packages.releases.root_digest", &roots)
+        Ok(())
     }
 }
 
@@ -1146,11 +1179,16 @@ impl Release {
             field,
             "must address the release root digest",
         )?;
+        // The official repository holds the official publisher's packages only.
+        let ok = if package.publisher == OFFICIAL_PUBLISHER {
+            location == format!("{OFFICIAL_REPOSITORY}{}", package.name)
+        } else {
+            !location.starts_with(OFFICIAL_REPOSITORY)
+        };
         ensure_rule(
-            package.authority != OFFICIAL_AUTHORITY
-                || location == format!("ghcr.io/oyzuai/plugins/{}", package.name),
+            ok,
             field,
-            "official packages are published under ghcr.io/oyzuai/plugins/<name>",
+            "packages of publisher oyzu, and only those, are routed from ghcr.io/oyzuai/plugins/<name>",
         )
     }
 }
@@ -1498,7 +1536,6 @@ impl Package {
     /// The identity fields review compares apart from releases.
     fn header(&self) -> Value {
         serde_json::json!({
-            "authority": self.authority,
             "publisher": self.publisher,
             "name": self.name,
             "maintainer": self.maintainer,

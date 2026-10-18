@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://oyzu.dev/contracts/plugins-v1alpha1/catalog.schema.json",
   "title": "Draft plugin protocol v1alpha1: plugin catalog",
-  "description": "The signed plugin catalog published as plugins.json beside index.json in a tool-index release, with the Sigstore bundle plugins.json.sigstore.json over the SHA-256 of the exact plugins.json bytes, signed by the same pinned tool-index release identity. Shape only: crates/oyzu-plugin-protocol also checks the rules JSON Schema cannot express (content_digest, sort order and uniqueness, references between members, version/major agreement, matcher depth and size, freshness window and serial succession). The catalog supplies candidate references, release metadata and detection observations; it grants no authority, names no plugin as a dependency of another and assigns no evidence strength.",
+  "description": "The signed plugin catalog published as plugins.json beside index.json in a tool-index release, with the Sigstore bundle plugins.json.sigstore.json over the SHA-256 of the exact plugins.json bytes, signed by the same pinned tool-index release identity. Shape only: crates/oyzu-plugin-protocol also checks the rules JSON Schema cannot express (content_digest, sort order and uniqueness, references between members, root digest uniqueness within a package, version/major agreement, matcher depth and size, freshness window and serial succession). The catalog supplies candidate references, release metadata and detection observations; it grants no authority, names no plugin as a dependency of another and assigns no evidence strength.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -22,7 +22,7 @@
       "const": "plugin-catalog"
     },
     "serial": {
-      "description": "Envelope: the tool-index release serial stamped on index.json in the same release, re-signs included. A client refuses a lower serial than the last verified catalog, or an equal one with different bytes.",
+      "description": "Envelope: the tool-index release serial stamped on index.json in the same release, re-signs included. A client refuses a serial lower than the last verified catalog's, an equal one with different bytes, or a higher one generated earlier.",
       "type": "integer",
       "minimum": 1,
       "maximum": 9007199254740991
@@ -73,7 +73,7 @@
       ],
       "properties": {
         "authority": {
-          "description": "The naming authority whose short-name bindings this catalog publishes: oyzu for the official public catalog.",
+          "description": "The naming authority whose short-name bindings this catalog publishes: oyzu for the official public catalog. Package identities are the publishers' own; an organization catalog lists oyzu/go under that identity.",
           "$ref": "common.schema.json#/$defs/component"
         },
         "packages": {
@@ -101,7 +101,7 @@
           }
         },
         "withdrawals": {
-          "description": "Withdrawn or revoked releases, sorted by package then version. A withdrawn release is not also listed under releases. Absence from the catalog is unavailability, never withdrawal.",
+          "description": "Withdrawn or revoked releases, sorted by package then version. A withdrawn release is not also listed under releases, and a root digest names one release of a package across releases and withdrawals. Absence from the catalog is unavailability, never withdrawal.",
           "type": "array",
           "maxItems": 4096,
           "items": {
@@ -114,17 +114,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "authority",
         "publisher",
         "name",
         "maintainer",
         "releases"
       ],
       "properties": {
-        "authority": {
-          "description": "Equals content.authority.",
-          "$ref": "common.schema.json#/$defs/component"
-        },
         "publisher": {
           "$ref": "common.schema.json#/$defs/component"
         },
@@ -324,7 +319,7 @@
               "const": "oci"
             },
             "reference": {
-              "description": "<registry>/<repository>@<root_digest>. Official packages use ghcr.io/oyzuai/plugins/<name>.",
+              "description": "<registry>/<repository>@<root_digest>. Packages of publisher oyzu, and only those, use ghcr.io/oyzuai/plugins/<name>. Mirrors are not listed here: they come from organization route configuration and preserve the root digest.",
               "type": "string",
               "maxLength": 512,
               "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*(:[0-9]{1,5})?/[a-z0-9]+([._-][a-z0-9]+)*(/[a-z0-9]+([._-][a-z0-9]+)*)*@sha256:[0-9a-f]{64}$"
@@ -691,7 +686,8 @@
           "description": "A suggested release of the same package. Advice only; it never changes a lock.",
           "$ref": "common.schema.json#/$defs/semver"
         }
-      }
+      },
+      "description": "Release-level: it applies to every profile and platform of the release."
     }
   }
 }

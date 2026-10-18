@@ -2,7 +2,6 @@ authority = "oyzu"
 withdrawals = []
 
 [[packages]]
-authority = "oyzu"
 publisher = "oyzu"
 name = "go"
 maintainer = "Oyzu maintainers"

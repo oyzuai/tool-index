@@ -6,6 +6,7 @@ use serde_json::json;
 
 const PREVIEW: &str = include_str!("../tests/fixtures/plugins-v1alpha1/catalog.go-preview.json");
 const MAJORS: &str = include_str!("../tests/fixtures/plugins-v1alpha1/catalog.go-majors.json");
+const VALID: &str = include_str!("../tests/fixtures/plugins-v1alpha1/valid-cases.json");
 const INVALID: &str = include_str!("../tests/fixtures/plugins-v1alpha1/invalid-cases.json");
 
 fn at(s: &str) -> Timestamp {
@@ -106,6 +107,7 @@ fn every_canonical_invalid_catalog_case_is_refused() {
         })
         .unwrap();
         mutate(&mut doc, &case);
+        restamp(&mut doc, &case);
         let bytes = serde_json::to_vec(&doc).unwrap();
         assert!(
             Catalog::decode(&bytes).is_err(),
@@ -114,7 +116,40 @@ fn every_canonical_invalid_catalog_case_is_refused() {
         );
         ran += 1;
     }
-    assert!(ran >= 90, "only {ran} catalog cases ran");
+    assert!(ran >= 100, "only {ran} catalog cases ran");
+}
+
+/// Mutations under `/content` are re-stamped with the digest of the mutated
+/// content, so the case breaks the rule it names and not the digest.
+fn restamp(doc: &mut Value, case: &Value) {
+    let pointer = case["pointer"].as_str().unwrap();
+    if pointer == "/content" || pointer.starts_with("/content/") {
+        doc["content_digest"] = json!(canonical_digest(&doc["content"]).unwrap());
+    }
+}
+
+#[test]
+fn every_canonical_valid_catalog_mutation_is_accepted() {
+    let cases: Vec<Value> = serde_json::from_str(VALID).unwrap();
+    let mut ran = 0;
+    for case in cases {
+        let base = case["base"].as_str().unwrap();
+        if !base.starts_with("catalog.") {
+            continue;
+        }
+        let mut doc: Value = serde_json::from_str(match base {
+            "catalog.go-preview.json" => PREVIEW,
+            "catalog.go-majors.json" => MAJORS,
+            other => panic!("unknown base {other}"),
+        })
+        .unwrap();
+        mutate(&mut doc, &case);
+        restamp(&mut doc, &case);
+        let bytes = serde_json::to_vec(&doc).unwrap();
+        Catalog::decode(&bytes).unwrap_or_else(|e| panic!("{}: {e:#}", case["name"]));
+        ran += 1;
+    }
+    assert!(ran >= 8, "only {ran} catalog cases ran");
 }
 
 #[test]
@@ -265,7 +300,7 @@ fn the_release_check_ties_the_catalog_to_the_index() {
 }
 
 #[test]
-fn two_versions_of_a_package_never_share_a_root_digest() {
+fn one_root_digest_names_one_release_of_a_package() {
     let mut catalog: Catalog = serde_json::from_str(MAJORS).unwrap();
     let first = catalog.content.packages[0].releases[0].clone();
     let second = &mut catalog.content.packages[0].releases[1];
@@ -273,7 +308,10 @@ fn two_versions_of_a_package_never_share_a_root_digest() {
     second.routes = first.routes.clone();
     catalog.content_digest = content_digest(&catalog.content).unwrap();
     let err = Catalog::decode(&serde_json::to_vec(&catalog).unwrap()).unwrap_err();
-    assert!(format!("{err:#}").contains("unique"), "{err:#}");
+    assert!(
+        format!("{err:#}").contains("more than one release"),
+        "{err:#}"
+    );
 }
 
 #[test]

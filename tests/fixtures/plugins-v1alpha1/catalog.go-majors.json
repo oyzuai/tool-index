@@ -4,12 +4,11 @@
   "serial": 413,
   "generated_at": "2026-10-19T06:00:00Z",
   "expires_at": "2026-11-02T06:00:00Z",
-  "content_digest": "sha256:599b45ca6b4267722c0d072b72b732b3a960b1da8fe556c22be107ef8f9095bb",
+  "content_digest": "sha256:4c23ab3a3ddbdf7e6748b8318cb5855f5268c4357b9fef8916518cc54a18b3eb",
   "content": {
     "authority": "oyzu",
     "packages": [
       {
-        "authority": "oyzu",
         "publisher": "oyzu",
         "name": "go",
         "maintainer": "Oyzu maintainers",
@@ -367,7 +366,7 @@
         "root_digest": "sha256:01da8e649818b5792fb32c00621e1997d46a35d853f2cba1e3fc3bcead6ea81b",
         "kind": "withdrawn",
         "at": "2026-10-12T14:30:00Z",
-        "reason": "go test reports were written to the wrong directory on Windows.",
+        "reason": "go test reports were written to the wrong directory on macOS.",
         "replacement": "2.4.0"
       }
     ]

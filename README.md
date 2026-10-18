@@ -291,27 +291,38 @@ from that release; clients keep their last verified catalog until it expires.
 
 **Contract checks.** The release tool cannot depend on private oyzu, so it
 carries a port of the semantic rules of `oyzu-plugin-protocol`'s catalog
-(`src/plugins.rs`): `content_digest`, sorting and uniqueness, references
-between members, version and major agreement, matcher bounds, the 31-day
-window, the 4 MiB limit and the GHCR route rule for publisher `oyzu`, plus one
-rule of this repository's own: no two releases of a package share a root digest
-(the oyzu checker at the pinned commit has no such rule). Its tests run the vendored canonical
-examples (their digests must match) and every catalog invalid case from oyzu
-against the port; `tests/plugin-catalog.sh` also validates generated output
-against the canonical JSON Schema. Refresh `tests/fixtures/plugins-v1alpha1`
-from oyzu to pick up contract changes; failing tests then show where the port
-differs. Not ported: strict duplicate-key detection when decoding (the
-generator writes the document itself), the client's serial succession (which
-needs the previous catalog; the daily serial only grows), and a retention rule
-(the checker at the pinned commit has none).
+(`src/plugins.rs`), synced to oyzu `8cde9a1` (after oyzu PR #610): the
+`content_digest` over the content exactly as parsed, sorting and uniqueness,
+references between members, version and major agreement, matcher bounds
+(including no `not` directly inside `not`), the 31-day window, the 4 MiB limit,
+one root digest per release of a package across releases and withdrawals, and
+the route rule (publisher `oyzu`, and only it, is routed from
+`ghcr.io/oyzuai/plugins/<name>`). There is no per-package `authority`; only
+`content.authority`. Its tests run the vendored canonical examples (their
+digests must match) and every catalog invalid and valid case from oyzu against
+the port; `tests/plugin-catalog.sh` also validates generated output against the
+canonical JSON Schema. Refresh `tests/fixtures/plugins-v1alpha1` from oyzu to
+pick up contract changes; failing tests then show where the port differs. Not
+ported: strict duplicate-key detection when decoding (the generator writes the
+document itself) and the client's serial succession (it needs the previous
+catalog; the daily serial only grows).
+
+**Retention.** The catalog lists supported, retained releases and keeps its
+withdrawals. Pruning a release is done by removing it from `config/plugins.toml`
+and means unlisted, not withdrawn: a locked selection still replays by its root
+digest where policy permits, while new resolution no longer offers it. The
+generator never drops a withdrawal, even when the release's bytes are
+unavailable (it removes only an advisory `replacement` that is no longer
+listed). Keep the document inside the 4 MiB limit by pruning, not by
+withdrawing.
 
 **Review rules.** Plugin entries have no routine path. `config/plugins.toml`
 is code-owner reviewed like `.github/`, and the `verify` workflow's job
 summary lists every difference from the base branch, capability-sensitive ones
 first: detector reach (any detection, and added or changed references), new
 requirements (roles and core features, protocol generations, platforms and
-minimum platform), the source or signer (routes, root digests, maintainer,
-authority) and new or removed packages. Qualification-only edits and
+minimum platform), the source or signer (routes, root digests, publisher,
+maintainer, and the catalog authority) and new or removed packages. Qualification-only edits and
 withdrawals are listed but not marked. Preview it locally with
 `tool-index-release plugins review --previous <old> --next config/plugins.toml`.
 
