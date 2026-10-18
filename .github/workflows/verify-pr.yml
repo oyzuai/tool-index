@@ -44,6 +44,9 @@ jobs:
       - run: cargo build --release --locked
       - run: cargo test --locked
       - run: cargo test --locked --manifest-path release-tool/Cargo.toml
+      - name: Drop the oyzu read token
+        run: .github/actions/oyzu-read/done.sh
+      # After the token is gone: nothing here (pip, the test's scripts) sees it.
       - run: cargo build --locked --manifest-path release-tool/Cargo.toml
       - name: Plugin catalog workflow steps
         env:
@@ -51,8 +54,6 @@ jobs:
         run: |
           python3 -m pip install --user jsonschema==4.26.0
           tests/plugin-catalog.sh
-      - name: Drop the oyzu read token
-        run: .github/actions/oyzu-read/done.sh
       # config/plugins.toml has no routine path: every change needs a person
       # (CODEOWNERS). This lists what it changes, capability-sensitive changes
       # first, in the job summary, and fails if the file no longer parses or

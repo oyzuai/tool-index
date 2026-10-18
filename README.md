@@ -271,8 +271,11 @@ not a change.
 advertise it. `.github/scripts/plugin-availability.sh` keeps a release only
 when its OCI release root is fetchable anonymously from GHCR by its digest and
 the root has attached evidence (a Sigstore bundle among its OCI referrers);
-anything else is left out with the reason logged, and with no verification
-nothing is advertised. A package left without releases drops out together
+a release is left out only on a definite 404 (unknown manifest, no referrers) or
+when no evidence is attached, and with no verification nothing is advertised.
+Any other answer, such as a timeout, 5xx or 401/403, fails the run, so a GHCR
+blip makes plugins absent from that release instead of publishing a catalog
+that lacks packages (calls use `--max-time 30 --retry 3`). A package left without releases drops out together
 with its references and detections. Withdrawals are always kept (they only
 restrict). The evidence artifact type in that script is a placeholder until
 oyzu S2c (#584) publishes real packages; the script has only been run against
@@ -280,7 +283,8 @@ a stub, not GHCR. Until then the source is empty and so is the published
 list, which is still well formed.
 
 **Failure isolation.** `plugin-catalog.sh` runs the plugin steps in their own
-shell and always succeeds. If generation, signing or verification fails, any
+shell, under `timeout 600` (so a hung GHCR, Fulcio or Rekor call cannot run
+into the job limit after `index.json` is signed), and always succeeds. If generation, signing or verification fails, any
 partial `plugins.json` is removed, a workflow warning is raised, and the
 release goes out with the four tools assets. `release` plans the plugin
 assets separately: a catalog whose serial differs from `index.json`'s, that has
@@ -303,8 +307,9 @@ digests must match) and every catalog invalid and valid case from oyzu against
 the port; `tests/plugin-catalog.sh` also validates generated output against the
 canonical JSON Schema. Refresh `tests/fixtures/plugins-v1alpha1` from oyzu to
 pick up contract changes; failing tests then show where the port differs. Not
-ported: strict duplicate-key detection when decoding (the generator writes the
-document itself) and the client's serial succession (it needs the previous
+ported: the client's strict decoding (it refuses duplicate JSON keys, an
+explicit `null` for an optional field, and an array where an object belongs;
+the generator writes the document itself and never produces these) and the client's serial succession (it needs the previous
 catalog; the daily serial only grows).
 
 **Retention.** The catalog lists supported, retained releases and keeps its
@@ -322,8 +327,9 @@ summary lists every difference from the base branch, capability-sensitive ones
 first: detector reach (any detection, and added or changed references), new
 requirements (roles and core features, protocol generations, platforms and
 minimum platform), the source or signer (routes, root digests, publisher,
-maintainer, and the catalog authority) and new or removed packages. Qualification-only edits and
-withdrawals are listed but not marked. Preview it locally with
+maintainer, and the catalog authority) and new or removed packages. Everything added or removed is marked,
+withdrawals included, so un-revoking a release shows. Only qualification or preview-flag
+edits are listed unmarked. Preview it locally with
 `tool-index-release plugins review --previous <old> --next config/plugins.toml`.
 
 ## Run it locally

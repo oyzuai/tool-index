@@ -18,6 +18,7 @@ trap 'rm -rf "$work"' EXIT
 cat > "$work/cosign" <<'EOF'
 #!/usr/bin/env bash
 # attest-blob --yes --statement S --bundle B FILE | verify-blob-attestation ...
+[ -n "${FAKE_HANG:-}" ] && exec sleep 120
 case "$1" in
   attest-blob)
     while [ $# -gt 0 ]; do
@@ -31,18 +32,28 @@ esac
 EOF
 chmod +x "$work/cosign"
 
-# Answers like ghcr.io for the one release in plugins.go-preview.toml.
+# Answers like ghcr.io for the one release in plugins.go-preview.toml, honoring
+# the -o, -D and -w options the availability script uses.
 cat > "$work/curl" <<'EOF'
 #!/usr/bin/env bash
-args="$*"
+out=/dev/stdout hdr=/dev/null write=
+while [ $# -gt 0 ]; do
+  case "$1" in -o) out=$2; shift ;; -D) hdr=$2; shift ;; -w) write=$2; shift ;; -H|--max-time|--retry) shift ;; http*) url=$1 ;; esac
+  shift
+done
 root=sha256:a4225cd722c100dc0702ce3812f3af251a018f9a3808d146d1e0f1d77d3713f7
-case "$args" in
-  *"/token?"*) echo '{"token":"t"}' ;;
-  *"/manifests/$root"*) [ -n "${FAKE_NO_ROOT:-}" ] && exit 22; printf 'HTTP/2 200\r\nDocker-Content-Digest: %s\r\n\r\n' "$root" ;;
-  *"/referrers/$root"*) [ -n "${FAKE_NO_EVIDENCE:-}" ] && { echo '{"manifests":[]}'; exit 0; }
-    echo '{"manifests":[{"artifactType":"application/vnd.dev.sigstore.bundle.v0.3+json"}]}' ;;
-  *) exit 22 ;;
+[ -n "${FAKE_NET_ERROR:-}" ] && exit 28
+code=200 body='{}'
+case "$url" in
+  *"/token?"*) body='{"token":"t"}' ;;
+  *"/manifests/$root") [ -n "${FAKE_NO_ROOT:-}" ] && code=404 || printf 'HTTP/2 200\r\nDocker-Content-Digest: %s\r\n\r\n' "$root" > "$hdr" ;;
+  *"/referrers/$root") body='{"manifests":[{"artifactType":"application/vnd.dev.sigstore.bundle.v0.3+json"}]}'
+    [ -n "${FAKE_NO_EVIDENCE:-}" ] && body='{"manifests":[]}' ;;
+  *) code=404 ;;
 esac
+printf '%s' "$body" > "$out"
+[ -n "$write" ] && printf '%s' "$code"
+exit 0
 EOF
 chmod +x "$work/curl"
 
@@ -108,6 +119,12 @@ for missing in FAKE_NO_ROOT FAKE_NO_EVIDENCE; do
   grep -q 'not advertised' "$work/log" || fail "$missing: no reason logged"
 done
 
+# A network error is not "unavailable": the run fails and the catalog is
+# absent, instead of a signed catalog that lacks the package.
+setup; FAKE_NET_ERROR=1 run_plugins "$source"
+[ ! -e "$work/release/plugins.json" ] || fail "published a catalog after a network error"
+grep -q 'network error' "$work/log" || fail "no network error logged"
+
 # 4. Failure isolation: a broken source, or a signature that does not verify,
 # leaves no plugin assets and the tools release still plans.
 setup
@@ -121,4 +138,13 @@ setup
 FAKE_VERIFY_FAILS=1 run_plugins "$root/config/plugins.toml"
 [ ! -e "$work/release/plugins.json" ] || fail "unverified catalog left"
 plan | jq -e '.plugins.published == false' > /dev/null || fail "tools release blocked"
+# A hang (here cosign) is cut off by the time bound; the wrapper still exits 0
+# and the tools release plans.
+setup
+start=$SECONDS
+FAKE_HANG=1 PLUGIN_TIMEOUT=3 run_plugins "$root/config/plugins.toml"
+[ $((SECONDS - start)) -lt 60 ] || fail "hang was not cut off"
+[ ! -e "$work/release/plugins.json" ] || fail "hung run left plugins.json"
+grep -q 'exit 124' "$work/log" || fail "timeout not reported"
+plan | jq -e '.plugins.published == false and .serial == 1' > /dev/null || fail "tools release blocked by a hang"
 echo "plugin catalog workflow checks passed"

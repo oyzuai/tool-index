@@ -728,10 +728,32 @@ pub fn timestamp(value: &str) -> Option<i64> {
             19 => b == b'Z',
             _ => b.is_ascii_digit(),
         });
-    if !shape || value[17..19].parse::<u8>().ok()? > 59 {
+    if !shape {
         return None;
     }
-    value.parse::<Timestamp>().ok().map(|t| t.as_second())
+    let number = |range: std::ops::Range<usize>| value[range].parse::<i64>().ok();
+    let (year, month, day) = (number(0..4)?, number(5..7)?, number(8..10)?);
+    let (hour, minute, second) = (number(11..13)?, number(14..16)?, number(17..19)?);
+    let leap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+    let days_in_month = match month {
+        1 | 3 | 5 | 7 | 8 | 10 | 12 => 31,
+        4 | 6 | 9 | 11 => 30,
+        2 if leap => 29,
+        2 => 28,
+        _ => return None,
+    };
+    if day < 1 || day > days_in_month || hour > 23 || minute > 59 || second > 59 {
+        return None;
+    }
+    // Days from the civil date (Howard Hinnant's algorithm), as oyzu computes it.
+    let y = if month <= 2 { year - 1 } else { year };
+    let era = y.div_euclid(400);
+    let yoe = y - era * 400;
+    let mp = (month + 9) % 12;
+    let doy = (153 * mp + 2) / 5 + day - 1;
+    let doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    let days = era * 146097 + doe - 719468;
+    Some(days * 86400 + hour * 3600 + minute * 60 + second)
 }
 
 fn host_ok(host: &str, dotted: bool) -> bool {
@@ -1435,11 +1457,13 @@ const SENSITIVE_RELEASE: [&str; 6] = [
     "routes",
 ];
 
-/// Compares two plugin sources structurally. Sensitive: any detection; any
-/// added or changed reference; a package's authority, publisher or
-/// maintainer; and, per release, roles/features, protocol generations,
-/// profiles, root digest, platforms (including `min_platform`) and routes.
-/// Qualification-only edits and withdrawals are listed but not sensitive.
+/// Compares two plugin sources structurally. Sensitive: anything added or
+/// removed (packages, releases, references, detections, withdrawals, so an
+/// un-revoked release shows); any changed detection, reference or withdrawal;
+/// a package's publisher or maintainer; and, per release, roles/features,
+/// protocol generations, profiles, root digest, platforms (including
+/// `min_platform`) and routes. Only edits to a release's qualification or
+/// preview flag are listed unmarked.
 pub fn review(previous: Option<&str>, next: &str) -> Result<Vec<Change>> {
     let old = match previous {
         Some(p) => Source::parse(p)?.content(),
@@ -1494,7 +1518,7 @@ pub fn review(previous: Option<&str>, next: &str) -> Result<Vec<Change>> {
                     key: format!("{id}@{}", r.version),
                     kind: "removed",
                     fields: vec![],
-                    sensitive: false,
+                    sensitive: true,
                 });
             }
         }
@@ -1550,7 +1574,7 @@ fn diff(
     field_sensitive: impl Fn(&str) -> bool,
     out: &mut Vec<Change>,
 ) {
-    let section_sensitive = matches!(section, "detections" | "references");
+    let section_sensitive = matches!(section, "detections" | "references" | "withdrawals");
     for (key, value) in new {
         match old.get(key) {
             None => out.push(Change {
@@ -1558,7 +1582,7 @@ fn diff(
                 key: key.clone(),
                 kind: "added",
                 fields: vec![],
-                sensitive: section != "withdrawals",
+                sensitive: true,
             }),
             Some(before) if before != value => {
                 let fields: Vec<String> = match (before, value) {
@@ -1590,7 +1614,7 @@ fn diff(
             key: key.clone(),
             kind: "removed",
             fields: vec![],
-            sensitive: section == "detections",
+            sensitive: true,
         });
     }
 }

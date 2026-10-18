@@ -367,3 +367,48 @@ fn the_committed_example_source_matches_the_canonical_catalog() {
     let canonical: Catalog = serde_json::from_str(PREVIEW).unwrap();
     assert_eq!(Source::parse(text).unwrap().content(), canonical.content);
 }
+
+#[test]
+fn review_marks_package_and_withdrawal_changes_sensitive() {
+    let base = source_of(MAJORS);
+    // Un-revoking: the withdrawal disappears.
+    let mut catalog: Catalog = serde_json::from_str(MAJORS).unwrap();
+    catalog.content.withdrawals.clear();
+    let changes = review(Some(&base), &toml::to_string(&catalog.content).unwrap()).unwrap();
+    assert!(
+        changes
+            .iter()
+            .any(|c| c.section == "withdrawals" && c.kind == "removed" && c.sensitive),
+        "{changes:?}"
+    );
+    // A withdrawal added, a package added and a package removed.
+    let empty = "authority = \"oyzu\"\n";
+    let added = review(Some(empty), &base).unwrap();
+    assert!(added.iter().all(|c| c.sensitive), "{added:?}");
+    let removed = review(Some(&base), empty).unwrap();
+    assert!(
+        removed.iter().any(|c| c.section == "packages") && removed.iter().all(|c| c.sensitive),
+        "{removed:?}"
+    );
+}
+
+#[test]
+fn timestamps_follow_oyzus_arithmetic() {
+    assert_eq!(timestamp("1970-01-01T00:00:00Z"), Some(0));
+    assert_eq!(timestamp("2000-03-01T00:00:00Z"), Some(951868800));
+    assert_eq!(timestamp("2024-02-29T23:59:59Z"), Some(1709251199));
+    // The end of year 9999, which a calendar library's range would refuse.
+    assert_eq!(timestamp("9999-12-31T23:59:59Z"), Some(253402300799));
+    assert!(timestamp("9999-12-30T22:00:01Z").is_some());
+    for bad in [
+        "2026-02-29T00:00:00Z",
+        "2026-13-01T00:00:00Z",
+        "2026-10-18T24:00:00Z",
+        "2026-10-18T06:00:60Z",
+        "2026-10-18T06:00:00+00:00",
+        "2026-10-18T06:00:00.5Z",
+        "2026-10-18 06:00:00Z",
+    ] {
+        assert_eq!(timestamp(bad), None, "{bad}");
+    }
+}

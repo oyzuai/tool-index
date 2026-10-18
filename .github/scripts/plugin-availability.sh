@@ -7,8 +7,10 @@
 # Anything else is left out, with the reason on stderr; a release is never
 # guessed available.
 #
-# Root: GET /v2/<repo>/manifests/<root digest> on ghcr.io, with an anonymous
+# Root: HEAD /v2/<repo>/manifests/<root digest> on ghcr.io, with an anonymous
 # pull token, answers 200 and the same digest in Docker-Content-Digest.
+# A release is left out only on a definite 404 or a missing evidence entry;
+# every other error (timeouts, 5xx, 401/403) fails the script instead.
 # Evidence: the OCI referrers of the root list a Sigstore bundle artifact.
 #
 # ASSUMPTION: the evidence artifact type below is a placeholder until oyzu
@@ -23,16 +25,41 @@ accept='application/vnd.oci.image.index.v1+json, application/vnd.oci.image.manif
 
 skip() { echo "not advertised: $1@$2: $3" >&2; }
 
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+# GET/HEAD with a time bound and retries. Prints the HTTP status; the body is
+# in $tmp/body and the headers in $tmp/headers. A transport error (timeout,
+# reset, DNS) ends the whole script with a failure: only a definite answer may
+# decide that a release is unavailable, so a blip makes the catalog run fail
+# (plugins absent from this release) and never publishes a catalog that lacks
+# packages.
+fetch() {
+  "$curl" -sS --max-time 30 --retry 3 --retry-all-errors -o "$tmp/body" -D "$tmp/headers" \
+    -w '%{http_code}' "$@" || { echo "network error talking to ghcr.io" >&2; exit 1; }
+}
+
+# Returns 0 when available, 1 when GHCR answers 404 (unknown manifest or no
+# referrers); any other answer ends the script with a failure.
 available() { # repository root_digest
-  local path=${1#ghcr.io/} token headers refs
-  token=$("$curl" -fsS "https://ghcr.io/token?service=ghcr.io&scope=repository:$path:pull" | jq -er .token) || return 1
-  headers=$("$curl" -fsSI -H "Authorization: Bearer $token" -H "Accept: $accept" \
-    "https://ghcr.io/v2/$path/manifests/$2") || return 1
-  printf '%s\n' "$headers" | tr -d '\r' | grep -iqx "docker-content-digest: $2" || return 1
-  refs=$("$curl" -fsS -H "Authorization: Bearer $token" -H "Accept: application/vnd.oci.image.index.v1+json" \
-    "https://ghcr.io/v2/$path/referrers/$2") || return 1
-  printf '%s' "$refs" | jq -e --arg t "$EVIDENCE_TYPE" \
-    '[.manifests[]? | select(.artifactType == $t)] | length > 0' > /dev/null
+  local path=${1#ghcr.io/} token code
+  code=$(fetch "https://ghcr.io/token?service=ghcr.io&scope=repository:$path:pull")
+  [ "$code" = 200 ] && token=$(jq -er .token "$tmp/body") || { echo "no pull token for $path (HTTP $code)" >&2; exit 1; }
+  code=$(fetch -I -H "Authorization: Bearer $token" -H "Accept: $accept" "https://ghcr.io/v2/$path/manifests/$2")
+  case "$code" in
+    200) ;;
+    404) return 1 ;;
+    *) echo "unexpected HTTP $code for $path manifest" >&2; exit 1 ;;
+  esac
+  tr -d '\r' < "$tmp/headers" | grep -iqx "docker-content-digest: $2" || return 1
+  code=$(fetch -H "Authorization: Bearer $token" -H "Accept: application/vnd.oci.image.index.v1+json" \
+    "https://ghcr.io/v2/$path/referrers/$2")
+  case "$code" in
+    200) ;;
+    404) return 1 ;;
+    *) echo "unexpected HTTP $code for $path referrers" >&2; exit 1 ;;
+  esac
+  jq -e --arg t "$EVIDENCE_TYPE" '[.manifests[]? | select(.artifactType == $t)] | length > 0' "$tmp/body" > /dev/null
 }
 
 out='[]'
