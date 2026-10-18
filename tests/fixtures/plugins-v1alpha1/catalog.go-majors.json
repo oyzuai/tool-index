@@ -1,0 +1,375 @@
+{
+  "schema_version": "v1alpha1",
+  "type": "plugin-catalog",
+  "serial": 413,
+  "generated_at": "2026-10-19T06:00:00Z",
+  "expires_at": "2026-11-02T06:00:00Z",
+  "content_digest": "sha256:599b45ca6b4267722c0d072b72b732b3a960b1da8fe556c22be107ef8f9095bb",
+  "content": {
+    "authority": "oyzu",
+    "packages": [
+      {
+        "authority": "oyzu",
+        "publisher": "oyzu",
+        "name": "go",
+        "maintainer": "Oyzu maintainers",
+        "releases": [
+          {
+            "version": "2.3.0",
+            "major": 2,
+            "preview": false,
+            "protocol_generations": [
+              "v1alpha1"
+            ],
+            "roles": [
+              {
+                "role": "builder",
+                "features": [
+                  "go-test-events"
+                ]
+              }
+            ],
+            "profiles": [
+              {
+                "name": "app",
+                "role": "builder"
+              },
+              {
+                "name": "library",
+                "role": "builder"
+              }
+            ],
+            "root_digest": "sha256:71e4d7b21ac20cd1add7e1deed33b343d7eca9f91b7429c5e159ab3dbd6f17c3",
+            "platforms": [
+              {
+                "os": "darwin",
+                "arch": "arm64",
+                "min_platform": "11.0",
+                "manifest_digest": "sha256:ecb7de5c6e5e30674ab9a20ec4aaa394da928ee547f665955c54ebd8f2761cf1",
+                "payload_digest": "sha256:9f9dabe13f5a345fee057f42760bd924cef7ec921f741d0dd090a48329174b10",
+                "size": 4718592
+              },
+              {
+                "os": "linux",
+                "arch": "amd64",
+                "abi": "musl",
+                "manifest_digest": "sha256:bd49bf164bf39f21fde8e62a649711b8d9d132ed0adf21d0793477243063be9c",
+                "payload_digest": "sha256:ba570298d5926435f35d3846a0c40f2c0e128c4354d294341f633370bd4b379b",
+                "size": 4718592
+              }
+            ],
+            "routes": [
+              {
+                "type": "oci",
+                "reference": "ghcr.io/oyzuai/plugins/go@sha256:71e4d7b21ac20cd1add7e1deed33b343d7eca9f91b7429c5e159ab3dbd6f17c3"
+              }
+            ],
+            "qualification": {
+              "tested": [
+                {
+                  "core": "0.8.0",
+                  "platforms": [
+                    {
+                      "os": "darwin",
+                      "arch": "arm64"
+                    },
+                    {
+                      "os": "linux",
+                      "arch": "amd64",
+                      "abi": "musl"
+                    }
+                  ]
+                }
+              ],
+              "support": {
+                "status": "deprecated",
+                "ends": "2027-04-01T00:00:00Z",
+                "message": "Update to 2.4.0 or later; 2.3 receives no further fixes."
+              }
+            }
+          },
+          {
+            "version": "2.4.0",
+            "major": 2,
+            "preview": false,
+            "protocol_generations": [
+              "v1alpha1"
+            ],
+            "roles": [
+              {
+                "role": "builder",
+                "features": [
+                  "go-test-events"
+                ]
+              }
+            ],
+            "profiles": [
+              {
+                "name": "app",
+                "role": "builder"
+              },
+              {
+                "name": "library",
+                "role": "builder"
+              }
+            ],
+            "root_digest": "sha256:c1aee2b546feadc26c0eed6b1d3696dc9b9a9f2d9c99063fa1144d7f7680bf02",
+            "platforms": [
+              {
+                "os": "darwin",
+                "arch": "arm64",
+                "min_platform": "11.0",
+                "manifest_digest": "sha256:519419b6076a1978a4a7d4e835e35017509767c6f85624e8f4bc860aadcf07f4",
+                "payload_digest": "sha256:f4569d5e9f1bbcab64568d73747e42c71f7d8e14a69b368dc2c43a72aca6d064",
+                "size": 4718592
+              },
+              {
+                "os": "linux",
+                "arch": "amd64",
+                "abi": "musl",
+                "manifest_digest": "sha256:595636fa9f06a1b14f582631a059de5c67910a71798437cc575cc9cbd5e1ed97",
+                "payload_digest": "sha256:2bc17746a16b025850c02ba26f5c312562d425b15a88bcba71a0a8cef3309439",
+                "size": 4718592
+              }
+            ],
+            "routes": [
+              {
+                "type": "oci",
+                "reference": "ghcr.io/oyzuai/plugins/go@sha256:c1aee2b546feadc26c0eed6b1d3696dc9b9a9f2d9c99063fa1144d7f7680bf02"
+              },
+              {
+                "type": "https",
+                "url": "https://downloads.example.com/oyzu/plugins/go/2.4.0/release.oci.tar"
+              }
+            ],
+            "qualification": {
+              "tested": [
+                {
+                  "core": "0.8.0",
+                  "platforms": [
+                    {
+                      "os": "darwin",
+                      "arch": "arm64"
+                    },
+                    {
+                      "os": "linux",
+                      "arch": "amd64",
+                      "abi": "musl"
+                    }
+                  ]
+                },
+                {
+                  "core": "0.9.0",
+                  "platforms": [
+                    {
+                      "os": "darwin",
+                      "arch": "arm64"
+                    },
+                    {
+                      "os": "linux",
+                      "arch": "amd64",
+                      "abi": "musl"
+                    }
+                  ]
+                }
+              ],
+              "support": {
+                "status": "supported"
+              }
+            }
+          },
+          {
+            "version": "3.0.0",
+            "major": 3,
+            "preview": false,
+            "protocol_generations": [
+              "v1alpha1"
+            ],
+            "roles": [
+              {
+                "role": "builder",
+                "features": [
+                  "go-test-events",
+                  "native-preparation"
+                ]
+              }
+            ],
+            "profiles": [
+              {
+                "name": "app",
+                "role": "builder"
+              },
+              {
+                "name": "library",
+                "role": "builder"
+              }
+            ],
+            "root_digest": "sha256:527817bed1ce2e2f6999cb87c4068c1ac8ce58ae8dd6ec23efa61ae70a6eadb1",
+            "platforms": [
+              {
+                "os": "darwin",
+                "arch": "arm64",
+                "min_platform": "11.0",
+                "manifest_digest": "sha256:374c0b3e3d0bd34667ed4e3f8d3bf1f63f8d61e113b1d54b5968922731b10057",
+                "payload_digest": "sha256:245ee6b358c1a4a2b45dfb353d891e3c9b28a3886a214390bc4e4715b25c3714",
+                "size": 4718592
+              },
+              {
+                "os": "linux",
+                "arch": "amd64",
+                "abi": "musl",
+                "manifest_digest": "sha256:d79777685d6e3fa2568192a5340ac5920fb211d78fa1b1a7f97d52da1b2f63e8",
+                "payload_digest": "sha256:1a7a0df63d779f2d253df7cff08116e49aee96f2c92aa2fa3c86ee5b1194e513",
+                "size": 4718592
+              }
+            ],
+            "routes": [
+              {
+                "type": "oci",
+                "reference": "ghcr.io/oyzuai/plugins/go@sha256:527817bed1ce2e2f6999cb87c4068c1ac8ce58ae8dd6ec23efa61ae70a6eadb1"
+              }
+            ],
+            "qualification": {
+              "tested": [
+                {
+                  "core": "0.10.0",
+                  "platforms": [
+                    {
+                      "os": "darwin",
+                      "arch": "arm64"
+                    },
+                    {
+                      "os": "linux",
+                      "arch": "amd64",
+                      "abi": "musl"
+                    }
+                  ]
+                }
+              ],
+              "support": {
+                "status": "supported"
+              }
+            }
+          },
+          {
+            "version": "3.1.0-rc.1",
+            "major": 3,
+            "preview": true,
+            "protocol_generations": [
+              "v1alpha1"
+            ],
+            "roles": [
+              {
+                "role": "builder",
+                "features": [
+                  "go-test-events",
+                  "native-preparation"
+                ]
+              }
+            ],
+            "profiles": [
+              {
+                "name": "app",
+                "role": "builder"
+              },
+              {
+                "name": "library",
+                "role": "builder"
+              }
+            ],
+            "root_digest": "sha256:71302125c604b355cd6994a811c04f736af8e49adb68e7f9da1bbf169256f524",
+            "platforms": [
+              {
+                "os": "darwin",
+                "arch": "arm64",
+                "min_platform": "11.0",
+                "manifest_digest": "sha256:c7f7027a38863a650e7eb74fa9816b7d64fc926da244e53a9a71ac17e222ef1a",
+                "payload_digest": "sha256:5e39f1644464779e0bc6129cad54f6162ef91c1311413c2777d956d33df8b0d9",
+                "size": 4718592
+              },
+              {
+                "os": "linux",
+                "arch": "amd64",
+                "abi": "musl",
+                "manifest_digest": "sha256:fb384bb0257d84ba3dbb11a5d305d96e3d83da84c1843565ee57afd08789e617",
+                "payload_digest": "sha256:0a47850b57a61635fbd4d92a50479405dda07668b5f4977e11f8b0c357aee02c",
+                "size": 4718592
+              }
+            ],
+            "routes": [
+              {
+                "type": "oci",
+                "reference": "ghcr.io/oyzuai/plugins/go@sha256:71302125c604b355cd6994a811c04f736af8e49adb68e7f9da1bbf169256f524"
+              }
+            ],
+            "qualification": {
+              "tested": [],
+              "support": {
+                "status": "supported"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "reference": "go/app",
+        "package": "oyzu/go",
+        "profile": "app",
+        "role": "builder",
+        "description": "Build, test and package Go modules and workspaces with the native go toolchain."
+      },
+      {
+        "reference": "go/library",
+        "package": "oyzu/go",
+        "profile": "library",
+        "role": "builder",
+        "description": "Test and vet Go library modules without producing an executable."
+      }
+    ],
+    "detections": [
+      {
+        "id": "go-module",
+        "uses": "go/app",
+        "match": {
+          "all": [
+            {
+              "field": {
+                "file": "go.mod",
+                "format": "go-mod",
+                "path": [
+                  "module"
+                ],
+                "present": true
+              }
+            },
+            {
+              "not": {
+                "file": "go.work"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "go-workspace",
+        "uses": "go/app",
+        "match": {
+          "file": "go.work"
+        }
+      }
+    ],
+    "withdrawals": [
+      {
+        "package": "oyzu/go",
+        "version": "2.4.1",
+        "root_digest": "sha256:01da8e649818b5792fb32c00621e1997d46a35d853f2cba1e3fc3bcead6ea81b",
+        "kind": "withdrawn",
+        "at": "2026-10-12T14:30:00Z",
+        "reason": "go test reports were written to the wrong directory on Windows.",
+        "replacement": "2.4.0"
+      }
+    ]
+  }
+}

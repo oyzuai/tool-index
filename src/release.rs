@@ -7,7 +7,13 @@
 //! `index.json.sigstore.json` and the registry's `NOTICE`. This
 //! module checks a release directory and prints the plan; the workflow
 //! publishes it with `gh release create` after `cosign verify-blob-attestation`.
+//!
+//! A release may also carry the plugin catalog, `plugins.json` and its bundle
+//! `plugins.json.sigstore.json` (see `crate::plugins`). They are optional and
+//! never stop the tools release: a pair that is missing, unsigned for this
+//! `index.json`, expired or invalid is left out of the plan with the reason.
 use crate::index::Index;
+use crate::plugins;
 use anyhow::{bail, ensure, Context, Result};
 use base64::Engine as _;
 use jiff::Timestamp;
@@ -23,6 +29,9 @@ pub const NOTICE: &str = "NOTICE";
 /// Every asset of a release, in upload order.
 pub const ASSETS: [&str; 4] = [INDEX, COMPRESSED, BUNDLE, NOTICE];
 
+pub const PLUGINS: &str = "plugins.json";
+pub const PLUGINS_BUNDLE: &str = "plugins.json.sigstore.json";
+
 pub const BUNDLE_MEDIA_TYPE: &str = "application/vnd.dev.sigstore.bundle.v0.3+json";
 pub const PAYLOAD_TYPE: &str = "application/vnd.in-toto+json";
 
@@ -34,9 +43,18 @@ pub struct Plan {
     pub assets: Vec<Asset>,
     /// Assets not in the directory yet; a non-dry run refuses when any are.
     pub missing: Vec<String>,
+    /// Whether the plugin catalog is part of this release.
+    pub plugins: PluginsPlan,
     /// The command the release workflow runs, for review.
     pub command: String,
     pub dry_run: bool,
+}
+
+#[derive(Debug, Serialize)]
+pub struct PluginsPlan {
+    pub published: bool,
+    /// Why the catalog is absent from this release, when it is.
+    pub skipped: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -50,7 +68,8 @@ pub struct Asset {
 /// The stamped index must be valid and unexpired at `now`. When the bundle is
 /// present, its statement must name `index.json`'s SHA-256 (the signature
 /// itself is checked by `cosign verify-blob-attestation` in the workflow). Without
-/// `dry_run`, every asset must exist.
+/// `dry_run`, every tools asset must exist. The plugin catalog is judged
+/// separately and can only be left out, never fail the plan.
 pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
     let index_bytes = std::fs::read(dir.join(INDEX))
         .with_context(|| format!("reading {}", dir.join(INDEX).display()))?;
@@ -82,9 +101,16 @@ pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
     if !dry_run && !missing.is_empty() {
         bail!("{} is missing {}", dir.display(), missing.join(", "));
     }
+    let plugins = plugins_plan(dir, serial, now, dry_run, &mut assets, &mut missing);
     let tag = format!("index-v{serial}");
     let files: Vec<String> = ASSETS
         .iter()
+        .copied()
+        .chain(
+            [PLUGINS, PLUGINS_BUNDLE]
+                .into_iter()
+                .filter(|n| assets.iter().any(|a| a.name == *n)),
+        )
         .map(|a| dir.join(a).display().to_string())
         .collect();
     Ok(Plan {
@@ -97,8 +123,65 @@ pub fn plan(dir: &Path, now: Timestamp, dry_run: bool) -> Result<Plan> {
         expires,
         assets,
         missing,
+        plugins,
         dry_run,
     })
+}
+
+/// Adds `plugins.json` and its bundle to the plan when both belong to this
+/// release. The catalog must decode and pass the contract's rules, carry the
+/// index's serial, be unexpired, and the bundle's statement must name
+/// `plugins.json`'s exact bytes. In a dry run an unsigned `plugins.json` is
+/// reported as a missing bundle instead of being skipped.
+fn plugins_plan(
+    dir: &Path,
+    serial: u64,
+    now: Timestamp,
+    dry_run: bool,
+    assets: &mut Vec<Asset>,
+    missing: &mut Vec<String>,
+) -> PluginsPlan {
+    let skip = |why: String| PluginsPlan {
+        published: false,
+        skipped: Some(why),
+    };
+    let catalog = std::fs::read(dir.join(PLUGINS));
+    let bundle = std::fs::read(dir.join(PLUGINS_BUNDLE));
+    let (catalog, bundle) = match (catalog, bundle) {
+        (Err(_), Err(_)) => return skip("no plugins.json in the release directory".into()),
+        (Ok(c), Err(_)) if dry_run => {
+            if let Err(e) = plugins::check_release(&c, serial, now) {
+                return skip(format!("{e:#}"));
+            }
+            assets.push(Asset {
+                name: PLUGINS.into(),
+                bytes: c.len() as u64,
+            });
+            missing.push(PLUGINS_BUNDLE.into());
+            return PluginsPlan {
+                published: false,
+                skipped: Some(format!("{PLUGINS_BUNDLE} is not signed yet")),
+            };
+        }
+        (Ok(_), Err(_)) => return skip(format!("{PLUGINS_BUNDLE} is missing")),
+        (Err(_), Ok(_)) => return skip(format!("{PLUGINS} is missing")),
+        (Ok(c), Ok(b)) => (c, b),
+    };
+    if let Err(e) = plugins::check_release(&catalog, serial, now)
+        .and_then(|_| check_bundle_for(&bundle, &catalog, PLUGINS))
+    {
+        return skip(format!("{e:#}"));
+    }
+    for (name, bytes) in [(PLUGINS, catalog.len()), (PLUGINS_BUNDLE, bundle.len())] {
+        assets.push(Asset {
+            name: name.into(),
+            bytes: bytes as u64,
+        });
+    }
+    PluginsPlan {
+        published: true,
+        skipped: None,
+    }
 }
 
 /// `index.json.zst` decompresses to exactly the stamped `index.json`.
@@ -122,6 +205,16 @@ pub fn check_compressed(compressed: &[u8], index: &[u8]) -> Result<()> {
 /// index's exact bytes. This catches a bundle for a different file before
 /// anything is uploaded; it does not verify the signature.
 pub fn check_bundle(bundle: &[u8], index: &[u8]) -> Result<()> {
+    check_bundle_named(bundle, index, None)
+}
+
+/// [`check_bundle`] for a named file: the statement's subject must also carry
+/// that name (the plugin catalog's is `plugins.json`).
+pub fn check_bundle_for(bundle: &[u8], bytes: &[u8], name: &str) -> Result<()> {
+    check_bundle_named(bundle, bytes, Some(name))
+}
+
+fn check_bundle_named(bundle: &[u8], index: &[u8], name: Option<&str>) -> Result<()> {
     let bundle: Value = serde_json::from_slice(bundle).context("parsing the bundle")?;
     ensure!(
         bundle["mediaType"] == BUNDLE_MEDIA_TYPE,
@@ -141,10 +234,11 @@ pub fn check_bundle(bundle: &[u8], index: &[u8]) -> Result<()> {
         .as_array()
         .into_iter()
         .flatten()
-        .any(|s| s["digest"]["sha256"] == digest.as_str());
+        .any(|s| s["digest"]["sha256"] == digest.as_str() && name.is_none_or(|n| s["name"] == n));
     ensure!(
         names_index,
-        "the bundle does not sign index.json (sha256 {digest})"
+        "the bundle does not sign {} (sha256 {digest})",
+        name.unwrap_or("index.json")
     );
     Ok(())
 }

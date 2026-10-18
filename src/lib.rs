@@ -6,6 +6,7 @@ pub mod config;
 pub mod fetch;
 pub mod index;
 pub mod names;
+pub mod plugins;
 pub mod registry;
 pub mod release;
 pub mod resolve;

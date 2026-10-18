@@ -1,0 +1,697 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oyzu.dev/contracts/plugins-v1alpha1/catalog.schema.json",
+  "title": "Draft plugin protocol v1alpha1: plugin catalog",
+  "description": "The signed plugin catalog published as plugins.json beside index.json in a tool-index release, with the Sigstore bundle plugins.json.sigstore.json over the SHA-256 of the exact plugins.json bytes, signed by the same pinned tool-index release identity. Shape only: crates/oyzu-plugin-protocol also checks the rules JSON Schema cannot express (content_digest, sort order and uniqueness, references between members, version/major agreement, matcher depth and size, freshness window and serial succession). The catalog supplies candidate references, release metadata and detection observations; it grants no authority, names no plugin as a dependency of another and assigns no evidence strength.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "type",
+    "serial",
+    "generated_at",
+    "expires_at",
+    "content_digest",
+    "content"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "common.schema.json#/$defs/generation"
+    },
+    "type": {
+      "const": "plugin-catalog"
+    },
+    "serial": {
+      "description": "Envelope: the tool-index release serial stamped on index.json in the same release, re-signs included. A client refuses a lower serial than the last verified catalog, or an equal one with different bytes.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "generated_at": {
+      "description": "Envelope: when the release workflow stamped this document.",
+      "$ref": "#/$defs/timestamp"
+    },
+    "expires_at": {
+      "description": "Envelope: the document must not be used for current eligibility after this time. Later than generated_at and at most 31 days after it.",
+      "$ref": "#/$defs/timestamp"
+    },
+    "content_digest": {
+      "description": "Semantic identity: sha256 of the RFC 8785 canonical JSON of content. A re-signed catalog with the same content keeps the same digest, so caches keyed by catalog semantics stay valid when only the envelope changes.",
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "content": {
+      "$ref": "#/$defs/content"
+    }
+  },
+  "$defs": {
+    "timestamp": {
+      "description": "RFC 3339 UTC time in whole seconds, the only accepted spelling.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]Z$"
+    },
+    "packageId": {
+      "description": "A canonical package identity <publisher>/<name>, as recorded in the oyzu.lock plugin selection.",
+      "type": "string",
+      "maxLength": 129,
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}/[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "shortUses": {
+      "description": "A logical uses reference without a major selector: <package>/<profile>.",
+      "type": "string",
+      "maxLength": 129,
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}/[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority",
+        "packages",
+        "references",
+        "detections",
+        "withdrawals"
+      ],
+      "properties": {
+        "authority": {
+          "description": "The naming authority whose short-name bindings this catalog publishes: oyzu for the official public catalog.",
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "packages": {
+          "description": "Canonical packages and their releases, sorted by package id.",
+          "type": "array",
+          "maxItems": 1024,
+          "items": {
+            "$ref": "#/$defs/package"
+          }
+        },
+        "references": {
+          "description": "Logical uses references, sorted by reference. Several references may share one package.",
+          "type": "array",
+          "maxItems": 4096,
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        },
+        "detections": {
+          "description": "Detection mappings, sorted by id.",
+          "type": "array",
+          "maxItems": 4096,
+          "items": {
+            "$ref": "#/$defs/detection"
+          }
+        },
+        "withdrawals": {
+          "description": "Withdrawn or revoked releases, sorted by package then version. A withdrawn release is not also listed under releases. Absence from the catalog is unavailability, never withdrawal.",
+          "type": "array",
+          "maxItems": 4096,
+          "items": {
+            "$ref": "#/$defs/withdrawal"
+          }
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority",
+        "publisher",
+        "name",
+        "maintainer",
+        "releases"
+      ],
+      "properties": {
+        "authority": {
+          "description": "Equals content.authority.",
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "publisher": {
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "name": {
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "maintainer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "releases": {
+          "description": "Admitted releases, sorted by semantic version precedence, oldest first, versions unique.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {
+            "$ref": "#/$defs/release"
+          }
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "major",
+        "preview",
+        "protocol_generations",
+        "roles",
+        "profiles",
+        "root_digest",
+        "platforms",
+        "routes",
+        "qualification"
+      ],
+      "properties": {
+        "version": {
+          "$ref": "common.schema.json#/$defs/semver"
+        },
+        "major": {
+          "description": "The major component of version; the selector @v<major> and an adopted major match it.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 999999999
+        },
+        "preview": {
+          "description": "A preview release needs deliberate selection and is excluded from stable resolution, latest stable and updates. A semantic-version prerelease is always a preview.",
+          "type": "boolean"
+        },
+        "protocol_generations": {
+          "description": "Common protocol generations the release speaks, sorted and unique; core needs one of them.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/generation"
+          }
+        },
+        "roles": {
+          "description": "Role contracts with the core features the release requires, sorted by role.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role",
+              "features"
+            ],
+            "properties": {
+              "role": {
+                "$ref": "common.schema.json#/$defs/role"
+              },
+              "features": {
+                "description": "Required core features, sorted and unique.",
+                "$ref": "common.schema.json#/$defs/features"
+              }
+            }
+          }
+        },
+        "profiles": {
+          "description": "Profiles the release registers, as its manifest does, sorted by name.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "role"
+            ],
+            "properties": {
+              "name": {
+                "$ref": "common.schema.json#/$defs/component"
+              },
+              "role": {
+                "$ref": "common.schema.json#/$defs/role"
+              }
+            }
+          }
+        },
+        "root_digest": {
+          "description": "Digest of the immutable OCI release root, the value recorded as release in oyzu.lock.",
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "platforms": {
+          "description": "Native payloads, sorted by os, arch, abi; one per os/arch/abi.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/platformPayload"
+          }
+        },
+        "routes": {
+          "description": "Approved acquisition routes for the release root, at most one of each type. Every route yields the same root digest.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/route"
+          }
+        },
+        "qualification": {
+          "$ref": "#/$defs/qualification"
+        }
+      }
+    },
+    "platformPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os",
+        "arch",
+        "manifest_digest",
+        "payload_digest",
+        "size"
+      ],
+      "properties": {
+        "os": {
+          "enum": [
+            "linux",
+            "darwin",
+            "windows"
+          ]
+        },
+        "arch": {
+          "enum": [
+            "amd64",
+            "arm64"
+          ]
+        },
+        "abi": {
+          "enum": [
+            "gnu",
+            "musl",
+            "msvc"
+          ]
+        },
+        "min_platform": {
+          "description": "Minimum OS release, such as 11.0 for macOS or 2.17 for glibc.",
+          "type": "string",
+          "pattern": "^[0-9]{1,5}(\\.[0-9]{1,5}){0,3}$"
+        },
+        "manifest_digest": {
+          "description": "The platform's OCI manifest in the release root.",
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "payload_digest": {
+          "description": "The platform payload archive.",
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "size": {
+          "description": "Payload archive bytes, at most 1 GiB.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1073741824
+        }
+      }
+    },
+    "route": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "reference"
+          ],
+          "properties": {
+            "type": {
+              "const": "oci"
+            },
+            "reference": {
+              "description": "<registry>/<repository>@<root_digest>. Official packages use ghcr.io/oyzuai/plugins/<name>.",
+              "type": "string",
+              "maxLength": 512,
+              "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*(:[0-9]{1,5})?/[a-z0-9]+([._-][a-z0-9]+)*(/[a-z0-9]+([._-][a-z0-9]+)*)*@sha256:[0-9a-f]{64}$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "url"
+          ],
+          "properties": {
+            "type": {
+              "const": "https"
+            },
+            "url": {
+              "description": "An approved HTTPS location of the release graph as an OCI image layout archive, verified by root_digest. No credentials, query or fragment.",
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https://[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+(:[0-9]{1,5})?(/[A-Za-z0-9._~%+-]+)+$"
+            }
+          }
+        }
+      ]
+    },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tested",
+        "support"
+      ],
+      "properties": {
+        "tested": {
+          "description": "Tested core and platform combinations, sorted by core version. Untested combinations are unknown, not unsupported.",
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "core",
+              "platforms"
+            ],
+            "properties": {
+              "core": {
+                "description": "The exact Oyzu engine version tested.",
+                "$ref": "common.schema.json#/$defs/semver"
+              },
+              "platforms": {
+                "description": "Platforms of this release tested with that core, sorted and unique.",
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 32,
+                "items": {
+                  "$ref": "#/$defs/platformKey"
+                }
+              }
+            }
+          }
+        },
+        "support": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {
+              "description": "supported: within its support statement. deprecated: still eligible, with a replacement or end date. unsupported: eligible only where policy accepts unsupported releases. Withdrawal is separate.",
+              "enum": [
+                "supported",
+                "deprecated",
+                "unsupported"
+              ]
+            },
+            "ends": {
+              "description": "End of support, required when deprecated.",
+              "$ref": "#/$defs/timestamp"
+            },
+            "message": {
+              "$ref": "common.schema.json#/$defs/message"
+            }
+          },
+          "if": {
+            "properties": {
+              "status": {
+                "const": "deprecated"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "ends",
+              "message"
+            ]
+          }
+        }
+      }
+    },
+    "platformKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os",
+        "arch"
+      ],
+      "properties": {
+        "os": {
+          "enum": [
+            "linux",
+            "darwin",
+            "windows"
+          ]
+        },
+        "arch": {
+          "enum": [
+            "amd64",
+            "arm64"
+          ]
+        },
+        "abi": {
+          "enum": [
+            "gnu",
+            "musl",
+            "msvc"
+          ]
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "package",
+        "profile",
+        "role",
+        "description"
+      ],
+      "properties": {
+        "reference": {
+          "description": "The logical uses reference users configure, such as go/app.",
+          "$ref": "#/$defs/shortUses"
+        },
+        "package": {
+          "description": "The canonical package the reference binds to; it must be listed under packages.",
+          "$ref": "#/$defs/packageId"
+        },
+        "profile": {
+          "description": "The profile within that package. At least one release registers it with this role.",
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "role": {
+          "description": "The registered core role, the type filter of plugin search.",
+          "$ref": "common.schema.json#/$defs/role"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        }
+      }
+    },
+    "detection": {
+      "description": "One mapping from bounded project observations to a logical uses candidate. The author describes observations only; core assigns their evidence class and applies role rules.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "uses",
+        "match"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/component"
+        },
+        "uses": {
+          "description": "A logical reference listed under references. Detection never selects a major, a direct source or a release.",
+          "$ref": "#/$defs/shortUses"
+        },
+        "match": {
+          "$ref": "#/$defs/matcher"
+        }
+      }
+    },
+    "matcher": {
+      "description": "Bounded matcher over one candidate directory: at most 32 nodes, nesting depth at most 4, and the matcher as a whole requires a positive observation (an exclusion alone matches nothing).",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "file"
+          ],
+          "properties": {
+            "file": {
+              "description": "An exact marker file name present in the candidate directory, compared case-sensitively.",
+              "$ref": "common.schema.json#/$defs/filename"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "field"
+          ],
+          "properties": {
+            "field": {
+              "$ref": "#/$defs/fieldPredicate"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "all"
+          ],
+          "properties": {
+            "all": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 16,
+              "items": {
+                "$ref": "#/$defs/matcher"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "any"
+          ],
+          "properties": {
+            "any": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 16,
+              "items": {
+                "$ref": "#/$defs/matcher"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "not"
+          ],
+          "properties": {
+            "not": {
+              "$ref": "#/$defs/matcher"
+            }
+          }
+        }
+      ]
+    },
+    "fieldPredicate": {
+      "description": "A bounded structural field of a supported manifest format, read by core's own parser. Exactly one test: present, equals or prefix. A file that is missing or does not parse does not match.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "format",
+        "path"
+      ],
+      "properties": {
+        "file": {
+          "$ref": "common.schema.json#/$defs/filename"
+        },
+        "format": {
+          "description": "json and toml address object keys; go-mod addresses the single-valued directives module, go and toolchain.",
+          "enum": [
+            "json",
+            "toml",
+            "go-mod"
+          ]
+        },
+        "path": {
+          "description": "Object keys from the document root; no wildcards, indexes or expressions.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[A-Za-z0-9_@.-]+$"
+          }
+        },
+        "present": {
+          "const": true
+        },
+        "equals": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "prefix": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "present"
+          ]
+        },
+        {
+          "required": [
+            "equals"
+          ]
+        },
+        {
+          "required": [
+            "prefix"
+          ]
+        }
+      ]
+    },
+    "withdrawal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package",
+        "version",
+        "root_digest",
+        "kind",
+        "at",
+        "reason"
+      ],
+      "properties": {
+        "package": {
+          "$ref": "#/$defs/packageId"
+        },
+        "version": {
+          "$ref": "common.schema.json#/$defs/semver"
+        },
+        "root_digest": {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "kind": {
+          "description": "withdrawn: retracted by its maintainer; not selectable and locked selections must be updated. revoked: content trust is withdrawn as well; installed copies must not run.",
+          "enum": [
+            "withdrawn",
+            "revoked"
+          ]
+        },
+        "at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "reason": {
+          "$ref": "common.schema.json#/$defs/message"
+        },
+        "replacement": {
+          "description": "A suggested release of the same package. Advice only; it never changes a lock.",
+          "$ref": "common.schema.json#/$defs/semver"
+        }
+      }
+    }
+  }
+}

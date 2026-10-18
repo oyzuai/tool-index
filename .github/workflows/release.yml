@@ -13,7 +13,7 @@ name: Release
 on:
   push:
     branches: [main]
-    paths: [index/index.json, index/NOTICE]
+    paths: [index/index.json, index/NOTICE, config/plugins.toml]
   schedule:
     - cron: "41 5 * * *"
   workflow_dispatch:
@@ -113,6 +113,15 @@ jobs:
         working-directory: release
         run: zstd -19 -q -o index.json.zst index.json
 
+      # The plugin catalog (plugins.json) is signed with the same identity as
+      # index.json, over the same serial, after the tools assets are final. It
+      # is isolated: plugin-catalog.sh always exits 0 and leaves no plugin
+      # files when anything fails, so a plugin problem can never keep
+      # index.json from being published. Only releases whose OCI root and
+      # evidence are available are advertised (catalog last).
+      - name: Plugin catalog
+        run: .github/scripts/plugin-catalog.sh
+
       - name: Check the release assets
         id: plan
         run: |
@@ -120,6 +129,9 @@ jobs:
           cat plan.json
           echo "tag=$(jq -r .tag plan.json)" >> "$GITHUB_OUTPUT"
           echo "notes=Index serial $(jq -r .serial plan.json), expires $(jq -r .expires plan.json)" >> "$GITHUB_OUTPUT"
+          # The assets to upload come from the plan, which lists plugins.json
+          # and its bundle only when both belong to this release.
+          jq -r '.assets[].name' plan.json > assets.txt
 
       - name: Publish
         env:
@@ -127,5 +139,5 @@ jobs:
           TAG: ${{ steps.plan.outputs.tag }}
           NOTES: ${{ steps.plan.outputs.notes }}
         run: |
-          gh release create "$TAG" --latest --title "$TAG" --notes "$NOTES" \
-            release/index.json release/index.json.zst release/index.json.sigstore.json release/NOTICE
+          mapfile -t assets < <(sed 's#^#release/#' assets.txt)
+          gh release create "$TAG" --latest --title "$TAG" --notes "$NOTES" "${assets[@]}"

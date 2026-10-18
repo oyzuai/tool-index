@@ -22,6 +22,7 @@ re-signs daily.
 | Stamp a release copy of the committed index with `serial` and `expires` | `tool-index-release stamp` | no |
 | Sign the stamped copy and verify the signature (in `release.yml` only) | `cosign attest-blob`, `cosign verify-blob-attestation` | Sigstore |
 | Check the release directory and print the release for tag `index-v<serial>` | `tool-index-release release` (`--dry-run` reports missing assets instead of failing) | no |
+| Build, sign and verify the plugin catalog `plugins.json` beside the index, isolated from the tools release (in `release.yml` only; see [Plugin catalog](#plugin-catalog)) | `.github/scripts/plugin-catalog.sh` | Sigstore, GHCR (only when `config/plugins.toml` lists releases) |
 | Publish (in `release.yml` only) | `gh release create` | GitHub |
 
 ### Format
@@ -216,7 +217,7 @@ environment:
    decompresses to exactly `index.json`) and `gh release create
    index-v<serial> --latest` with the four assets.
 
-A release has four assets in one flat directory, the same names a mirror
+A release has four assets (six with the [plugin catalog](#plugin-catalog)) in one flat directory, the same names a mirror
 such as `index.oyzu.dev` will serve later:
 
 | Asset | What it is |
@@ -233,6 +234,86 @@ runner, and rejects an expired copy or one with a lower `serial` than it has
 seen. Renaming `release.yml`, signing from another branch or moving the
 repository therefore breaks every client until a CLI release. The exact
 checks are the oyzu client's contract.
+
+## Plugin catalog
+
+Each release also carries `plugins.json`, the signed catalog of Oyzu plugins
+(draft contract `plugins-v1alpha1`, owned by oyzu:
+[`catalog.schema.json`](https://github.com/oyzuai/oyzu/blob/HEAD/docs/contracts/plugins-v1alpha1/catalog.schema.json)),
+and its bundle `plugins.json.sigstore.json`. Tools-v1, `index.json`, its
+one-file transport and latest-release discovery are unchanged; a client that
+knows only tools ignores the two extra assets. Tracking: tool-index#36,
+oyzu#578.
+
+**Location and source.** `config/plugins.toml` is the source of truth: the
+catalog's `content` (authority, packages with releases, references,
+detections, withdrawals) in TOML, in the order the contract requires.
+`tests/fixtures/plugins-v1alpha1/plugins.go-preview.toml` is a full example.
+It ships empty. The generator checks the whole file against the contract's
+rules, so a mistake in an entry that is not advertised yet still fails review.
+
+**Signing.** The `Plugin catalog` step of `release.yml` runs after the tools
+assets are final, with the same keyless identity as `index.json`: an in-toto v1
+statement (`https://sigstore.dev/cosign/sign/v1`) whose subject is
+`plugins.json` and its SHA-256, signed with `cosign attest-blob`, then checked
+with `cosign verify-blob-attestation` against the pinned identity. It is the
+digest of the exact `plugins.json` bytes, not of any re-serialization.
+
+**Freshness.** `serial` is the release's serial, equal to `index.json`'s
+(a re-sign included). `generated_at` is the run's time; `expires_at` is the
+index's expiry, cut to 31 days after `generated_at` (the client's cap). The
+daily re-sign therefore moves `serial`, `generated_at` and `expires_at`, and
+leaves `content_digest` (the SHA-256 of the RFC 8785 canonical JSON of
+`content`) unchanged when the content is, so clients see an envelope refresh,
+not a change.
+
+**Catalog last.** Listing a release in `config/plugins.toml` does not
+advertise it. `.github/scripts/plugin-availability.sh` keeps a release only
+when its OCI release root is fetchable anonymously from GHCR by its digest and
+the root has attached evidence (a Sigstore bundle among its OCI referrers);
+anything else is left out with the reason logged, and with no verification
+nothing is advertised. A package left without releases drops out together
+with its references and detections. Withdrawals are always kept (they only
+restrict). The evidence artifact type in that script is a placeholder until
+oyzu S2c (#584) publishes real packages; the script has only been run against
+a stub, not GHCR. Until then the source is empty and so is the published
+list, which is still well formed.
+
+**Failure isolation.** `plugin-catalog.sh` runs the plugin steps in their own
+shell and always succeeds. If generation, signing or verification fails, any
+partial `plugins.json` is removed, a workflow warning is raised, and the
+release goes out with the four tools assets. `release` plans the plugin
+assets separately: a catalog whose serial differs from `index.json`'s, that has
+expired, fails the contract, or whose bundle does not name `plugins.json`'s
+exact bytes is left out with the reason in the plan, and cannot fail it. The
+publish step uploads exactly the assets in the plan. Plugins are then absent
+from that release; clients keep their last verified catalog until it expires.
+
+**Contract checks.** The release tool cannot depend on private oyzu, so it
+carries a port of the semantic rules of `oyzu-plugin-protocol`'s catalog
+(`src/plugins.rs`): `content_digest`, sorting and uniqueness, references
+between members, version and major agreement, matcher bounds, the 31-day
+window, the 4 MiB limit and the GHCR route rule for publisher `oyzu`, plus one
+rule of this repository's own: no two releases of a package share a root digest
+(the oyzu checker at the pinned commit has no such rule). Its tests run the vendored canonical
+examples (their digests must match) and every catalog invalid case from oyzu
+against the port; `tests/plugin-catalog.sh` also validates generated output
+against the canonical JSON Schema. Refresh `tests/fixtures/plugins-v1alpha1`
+from oyzu to pick up contract changes; failing tests then show where the port
+differs. Not ported: strict duplicate-key detection when decoding (the
+generator writes the document itself), the client's serial succession (which
+needs the previous catalog; the daily serial only grows), and a retention rule
+(the checker at the pinned commit has none).
+
+**Review rules.** Plugin entries have no routine path. `config/plugins.toml`
+is code-owner reviewed like `.github/`, and the `verify` workflow's job
+summary lists every difference from the base branch, capability-sensitive ones
+first: detector reach (any detection, and added or changed references), new
+requirements (roles and core features, protocol generations, platforms and
+minimum platform), the source or signer (routes, root digests, maintainer,
+authority) and new or removed packages. Qualification-only edits and
+withdrawals are listed but not marked. Preview it locally with
+`tool-index-release plugins review --previous <old> --next config/plugins.toml`.
 
 ## Run it locally
 
@@ -251,6 +332,9 @@ $R serial --tags tags.txt                    # then download that release's inde
 $R stamp --published published/index.json --tags tags.txt --out release/index.json
 cp index/NOTICE release/
 $R release --dir release --dry-run           # lists index.json.sigstore.json as missing until cosign signs
+$R plugins generate --index release/index.json --out release/plugins.json   # empty catalog, same serial
+$R plugins check --file release/plugins.json --index release/index.json
+tests/plugin-catalog.sh                      # the plugin workflow steps with a fake cosign and GHCR
 ```
 
 Signing needs the workflow's OIDC identity, so it is not run locally; a
@@ -260,7 +344,11 @@ locally signed bundle would carry your identity, which no client accepts.
 fixture registry, budget order and retry back-off, withdrawals (kept, never
 re-verified, records kept, reviewed), Java records from a stand-in `oyzu tools evidence --provider`, stamping (serial, expiry, refusing a stamped input, following the highest tag), review
 ignoring the stamp, and the release check (assets present, unexpired, and a
-bundle naming `index.json`'s exact bytes).
+bundle naming `index.json`'s exact bytes), and the plugin catalog (the canonical examples and
+invalid cases against the port, empty and non-empty generation, the content digest across
+re-signs, catalog-last filtering, review of sensitive changes, and a catalog that cannot stop
+the tools release). `tests/plugin-catalog.sh` runs the workflow's plugin steps end to end with
+a fake cosign and a fake GHCR.
 
 ## Repository setup
 
