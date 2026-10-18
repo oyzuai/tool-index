@@ -46,6 +46,32 @@ jobs:
       - run: cargo test --locked --manifest-path release-tool/Cargo.toml
       - name: Drop the oyzu read token
         run: .github/actions/oyzu-read/done.sh
+      # After the token is gone: nothing here (pip, the test's scripts) sees it.
+      - run: cargo build --locked --manifest-path release-tool/Cargo.toml
+      - name: Plugin catalog workflow steps
+        env:
+          REQUIRE_SCHEMA_CHECK: "1"
+        run: |
+          python3 -m pip install --user jsonschema==4.26.0
+          tests/plugin-catalog.sh
+      # config/plugins.toml has no routine path: every change needs a person
+      # (CODEOWNERS). This lists what it changes, capability-sensitive changes
+      # first, in the job summary, and fails if the file no longer parses or
+      # passes the contract's rules.
+      - name: Plugin source changes
+        env:
+          BASE: ${{ github.event.pull_request.base.ref }}
+        run: |
+          tool=./release-tool/target/debug/tool-index-release
+          previous=$(git show "origin/$BASE:config/plugins.toml" > previous-plugins.toml 2>/dev/null && echo "--previous previous-plugins.toml" || true)
+          $tool plugins candidates > /dev/null
+          $tool plugins review $previous > plugin-review.json
+          {
+            echo "### Plugin source changes"
+            if [ "$(jq length plugin-review.json)" = 0 ]; then echo "None."; else
+              jq -r '.[] | "- \(if .sensitive then "**capability-sensitive** " else "" end)\(.section) `\(.key)` \(.kind)\(if (.fields | length) > 0 then ": " + (.fields | join(", ")) else "" end)"' plugin-review.json
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Recompute the review decision
         id: review
         env:

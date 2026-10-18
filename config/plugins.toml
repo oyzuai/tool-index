@@ -1,0 +1,15 @@
+# Source of truth for the signed plugin catalog (plugins.json), published beside
+# index.json in each release. This file is the catalog's `content` in TOML, in
+# the order the contract requires (packages by id, releases oldest first,
+# references by name, detections by id, withdrawals by package then version).
+# See tests/fixtures/plugins-v1alpha1/plugins.go-preview.toml for a full entry.
+#
+# Every change to this file needs a person (CODEOWNERS), and the `verify`
+# workflow lists what it changes, capability-sensitive changes first: detector
+# reach, roles and core features, platforms and minimum platform, routes and
+# root digests, maintainer and authority.
+#
+# Listing a release here does not advertise it. The release workflow publishes a
+# release only after its OCI root and evidence are verified available (catalog
+# last); until real packages exist on GHCR (oyzu S2c, #584) this stays empty.
+authority = "oyzu"

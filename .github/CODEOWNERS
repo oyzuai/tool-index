@@ -1,2 +1,5 @@
 # The release workflow is the index signing identity; changes need a maintainer.
 /.github/ @micahlmartin
+# The plugin catalog's source: what plugins may detect, require and install
+# from, and who maintains them. Never routine; every change needs a maintainer.
+/config/plugins.toml @micahlmartin

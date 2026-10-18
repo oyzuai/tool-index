@@ -1,0 +1,141 @@
+{
+  "schema_version": "v1alpha1",
+  "type": "plugin-catalog",
+  "serial": 412,
+  "generated_at": "2026-10-18T06:00:00Z",
+  "expires_at": "2026-11-01T06:00:00Z",
+  "content_digest": "sha256:3f28d420eb92891b509378f21cdcb8c7c2b2659e0d0e4edf404d44bf34584814",
+  "content": {
+    "authority": "oyzu",
+    "packages": [
+      {
+        "publisher": "oyzu",
+        "name": "go",
+        "maintainer": "Oyzu maintainers",
+        "releases": [
+          {
+            "version": "0.1.0-preview.1",
+            "major": 0,
+            "preview": true,
+            "protocol_generations": [
+              "v1alpha1"
+            ],
+            "roles": [
+              {
+                "role": "builder",
+                "features": [
+                  "go-test-events"
+                ]
+              }
+            ],
+            "profiles": [
+              {
+                "name": "app",
+                "role": "builder"
+              },
+              {
+                "name": "library",
+                "role": "builder"
+              }
+            ],
+            "root_digest": "sha256:a4225cd722c100dc0702ce3812f3af251a018f9a3808d146d1e0f1d77d3713f7",
+            "platforms": [
+              {
+                "os": "darwin",
+                "arch": "arm64",
+                "min_platform": "11.0",
+                "manifest_digest": "sha256:023cf6ce31aa29214706082a4df8d11381350d3b5d4869b219f1fa0a481424e3",
+                "payload_digest": "sha256:0ae00a91aaa4d0ff946c20a74746a1ec816bde16ddae8258a037df9e80d930ca",
+                "size": 4718592
+              },
+              {
+                "os": "linux",
+                "arch": "amd64",
+                "abi": "musl",
+                "manifest_digest": "sha256:8dd67802237b9b3b21063d2904b7ca3c9df7363a903e7ab0233becf201e7dacf",
+                "payload_digest": "sha256:74efed298670c209b2796e303b8afd6de8c737b1691ad5df96eafd9edca47fb9",
+                "size": 4718592
+              }
+            ],
+            "routes": [
+              {
+                "type": "oci",
+                "reference": "ghcr.io/oyzuai/plugins/go@sha256:a4225cd722c100dc0702ce3812f3af251a018f9a3808d146d1e0f1d77d3713f7"
+              }
+            ],
+            "qualification": {
+              "tested": [
+                {
+                  "core": "0.9.0",
+                  "platforms": [
+                    {
+                      "os": "darwin",
+                      "arch": "arm64"
+                    },
+                    {
+                      "os": "linux",
+                      "arch": "amd64",
+                      "abi": "musl"
+                    }
+                  ]
+                }
+              ],
+              "support": {
+                "status": "supported"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "reference": "go/app",
+        "package": "oyzu/go",
+        "profile": "app",
+        "role": "builder",
+        "description": "Build, test and package Go modules and workspaces with the native go toolchain."
+      },
+      {
+        "reference": "go/library",
+        "package": "oyzu/go",
+        "profile": "library",
+        "role": "builder",
+        "description": "Test and vet Go library modules without producing an executable."
+      }
+    ],
+    "detections": [
+      {
+        "id": "go-module",
+        "uses": "go/app",
+        "match": {
+          "all": [
+            {
+              "field": {
+                "file": "go.mod",
+                "format": "go-mod",
+                "path": [
+                  "module"
+                ],
+                "present": true
+              }
+            },
+            {
+              "not": {
+                "file": "go.work"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "go-workspace",
+        "uses": "go/app",
+        "match": {
+          "file": "go.work"
+        }
+      }
+    ],
+    "withdrawals": []
+  }
+}

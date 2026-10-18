@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oyzu.dev/contracts/plugins-v1alpha1/common.schema.json",
+  "title": "Draft plugin protocol v1alpha1: shared definitions",
+  "$defs": {
+    "component": {
+      "description": "One lowercase component of a plugin reference: a package, profile or publisher name.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "uses": {
+      "description": "A plugin reference as spelled in uses. Short form <package>/<profile>[@v<major>]; direct form oci://<registry>/<repository>(:<tag>|@sha256:<64hex>)#<profile>. Explicit local development bindings are configuration, not a uses spelling.",
+      "type": "string",
+      "maxLength": 512,
+      "anyOf": [
+        {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}/[a-z0-9][a-z0-9-]{0,63}(@v(0|[1-9][0-9]{0,8}))?$"
+        },
+        {
+          "pattern": "^oci://[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*(:[0-9]{1,5})?/[a-z0-9]+([._-][a-z0-9]+)*(/[a-z0-9]+([._-][a-z0-9]+)*)*(:[A-Za-z0-9_][A-Za-z0-9._-]{0,127}|@sha256:[0-9a-f]{64})#[a-z0-9][a-z0-9-]{0,63}$"
+        }
+      ]
+    },
+    "semver": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "version": {
+      "description": "A core-resolved target version. Core owns versioning; plugins never choose one.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[0-9A-Za-z][0-9A-Za-z.+_-]*$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "operationId": {
+      "description": "Core-generated lowercase UUID for one operation. The result must echo it.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "generation": {
+      "description": "A common protocol generation. v1alpha1 is the only one and evolves in place until released.",
+      "const": "v1alpha1"
+    },
+    "role": {
+      "description": "Core role contracts. The preview defines only the builder role.",
+      "enum": [
+        "builder"
+      ]
+    },
+    "operation": {
+      "description": "describe is common to every role; the rest are preview builder-role operations on the native host lane.",
+      "enum": [
+        "describe",
+        "tasks",
+        "requirements",
+        "native-admission",
+        "native-build",
+        "native-test",
+        "task-command"
+      ]
+    },
+    "feature": {
+      "description": "A named optional feature of a role contract.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9.-]{0,63}$"
+    },
+    "features": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/feature"
+      }
+    },
+    "code": {
+      "description": "A machine-readable error or diagnostic code.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9.-]{0,127}$"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "name": {
+      "description": "A target, task, artifact or operation name, matching core's identifier rule.",
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+    },
+    "stage": {
+      "description": "A build stage or conventional task name.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "relativePath": {
+      "description": "A portable path relative to the target root using / separators. No absolute paths, empty, . or .. components, backslashes or spaces; . alone is the target root.",
+      "type": "string",
+      "maxLength": 1024,
+      "pattern": "^(\\.|(\\.?[A-Za-z0-9_@+-][A-Za-z0-9._@+-]*)(/\\.?[A-Za-z0-9_@+-][A-Za-z0-9._@+-]*)*)$"
+    },
+    "absolutePath": {
+      "description": "A host absolute path supplied by core: POSIX, drive-letter or UNC.",
+      "type": "string",
+      "maxLength": 4096,
+      "pattern": "^(/|[A-Za-z]:[\\\\/]|\\\\\\\\)[^\\u0000]*$"
+    },
+    "filename": {
+      "description": "One portable file name, without separators or reserved characters.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9_@+-][A-Za-z0-9._@+ -]*[A-Za-z0-9_@+-]$|^[A-Za-z0-9_@+-]$"
+    },
+    "argv": {
+      "description": "A native command line; argv[0] names the program. Never a shell string unless argv[0] is the shell.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1024,
+      "items": {
+        "type": "string",
+        "maxLength": 32768
+      },
+      "prefixItems": [
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    },
+    "env": {
+      "type": "object",
+      "maxProperties": 256,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]{0,127}$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "maxLength": 32768
+      }
+    },
+    "platform": {
+      "description": "An execution platform in OCI spelling.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "os",
+        "arch"
+      ],
+      "properties": {
+        "os": {
+          "enum": [
+            "linux",
+            "darwin",
+            "windows"
+          ]
+        },
+        "arch": {
+          "enum": [
+            "amd64",
+            "arm64"
+          ]
+        }
+      }
+    },
+    "pluginIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "publisher",
+        "name",
+        "version"
+      ],
+      "properties": {
+        "publisher": {
+          "$ref": "#/$defs/component"
+        },
+        "name": {
+          "$ref": "#/$defs/component"
+        },
+        "version": {
+          "$ref": "#/$defs/semver"
+        }
+      }
+    },
+    "target": {
+      "description": "The target an operation applies to. root is an absolute, read-only source view supplied by core; it is not the live checkout.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "uses",
+        "selection",
+        "root",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "uses": {
+          "$ref": "#/$defs/uses"
+        },
+        "selection": {
+          "enum": [
+            "inferred",
+            "explicit"
+          ]
+        },
+        "root": {
+          "$ref": "#/$defs/absolutePath"
+        },
+        "version": {
+          "description": "The target's declared base version, before core resolves a build version.",
+          "$ref": "#/$defs/version"
+        }
+      }
+    },
+    "taskRef": {
+      "description": "A task core selected, as it will run unless the plugin supplies a replacement.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "provider",
+        "argv"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "provider": {
+          "description": "Who supplied argv: the builder's manager name (go) for conventional tasks, or the configuration file for authored replacements.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "argv": {
+          "$ref": "#/$defs/argv"
+        },
+        "cwd": {
+          "$ref": "#/$defs/relativePath"
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "argv"
+      ],
+      "properties": {
+        "argv": {
+          "$ref": "#/$defs/argv"
+        },
+        "cwd": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "env": {
+          "$ref": "#/$defs/env"
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "filename",
+        "source"
+      ],
+      "properties": {
+        "format": {
+          "enum": [
+            "junit",
+            "cobertura",
+            "lcov",
+            "go-cover",
+            "jacoco"
+          ]
+        },
+        "filename": {
+          "$ref": "#/$defs/filename"
+        },
+        "source": {
+          "description": "file: the command writes <report_dir>/<filename>. go-test-events: core converts the command's go test -json stdout into <report_dir>/<filename>.",
+          "enum": [
+            "file",
+            "go-test-events"
+          ]
+        }
+      },
+      "description": "A required report. Core resolves it as <report_dir>/<filename> in the request's fresh report directory and gates the task on it."
+    },
+    "reports": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/report"
+      }
+    },
+    "observationRequest": {
+      "description": "An admitted native observation the plugin asks core to run. tool is a core tool identity (such as oyzu:go) that core has provisioned; argv[0] must resolve to one of its commands.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "tool",
+        "argv",
+        "cwd",
+        "env"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/component"
+        },
+        "tool": {
+          "$ref": "#/$defs/tool"
+        },
+        "argv": {
+          "$ref": "#/$defs/argv"
+        },
+        "cwd": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "env": {
+          "$ref": "#/$defs/env"
+        }
+      }
+    },
+    "observationResult": {
+      "description": "The bounded outcome of one observation, attached by core when it re-invokes the operation.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "exit_code",
+        "stdout",
+        "stderr"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/component"
+        },
+        "exit_code": {
+          "type": "integer",
+          "minimum": -2147483648,
+          "maximum": 4294967295
+        },
+        "stdout": {
+          "type": "string",
+          "maxLength": 1048576
+        },
+        "stderr": {
+          "type": "string",
+          "maxLength": 65536
+        }
+      }
+    },
+    "tool": {
+      "description": "A core tool identity such as oyzu:go. Never a plugin reference.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}(:[a-z0-9][a-z0-9._/-]{0,127})?$"
+    }
+  }
+}
