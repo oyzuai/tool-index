@@ -273,7 +273,14 @@ when its OCI release root is fetchable anonymously from GHCR by its digest and
 the root has attached evidence (a Sigstore bundle among its OCI referrers, read
 from the referrers API and, where that answers 404 as ghcr.io does, from the
 OCI referrers tag schema index `manifests/sha256-<hex>`);
-a release is left out only on a definite 404 (unknown manifest, no referrers
+the tag index is writable by anyone who can push a tag, so an entry of the
+evidence type counts only when the referrer manifest it names exists in the
+repository, hashes to the entry's digest and has the root as its `subject`
+(the registry vouches for that on the referrers API, so nothing more is
+checked there). The `Link` rel=next pages of the referrers API are followed
+(at most 50, only within the same route), and a response that is not exactly
+one JSON object fails the run. The script also rejects a root digest or
+repository that is not in OCI form. A release is left out only on a definite 404 (unknown manifest, no referrers
 in either place) or
 when no evidence is attached, and with no verification nothing is advertised.
 Any other answer, such as a timeout, 5xx or 401/403, fails the run, so a GHCR
@@ -281,8 +288,9 @@ blip makes plugins absent from that release instead of publishing a catalog
 that lacks packages (calls use `--max-time 30 --retry 3`). A package left without releases drops out together
 with its references and detections. Withdrawals are always kept (they only
 restrict). The evidence artifact type in that script is a placeholder until
-oyzu S2c (#584) publishes real packages; the script has only been run against
-a stub, not GHCR. Until then the source is empty and so is the published
+oyzu S2c (#584) publishes real packages; the script's tests use a fake
+registry, and the 404 and tag index lookups were also run anonymously against
+an existing public ghcr.io image (not one of ours). Until then the source is empty and so is the published
 list, which is still well formed.
 
 **Failure isolation.** `plugin-catalog.sh` runs the plugin steps in their own

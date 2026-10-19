@@ -41,8 +41,14 @@ esac
 name=none
 case "$url" in
   *"/referrers/$ROOT") name=referrers ;;
+  *"/referrers/$ROOT?"*) name=referrers2 ;;
   *"/manifests/sha256-${ROOT#sha256:}") name=tag ;;
+  *"/manifests/sha256:"*) name=m-${url##*/manifests/sha256:} ;;
 esac
+[ -e "$REG/$name.neterr" ] && exit 28
+printf 'HTTP/2 200\r\n' > "$hdr"
+[ -e "$REG/$name.link" ] && printf 'Link: %s\r\n' "$(cat "$REG/$name.link")" >> "$hdr"
+printf '\r\n' >> "$hdr"
 if [ -e "$REG/$name.code" ]; then code=$(cat "$REG/$name.code"); else code=404; fi
 if [ -e "$REG/$name.body" ]; then cp "$REG/$name.body" "$out"; else : > "$out"; fi
 [ -n "$write" ] && printf '%s' "$code"
@@ -54,61 +60,168 @@ fail() { echo "FAIL: $*" >&2; exit 1; }
 
 printf '[{"package":"p","version":"1.0.0","root_digest":"%s","repository":"ghcr.io/oyzuai/p"}]' "$digest" > "$work/candidates.json"
 
-# run <name> <referrers code|-> <referrers body|-> <tag code|-> <tag body|->
-# Sets $status (script exit code) and $verified (count of releases kept).
+# put <name> <code> [body]: the fake registry's answer for <name>.
+put() { printf '%s' "$2" > "$REG/$1.code"; [ $# -lt 3 ] || printf '%s' "$3" > "$REG/$1.body"; }
+sha() { printf '%s' "$1" | sha256sum | cut -d' ' -f1; }
+
+# run: runs the script against $REG; sets $status and $verified (releases kept,
+# - when there is no output).
 run() {
-  REG=$work/reg; rm -rf "$REG"; mkdir -p "$REG"
-  [ "$2" = - ] || printf '%s' "$2" > "$REG/referrers.code"
-  [ "$3" = - ] || printf '%s' "$3" > "$REG/referrers.body"
-  [ "$4" = - ] || printf '%s' "$4" > "$REG/tag.code"
-  [ "$5" = - ] || printf '%s' "$5" > "$REG/tag.body"
   status=0
   REG=$REG ROOT=$digest CURL=$work/curl "$script" "$work/candidates.json" > "$work/out" 2> "$work/err" || status=$?
   verified=-
   [ ! -s "$work/out" ] || verified=$(jq '.releases | length' "$work/out")
 }
+reg() { REG=$work/reg; rm -rf "$REG"; mkdir -p "$REG"; }
 
 expect() { # name status verified
   [ "$status" = "$2" ] && [ "$verified" = "$3" ] || { cat "$work/err" >&2; fail "$1: status $status (want $2), kept $verified (want $3)"; }
 }
+errs() { grep -q "$1" "$work/err" || { cat "$work/err" >&2; fail "$name: no '$1' in the error"; }; }
 
-run api 200 "$with" - -
-expect "referrers API with evidence" 0 1
+# A referrer manifest for the evidence type, its digest, and a tag index of it.
+manifest() { # subject -> sets $m (manifest body) and $md (its digest)
+  m="{\"schemaVersion\":2,\"artifactType\":\"$type\",\"subject\":{\"digest\":\"$1\"}}"
+  md=sha256:$(sha "$m")
+}
+index_of() { printf '{"manifests":[{"artifactType":"%s","digest":"%s"}]}' "$type" "$1"; }
+good_tag() { manifest "$digest"; put tag 200 "$(index_of "$md")"; put "m-${md#sha256:}" 200 "$m"; }
+
+name="referrers API with evidence"
+reg; put referrers 200 "$with"; run
+expect "$name" 0 1
 grep -q "/manifests/sha256-$hex" "$REG/log" && fail "tag index read although the API answered"
 
-run tag 404 - 200 "$with"
-expect "tag schema with evidence" 0 1
+name="tag schema with evidence"
+reg; put referrers 404; good_tag; run
+expect "$name" 0 1
 grep -F "/manifests/sha256-$hex | Accept: application/vnd.oci.image.index.v1+json" "$REG/log" > /dev/null || fail "tag index not requested as an image index"
+grep -F "/manifests/$md | Accept: application/vnd.oci.image.manifest.v1+json" "$REG/log" > /dev/null || fail "referrer manifest not fetched by digest"
 
-run both-404 404 - 404 -
-expect "both 404" 0 0
-grep -q 'not advertised' "$work/err" || fail "no reason logged"
+name="both 404"
+reg; put referrers 404; put tag 404; run
+expect "$name" 0 0
+errs 'not advertised'
 
-run tag-no-signature 404 - 200 "$without"
-expect "tag index without the signature referrer" 0 0
+name="tag index without the signature referrer"
+reg; put referrers 404; put tag 200 "$without"; run
+expect "$name" 0 0
 
-run tag-empty 404 - 200 '{"manifests":[]}'
-expect "empty tag index" 0 0
+name="empty tag index"
+reg; put referrers 404; put tag 200 '{"manifests":[]}'; run
+expect "$name" 0 0
 
-run api-no-signature 200 "$without" 200 "$with"
-expect "API answers, so the tag index is not consulted" 0 0
+name="API answers without evidence, tag index not consulted"
+reg; put referrers 200 "$without"; good_tag; run
+expect "$name" 0 0
 
-run api-5xx 503 - - -
-expect "referrers 5xx" 1 -
-grep -q 'unexpected HTTP 503' "$work/err" || fail "5xx not reported"
+name="dangling tag index entry (referrer manifest missing)"
+reg; put referrers 404; manifest "$digest"; put tag 200 "$(index_of "$md")"; run
+expect "$name" 0 0
 
-run tag-5xx 404 - 502 -
-expect "tag index 5xx" 1 -
-grep -q 'unexpected HTTP 502' "$work/err" || fail "tag 5xx not reported"
+name="referrer manifest with another subject"
+reg; put referrers 404; manifest "sha256:$(sha other)"; put tag 200 "$(index_of "$md")"; put "m-${md#sha256:}" 200 "$m"; run
+expect "$name" 0 0
 
-run tag-401 404 - 401 -
-expect "tag index 401" 1 -
+name="referrer manifest without a subject"
+reg; put referrers 404; m="{\"schemaVersion\":2,\"artifactType\":\"$type\"}"; md=sha256:$(sha "$m")
+put tag 200 "$(index_of "$md")"; put "m-${md#sha256:}" 200 "$m"; run
+expect "$name" 0 0
 
-run api-bad-json 200 'not json' - -
-expect "malformed referrers JSON" 1 -
-grep -q 'not valid JSON' "$work/err" || fail "malformed JSON not reported"
+name="referrer manifest of another artifact type"
+reg; put referrers 404; m="{\"schemaVersion\":2,\"artifactType\":\"application/vnd.example.sbom+json\",\"subject\":{\"digest\":\"$digest\"}}"; md=sha256:$(sha "$m")
+put tag 200 "$(index_of "$md")"; put "m-${md#sha256:}" 200 "$m"; run
+expect "$name" 0 0
 
-run tag-bad-json 404 - 200 'not json'
-expect "malformed tag index JSON" 1 -
+name="referrer manifest that does not hash to its descriptor"
+reg; put referrers 404; manifest "$digest"; put tag 200 "$(index_of "sha256:$(sha forged)")"; put "m-$(sha forged)" 200 "$m"; run
+expect "$name" 0 0
+
+name="descriptor digest that is not a digest"
+reg; put referrers 404; put tag 200 "$(index_of '../../x')"; run
+expect "$name" 0 0
+
+name="second descriptor holds the evidence"
+reg; put referrers 404; manifest "$digest"; good="$md"; gm="$m"; manifest "sha256:$(sha other)"
+put tag 200 "{\"manifests\":[{\"artifactType\":\"$type\",\"digest\":\"$md\"},{\"artifactType\":\"$type\",\"digest\":\"$good\"}]}"
+put "m-${md#sha256:}" 200 "$m"; put "m-${good#sha256:}" 200 "$gm"; run
+expect "$name" 0 1
+
+name="referrers 5xx"
+reg; put referrers 503; run
+expect "$name" 1 -; errs 'unexpected HTTP 503'
+
+name="tag index 5xx"
+reg; put referrers 404; put tag 502; run
+expect "$name" 1 -; errs 'unexpected HTTP 502'
+
+name="tag index 401"
+reg; put referrers 404; put tag 401; run
+expect "$name" 1 -
+
+name="tag index redirect"
+reg; put referrers 404; put tag 307; run
+expect "$name" 1 -; errs 'unexpected HTTP 307'
+
+name="tag index transport error"
+reg; put referrers 404; touch "$REG/tag.neterr"; run
+expect "$name" 1 -; errs 'network error'
+
+name="referrer manifest 5xx"
+reg; put referrers 404; manifest "$digest"; put tag 200 "$(index_of "$md")"; put "m-${md#sha256:}" 500; run
+expect "$name" 1 -; errs 'unexpected HTTP 500'
+
+name="referrer manifest transport error"
+reg; put referrers 404; manifest "$digest"; put tag 200 "$(index_of "$md")"; touch "$REG/m-${md#sha256:}.neterr"; run
+expect "$name" 1 -; errs 'network error'
+
+name="malformed referrers JSON"
+reg; put referrers 200 'not json'; run
+expect "$name" 1 -; errs 'not a single JSON object'
+
+name="several JSON values in the referrers body"
+reg; put referrers 200 "$with $without"; run
+expect "$name" 1 -; errs 'not a single JSON object'
+
+name="malformed tag index JSON"
+reg; put referrers 404; put tag 200 'not json'; run
+expect "$name" 1 -
+
+name="evidence on the second referrers page"
+reg; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.link"
+put referrers2 200 "$with"; run
+expect "$name" 0 1
+
+name="no evidence on any referrers page"
+reg; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.link"
+put referrers2 200 "$without"; run
+expect "$name" 0 0
+
+name="referrers Link to another route"
+reg; put referrers 200 "$without"; echo '<https://evil.example/x>; rel="next"' > "$REG/referrers.link"; run
+expect "$name" 1 -; errs 'unexpected referrers Link'
+
+name="second referrers page 5xx"
+reg; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.link"
+put referrers2 500; run
+expect "$name" 1 -
+
+# The script's own inputs.
+cand=$work/candidates.json
+name="root digest that is not a digest"
+printf '[{"package":"p","version":"1.0.0","root_digest":"sha256:ABC","repository":"ghcr.io/oyzuai/p"}]' > "$cand"
+reg; run
+expect "$name" 1 -; errs 'invalid root digest'
+
+name="repository with a path trick"
+printf '[{"package":"p","version":"1.0.0","root_digest":"%s","repository":"ghcr.io/oyzuai/../p"}]' "$digest" > "$cand"
+reg; run
+expect "$name" 1 -; errs 'invalid repository'
+
+name="repository with an uppercase letter"
+printf '[{"package":"p","version":"1.0.0","root_digest":"%s","repository":"ghcr.io/OyzuAI/p"}]' "$digest" > "$cand"
+reg; run
+expect "$name" 1 -; errs 'invalid repository'
+[ ! -e "$REG/log" ] || fail "invalid input reached the network"
 
 echo "plugin availability checks passed"
