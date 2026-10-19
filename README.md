@@ -279,9 +279,11 @@ repository, hashes to the entry's digest and has the root as its `subject`
 (the registry vouches for that on the referrers API, so nothing more is
 checked there). The `Link` rel=next pages of the referrers API are followed
 (at most 50, only within the same route; a `rel` counts when its
-space-separated tokens include `next`, in any case), and a response that is not
+space-separated tokens include `next`, in any case, and `;` or `,` inside a
+quoted parameter belong to it; only the last header block of a retried request
+is read), and a response that is not
 exactly one JSON object, or that holds a malformed entry, fails the run, as does
-a transfer cut short. A tag index with more than 50 evidence entries fails the
+a transfer cut short, or a candidates file that is not a JSON array. A tag index with more than 50 evidence entries fails the
 run too. The script also rejects a root digest or repository that is not in OCI
 form; the repository pattern (lowercase, `[a-z0-9._-]` segments) is deliberately
 stricter than the OCI name rule. A release is left out only on a definite 404 (unknown manifest, no referrers

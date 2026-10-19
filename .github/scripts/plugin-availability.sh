@@ -42,9 +42,15 @@ trap 'rm -rf "$tmp"' EXIT
 # packages. `exit` inside $(...) ends only that subshell, so every caller
 # writes `code=$(fetch ...) || exit 1`.
 fetch() {
+  local code
   rm -f "$tmp/body" "$tmp/headers"
-  "$curl" -sSg --max-time 30 --retry 3 --retry-all-errors -o "$tmp/body" -D "$tmp/headers" \
-    -w '%{http_code}' "$@" || { echo "network error talking to ghcr.io" >&2; exit 1; }
+  code=$("$curl" -sSg --max-time 30 --retry 3 --retry-all-errors -o "$tmp/body" -D "$tmp/headers" \
+    -w '%{http_code}' "$@") || { echo "network error talking to ghcr.io" >&2; exit 1; }
+  # -D holds one header block per attempt (and per proxy or redirect hop):
+  # only the last one belongs to the answer whose status was printed.
+  awk '/^HTTP\// { buf = "" } { buf = buf $0 "\n" } END { printf "%s", buf }' "$tmp/headers" > "$tmp/headers.last" \
+    && mv "$tmp/headers.last" "$tmp/headers"
+  printf '%s' "$code"
 }
 
 # The script's own inputs reach URLs and a grep pattern, so they are checked
@@ -64,22 +70,36 @@ json_object() { # what
 
 # The first Link target whose rel is a space-separated token list holding
 # `next` (case-insensitive); other rels, and rels such as `nextpage`, do not
-# count. Prints nothing when there is none.
+# count, and a `;` or `,` inside a quoted parameter is part of it. Prints
+# nothing when there is none.
 next_link() {
   tr -d '\r' < "$tmp/headers" | awk '
     tolower($0) ~ /^link:/ {
       v = substr($0, 6)
-      while (match(v, /<[^>]*>[^<]*/)) {
-        seg = substr(v, RSTART, RLENGTH); v = substr(v, RSTART + RLENGTH)
-        url = seg; sub(/^</, "", url); sub(/>.*/, "", url)
-        params = seg; sub(/^<[^>]*>/, "", params)
-        n = split(tolower(params), p, ";")
-        for (i = 1; i <= n; i++) {
-          x = p[i]; gsub(/^[ \t]+|[ \t]+$/, "", x)
+      while ((i = index(v, "<")) > 0) {
+        v = substr(v, i + 1)
+        j = index(v, ">"); if (j == 0) break
+        url = substr(v, 1, j - 1); v = substr(v, j + 1)
+        # Parameters run to the next comma outside quotes; ; separates them
+        # outside quotes only.
+        q = 0; cur = ""; np = 0; split("", par)
+        L = length(v)
+        for (k = 1; k <= L; k++) {
+          c = substr(v, k, 1)
+          if (q && c == "\\") { cur = cur c substr(v, k + 1, 1); k++; continue }
+          if (c == "\"") q = !q
+          if (!q && c == ",") break
+          if (!q && c == ";") { par[++np] = cur; cur = ""; continue }
+          cur = cur c
+        }
+        par[++np] = cur
+        v = substr(v, k + 1)
+        for (n = 1; n <= np; n++) {
+          x = tolower(par[n]); gsub(/^[ \t]+|[ \t]+$/, "", x)
           if (x ~ /^rel[ \t]*=/) {
             sub(/^rel[ \t]*=[ \t]*/, "", x); gsub(/"/, "", x)
             m = split(x, t, /[ \t]+/)
-            for (j = 1; j <= m; j++) if (t[j] == "next") { print url; exit }
+            for (jj = 1; jj <= m; jj++) if (t[jj] == "next") { print url; exit }
           }
         }
       }
@@ -172,8 +192,12 @@ available() { # repository root_digest
   done
 }
 
+# A candidates file that is not a JSON array is an error, not an empty list.
+list=$(jq -c 'if type == "array" then .[] else error("not an array") end' "$candidates") \
+  || { echo "$candidates is not a JSON array of releases" >&2; exit 1; }
 out='[]'
 while IFS= read -r candidate; do
+  [ -n "$candidate" ] || continue
   package=$(jq -r .package <<< "$candidate")
   version=$(jq -r .version <<< "$candidate")
   root=$(jq -r .root_digest <<< "$candidate")
@@ -188,5 +212,5 @@ while IFS= read -r candidate; do
   else
     skip "$package" "$version" "release root or evidence is not available"
   fi
-done < <(jq -c '.[]' "$candidates")
+done <<< "$list"
 jq -n --argjson releases "$out" '{releases: $releases}'

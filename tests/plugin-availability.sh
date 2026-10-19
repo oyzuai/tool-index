@@ -37,7 +37,13 @@ done
 echo "$url | $accept | g=$glob" >> "$REG/log"
 case "$url" in
   *"/token?"*) printf '{"token":"t"}' > "$out"; printf 200; exit 0 ;;
-  *"/manifests/$ROOT") printf 'HTTP/2 200\r\nDocker-Content-Digest: %s\r\n\r\n' "$ROOT" > "$hdr"; : > "$out"; printf 200; exit 0 ;;
+  *"/manifests/$ROOT")
+    if [ -e "$REG/root.stale" ]; then
+      printf 'HTTP/2 503\r\nDocker-Content-Digest: %s\r\n\r\nHTTP/2 200\r\nDocker-Content-Digest: sha256:%064d\r\n\r\n' "$ROOT" 0 > "$hdr"
+    else
+      printf 'HTTP/2 200\r\nDocker-Content-Digest: %s\r\n\r\n' "$ROOT" > "$hdr"
+    fi
+    : > "$out"; printf 200; exit 0 ;;
 esac
 name=none
 case "$url" in
@@ -47,7 +53,8 @@ case "$url" in
   *"/manifests/sha256:"*) name=m-${url##*/manifests/sha256:} ;;
 esac
 [ -e "$REG/$name.neterr" ] && exit 28
-printf 'HTTP/2 200\r\n' > "$hdr"
+[ -e "$REG/$name.stale" ] && printf 'HTTP/2 503\r\nLink: %s\r\n\r\n' "$(cat "$REG/$name.stale")" > "$hdr" || : > "$hdr"
+printf 'HTTP/2 200\r\n' >> "$hdr"
 [ -e "$REG/$name.link" ] && printf '%s: %s\r\n' "$(cat "$REG/linkname" 2>/dev/null || echo Link)" "$(cat "$REG/$name.link")" >> "$hdr"
 printf '\r\n' >> "$hdr"
 if [ -e "$REG/$name.code" ]; then code=$(cat "$REG/$name.code"); else code=404; fi
@@ -298,6 +305,32 @@ paged "</v2/oyzuai/p/referrers/$digest?last=[1]>; rel=\"next\"" 1
 expect "$name" 0 1
 grep -v 'g=1' "$REG/log" | grep -q . && fail "a request ran without -g"
 
+name="next link first, another link after it"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\", </v2/oyzuai/p/referrers/$digest?last=a>; rel=\"prev\"" 1
+expect "$name" 0 1
+
+name="unquoted rel=next followed by a comma"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; rel=next, </v2/oyzuai/p/referrers/$digest?last=a>; rel=prev" 1
+expect "$name" 0 1
+
+name="rel=next inside a quoted parameter"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; title=\"x; rel=next\"" 1
+expect "$name" 0 0
+
+name="comma inside a quoted parameter before rel"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; title=\"a, <b>\"; rel=\"next\"" 1
+expect "$name" 0 1
+
+name="Link in the header block of a retried attempt only"
+reg; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.stale"
+put referrers2 200 "$with"; run
+expect "$name" 0 0
+grep -q 'referrers/.*?' "$REG/log" && fail "followed a Link from an earlier attempt"
+
+name="root digest in the header block of a retried attempt only"
+reg; put referrers 200 "$with"; touch "$REG/root.stale"; run
+expect "$name" 0 0
+
 # The script's own inputs.
 cand=$work/candidates.json
 name="root digest that is not a digest"
@@ -315,5 +348,17 @@ printf '[{"package":"p","version":"1.0.0","root_digest":"%s","repository":"ghcr.
 reg; run
 expect "$name" 1 -; errs 'invalid repository'
 [ ! -e "$REG/log" ] || fail "invalid input reached the network"
+
+name="candidates file that is not JSON"
+printf 'not json' > "$cand"; reg; run
+expect "$name" 1 -; errs 'not a JSON array'
+
+name="candidates file that is an object"
+printf '{"package":"p"}' > "$cand"; reg; run
+expect "$name" 1 -; errs 'not a JSON array'
+
+name="empty candidates list"
+printf '[]' > "$cand"; reg; run
+expect "$name" 0 0
 
 echo "plugin availability checks passed"
