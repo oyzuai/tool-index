@@ -8,7 +8,8 @@
 # github.token: events caused by GITHUB_TOKEN start no workflows, so the
 # required `verify` check would never run and a merge would never trigger
 # release.yml. The App is a separate identity so a maintainer can approve its
-# needs-review pull requests.
+# needs-review pull requests. Older open index pull requests are closed when
+# a newer one is opened, since each build already contains their changes.
 name: Build index
 
 on:
@@ -122,3 +123,18 @@ jobs:
           if [ "$DECISION" = routine ]; then
             gh pr merge "$branch" --auto --squash
           fi
+
+      - name: Close superseded index pull requests
+        if: steps.review.outputs.decision != 'no-change'
+        env:
+          GH_TOKEN: ${{ steps.bot.outputs.token }}
+        run: |
+          # Each build starts from main's committed index, so the new pull
+          # request already contains whatever an older open one proposes.
+          current="index/$(date -u +%Y-%m-%d)"
+          gh pr list --state open --json number,headRefName \
+            --jq ".[] | select((.headRefName | startswith(\"index/\")) and .headRefName != \"$current\") | .number" |
+          while read -r number; do
+            gh pr close "$number" --delete-branch \
+              --comment "Superseded by $(gh pr view "$current" --json url --jq .url). Each index build starts from main, so the newer pull request contains this one's changes."
+          done
