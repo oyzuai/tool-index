@@ -53,8 +53,8 @@ case "$url" in
   *"/manifests/sha256:"*) name=m-${url##*/manifests/sha256:} ;;
 esac
 [ -e "$REG/$name.neterr" ] && exit 28
-[ -e "$REG/$name.stale" ] && printf 'HTTP/2 503\r\nLink: %s\r\n\r\n' "$(cat "$REG/$name.stale")" > "$hdr" || : > "$hdr"
-printf 'HTTP/2 200\r\n' >> "$hdr"
+[ -e "$REG/$name.stale" ] && printf '%s 503\r\nLink: %s\r\n\r\n' "$([ -e "$REG/lower" ] && echo http/2 || echo HTTP/2)" "$(cat "$REG/$name.stale")" > "$hdr" || : > "$hdr"
+printf '%s 200\r\n' "$([ -e "$REG/lower" ] && echo http/2 || echo HTTP/2)" >> "$hdr"
 [ -e "$REG/$name.link" ] && printf '%s: %s\r\n' "$(cat "$REG/linkname" 2>/dev/null || echo Link)" "$(cat "$REG/$name.link")" >> "$hdr"
 printf '\r\n' >> "$hdr"
 if [ -e "$REG/$name.code" ]; then code=$(cat "$REG/$name.code"); else code=404; fi
@@ -83,7 +83,7 @@ sha() { printf '%s' "$1" | sha256sum | cut -d' ' -f1; }
 # - when there is no output).
 run() {
   status=0
-  REG=$REG ROOT=$digest CURL=$work/curl "$script" "$work/candidates.json" > "$work/out" 2> "$work/err" || status=$?
+  PATH=${PATHPREFIX:+$PATHPREFIX:}$PATH REG=$REG ROOT=$digest CURL=$work/curl "$script" "$work/candidates.json" > "$work/out" 2> "$work/err" || status=$?
   verified=-
   [ ! -s "$work/out" ] || verified=$(jq '.releases | length' "$work/out")
 }
@@ -331,6 +331,16 @@ name="root digest in the header block of a retried attempt only"
 reg; put referrers 200 "$with"; touch "$REG/root.stale"; run
 expect "$name" 0 0
 
+name="lowercase status lines in the header blocks"
+reg; touch "$REG/lower"; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.stale"
+put referrers2 200 "$with"; run
+expect "$name" 0 0
+
+name="header reduction fails"
+mkdir -p "$work/badawk"; printf '#!/bin/sh\nexit 2\n' > "$work/badawk/awk"; chmod +x "$work/badawk/awk"
+reg; put referrers 200 "$with"; PATHPREFIX=$work/badawk run; unset PATHPREFIX
+expect "$name" 1 -; errs 'cannot read the response headers'
+
 # The script's own inputs.
 cand=$work/candidates.json
 name="root digest that is not a digest"
@@ -351,14 +361,26 @@ expect "$name" 1 -; errs 'invalid repository'
 
 name="candidates file that is not JSON"
 printf 'not json' > "$cand"; reg; run
-expect "$name" 1 -; errs 'not a JSON array'
+expect "$name" 1 -; errs 'exactly one JSON array'
 
 name="candidates file that is an object"
 printf '{"package":"p"}' > "$cand"; reg; run
-expect "$name" 1 -; errs 'not a JSON array'
+expect "$name" 1 -; errs 'exactly one JSON array'
 
 name="empty candidates list"
 printf '[]' > "$cand"; reg; run
 expect "$name" 0 0
+
+name="empty candidates file"
+: > "$cand"; reg; run
+expect "$name" 1 -; errs 'exactly one JSON array'
+
+name="whitespace-only candidates file"
+printf ' \n\n' > "$cand"; reg; run
+expect "$name" 1 -; errs 'exactly one JSON array'
+
+name="two JSON arrays in the candidates file"
+printf '[] []' > "$cand"; reg; run
+expect "$name" 1 -; errs 'exactly one JSON array'
 
 echo "plugin availability checks passed"

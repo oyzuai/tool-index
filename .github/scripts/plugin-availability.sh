@@ -48,8 +48,10 @@ fetch() {
     -w '%{http_code}' "$@") || { echo "network error talking to ghcr.io" >&2; exit 1; }
   # -D holds one header block per attempt (and per proxy or redirect hop):
   # only the last one belongs to the answer whose status was printed.
-  awk '/^HTTP\// { buf = "" } { buf = buf $0 "\n" } END { printf "%s", buf }' "$tmp/headers" > "$tmp/headers.last" \
-    && mv "$tmp/headers.last" "$tmp/headers"
+  [ -e "$tmp/headers" ] || : > "$tmp/headers"
+  awk 'tolower($0) ~ /^http\// { buf = "" } { buf = buf $0 "\n" } END { printf "%s", buf }' "$tmp/headers" > "$tmp/headers.last" \
+    && mv "$tmp/headers.last" "$tmp/headers" \
+    || { echo "cannot read the response headers" >&2; exit 1; }
   printf '%s' "$code"
 }
 
@@ -193,8 +195,9 @@ available() { # repository root_digest
 }
 
 # A candidates file that is not a JSON array is an error, not an empty list.
-list=$(jq -c 'if type == "array" then .[] else error("not an array") end' "$candidates") \
-  || { echo "$candidates is not a JSON array of releases" >&2; exit 1; }
+jq -se 'length == 1 and (.[0] | type) == "array"' "$candidates" > /dev/null 2>&1 \
+  && list=$(jq -c '.[]' "$candidates") \
+  || { echo "$candidates is not exactly one JSON array of releases" >&2; exit 1; }
 out='[]'
 while IFS= read -r candidate; do
   [ -n "$candidate" ] || continue
