@@ -11,5 +11,122 @@
 #
 # Listing a release here does not advertise it. The release workflow publishes a
 # release only after its OCI root and evidence are verified available (catalog
-# last); until real packages exist on GHCR (oyzu S2c, #584) this stays empty.
+# last). oyzu/go 0.1.0-preview.1 is the first real package (oyzu release run
+# 39256292494).
 authority = "oyzu"
+withdrawals = []
+
+[[packages]]
+publisher = "oyzu"
+name = "go"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:25f830bd740620e6a54a5eac922d1a9505e12f1e1db732f8538152447ba1f9bf"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["go-test-events"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "amd64"
+manifest_digest = "sha256:2625631775cb00de1d3206b1c339f008a36836429e6e92b083345c7376ba70a4"
+payload_digest = "sha256:16f43b248585cba364021a5a4fc250cc8cfe68ce73f9bbb43e6e655e69e17abb"
+size = 359678
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "arm64"
+manifest_digest = "sha256:b86d0a76761d26921602d1a1e4d0deb7b09a5b8419c6976839524f222ccfff69"
+payload_digest = "sha256:7b054f69f6607bd7ebf5eef463e8ddc2a9d52b4aefb6b7bb892c44556b842e21"
+size = 330729
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:605332a0fbd40a2ec43a2abe8f1b06d5596e5fff18483af49ab6d0816973ad69"
+payload_digest = "sha256:de17b89ef810e04d7c4df70b0d37c458e3c6537d5008498f8527500d015a9dba"
+size = 418695
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:fa3aae9b2752f7140501c4dda7f07bca03757a8d51b57727b4544b1e1fc33dbd"
+payload_digest = "sha256:067bdd0c93ca37748cd2b8a405db5a0f4f77e557fd860611783d049e5a6999e0"
+size = 389360
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:9cfcec6751ac659a1e00bf75b4a25ec04e078788a3262b064e8b8ad391b07e21"
+payload_digest = "sha256:0127cd099a4e75597fa0ab883649d6cd101ab3e328ccabff899a4641fd8dd48a"
+size = 284996
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/go@sha256:25f830bd740620e6a54a5eac922d1a9505e12f1e1db732f8538152447ba1f9bf"
+
+[[packages.releases.qualification.tested]]
+core = "0.1.0"
+
+[[packages.releases.qualification.tested.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[references]]
+reference = "go/app"
+package = "oyzu/go"
+profile = "app"
+role = "builder"
+description = "Build, test and package Go modules and workspaces with the native go toolchain."
+
+[[references]]
+reference = "go/library"
+package = "oyzu/go"
+profile = "library"
+role = "builder"
+description = "Test and vet Go library modules without producing an executable."
+
+[[detections]]
+id = "go-module"
+uses = "go/app"
+
+[[detections.match.all]]
+
+[detections.match.all.field]
+file = "go.mod"
+format = "go-mod"
+path = ["module"]
+present = true
+
+[[detections.match.all]]
+
+[detections.match.all.not]
+file = "go.work"
+
+[[detections]]
+id = "go-workspace"
+uses = "go/app"
+
+[detections.match]
+file = "go.work"
