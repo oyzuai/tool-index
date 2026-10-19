@@ -54,6 +54,7 @@ jobs:
         run: |
           python3 -m pip install --user jsonschema==4.26.0
           tests/plugin-catalog.sh
+          tests/plugin-availability.sh
       # config/plugins.toml has no routine path: every change needs a person
       # (CODEOWNERS). This lists what it changes, capability-sensitive changes
       # first, in the job summary, and fails if the file no longer parses or
