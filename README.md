@@ -249,7 +249,8 @@ oyzu#578.
 catalog's `content` (authority, packages with releases, references,
 detections, withdrawals) in TOML, in the order the contract requires.
 `tests/fixtures/plugins-v1alpha1/plugins.go-preview.toml` is a full example.
-It ships empty. The generator checks the whole file against the contract's
+The source lists the Go preview, `oyzu/go` 0.1.0-preview.1. The generator
+checks the whole file against the contract's
 rules, so a mistake in an entry that is not advertised yet still fails review.
 
 **Signing.** The `Plugin catalog` step of `release.yml` runs after the tools
@@ -293,11 +294,10 @@ Any other answer, such as a timeout, 5xx or 401/403, fails the run, so a GHCR
 blip makes plugins absent from that release instead of publishing a catalog
 that lacks packages (calls use `--max-time 30 --retry 3`). A package left without releases drops out together
 with its references and detections. Withdrawals are always kept (they only
-restrict). The evidence artifact type in that script is a placeholder until
-oyzu S2c (#584) publishes real packages; the script's tests use a fake
+restrict). The evidence artifact type in that script is the Sigstore bundle v0.3
+media type oyzu publishes; the script's tests use a fake
 registry, and the 404 and tag index lookups were also run anonymously against
-an existing public ghcr.io image (not one of ours). Until then the source is empty and so is the published
-list, which is still well formed.
+an existing public ghcr.io image (not one of ours).
 
 **Failure isolation.** `plugin-catalog.sh` runs the plugin steps in their own
 shell, under `timeout 600` (so a hung GHCR, Fulcio or Rekor call cannot run
