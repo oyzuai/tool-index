@@ -39,9 +39,11 @@ trap 'rm -rf "$tmp"' EXIT
 # reset, DNS) ends the whole script with a failure: only a definite answer may
 # decide that a release is unavailable, so a blip makes the catalog run fail
 # (plugins absent from this release) and never publishes a catalog that lacks
-# packages.
+# packages. `exit` inside $(...) ends only that subshell, so every caller
+# writes `code=$(fetch ...) || exit 1`.
 fetch() {
-  "$curl" -sS --max-time 30 --retry 3 --retry-all-errors -o "$tmp/body" -D "$tmp/headers" \
+  rm -f "$tmp/body" "$tmp/headers"
+  "$curl" -sSg --max-time 30 --retry 3 --retry-all-errors -o "$tmp/body" -D "$tmp/headers" \
     -w '%{http_code}' "$@" || { echo "network error talking to ghcr.io" >&2; exit 1; }
 }
 
@@ -50,6 +52,7 @@ fetch() {
 digest_re='^sha256:[0-9a-f]{64}$'
 repo_re='^[a-z0-9]+([._-][a-z0-9]+)*(/[a-z0-9]+([._-][a-z0-9]+)*)*$'
 index_max_pages=50
+index_max_descriptors=50
 
 # The body fetched last must be exactly one JSON object: jq on its own would
 # take the last of several values, and a body that is not JSON would turn into a
@@ -59,26 +62,55 @@ json_object() { # what
     || { echo "$1 is not a single JSON object" >&2; exit 1; }
 }
 
+# The first Link target whose rel is a space-separated token list holding
+# `next` (case-insensitive); other rels, and rels such as `nextpage`, do not
+# count. Prints nothing when there is none.
+next_link() {
+  tr -d '\r' < "$tmp/headers" | awk '
+    tolower($0) ~ /^link:/ {
+      v = substr($0, 6)
+      while (match(v, /<[^>]*>[^<]*/)) {
+        seg = substr(v, RSTART, RLENGTH); v = substr(v, RSTART + RLENGTH)
+        url = seg; sub(/^</, "", url); sub(/>.*/, "", url)
+        params = seg; sub(/^<[^>]*>/, "", params)
+        n = split(tolower(params), p, ";")
+        for (i = 1; i <= n; i++) {
+          x = p[i]; gsub(/^[ \t]+|[ \t]+$/, "", x)
+          if (x ~ /^rel[ \t]*=/) {
+            sub(/^rel[ \t]*=[ \t]*/, "", x); gsub(/"/, "", x)
+            m = split(x, t, /[ \t]+/)
+            for (j = 1; j <= m; j++) if (t[j] == "next") { print url; exit }
+          }
+        }
+      }
+    }'
+}
+
 # The referrers tag schema index is writable by anyone who can push a tag, so
 # unlike the referrers API it does not vouch for its entries. A descriptor of
 # the evidence type counts only when the referrer manifest it names exists in
 # this repository, hashes to that digest, and has the root as its subject.
 # Returns 0 for evidence, 1 for none; any other answer ends the script.
 referrer_attached() { # path token root_digest
-  local path=$1 token=$2 root=$3 code digests d
+  local path=$1 token=$2 root=$3 code found d list
   code=$(fetch -H "Authorization: Bearer $token" -H "Accept: $index_type" \
-    "https://ghcr.io/v2/$path/manifests/sha256-${root#sha256:}")
+    "https://ghcr.io/v2/$path/manifests/sha256-${root#sha256:}") || exit 1
   case "$code" in
     200) ;;
     404) return 1 ;;
     *) echo "unexpected HTTP $code for $path referrers tag" >&2; exit 1 ;;
   esac
   json_object "referrers tag index of $path"
-  digests=$(jq -r --arg t "$EVIDENCE_TYPE" '.manifests[]? | select(.artifactType == $t) | .digest' "$tmp/body")
-  for d in $digests; do
+  found=$(jq -r --arg t "$EVIDENCE_TYPE" '.manifests[]? | select(.artifactType == $t) | .digest' "$tmp/body") \
+    || { echo "referrers tag index of $path has a malformed entry" >&2; exit 1; }
+  [ -n "$found" ] || return 1
+  mapfile -t list <<< "$found"
+  [ "${#list[@]}" -le "$index_max_descriptors" ] \
+    || { echo "too many referrers in the tag index of $path" >&2; exit 1; }
+  for d in "${list[@]}"; do
     [[ $d =~ $digest_re ]] || continue
     code=$(fetch -H "Authorization: Bearer $token" -H "Accept: application/vnd.oci.image.manifest.v1+json" \
-      "https://ghcr.io/v2/$path/manifests/$d")
+      "https://ghcr.io/v2/$path/manifests/$d") || exit 1
     case "$code" in
       200) ;;
       404) continue ;;
@@ -96,12 +128,12 @@ referrer_attached() { # path token root_digest
 # Returns 0 when available, 1 when GHCR answers 404 (unknown manifest or no
 # referrers or tag index); any other answer ends the script with a failure.
 available() { # repository root_digest
-  local path=${1#ghcr.io/} root=$2 token code url next pages=0
+  local path=${1#ghcr.io/} root=$2 token code url next rc pages=0
   [[ $root =~ $digest_re ]] || { echo "invalid root digest: $root" >&2; exit 1; }
   [[ $path =~ $repo_re ]] || { echo "invalid repository: $1" >&2; exit 1; }
-  code=$(fetch "https://ghcr.io/token?service=ghcr.io&scope=repository:$path:pull")
+  code=$(fetch "https://ghcr.io/token?service=ghcr.io&scope=repository:$path:pull") || exit 1
   [ "$code" = 200 ] && token=$(jq -er .token "$tmp/body") || { echo "no pull token for $path (HTTP $code)" >&2; exit 1; }
-  code=$(fetch -I -H "Authorization: Bearer $token" -H "Accept: $accept" "https://ghcr.io/v2/$path/manifests/$root")
+  code=$(fetch -I -H "Authorization: Bearer $token" -H "Accept: $accept" "https://ghcr.io/v2/$path/manifests/$root") || exit 1
   case "$code" in
     200) ;;
     404) return 1 ;;
@@ -113,7 +145,7 @@ available() { # repository root_digest
   # schema index instead.
   url="https://ghcr.io/v2/$path/referrers/$root"
   while :; do
-    code=$(fetch -H "Authorization: Bearer $token" -H "Accept: $index_type" "$url")
+    code=$(fetch -H "Authorization: Bearer $token" -H "Accept: $index_type" "$url") || exit 1
     case "$code" in
       200) ;;
       404)
@@ -122,8 +154,13 @@ available() { # repository root_digest
       *) echo "unexpected HTTP $code for $path referrers" >&2; exit 1 ;;
     esac
     json_object "referrers of $path"
-    jq -e --arg t "$EVIDENCE_TYPE" '[.manifests[]? | select(.artifactType == $t)] | length > 0' "$tmp/body" > /dev/null && return 0
-    next=$(tr -d '\r' < "$tmp/headers" | sed -n 's/^[Ll][Ii][Nn][Kk]:.*<\([^>]*\)>[^,]*rel="\{0,1\}next"\{0,1\}.*/\1/p' | head -n 1)
+    rc=0; jq -e --arg t "$EVIDENCE_TYPE" '[.manifests[]? | select(.artifactType == $t)] | length > 0' "$tmp/body" > /dev/null || rc=$?
+    case "$rc" in
+      0) return 0 ;;
+      1) ;;
+      *) echo "referrers of $path have a malformed entry" >&2; exit 1 ;;
+    esac
+    next=$(next_link)
     [ -n "$next" ] || return 1
     case "$next" in
       /v2/"$path"/referrers/"$root"\?*) ;;

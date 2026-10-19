@@ -278,9 +278,13 @@ evidence type counts only when the referrer manifest it names exists in the
 repository, hashes to the entry's digest and has the root as its `subject`
 (the registry vouches for that on the referrers API, so nothing more is
 checked there). The `Link` rel=next pages of the referrers API are followed
-(at most 50, only within the same route), and a response that is not exactly
-one JSON object fails the run. The script also rejects a root digest or
-repository that is not in OCI form. A release is left out only on a definite 404 (unknown manifest, no referrers
+(at most 50, only within the same route; a `rel` counts when its
+space-separated tokens include `next`, in any case), and a response that is not
+exactly one JSON object, or that holds a malformed entry, fails the run, as does
+a transfer cut short. A tag index with more than 50 evidence entries fails the
+run too. The script also rejects a root digest or repository that is not in OCI
+form; the repository pattern (lowercase, `[a-z0-9._-]` segments) is deliberately
+stricter than the OCI name rule. A release is left out only on a definite 404 (unknown manifest, no referrers
 in either place) or
 when no evidence is attached, and with no verification nothing is advertised.
 Any other answer, such as a timeout, 5xx or 401/403, fails the run, so a GHCR

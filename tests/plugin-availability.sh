@@ -24,16 +24,17 @@ without='{"manifests":[{"artifactType":"application/vnd.example.sbom+json"}]}'
 # the anonymous pull token.
 cat > "$work/curl" <<'CURL'
 #!/usr/bin/env bash
-out=/dev/stdout hdr=/dev/null write= accept=
+out=/dev/stdout hdr=/dev/null write= accept= glob=0
 while [ $# -gt 0 ]; do
   case "$1" in
+    -g|-sSg) glob=1 ;;
     -o) out=$2; shift ;; -D) hdr=$2; shift ;; -w) write=$2; shift ;;
     -H) case "$2" in Accept:*) accept=$2 ;; esac; shift ;;
     --max-time|--retry) shift ;; http*) url=$1 ;;
   esac
   shift
 done
-echo "$url | $accept" >> "$REG/log"
+echo "$url | $accept | g=$glob" >> "$REG/log"
 case "$url" in
   *"/token?"*) printf '{"token":"t"}' > "$out"; printf 200; exit 0 ;;
   *"/manifests/$ROOT") printf 'HTTP/2 200\r\nDocker-Content-Digest: %s\r\n\r\n' "$ROOT" > "$hdr"; : > "$out"; printf 200; exit 0 ;;
@@ -47,11 +48,18 @@ case "$url" in
 esac
 [ -e "$REG/$name.neterr" ] && exit 28
 printf 'HTTP/2 200\r\n' > "$hdr"
-[ -e "$REG/$name.link" ] && printf 'Link: %s\r\n' "$(cat "$REG/$name.link")" >> "$hdr"
+[ -e "$REG/$name.link" ] && printf '%s: %s\r\n' "$(cat "$REG/linkname" 2>/dev/null || echo Link)" "$(cat "$REG/$name.link")" >> "$hdr"
 printf '\r\n' >> "$hdr"
 if [ -e "$REG/$name.code" ]; then code=$(cat "$REG/$name.code"); else code=404; fi
 if [ -e "$REG/$name.body" ]; then cp "$REG/$name.body" "$out"; else : > "$out"; fi
+# Evidence on the Nth page after the first, whatever the page URL is.
+if [ "$name" = referrers2 ] && [ -e "$REG/referrers2.evidence_at" ] \
+  && [ "$(grep -c '/referrers/.*?' "$REG/log")" = "$(cat "$REG/referrers2.evidence_at")" ]; then
+  cp "$REG/referrers2.evidence" "$out"
+fi
 [ -n "$write" ] && printf '%s' "$code"
+# A transfer cut after the headers: the status and a body arrive, curl fails.
+[ -e "$REG/$name.cut" ] && exit 18
 exit 0
 CURL
 chmod +x "$work/curl"
@@ -205,6 +213,90 @@ name="second referrers page 5xx"
 reg; put referrers 200 "$without"; echo "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" > "$REG/referrers.link"
 put referrers2 500; run
 expect "$name" 1 -
+
+
+name="tag index cut after the headers"
+reg; put referrers 404; good_tag; touch "$REG/tag.cut"; run
+expect "$name" 1 -; errs 'network error'
+
+name="referrer manifest cut after the headers"
+reg; put referrers 404; good_tag; touch "$REG/m-${md#sha256:}.cut"; run
+expect "$name" 1 -; errs 'network error'
+
+name="referrers page cut after the headers"
+reg; put referrers 200 "$with"; touch "$REG/referrers.cut"; run
+expect "$name" 1 -; errs 'network error'
+
+name="tag index entry that is not an object"
+reg; put referrers 404; put tag 200 '{"manifests":["x"]}'; run
+expect "$name" 1 -; errs 'malformed entry'
+
+name="referrers entry that is not an object"
+reg; put referrers 200 '{"manifests":["x"]}'; run
+expect "$name" 1 -; errs 'malformed entry'
+
+name="descriptor digest that is a glob"
+reg; put referrers 404; put tag 200 "$(index_of '*')"; run
+expect "$name" 0 0
+grep -q 'manifests/\*' "$REG/log" && fail "glob digest reached the network"
+
+name="fifty descriptors in the tag index"
+reg; put referrers 404; manifest "$digest"
+list=; for i in $(seq 1 49); do list="$list{\"artifactType\":\"$type\",\"digest\":\"sha256:$(sha "x$i")\"},"; done
+put tag 200 "{\"manifests\":[$list{\"artifactType\":\"$type\",\"digest\":\"$md\"}]}"; put "m-${md#sha256:}" 200 "$m"; run
+expect "$name" 0 1
+
+name="fifty-one descriptors in the tag index"
+reg; put referrers 404; manifest "$digest"
+list=; for i in $(seq 1 50); do list="$list{\"artifactType\":\"$type\",\"digest\":\"sha256:$(sha "x$i")\"},"; done
+put tag 200 "{\"manifests\":[$list{\"artifactType\":\"$type\",\"digest\":\"$md\"}]}"; put "m-${md#sha256:}" 200 "$m"; run
+expect "$name" 1 -; errs 'too many referrers'
+
+# Referrers paging: every page links to the next; evidence appears on page N.
+paged() { # link header value, evidence page (0: never), [header name]
+  reg; [ -z "${3:-}" ] || printf '%s' "$3" > "$REG/linkname"; put referrers 200 "$without"; printf '%s' "$1" > "$REG/referrers.link"; printf '%s' "$1" > "$REG/referrers2.link"
+  put referrers2 200 "$without"
+  [ "$2" = 0 ] || { printf '%s' "$2" > "$REG/referrers2.evidence_at"; printf '%s' "$with" > "$REG/referrers2.evidence"; }
+  run
+}
+next="</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\""
+
+name="evidence on the 50th referrers page"
+paged "$next" 49
+expect "$name" 0 1
+
+name="evidence on the 51st referrers page"
+paged "$next" 50
+expect "$name" 1 -; errs 'too many referrers pages'
+
+name="rel with several tokens"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"prev next\"" 1
+expect "$name" 0 1
+
+name="rel in capitals, header name in capitals"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; REL=NEXT" 1
+expect "$name" 0 1
+
+name="header name in capitals"
+paged "$next" 1 LINK
+expect "$name" 0 1
+
+name="next after another link value"
+paged "</v2/oyzuai/p/referrers/$digest?last=a>; rel=\"prev\", </v2/oyzuai/p/referrers/$digest?last=x>; rel=\"next\"" 1
+expect "$name" 0 1
+
+name="rel that only starts with next"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"nextpage\"" 1
+expect "$name" 0 0
+
+name="only a prev link"
+paged "</v2/oyzuai/p/referrers/$digest?last=x>; rel=\"prev\"" 1
+expect "$name" 0 0
+
+name="page URL with glob characters"
+paged "</v2/oyzuai/p/referrers/$digest?last=[1]>; rel=\"next\"" 1
+expect "$name" 0 1
+grep -v 'g=1' "$REG/log" | grep -q . && fail "a request ran without -g"
 
 # The script's own inputs.
 cand=$work/candidates.json
