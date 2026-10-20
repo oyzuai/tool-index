@@ -201,8 +201,8 @@
     "aqua:google/osv-scanner": {
       "2.7.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-10-12T10:53:37.076086902Z",
-        "attempts": 1,
+        "last_attempt": "2026-10-20T08:37:47.314490092Z",
+        "attempts": 2,
         "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23623"
       }
@@ -247,8 +247,8 @@
       },
       "5.6.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-10-12T10:53:37.076086902Z",
-        "attempts": 1,
+        "last_attempt": "2026-10-20T08:37:47.314490092Z",
+        "attempts": 2,
         "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24779"
       }
