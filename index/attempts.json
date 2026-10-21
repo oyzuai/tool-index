@@ -2,27 +2,6 @@
   "format": 1,
   "tools": {
     "aqua:argoproj/argo-cd": {
-      "3.2.2": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
-        "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23487"
-      },
-      "3.2.3": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
-        "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23439"
-      },
-      "3.2.4": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
-        "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23343"
-      },
       "3.2.5": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
         "last_attempt": "2026-10-11T10:04:54.495778694Z",
@@ -65,6 +44,13 @@
         "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23799"
       },
+      "3.3.17": {
+        "first_failed": "2026-10-21T08:40:21.025877091Z",
+        "last_attempt": "2026-10-21T08:40:21.025877091Z",
+        "attempts": 1,
+        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23907"
+      },
       "3.4.11": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
         "last_attempt": "2026-10-12T10:53:37.076086902Z",
@@ -72,12 +58,26 @@
         "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23943"
       },
-      "3.5.5": {
-        "first_failed": "2026-10-13T10:40:30.012573449Z",
-        "last_attempt": "2026-10-13T10:40:30.012573449Z",
+      "3.4.12": {
+        "first_failed": "2026-10-21T08:40:21.025877091Z",
+        "last_attempt": "2026-10-21T08:40:21.025877091Z",
         "attempts": 1,
         "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23719"
+      },
+      "3.5.5": {
+        "first_failed": "2026-10-13T10:40:30.012573449Z",
+        "last_attempt": "2026-10-21T08:40:21.025877091Z",
+        "attempts": 2,
+        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24103"
+      },
+      "3.5.6": {
+        "first_failed": "2026-10-21T08:40:21.025877091Z",
+        "last_attempt": "2026-10-21T08:40:21.025877091Z",
+        "attempts": 1,
+        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23979"
       }
     },
     "aqua:atuinsh/atuin": {
