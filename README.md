@@ -93,8 +93,9 @@ breaks, and the index cannot expire for that reason.
   --provider <name> --version <v> --platform <p>…` builds the records from
   the publisher's listing and checks each archive against the publisher's
   SHA-256 file. Records are produced for the platforms oyzu installs each
-  provider on (Linux x86-64 and arm64, macOS arm64, Windows x86-64, where
-  the publisher ships them); the other configured platforms get
+  provider on (Linux x86-64 and arm64, macOS arm64, Windows x86-64, plus
+  Intel macOS for Rust, Go and Node-family providers where the publisher
+  ships them); the other configured platforms get
   `unsupported` records. With `line = N`, versions, the backfill and the
   records kept count per release line (Node, Java, Gradle, npm and pnpm by
   major; Go, Python, Maven, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
