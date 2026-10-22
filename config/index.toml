@@ -53,7 +53,9 @@ retry_after_days = 7
 # did not. Kept versions whose records say oyzu does not install them there
 # are verified again, once per oyzu revision. linux/arm64/gnu was added with
 # the oyzu pin of 2026-10-11, after Java, Node, Go and Python had records.
-recheck_platforms = ["linux/arm64/gnu"]
+# Intel macOS is revisited for the Rust, Go and Node-family support in
+# oyzuai/oyzu#832. Other providers keep their unsupported records.
+recheck_platforms = ["linux/arm64/gnu", "darwin/amd64/native"]
 
 [signing]
 # Expiry of targets, snapshot and timestamp. The job re-signs daily.
