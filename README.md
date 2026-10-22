@@ -154,8 +154,19 @@ ordinary index build, review and signed release. Unsigned evidence alone does
 not change client admission or prove native interpreter installation. Keep the
 client/source pin review and index publication distinct from subsequent managed
 installation and frozen replay qualification.
-The proposed pin names a durable, unmerged client candidate; maintainer
-acceptance of that client change precedes adopting the new engine pin.
+The client change and engine pin are accepted. The pin alone does not regenerate
+records: `Build index` runs on its schedule or manual dispatch. Its complete
+build preserves the global index; `build --only` emits a filtered index and must
+not replace the published global catalog. Generated data still passes the normal
+review and signed-release gates before clients can install from it.
+
+The repository compiler must also satisfy the pinned client's `rust-version`.
+The root/recipe verification job does not compile the separately installed
+Oyzu CLI. Build run [39788596572](https://github.com/oyzuai/tool-index/actions/runs/39788596572)
+exposed that gap: Rust 1.95 could build the index crate but could not install the
+new client requiring Rust 1.99. The exact 1.99.1 repository toolchain matches the
+compiler used by the accepted client build; it does not raise this crate's
+declared minimum or change dependency, signing or review requirements.
 
 ### Review rules
 
