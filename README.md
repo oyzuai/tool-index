@@ -446,3 +446,6 @@ Dependabot alerts and security updates must also be enabled in repository settin
 The root crate depends on private `oyzuai/oyzu` source. Verify that Dependabot can read that dependency before treating the root job as operational; unavailable private-source access is a failed update job, not a clean result. The `oyzu-recipe` revision is intentionally ignored by automatic updates because it must be changed with the workflow's matching Oyzu binary pin.
 
 Actions secrets are not automatically available to Dependabot-triggered checks. The existing private-source checkout needs approved Dependabot credential setup before those PR checks can build the root crate. Keep the read-only App and existing verification gates; do not run Dependabot changes with elevated `pull_request_target` privileges as a workaround. This configuration adds no credential, access grant, auto-merge rule, or signing change.
+
+Unsigned Intel macOS Python data preparation and its selective-build constraint
+are tracked in [the preparation note](docs/python-intel-index-data.md).
