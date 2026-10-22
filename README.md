@@ -80,7 +80,8 @@ breaks, and the index cannot expire for that reason.
 - **Core providers**: Oyzu's own providers, built into the job rather than
   read from the registry, indexed as `oyzu:<name>` with origin `core:<name>`:
   Java (Eclipse Temurin, listed from Adoptium), Node (nodejs.org/dist), Go
-  (go.dev/dl), Python (python-build-standalone's current release), Maven
+  (go.dev/dl), Python (python-build-standalone's current release), Zig
+  (ziglang.org's stable download catalog), Maven
   (archive.apache.org), Gradle (services.gradle.org), npm and pnpm (the npm
   registry), the same feeds the CLI installs from, and Helm, kubectl, k3d,
   Liquibase, Tailscale (stable track) and Rust, listed from the publisher's
@@ -98,9 +99,15 @@ breaks, and the index cannot expire for that reason.
   ships them); the other configured platforms get
   `unsupported` records. With `line = N`, versions, the backfill and the
   records kept count per release line (Node, Java, Gradle, npm and pnpm by
-  major; Go, Python, Maven, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
+  major; Go, Python, Zig, Maven, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
   records even when newer lines release more often. Managed clients resolve
   these providers only from their records; standalone clients prefer them.
+  Zig currently admits Intel macOS and Linux amd64 GNU only; the remaining
+  configured targets keep explicit unsupported records. Its newest three
+  minor lines each receive the existing backfill and retain three versions
+  of records. The native `oyzu:zig` / `core:zig` entry is distinct from the
+  existing `oyzu:ziglang/zig` / `aqua:ziglang/zig` discovery entry; adding the
+  native provider does not rename or promote the registry entry.
 
 Versions a recipe does not cover (`version_filter`, `version_prefix`) are
 dropped with the same engine the CLI uses (`oyzu-recipe`, pinned to the same
@@ -167,6 +174,13 @@ exposed that gap: Rust 1.95 could build the index crate but could not install th
 new client requiring Rust 1.99. The exact 1.99.1 repository toolchain matches the
 compiler used by the accepted client build; it does not raise this crate's
 declared minimum or change dependency, signing or review requirements.
+
+Stable native Zig listing and the accepted Mac/Linux client pin are tracked
+in [tool-index#57](https://github.com/oyzuai/tool-index/issues/57). The source
+change uses the existing listing, provider-evidence and full-index build
+steps; it does not create signed admission by itself. See
+[Zig compiler admission](docs/qualification/zig-compiler-admission.md) for
+the exact revision, bounded retention and remaining qualification gates.
 
 ### Review rules
 

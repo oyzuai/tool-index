@@ -203,6 +203,10 @@ async fn main() -> Result<()> {
                         "python-build-standalone",
                         versions::list_python(versions::PYTHON_RELEASE).await,
                     ),
+                    "zig" => (
+                        "ziglang.org",
+                        versions::list_zig(versions::ZIG_CATALOG).await,
+                    ),
                     "maven" => (
                         "archive.apache.org",
                         versions::list_maven(&versions::MAVEN_LISTINGS).await,

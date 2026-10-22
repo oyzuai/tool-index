@@ -197,3 +197,16 @@ keep_records = 3
 names = ["rust"]
 max_versions = 20
 verified = true
+
+# Stable Zig releases from ziglang.org/download/index.json. Lines are minors;
+# keep the newest three so a newer minor cannot consume all the backfill.
+# This includes the selected 0.15.2 compiler alongside 0.16 and 0.17 today.
+# The client supports Intel macOS and
+# Linux amd64 GNU only; other configured platforms keep unsupported records.
+[core.zig]
+names = ["zig"]
+max_versions = 30
+verified = true
+line = 2
+lines = 3
+keep_records = 3

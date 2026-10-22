@@ -14,6 +14,7 @@
 //!   same feeds the CLI reads); and the publisher's git tags for Helm, kubectl,
 //!   k3d, Liquibase, Tailscale and Rust, whose CLI installs ask the publisher
 //!   only for one exact version.
+//! - Zig's download catalog for stable native Zig releases.
 use crate::registry::Package;
 use anyhow::{bail, Context, Result};
 use serde::{Deserialize, Serialize};
@@ -395,6 +396,40 @@ fn listing(source: &str, versions: Vec<Listed>) -> ToolListing {
 pub const NODE_CATALOG: &str = "https://nodejs.org/dist/index.json";
 pub const GO_CATALOG: &str = "https://go.dev/dl/?mode=json&include=all";
 pub const PYTHON_RELEASE: &str = "https://raw.githubusercontent.com/astral-sh/python-build-standalone/latest-release/latest-release.json";
+pub const ZIG_CATALOG: &str = "https://ziglang.org/download/index.json";
+
+/// Stable Zig releases from the same publisher catalog the CLI reads.
+/// Platform archives and checksums remain owned by provider evidence.
+pub async fn list_zig(url: &str) -> Result<ToolListing> {
+    let body: Value = serde_json::from_slice(&get(url, 8 << 20).await?)?;
+    Ok(parse_zig(&body))
+}
+
+pub fn parse_zig(body: &Value) -> ToolListing {
+    let mut versions: Vec<Listed> = body
+        .as_object()
+        .into_iter()
+        .flatten()
+        // Match the client's canonical stable MAJOR.MINOR.PATCH keys:
+        // no master, dev, pre-release, build suffix, or leading zeroes.
+        .filter(|(version, _)| {
+            exact_release(version)
+                && version
+                    .split('.')
+                    .all(|p| p.parse::<u64>().is_ok() && (p == "0" || !p.starts_with('0')))
+        })
+        .map(|(version, release)| Listed {
+            version: version.to_owned(),
+            published_at: release["date"]
+                .as_str()
+                .filter(|d| d.parse::<jiff::civil::Date>().is_ok())
+                .map(|d| format!("{d}T00:00:00Z")),
+            prerelease: false,
+        })
+        .collect();
+    versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
+    listing("ziglang.org", versions)
+}
 
 /// Node.js releases from the dist catalog, with their release days.
 pub async fn list_node(url: &str) -> Result<ToolListing> {
@@ -841,6 +876,42 @@ mod tests {
         }}));
         let names: Vec<_> = npm.versions.iter().map(|v| v.version.as_str()).collect();
         assert_eq!(names, ["11.6.2", "10.9.3", "9.9.4"]);
+    }
+
+    #[test]
+    fn zig_catalog_lists_only_canonical_stable_releases_newest_first() {
+        let zig = parse_zig(&json!({
+            "master": {"version": "0.18.0-dev.1+abc", "date": "2026-10-20"},
+            "0.9.1": {"date": "2022-02-15"},
+            "0.14.1": {"date": "2025-05-23"},
+            "0.10.0": {"date": "invalid"},
+            "0.1.0": {},
+            "0.18.0-dev.1": {},
+            "0.18.0-rc.1": {},
+            "0.18.0+build": {},
+            "0.18": {},
+            "v0.18.0": {},
+            "00.18.0": {},
+            "0.018.0": {},
+            "0.18.00": {},
+            "18446744073709551616.0.0": {}
+        }));
+        assert_eq!(zig.source, "ziglang.org");
+        assert!(zig.error.is_none());
+        assert_eq!(
+            zig.versions
+                .iter()
+                .map(|v| v.version.as_str())
+                .collect::<Vec<_>>(),
+            ["0.14.1", "0.10.0", "0.9.1", "0.1.0"]
+        );
+        assert_eq!(
+            zig.versions[0].published_at.as_deref(),
+            Some("2025-05-23T00:00:00Z")
+        );
+        assert_eq!(zig.versions[1].published_at, None);
+        assert_eq!(zig.versions[3].published_at, None);
+        assert!(zig.versions.iter().all(|v| !v.prerelease));
     }
 
     #[test]
