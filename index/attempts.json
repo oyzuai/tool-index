@@ -67,27 +67,20 @@
       },
       "3.5.5": {
         "first_failed": "2026-10-13T10:40:30.012573449Z",
-        "last_attempt": "2026-10-21T08:40:21.025877091Z",
-        "attempts": 2,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 3,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24103"
       },
       "3.5.6": {
         "first_failed": "2026-10-21T08:40:21.025877091Z",
-        "last_attempt": "2026-10-21T08:40:21.025877091Z",
-        "attempts": 1,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 2,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23979"
       }
     },
     "aqua:atuinsh/atuin": {
-      "17.2.0": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
-        "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
-      },
       "17.2.1": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
         "last_attempt": "2026-10-11T10:04:54.495778694Z",
@@ -192,34 +185,34 @@
     "aqua:golang-migrate/migrate": {
       "4.20.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native artifact: HTTP 404 Not Found"
       }
     },
     "aqua:google/osv-scanner": {
       "2.7.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-10-20T08:37:47.314490092Z",
-        "attempts": 2,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 3,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23623"
       }
     },
     "aqua:ko-build/ko": {
       "0.19.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: provenance file: HTTP 404 Not Found"
       },
       "0.19.1": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 25375"
       }
     },
@@ -233,23 +226,23 @@
       },
       "5.4.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22875"
       },
       "5.5.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22931"
       },
       "5.6.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-10-20T08:37:47.314490092Z",
-        "attempts": 2,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 3,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24779"
       }
     },
@@ -263,26 +256,639 @@
       },
       "4.1.1": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22419"
       },
       "5.0.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 3,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 4,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 30307"
       }
     },
+    "core:gradle": {
+      "7.6.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "7.6.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "7.6.6": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "8.14.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "8.14.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "8.14.6": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "9.8.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "9.8.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "9.8.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:helm": {
+      "4.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.0.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.0.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.1.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.1.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.1.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.2.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.2.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.2.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.3.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "4.3.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:java": {
+      "17.0.19": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "17.0.20": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "18.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "18.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "18.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "19.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "19.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "19.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "20.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "20.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "20.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "21.0.10": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "21.0.11": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "21.0.12": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "21.0.13": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "22.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "22.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "22.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "23.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "23.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "23.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "24.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "24.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "24.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "25.0.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "25.0.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "25.0.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "26.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "26.0.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "26.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "27.0.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:k3d": {
+      "5.8.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "5.8.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "5.9.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:kubectl": {
+      "1.34.10": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.34.11": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.34.12": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.35.7": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.35.8": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.35.9": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.36.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.36.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.36.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.37.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.37.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:liquibase": {
+      "5.0.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "5.0.3": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "5.0.4": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:maven": {
+      "3.10.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.8.7": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.8.8": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.8.9": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.9.14": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.9.15": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "3.9.16": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      }
+    },
+    "core:pnpm": {
+      "11.28.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      },
+      "11.28.6": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      },
+      "11.28.7": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      }
+    },
+    "core:python": {
+      "3.10.22": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      },
+      "3.13.16": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      },
+      "3.14.8": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      },
+      "3.15.0": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "no record reached the verified tier"
+      }
+    },
     "core:tailscale": {
+      "1.102.5": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
       "1.104.0": {
         "first_failed": "2026-10-11T16:45:41.62535932Z",
-        "last_attempt": "2026-10-19T08:57:31.143698517Z",
-        "attempts": 2,
-        "engine": "f6c48f9c109ddc45a6283a71f0b8c65276ebf9ab",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 3,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
         "reason": "no record reached the verified tier"
+      },
+      "1.104.1": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.104.2": {
+        "first_failed": "2026-10-22T14:01:51.717252603Z",
+        "last_attempt": "2026-10-22T14:01:51.717252603Z",
+        "attempts": 1,
+        "engine": "b394857b632be050cd69beedb868a17bf0e27ea9",
+        "reason": "this oyzu does not install it on a rechecked platform"
       }
     }
   }
