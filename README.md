@@ -138,6 +138,22 @@ the build: the build report lists it under `withdrawals_not_indexed`, and
 `tool-index review` (which reads `withdrawn.toml` from `--config`, default
 `config`) notes it in the pull request body.
 
+### Client platform updates
+
+A client provider change does not update signed index records. For Intel macOS
+Python, the client admission is tracked in
+[oyzu#884](https://github.com/oyzuai/oyzu/issues/884) and
+[oyzu#885](https://github.com/oyzuai/oyzu/pull/885); index preparation is
+[tool-index#50](https://github.com/oyzuai/tool-index/issues/50).
+Update the single Oyzu revision in `Cargo.toml` and its matching lock entries;
+the build workflow derives both its CLI and recipe engine from that pin.
+The existing Intel `recheck_platforms` rule revisits earlier engine-unsupported
+records under the new pin. Review real `oyzu tools evidence` output before the
+ordinary index build, review and signed release. Unsigned evidence alone does
+not change client admission or prove native interpreter installation. Keep the
+client/source pin review and index publication distinct from subsequent managed
+installation and frozen replay qualification.
+
 ### Review rules
 
 Routine pull requests merge automatically: new versions of indexed tools from
