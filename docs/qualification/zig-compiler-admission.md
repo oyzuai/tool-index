@@ -1,6 +1,6 @@
 # Managed Zig compiler admission
 
-Status: source implementation prepared; managed checks pending. Generated
+Status: source implementation prepared; managed source checks pass. Generated
 admission and signed publication have not run for this source change.
 
 This is the tool-index source prerequisite for
@@ -78,8 +78,7 @@ admission, locks, receipts or attempts.
 
 Normal generated-data review and signed publication remain separate authorized
 operations. This source task installs no compiler, dispatches no workflow and
-claims no Linux runtime or captured build proof. Record actual commands,
-observations, failures and remaining gates here as implementation proceeds.
+claims no Linux runtime or captured build proof.
 
 Always use the complete normal build to prepare a replacement global index.
 `list --only core:zig` is a metadata diagnostic; `build --only core:zig` emits a
@@ -87,3 +86,48 @@ filtered index and must not replace the global catalog. Do not hand-splice
 records, receipts, attempts or locks. Normal generation, independent review,
 signed publication, managed Linux installation and frozen replay remain
 separate evidence gates.
+
+## Managed source verification, 2026-10-22
+
+Checks ran from the existing Oyzu-managed Rust project
+`/Users/micahlmartin/Developer/oyzu-worktrees/zig-dependency-closure`, with
+`cargo 1.99.1 (5f94df478 2026-08-27)`. The project environment remained
+untrusted and skipped (`PROJECT_UNTRUSTED`); it was not enabled for these
+commands. Each command used one build job, a physical task temporary directory,
+and the existing Linux-admission target cache:
+
+```sh
+export CARGO_BUILD_JOBS=1
+export CARGO_TARGET_DIR=/Users/micahlmartin/Developer/oyzu-proofs/issue-875/linux-admission/target
+export TMPDIR=/Users/micahlmartin/Developer/oyzu-proofs/issue-875/index-admission/tmp
+index_manifest=/Users/micahlmartin/Developer/tool-index-worktrees/zig-linux-index/Cargo.toml
+
+CARGO_NET_GIT_FETCH_WITH_CLI=true /Users/micahlmartin/.local/bin/oyzu exec -- cargo update --manifest-path "$index_manifest" -p oyzu-recipe --precise 79fe5de03a1543f79aaeac69f6d47fda24b10c6e
+/Users/micahlmartin/.local/bin/oyzu exec -- cargo metadata --manifest-path "$index_manifest" --locked --no-deps --format-version 1
+/Users/micahlmartin/.local/bin/oyzu exec -- cargo fmt --manifest-path "$index_manifest" --all -- --check
+/Users/micahlmartin/.local/bin/oyzu exec -- cargo test --manifest-path "$index_manifest" --locked zig_
+/Users/micahlmartin/.local/bin/oyzu exec -- cargo test --manifest-path "$index_manifest" --locked --lib --test build
+/Users/micahlmartin/.local/bin/oyzu exec -- cargo clippy --manifest-path "$index_manifest" --locked --all-targets -- -D warnings
+```
+
+| Check | Observed result |
+| --- | --- |
+| Targeted engine update | Exit 0; only the two Oyzu Git source nodes changed |
+| Locked manifest metadata | Exit 0 |
+| Formatting | Exit 0 |
+| Focused Zig regressions | Both passed; initial compilation took 3m 07s |
+| Library and build suite | 42 library tests and 18 build tests passed |
+| Strict root Clippy, all targets | Exit 0, 1m 08s; no warnings |
+| `git diff --check` | Exit 0 |
+
+The baseline gap was established by index/config/source inspection; no
+pre-change failing build was run. Independent first review of source checkpoint
+`d3ffad2` found no issues. The separately packaged release helper was unchanged
+and was not rebuilt; hosted verification remains owned by the normal PR flow.
+
+Local logs and the fetched publisher metadata are retained under
+`/Users/micahlmartin/Developer/oyzu-proofs/issue-875/index-admission`.
+The reused target grew from about 2.8 GB to 3.8 GB and remains owned by the
+active Zig qualification work. All source-verification compiler jobs stopped
+before transferring the single heavy compiler slot to that work; no target,
+shared cache, installed tool, or worktree was removed.
