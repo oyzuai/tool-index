@@ -422,6 +422,101 @@ fn with_java(mut l: Listing, versions: &[&str]) -> Listing {
     l
 }
 
+/// Native Zig joins under its own canonical id; the registry discovery entry
+/// and unrelated verified records must survive the complete normal build.
+#[test]
+fn zig_provider_backfills_retained_minor_lines_without_replacing_aqua() {
+    let mut f = fixture(true);
+    let registry = format!(
+        "{REGISTRY}  - type: github_release\n    repo_owner: ziglang\n    repo_name: zig\n    asset: zig_{{{{.OS}}}}_{{{{.Arch}}}}.tar.xz\n"
+    );
+    std::fs::write(f.root.join("registry.yaml"), &registry).unwrap();
+    f.config.index.aqua_registry.digest = digest(registry.as_bytes());
+    let mut l = listing(&[listed("v1.2.0", None)], &[]);
+    l.tools.insert(
+        "aqua:ziglang/zig".into(),
+        ToolListing {
+            source: "github-releases".into(),
+            versions: vec![listed("0.15.2", None)],
+            error: None,
+        },
+    );
+    let before = run(&f, l.clone(), None, "2026-10-01T00:00:00Z");
+    let production = Config::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("config")).unwrap();
+    let zig = production
+        .index
+        .core
+        .into_iter()
+        .find(|(name, _)| name == "zig")
+        .expect("production config must admit native Zig")
+        .1;
+    assert_eq!(zig.names, ["zig"]);
+    assert!(zig.verified);
+    assert_eq!(zig.line, Some(2));
+    assert_eq!(zig.lines, Some(3));
+    assert_eq!(zig.keep_records, Some(3));
+    f.config.index.core.insert("zig".into(), zig);
+    f.config.index.platforms = vec![
+        "linux/amd64/gnu".into(),
+        "darwin/amd64/native".into(),
+        "linux/arm64/gnu".into(),
+    ];
+    std::fs::write(f.root.join("arm64-unsupported"), "").unwrap();
+    l.tools.insert(
+        "core:zig".into(),
+        oyzu_tool_index::versions::parse_zig(&serde_json::json!({
+            "master": {}, "0.18.0-dev.1": {},
+            "0.17.0": {}, "0.16.0": {},
+            "0.15.2": {}, "0.15.1": {}, "0.15.0": {},
+            "0.14.1": {}
+        })),
+    );
+    let after = run(&f, l, Some(before.clone()), "2026-10-10T00:00:00Z");
+    let zig = after.tool("oyzu:zig").unwrap();
+    assert_eq!(zig.origin, "core:zig");
+    assert_eq!(zig.serving_class, ServingClass::Direct);
+    assert!(!zig.source_mirror);
+    assert_eq!(
+        zig.versions
+            .iter()
+            .map(|v| v.version.as_str())
+            .collect::<Vec<_>>(),
+        ["0.17.0", "0.16.0", "0.15.2", "0.15.1", "0.15.0"]
+    );
+    // The fixture's backfill is two per line, so 0.15.2 is verified despite
+    // the two newer minors; its third patch waits under the existing policy.
+    let v = zig.versions.iter().find(|v| v.version == "0.15.2").unwrap();
+    assert_eq!(v.sets.len(), 3);
+    for platform in ["linux/amd64/gnu", "darwin/amd64/native"] {
+        let record = v.sets.iter().find(|r| r["platform"] == platform).unwrap();
+        assert_eq!(record["tool"]["id"], "core:zig");
+        assert_eq!(record["tier"], "verified");
+    }
+    assert_eq!(
+        v.sets
+            .iter()
+            .find(|r| r["platform"] == "linux/arm64/gnu")
+            .unwrap()["status"],
+        "unsupported"
+    );
+    assert!(zig
+        .versions
+        .iter()
+        .find(|v| v.version == "0.15.0")
+        .unwrap()
+        .sets
+        .is_empty());
+    for id in ["oyzu:tool", "oyzu:ziglang/zig"] {
+        assert_eq!(after.tool(id), before.tool(id));
+    }
+    let decision = review(Some(&before), &after);
+    assert_eq!(decision.decision, Decision::Review);
+    assert!(decision
+        .reasons
+        .iter()
+        .any(|r| r == "oyzu:zig is a new tool"));
+}
+
 /// Java is indexed as `oyzu:java` with origin `core:java`, and its records
 /// come from `oyzu tools evidence --provider java`: the newest releases on the
 /// first run, then only new ones.
