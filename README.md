@@ -66,9 +66,11 @@ breaks, and the index cannot expire for that reason.
   the failed check and waits `retry_after_days` (7) before the next try, or
   is retried at once when the job's oyzu pin changes. A core-provider
   version whose record says oyzu does not install it on one of
-  `recheck_platforms` (`linux/arm64/gnu`, added to oyzu after Java, Node, Go
-  and Python had records) is verified again once per oyzu pin;
-  `index/attempts.json` remembers the check. Records are the exact
+  `recheck_platforms` (`linux/arm64/gnu` and `darwin/amd64/native`) is verified
+  again once per oyzu pin; `index/attempts.json` remembers the check. The Intel
+  entry revisits the older engine's unsupported Rust, Go and Node-family
+  records for [Intel Mac onboarding](https://github.com/oyzuai/oyzu/issues/832).
+  Changing the engine pin alone does not revisit settled unsupported records. Records are the exact
   `oyzu tools evidence` output, so their digests still verify. Records are
   kept for each tool's newest `keep_records` versions (10); older versions
   keep their dates, which bounds the single index file.
