@@ -836,6 +836,13 @@
         "attempts": 2,
         "engine": "79fe5de03a1543f79aaeac69f6d47fda24b10c6e",
         "reason": "no record reached the verified tier"
+      },
+      "11.28.8": {
+        "first_failed": "2026-10-23T08:39:00.911770341Z",
+        "last_attempt": "2026-10-23T08:39:00.911770341Z",
+        "attempts": 1,
+        "engine": "79fe5de03a1543f79aaeac69f6d47fda24b10c6e",
+        "reason": "no record reached the verified tier"
       }
     },
     "core:python": {
