@@ -1,4 +1,5 @@
 [
+  {"name":"catalog withdrawal may carry exact root preimage bytes","base":"catalog.go-preview.json","pointer":"/content/withdrawals","value":[{"package":"oyzu/go","version":"0.0.0","root_digest":"sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a","root_preimage":"e30=","kind":"revoked","at":"2026-10-24T00:00:00Z","reason":"Wire proof field only; this is not a local Preview authority proof"}]},
   {"name": "general task name", "base": "request.native-build.json", "pointer": "/input/task/name", "value": "build_docs"},
   {"name": "short observation tool", "base": "result.task-command.observe.json", "pointer": "/observations/0/tool", "value": "go"},
   {"name": "native-test command without reports", "base": "result.native-test.json", "pointer": "/output/reports", "remove": true},
