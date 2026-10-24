@@ -2,10 +2,11 @@
 
 Tracking: [issue #62](https://github.com/oyzuai/tool-index/issues/62).
 
-Status: source implementation under review; checks are unrun. No catalog, signature or release has been
-produced by this change. The maintainer authorized local Preview publication
-and a separate exact human Preview signer; its account and certificate identity
-are not yet bound. Actions stays disabled.
+Status: independent source review, managed formatting and the bounded Windows
+helper proof passed. The proof generated empty component catalogs and an unsigned
+test envelope; no release or genuine signature has been produced. The maintainer
+authorized local Preview publication and a separate exact human Preview signer;
+its account and certificate identity are not yet bound. Actions stays disabled.
 
 ## Outcome and ownership
 
@@ -146,22 +147,61 @@ Preview owner additionally checks exact SHA-256, OCI release-root shape,
 not fetch payloads or claim a full graph verification from that proof. Old
 ordinary catalogs can omit the field and retain their prior digests.
 
-## Pending bounded verification
+## Measured bounded verification
 
-No build, format, tests, cosign operation, network availability check or upload
-has run for this source batch. The smallest admitted sequence is managed offline
-format/check and `cargo test --locked --offline --manifest-path release-tool/Cargo.toml`,
-then the compiled helper's tiny generate → check → statement → signed-pair plan
-flow. Its new component fixtures deliberately have synthetic unsigned bundles;
-they prove byte/shape planning only. The existing canonical catalog mutation
-tests remain included through the same port, and the existing primary release
-tests retain their assertions. Independent root-crate release tests need an
-already accepted compatible private recipe dependency and separate admission;
-do not fetch private source or treat their omission as a pass.
+On 2026-10-24, source `49cdc89620b0757853dfaa92b147ee2945a792f5`
+passed the independent release-helper proof on Windows x86-64 MSVC with managed
+Rust 1.99.1. New Cargo cache, compiler output, temporary files and logs were on
+E:. An initial offline attempt stopped before compilation because the existing
+locked `serde_spanned 1.1.2` dependency was unavailable. A subsequent managed
+locked public-registry fetch into the task-owned E: Cargo home passed; all
+compiler checks then ran offline. No dependency identity, version or lock changed.
 
-Applicable docs/schema checks use the already provisioned validator environment;
-no installation is authorized by this plan. Windows/Linux/macOS helper behavior,
-real human certificate acceptance and anonymous client installation/reuse remain
-unqualified until measured. The existing human authorization for local Preview
-publication remains in force; this plan does not waive the remaining artifact,
-identity, material or legal gates or confer an agent's approval.
+The actual sequence used the accepted Oyzu driver and its pinned tool-selection
+context, the public helper manifest and one shared target directory. With `F`
+as this public checkout and `O` as the owned output, each command below ran
+through `oyzu -C <managed-context> --root <managed-context> exec --offline
+--store <accepted-store> --`:
+
+```text
+cargo fetch --locked --manifest-path F/release-tool/Cargo.toml --target x86_64-pc-windows-msvc
+cargo test --locked --offline --manifest-path F/release-tool/Cargo.toml --target x86_64-pc-windows-msvc --target-dir O/target --jobs 1 --bin tool-index-release -- --test-threads=1
+cargo clippy --locked --offline --manifest-path F/release-tool/Cargo.toml --target x86_64-pc-windows-msvc --target-dir O/target --jobs 1 --bin tool-index-release --tests -- -D warnings
+cargo build --locked --offline --manifest-path F/release-tool/Cargo.toml --target x86_64-pc-windows-msvc --target-dir O/target --jobs 1 --bin tool-index-release
+```
+
+`CARGO_HOME`, `TEMP` and `TMP` were process-scoped E: paths; the manager's
+`--offline` selected existing tools, while only the Cargo fetch acquired locked
+public dependencies. Results:
+
+| Check | Measured result |
+| --- | --- |
+| Managed formatting apply/check | Passed, 0.968s / 0.778s; only four intended Rust files changed. |
+| Locked dependency fetch | Passed, 10.043s. |
+| Binary owner tests | 25 passed, zero failed or ignored; 90.696s including cold compilation. Includes canonical valid/invalid mutations and six Preview cases. |
+| Strict binary/test Clippy | Passed with warnings as errors, 31.550s. |
+| Ordinary helper build | Passed, 14.852s. |
+| Actual compiled Preview flow | Generate, check, exact-byte statement and pair plan passed; serial-one to serial-two succession passed. |
+| Primary statement regression | Actual compiled `plugins statement` retained subject `plugins.json`. |
+| Canonical schema check | Both generated catalogs and the two vendored Go catalogs passed `tests/validate-plugin-schema.py`. |
+
+The actual helper executable was 6,676,992 bytes, SHA-256
+`dcd636bcde23a3f19946978f4453201e6dd80cc9a1741395472c7ac521e799a9`.
+Its Preview statement named `plugins-preview.json` and that catalog's exact byte
+digest. The pair plan contained only the catalog and bundle, repository
+`oyzuai/tool-index`, tag `plugins-preview`, prerelease true and latest false.
+Both source locks and all bound compiler/fixture inputs stayed unchanged.
+
+The compiled component proof used the genuinely empty reviewed source and an
+explicitly synthetic unsigned DSSE envelope. It established generation and byte/
+shape planning; it did not verify a signature or prior publication history,
+publish assets, prove public package availability or run a client installation.
+All twelve actors and their observed descendants were reaped with streams closed.
+Actions was intentionally disabled and unrun.
+
+Linux and macOS helper behavior remain unqualified. Root-crate release tests
+needing the separate private recipe dependency remain unrun; the independent
+helper did not fetch private source. Actual human certificate acceptance,
+qualified package/material availability and anonymous client first use,
+shared-store reuse and frozen/offline replay remain delivery work. Local
+engineering evidence grants no human or legal approval.
