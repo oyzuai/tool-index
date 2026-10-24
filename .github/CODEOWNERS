@@ -3,3 +3,8 @@
 # The plugin catalog's source: what plugins may detect, require and install
 # from, and who maintains them. Never routine; every change needs a maintainer.
 /config/plugins.toml @micahlmartin
+# Separate local Preview authority and its finite publisher helper/port.
+/config/plugins-preview.toml @micahlmartin
+/release-tool/src/preview*.rs @micahlmartin
+/release-tool/src/main.rs @micahlmartin
+/src/plugins.rs @micahlmartin

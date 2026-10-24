@@ -491,6 +491,10 @@ pub struct Withdrawal {
     pub package: String,
     pub version: String,
     pub root_digest: String,
+    /// Exact raw OCI root proof for the separately scoped local Preview lane.
+    /// Ordinary catalogs may omit it; it remains part of signed content.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub root_preimage: Option<String>,
     pub kind: WithdrawalKind,
     pub at: String,
     pub reason: String,
@@ -969,6 +973,25 @@ impl CatalogContent {
             package_id("withdrawals.package", &w.package)?;
             semver("withdrawals.version", &w.version)?;
             digest("withdrawals.root_digest", &w.root_digest)?;
+            if let Some(proof) = &w.root_preimage {
+                // Canonical complete base64 quartets; raw-root authority is
+                // checked by the separate Preview owner, not the wire port.
+                use base64::Engine as _;
+                ensure_rule(
+                    !proof.is_empty() && proof.len() <= 1_398_104,
+                    "withdrawals.root_preimage",
+                    "must be bounded base64 of at most 1 MiB",
+                )?;
+                let bytes = base64::engine::general_purpose::STANDARD
+                    .decode(proof)
+                    .context("withdrawals.root_preimage must be complete base64")?;
+                ensure_rule(
+                    bytes.len() <= 1024 * 1024
+                        && base64::engine::general_purpose::STANDARD.encode(&bytes) == *proof,
+                    "withdrawals.root_preimage",
+                    "must be canonical complete base64 of at most 1 MiB",
+                )?;
+            }
             ensure_rule(
                 timestamp(&w.at).is_some(),
                 "withdrawals.at",

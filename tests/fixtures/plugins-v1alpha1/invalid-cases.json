@@ -1,4 +1,6 @@
 [
+  {"name":"catalog withdrawal root preimage requires complete base64 quartets","base":"catalog.go-preview.json","pointer":"/content/withdrawals","value":[{"package":"oyzu/go","version":"0.0.0","root_digest":"sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a","root_preimage":"YQ","kind":"revoked","at":"2026-10-24T00:00:00Z","reason":"Invalid incomplete quartet"}]},
+  {"name":"catalog withdrawal root preimage is base64 not a route","base":"catalog.go-preview.json","pointer":"/content/withdrawals","value":[{"package":"oyzu/go","version":"0.0.0","root_digest":"sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a","root_preimage":"https://example.test/root","kind":"revoked","at":"2026-10-24T00:00:00Z","reason":"Invalid proof encoding"}]},
   {"name": "completed result also carrying an error", "base": "result.native-build.json", "pointer": "/error", "value": {"code": "go.build", "message": "x"}},
   {"name": "completed result without output", "base": "result.native-build.json", "pointer": "/output", "remove": true},
   {"name": "failed result also carrying output", "base": "result.native-build.failed.json", "pointer": "/output", "value": {}},

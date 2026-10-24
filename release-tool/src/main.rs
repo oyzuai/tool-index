@@ -10,6 +10,7 @@ mod index;
 #[allow(dead_code)]
 #[path = "../../src/plugins.rs"]
 mod plugins;
+mod preview;
 #[allow(dead_code)]
 #[path = "../../src/release.rs"]
 mod release;
@@ -87,6 +88,12 @@ enum Command {
 
 #[derive(Subcommand)]
 enum PluginsCommand {
+    /// Prepare the separate maintainer-local Preview catalog; never an index
+    /// release, cryptographic verification, signing or publication operation.
+    Preview {
+        #[command(subcommand)]
+        command: PreviewCommand,
+    },
     /// List the source's releases that must be verified available before they
     /// are advertised, as JSON (the input of the availability script).
     Candidates {
@@ -133,6 +140,51 @@ enum PluginsCommand {
         previous: Option<PathBuf>,
         #[arg(long, default_value = "config/plugins.toml")]
         next: PathBuf,
+    },
+}
+
+#[derive(Subcommand)]
+enum PreviewCommand {
+    /// List reviewed Preview releases for the independent availability gate.
+    Candidates {
+        #[arg(long, default_value = "config/plugins-preview.toml")]
+        source: PathBuf,
+    },
+    /// Generate serial 1, or the independently verified published serial + 1.
+    Generate {
+        #[arg(long, default_value = "config/plugins-preview.toml")]
+        source: PathBuf,
+        /// Exact prior published bytes AFTER independent cosign verification.
+        /// Omit only before the first Preview publication.
+        #[arg(long)]
+        published: Option<PathBuf>,
+        /// Existing catalog-last availability record; omission advertises none.
+        #[arg(long)]
+        verified: Option<PathBuf>,
+        #[arg(long)]
+        now: Option<Timestamp>,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Check the Preview contract and current expiry, without an index file.
+    Check {
+        #[arg(long)]
+        file: PathBuf,
+        #[arg(long)]
+        now: Option<Timestamp>,
+    },
+    /// Print a Statement/v1 naming plugins-preview.json's exact bytes.
+    Statement {
+        #[arg(long)]
+        file: PathBuf,
+    },
+    /// Check the exact pair and print its fixed prerelease/non-Latest plan.
+    /// The signature itself MUST be independently verified before uploading.
+    Release {
+        #[arg(long)]
+        dir: PathBuf,
+        #[arg(long)]
+        now: Option<Timestamp>,
     },
 }
 
@@ -210,6 +262,7 @@ fn stamped_index(path: &PathBuf) -> Result<(u64, Timestamp)> {
 
 fn plugins_command(command: PluginsCommand) -> Result<()> {
     match command {
+        PluginsCommand::Preview { command } => preview_command(command)?,
         PluginsCommand::Candidates { source } => {
             let content = plugins::Source::parse(&text(&source)?)?.content();
             content.check().context("checking the plugin source")?;
@@ -276,6 +329,68 @@ fn plugins_command(command: PluginsCommand) -> Result<()> {
             let previous = previous.as_ref().map(text).transpose()?;
             let changes = plugins::review(previous.as_deref(), &text(&next)?)?;
             println!("{}", serde_json::to_string_pretty(&changes)?);
+        }
+    }
+    Ok(())
+}
+
+fn preview_command(command: PreviewCommand) -> Result<()> {
+    match command {
+        PreviewCommand::Candidates { source } => {
+            let content = plugins::Source::parse(&text(&source)?)?.content();
+            preview::check_content(&content)?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&plugins::candidates(&content))?
+            );
+        }
+        PreviewCommand::Generate {
+            source,
+            published,
+            verified,
+            now,
+            out,
+        } => {
+            let published = published.as_ref().map(read).transpose()?;
+            let verified = verified.as_ref().map(read).transpose()?;
+            let generated = preview::generate(
+                &text(&source)?,
+                verified.as_deref(),
+                published.as_deref(),
+                now.unwrap_or_else(Timestamp::now),
+            )?;
+            if let Some(parent) = out.parent() {
+                std::fs::create_dir_all(parent)?;
+            }
+            std::fs::write(&out, &generated.bytes)
+                .with_context(|| format!("writing {}", out.display()))?;
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&serde_json::json!({
+                    "serial":generated.catalog.serial, "generated_at":generated.catalog.generated_at,
+                    "expires_at":generated.catalog.expires_at, "content_digest":generated.catalog.content_digest,
+                    "packages":generated.catalog.content.packages.len(), "omitted":generated.omitted,
+                    "prior_signature_verification":"operator prerequisite, not performed by this helper"
+                }))?
+            );
+        }
+        PreviewCommand::Check { file, now } => {
+            let catalog = preview::check(&read(&file)?, now.unwrap_or_else(Timestamp::now))?;
+            println!("{} ({})", catalog.content_digest, catalog.expires_at);
+        }
+        PreviewCommand::Statement { file } => {
+            let bytes = read(&file)?;
+            preview::check(&bytes, Timestamp::now())?;
+            println!("{}", preview::statement(&bytes));
+        }
+        PreviewCommand::Release { dir, now } => {
+            println!(
+                "{}",
+                serde_json::to_string_pretty(&preview::plan(
+                    &dir,
+                    now.unwrap_or_else(Timestamp::now)
+                )?)?
+            );
         }
     }
     Ok(())

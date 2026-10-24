@@ -1,0 +1,9 @@
+# Separately maintainer-reviewed local Preview source; never merged into the
+# workflow-signed primary catalog. Empty until actual qualified roots, public
+# recipient material and signatures have passed their independent gates.
+# The approved human account/certificate identity is currently UNBOUND.
+authority = "oyzu"
+packages = []
+references = []
+detections = []
+withdrawals = []

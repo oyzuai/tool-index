@@ -418,8 +418,10 @@ $R plugins check --file release/plugins.json --index release/index.json
 tests/plugin-catalog.sh                      # the plugin workflow steps with a fake cosign and GHCR
 ```
 
-Signing needs the workflow's OIDC identity, so it is not run locally; a
-locally signed bundle would carry your identity, which no client accepts.
+Signing the original `index.json` and `plugins.json` needs the workflow's OIDC
+identity; clients do not accept a local human signature for those assets.
+The separately approved [maintainer-local Preview catalog](#maintainer-local-preview-catalog)
+uses its own exact human identity and metadata destination.
 
 `cargo test` covers the job without the network: build and review on a
 fixture registry, budget order and retry back-off, withdrawals (kept, never
@@ -459,6 +461,56 @@ repository.
 - Auto-merge is allowed. Runners are GitHub-hosted only.
 
 Later: serve the same release files from `index.oyzu.dev`.
+
+## Maintainer-local Preview catalog
+
+The source-only helper for [issue #62](https://github.com/oyzuai/tool-index/issues/62)
+prepares a separate `plugins-preview.json` and `plugins-preview.json.sigstore.json`
+pair. Its fixed `plugins-preview` metadata release is prerelease/non-Latest;
+it does not replace `index-vN`, `plugins.json`, primary signing or workflow
+behavior. Default official clients use this fixed metadata release; configured
+official mirrors retain their asset base and organization catalogs remain
+exclusive. The separately versioned Preview CLI/shim release is also non-Latest.
+
+`config/plugins-preview.toml` is separately maintainer-reviewed and currently
+empty. Only actual official Preview releases may be listed after their roots,
+payloads, signatures and required recipient material are anonymously available.
+The normal availability record is reused; absence of that record advertises no
+releases. A presence probe is not cryptographic or material qualification.
+
+After an accepted managed build of the existing `release-tool` crate:
+
+```sh
+tool-index-release plugins preview candidates --source config/plugins-preview.toml
+tool-index-release plugins preview generate --source config/plugins-preview.toml \
+  --verified "$WORK/verified.json" --out "$DIR/plugins-preview.json"
+tool-index-release plugins preview check --file "$DIR/plugins-preview.json"
+tool-index-release plugins preview statement --file "$DIR/plugins-preview.json" \
+  > "$WORK/preview-statement.json"
+```
+
+Generation has no tool-index input: first serial is 1, generation time is the
+current clock and expiry is 14 days later, within the existing 31-day cap.
+For every later publication pass `--published "$WORK/prior/plugins-preview.json"`
+using the **exact last published bytes after independent cosign verification**
+against the approved human SAN and issuer. The helper checks shape/content,
+monotonic generation time and prior serial + 1; it does not verify the prior
+signature or determine whether a supplied file was actually published.
+
+`plugins preview release --dir "$DIR"` checks the exact named Statement/v1
+subject, cosign predicate and file digest in the v0.3 bundle and prints the
+two-asset fixed-tag plan. It does **not** cryptographically verify, sign, approve
+or publish anything. Independently run normal `cosign attest-blob --statement`
+and `cosign verify-blob-attestation` over these exact bytes before publication.
+The human account/provider and verified certificate identity are currently
+unbound; no signing, public availability or client-flow qualification is claimed.
+Actions remains disabled; this local path does not reactivate a workflow.
+
+The [publication qualification plan](docs/qualification/local-preview-publication.md)
+owns exact operator command templates, required public closure, remaining
+verification and limits. End users do not run these publisher steps or provide
+GitHub credentials; normal Preview opt-in and the shared plugin store remain
+client-owned.
 
 ## Dependency maintenance
 
