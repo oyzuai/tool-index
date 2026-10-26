@@ -18,6 +18,52 @@ withdrawals = []
 
 [[packages]]
 publisher = "oyzu"
+name = "docker"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:2a6ed659831726bb77e051ed4b7c97f4dc1c6e3b9fad64698e2712902bda65ea"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan"]
+
+[[packages.releases.profiles]]
+name = "image"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:1437957735c6fa31daba2b2c26c5f648c09c0be1058d4bc24872c428dd2ceeaf"
+payload_digest = "sha256:5dc5810db7044a1b5a550ec9c0c592058cfcd953de657b26d154946f25d88ebf"
+size = 32613142
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:2b362b33723155fb44e91d48980d0314d07ebfedefe3724f60aed63bbae5301f"
+payload_digest = "sha256:2add3706a9a3a472123818523372c352b4e00560049a66346b9726d1202da526"
+size = 29927388
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/docker@sha256:2a6ed659831726bb77e051ed4b7c97f4dc1c6e3b9fad64698e2712902bda65ea"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
 name = "dotnet"
 maintainer = "Oyzu maintainers"
 
@@ -178,6 +224,52 @@ size = 1470882
 [[packages.releases.routes]]
 type = "oci"
 reference = "ghcr.io/oyzuai/plugins/helm@sha256:55d1f1e130c10cbdcabab349fb2437505ea38f14b2da8b173bdda217f271ef08"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
+name = "java"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:aaa0fe7b90643f6b963c06cfcdadd3c7d13521133d3252357ec3504bcf2fb4a1"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:b62fec33e6db610d574b4272165f108ffb91d8e6439406725be2cfb06aa3fc88"
+payload_digest = "sha256:2dda46b274f4af47840ebb974dfbbce92a23f72a3c0f97655a5045f7247d7ce0"
+size = 1703239
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:e93be8aafdc93ee22698224b9392f61a40d734dadb3a0366b1ee078518fe2ac0"
+payload_digest = "sha256:5f994dee9b06d9ded27eb37457b56d39f77139ae31d3fb37e01a2b4c05b43072"
+size = 1586783
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/java@sha256:aaa0fe7b90643f6b963c06cfcdadd3c7d13521133d3252357ec3504bcf2fb4a1"
 
 [packages.releases.qualification]
 tested = []
@@ -386,6 +478,13 @@ tested = []
 status = "supported"
 
 [[references]]
+reference = "docker/image"
+package = "oyzu/docker"
+profile = "image"
+role = "builder"
+description = "Build container images from Dockerfiles."
+
+[[references]]
 reference = "dotnet/sdk"
 package = "oyzu/dotnet"
 profile = "sdk"
@@ -412,6 +511,13 @@ package = "oyzu/helm"
 profile = "chart"
 role = "builder"
 description = "Lint, package and test Helm charts with the helm toolchain."
+
+[[references]]
+reference = "java/app"
+package = "oyzu/java"
+profile = "app"
+role = "builder"
+description = "Build, test and package Java projects with Maven, Gradle or Ant."
 
 [[references]]
 reference = "node/app"
