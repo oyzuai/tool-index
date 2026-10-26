@@ -637,6 +637,13 @@
         "attempts": 2,
         "engine": "79fe5de03a1543f79aaeac69f6d47fda24b10c6e",
         "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "27.0.1": {
+        "first_failed": "2026-10-26T09:00:05.063208479Z",
+        "last_attempt": "2026-10-26T09:00:05.063208479Z",
+        "attempts": 1,
+        "engine": "79fe5de03a1543f79aaeac69f6d47fda24b10c6e",
+        "reason": "this oyzu does not install it on a rechecked platform"
       }
     },
     "core:k3d": {
