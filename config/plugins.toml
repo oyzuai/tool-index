@@ -18,6 +18,52 @@ withdrawals = []
 
 [[packages]]
 publisher = "oyzu"
+name = "dotnet"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:a3b2bbf454649bca087886aa3ecbd1f212ff4373ad00abe938388f51d613bfc5"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "sdk"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:4e729dbc1d38d9a74ca63c375ae6dfc04589d04053bc1deb5c1fb0ed12af5955"
+payload_digest = "sha256:2016dc99285d67a148cc76dde2c38b003ceeade561e752d07ebc52bf275f2a0e"
+size = 1498762
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:238eed0178049878a3a707bd423b1e6efa8ec5e6e31f8b53f287cbcace3a1075"
+payload_digest = "sha256:1608d517210fa28c013fd967b91c5eb4221ab68cd98276ac2e0a8445ae819d77"
+size = 1410667
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/dotnet@sha256:a3b2bbf454649bca087886aa3ecbd1f212ff4373ad00abe938388f51d613bfc5"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
 name = "go"
 maintainer = "Oyzu maintainers"
 
@@ -93,6 +139,259 @@ abi = "musl"
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages]]
+publisher = "oyzu"
+name = "helm"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:55d1f1e130c10cbdcabab349fb2437505ea38f14b2da8b173bdda217f271ef08"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["captured-plan", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "chart"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:070ab64a2b360f1f20b0eae67118829fc934498ad0b9210fdc3e667926429eba"
+payload_digest = "sha256:dcb7bd14e854b0bc8576d2eb6af175337925f921a39d793bc00e22084f6f01ce"
+size = 1563913
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:796a2fd3ef69fb5b1b41593d879156d4a6edc157a8b1dcc89a022ab6058e47ad"
+payload_digest = "sha256:20f3dea7fa8503cdf74d4e356593511692d03934e680814cf5570a0ee6ca85bd"
+size = 1470882
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/helm@sha256:55d1f1e130c10cbdcabab349fb2437505ea38f14b2da8b173bdda217f271ef08"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
+name = "node"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:70064fdd5f5249e30d54f5d0cc2e77ac042233f12b8379a5a5d61098f25beace"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "jest-reports", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:a8e53262bc3c4077dcfcc24680b0a37e49ccac52d44d02302aa4e490b028d968"
+payload_digest = "sha256:2d219fc44b2bdca1bf8dc9214c7c1a11604bc88fa06e2cee2c5110503579d0dd"
+size = 3211842
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:3fd6ff6729d1af24644b239f4a33c7fc67914987516b6bf7ba00a2d608cae6b2"
+payload_digest = "sha256:9034c140bc021068d288183ec3951bcb64edcb6911e3fe9e9486e71bd3f50835"
+size = 2948047
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/node@sha256:70064fdd5f5249e30d54f5d0cc2e77ac042233f12b8379a5a5d61098f25beace"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
+name = "python"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:f04b4a4c9ff55eee8dd0e72f1ab8f092580426553a3f53f19eb629ee2bf43f92"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:6a9600ae0b14c1f10d0564b59936ed86aa0123ba49f2457a476132b51a8082fa"
+payload_digest = "sha256:98e609d13347f6823e0a484112773d879a9cd4dd69771687a14a1e5bf9e8b759"
+size = 1914398
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:3c22763c56dc0b4b14e04fbdb285ab846806b3eb31f2a009b1e47a773c38c80f"
+payload_digest = "sha256:ecc923d3973d6dc13c41e4c2a1178490ef5a87b7038b3de9bf4c635e4744cb61"
+size = 1791938
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/python@sha256:f04b4a4c9ff55eee8dd0e72f1ab8f092580426553a3f53f19eb629ee2bf43f92"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
+name = "rust"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:cc09c45e60d3c70e053ec3259447dc73e5cf52a7584230d2355c1dbf18e3082b"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:b7dce9f7074f1aa6779898e3737f31e86ad9903f025cd3dc31073fadae657d68"
+payload_digest = "sha256:081cc52fa44d69dcccda055169833760534daa5fb96af3d5d66eedeb2423e73b"
+size = 1875910
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:dd8d9027c2940e6adc821db11e816f0de9a5be4478aabf775053dca8e573cb9f"
+payload_digest = "sha256:807e974a364f1ad3bf3bf43ed9c0bb84dbfa08408e5005615f554248ae4a824a"
+size = 1745697
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/rust@sha256:cc09c45e60d3c70e053ec3259447dc73e5cf52a7584230d2355c1dbf18e3082b"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages]]
+publisher = "oyzu"
+name = "zig"
+maintainer = "Oyzu maintainers"
+
+[[packages.releases]]
+version = "0.1.0-preview.1"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:60ef4d300767de9643edc4e2c2a863a8737d4c6792b4303bcb37ed0be792d6f3"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["artifact-archive", "build-options", "captured-plan"]
+
+[[packages.releases.profiles]]
+name = "project"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:4c50b354bbdea6e2a419fed0f9375f8f09e4517c03f817b500e96a1d89af6575"
+payload_digest = "sha256:9dad9ef35d02027a4a4121360e2738a3fbcc275c8d63cf242edfa140e2a8ba95"
+size = 1076841
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:ae92401fdd516788ad9db30f2ce5ae9ad5a1cd55a9027062c51f033dab0511c8"
+payload_digest = "sha256:3b7c70ea3b879c9d4be5b01e125c294208ea62e17e7349817c4922332934bcfb"
+size = 1024070
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/zig@sha256:60ef4d300767de9643edc4e2c2a863a8737d4c6792b4303bcb37ed0be792d6f3"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[references]]
+reference = "dotnet/sdk"
+package = "oyzu/dotnet"
+profile = "sdk"
+role = "builder"
+description = "Build, test and publish .NET projects and solutions with the dotnet SDK."
+
 [[references]]
 reference = "go/app"
 package = "oyzu/go"
@@ -106,6 +405,69 @@ package = "oyzu/go"
 profile = "library"
 role = "builder"
 description = "Test and vet Go library modules without producing an executable."
+
+[[references]]
+reference = "helm/chart"
+package = "oyzu/helm"
+profile = "chart"
+role = "builder"
+description = "Lint, package and test Helm charts with the helm toolchain."
+
+[[references]]
+reference = "node/app"
+package = "oyzu/node"
+profile = "app"
+role = "builder"
+description = "Build, test and package Node.js applications with npm, pnpm or yarn."
+
+[[references]]
+reference = "node/package"
+package = "oyzu/node"
+profile = "package"
+role = "builder"
+description = "Build, test and pack Node.js packages with npm, pnpm or yarn."
+
+[[references]]
+reference = "python/app"
+package = "oyzu/python"
+profile = "app"
+role = "builder"
+description = "Build, test and package Python applications with pip, uv or poetry."
+
+[[references]]
+reference = "python/library"
+package = "oyzu/python"
+profile = "library"
+role = "builder"
+description = "Test and check Python libraries without producing a distributable."
+
+[[references]]
+reference = "python/package"
+package = "oyzu/python"
+profile = "package"
+role = "builder"
+description = "Build, test and package Python distributions with pip, uv or poetry."
+
+[[references]]
+reference = "rust/app"
+package = "oyzu/rust"
+profile = "app"
+role = "builder"
+description = "Build, test and package Rust crates and workspaces with cargo."
+
+[[references]]
+reference = "rust/library"
+package = "oyzu/rust"
+profile = "library"
+role = "builder"
+description = "Test and check Rust library crates without producing an executable."
+
+[[references]]
+reference = "zig/project"
+package = "oyzu/zig"
+profile = "project"
+role = "builder"
+description = "Build and test Zig projects with the zig toolchain."
 
 [[detections]]
 id = "go-module"
