@@ -327,6 +327,51 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0-preview.2"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:7ec95e8f4cbf26aa71e581eb9e4f39d361b18525ace32f7ff59ecad8af8ed723"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "jest-reports", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:dd542668008025986ab15740b333d5ec6c3eec077cb769ac060ba57105ec1683"
+payload_digest = "sha256:d8bf1a742469f6b137abd5491f1736d6c9242cd52176d631946ad029860c2a2b"
+size = 3210475
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:88c5e4f1cc5410aa50c63d0cb24eb4c8efa159526052fa790f6b2b1e894fb201"
+payload_digest = "sha256:34c97ba8ca0ec8089749e67abc647afa5d521b5098fd988e6caac5f77b3603dd"
+size = 2956096
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/node@sha256:7ec95e8f4cbf26aa71e581eb9e4f39d361b18525ace32f7ff59ecad8af8ed723"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "python"
