@@ -185,6 +185,66 @@ abi = "musl"
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0-preview.2"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:177c30e705202a92966529f2c3ebb276eb99a8d4f37c86eec79623e8aca16d45"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["captured-plan", "go-test-events", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "amd64"
+manifest_digest = "sha256:502883b28b92f713a5eea5bf856ad3e8d0c144ca4959cd0ec0a2a512967ad199"
+payload_digest = "sha256:b68ac2acb75b94b49cfb5a5e04c6b40a576cffccea404e7a5f85839ac23c5744"
+size = 1243344
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:5055e21e0b3aaf490c71cce36b93c9cdf1d35fcd83b266b41aec486146caa6fb"
+payload_digest = "sha256:20e13977ffcfee7e0d33b31fbad500ce6dff614b30c63ff7fb5b7e9137eba19d"
+size = 1309717
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:745bd8780f418fc8915a4344dcd4e00757b862e6da570de7e22f0eda0b71afba"
+payload_digest = "sha256:351888e460b044e8271aa6745be695e595ad3880e30fd144d8b491f2fae5f43b"
+size = 1225965
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:f6da300c6b83603188240892cc8a86e0aacd9b170751689db63ce56a201fc880"
+payload_digest = "sha256:8f2ba4e9cdf707a4bf7edf19fe4799295ce9d1910d25745ac50aa59616ac9f84"
+size = 1226616
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/go@sha256:177c30e705202a92966529f2c3ebb276eb99a8d4f37c86eec79623e8aca16d45"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "helm"
