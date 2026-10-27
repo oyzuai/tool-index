@@ -372,6 +372,66 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0-preview.3"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:8c6217b916f4cb4574a8a30267e60987bbee4663b0457bb1388dbf9e4b251b3f"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "jest-reports", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "amd64"
+manifest_digest = "sha256:a7f8b4a37885865aa6a535b9b26a54338f89a41ed75409e17c52f3f7b79dacbb"
+payload_digest = "sha256:5c28acb58e57e639d352ad6b47ca7eb68a45ce8364b2328ea5f5d93a33a01da2"
+size = 3058055
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:108910e54861e7eefd5bd85119f627bdce66f317d33cbe78eda0a0e0be349c85"
+payload_digest = "sha256:d806e213657c5fdc1b20ff82dcb2c0835bc709382fcfb1472f24c077ea692f15"
+size = 3209943
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:bf1b5c8c7e14c3ee0e502162a3c97288871ad02bc0d8713ab236f834bd893513"
+payload_digest = "sha256:de5c09f9e29f1c82671dac7a7c58f1d744742d4316661463528582d2eb08f04e"
+size = 2957709
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:e1dc08134ed46d1001b7116f37913d0394e4cf09abcfe1c347b1acf30325f03f"
+payload_digest = "sha256:e9a61a771fa24fe6b731c1666b9d4dd6ac8684657af7a5d7770ba2d11486fd49"
+size = 3103284
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/node@sha256:8c6217b916f4cb4574a8a30267e60987bbee4663b0457bb1388dbf9e4b251b3f"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "python"
@@ -469,6 +529,66 @@ size = 1745697
 [[packages.releases.routes]]
 type = "oci"
 reference = "ghcr.io/oyzuai/plugins/rust@sha256:cc09c45e60d3c70e053ec3259447dc73e5cf52a7584230d2355c1dbf18e3082b"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages.releases]]
+version = "0.1.0-preview.2"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:7f30213373815b11a7d7bde233b14ab50137cb885b353dcfa40606c2eb3516a5"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "amd64"
+manifest_digest = "sha256:f736d8d4dbcba22ed09b0bf0df3b485f11c94e65c7ffc76849812e7b21156ddb"
+payload_digest = "sha256:544b6f39ddce0eab3b59b2cfc52b1b519bd015a8b450cbb1b4a7f2f541ef0503"
+size = 1770551
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:74cea4f32b1a5049250b44ee20915a7fd0fff2ea2b15eab00393cbbad543d7a7"
+payload_digest = "sha256:88660ae82192d0e166d4db464b2c191d62cb00bae85952946891aba97a27e293"
+size = 1852497
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:e0be783e25c03742039ed286f197e36a9dc1a6bcb2b5185dab9ea9b3ee59af8f"
+payload_digest = "sha256:98e897c61d47c9526bf70cde763f1283668e9ab166654d88cab726a857d49156"
+size = 1721620
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:aad56ee531056bb4397f025ab57b2a0f986c66dbd5e9aba413a0def1d065efcb"
+payload_digest = "sha256:8e4010e5d2a6b37bc3bd0a0558af7356c3bf1d97086650ad179e4dd039403c25"
+size = 1785346
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/rust@sha256:7f30213373815b11a7d7bde233b14ab50137cb885b353dcfa40606c2eb3516a5"
 
 [packages.releases.qualification]
 tested = []
