@@ -702,6 +702,47 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0-preview.3"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:bb9b4f344014f0efb6e09baac97dfdae595514381f05caf85323b57e9aefd3b4"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["artifact-archive", "build-options", "captured-plan", "native-zig-closure"]
+
+[[packages.releases.profiles]]
+name = "project"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:e9f3684f9ef2a0df38964c8f87843fb3678a5f13b9156eb3a29a8a33fe1f1b1b"
+payload_digest = "sha256:b6bc914d7a1059242c72b1d837f5b252e6eadd38155d19a32d9a98375a4a660b"
+size = 1135825
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:816ef92195e66aa709d77bccbc1dae1d9e39bd82a349a3abf301310f4a57a862"
+payload_digest = "sha256:8fc646a161144f44f8fa5e4e66deede906390ba0be4663172f51f95e25473279"
+size = 1075064
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/zig@sha256:bb9b4f344014f0efb6e09baac97dfdae595514381f05caf85323b57e9aefd3b4"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[references]]
 reference = "docker/image"
 package = "oyzu/docker"
