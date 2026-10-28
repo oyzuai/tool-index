@@ -656,6 +656,73 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0-preview.3"
+major = 0
+preview = true
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:6bb9112ff0d80664d0c5f8fc022b6f4de2a35f70217031aaef209ab87094ff36"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "amd64"
+manifest_digest = "sha256:0f1f47996c0e6464a3d3f2a101f0fff27e8129dcf3ec43d7e5868c6afe36643a"
+payload_digest = "sha256:c08a93ff862e4fd2b4d51875ca5f85c817293e7a1dff4183b58b7c77906873d8"
+size = 1897304
+
+[[packages.releases.platforms]]
+os = "darwin"
+arch = "arm64"
+manifest_digest = "sha256:b6c744eb82e929f2bd1549498f8dc1776221fc0b4b2f646921fafeee135cbbd6"
+payload_digest = "sha256:92e89f5bff3d0683bbaf31499063359ee7a94b475fec53761482097cb9f660a9"
+size = 1775681
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:516eba0fb2042d0abe13e1771f04ca2ba3f40c3eda7017d6f1469e736e96fba7"
+payload_digest = "sha256:143640e3bca9d616f6a7e13521011378f955888c0c76cad1a7511d96f41a61b4"
+size = 1981402
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:5125d53bc2c2115b10ec88f961109e36eef1bcad97ca1a54ba1078c3e8270313"
+payload_digest = "sha256:7aa244b2c59b3106200fce146f9e9b11e61cff0d197f51734643e1665dee9f58"
+size = 1838870
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:09a6cbd6ebd56253d662fea683e948f4be26fa783ab0f2b221a7e4fd9fc60987"
+payload_digest = "sha256:95d0ef99453b8446f0b9ac2649c855ba7e392eefafc397333b465779ef8fbad0"
+size = 1934901
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/rust@sha256:6bb9112ff0d80664d0c5f8fc022b6f4de2a35f70217031aaef209ab87094ff36"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "zig"
