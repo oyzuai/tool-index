@@ -296,7 +296,8 @@ oyzu#578.
 catalog's `content` (authority, packages with releases, references,
 detections, withdrawals) in TOML, in the order the contract requires.
 `tests/fixtures/plugins-v1alpha1/plugins.go-preview.toml` is a full example.
-Go and Python 0.1.0 are available for Linux amd64 and arm64 with musl. Existing
+Go, Java and Python 0.1.0 are available for Linux amd64 and arm64 with musl.
+Java 0.1.0 requires the `gradle-compiler-facts` engine capability. Existing
 preview entries remain unchanged. Listed runtimes do not imply native execution
 qualification. The generator
 checks the whole file against the contract's
