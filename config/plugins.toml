@@ -245,6 +245,51 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0"
+major = 0
+preview = false
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:a2b9a529697f8345158c13719cd8a2ab93371ec48c3c2fac305c45eb0b35c989"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["captured-plan", "go-test-events", "native-adapter", "target-path"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:a5136c3e8603c1cff850234952552be884e8df80c5457a559531c8b021b3d9b4"
+payload_digest = "sha256:161cac62f22b9967708ee0da993229faa73fd26bb1d13e0b5477cc6df8bd25f2"
+size = 10051811
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:ef052fd0aec6b0edbe03fe1221245102c81096315dc77ce41a0b7e47e35dc219"
+payload_digest = "sha256:843e0d2bde5504543932abeb60bf69436806dbcd19dd069584bf4dc69b9442b3"
+size = 9881075
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/go@sha256:a2b9a529697f8345158c13719cd8a2ab93371ec48c3c2fac305c45eb0b35c989"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "helm"
