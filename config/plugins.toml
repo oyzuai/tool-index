@@ -245,6 +245,51 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.0"
+major = 0
+preview = false
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:a2b9a529697f8345158c13719cd8a2ab93371ec48c3c2fac305c45eb0b35c989"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["captured-plan", "go-test-events", "native-adapter", "target-path"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:a5136c3e8603c1cff850234952552be884e8df80c5457a559531c8b021b3d9b4"
+payload_digest = "sha256:161cac62f22b9967708ee0da993229faa73fd26bb1d13e0b5477cc6df8bd25f2"
+size = 10051811
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:ef052fd0aec6b0edbe03fe1221245102c81096315dc77ce41a0b7e47e35dc219"
+payload_digest = "sha256:843e0d2bde5504543932abeb60bf69436806dbcd19dd069584bf4dc69b9442b3"
+size = 9881075
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/go@sha256:a2b9a529697f8345158c13719cd8a2ab93371ec48c3c2fac305c45eb0b35c989"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "helm"
@@ -539,6 +584,55 @@ size = 1791938
 [[packages.releases.routes]]
 type = "oci"
 reference = "ghcr.io/oyzuai/plugins/python@sha256:f04b4a4c9ff55eee8dd0e72f1ab8f092580426553a3f53f19eb629ee2bf43f92"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages.releases]]
+version = "0.1.0"
+major = 0
+preview = false
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:8be7de30c6ee5b9207fad5ef41a54e1ad091a3deaab0b7d7ba91aa3554c6ca5f"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "library"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:a3055a05abc7f76fe9c503849fa5da11b87b3c39e4e96863e8ebaf85edff580e"
+payload_digest = "sha256:31626fa0e16e67802ee9b0c11b642bf16bb99f52e8bc43cdf393eeb2da2841d0"
+size = 11288252
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "arm64"
+abi = "musl"
+manifest_digest = "sha256:b4db9715cd4e7621e2ea312ca0b90fa1556b020575eef8fbbb43c596e6c4fc95"
+payload_digest = "sha256:613d20b9f764c43cbe4a800327b7850bf8986137b9050b0fbd20923ff9662e3f"
+size = 11152541
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/python@sha256:8be7de30c6ee5b9207fad5ef41a54e1ad091a3deaab0b7d7ba91aa3554c6ca5f"
 
 [packages.releases.qualification]
 tested = []
