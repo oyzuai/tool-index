@@ -9,7 +9,7 @@
 //! - `git ls-remote` (fallback, no token): tags only, no dates.
 //! - Adoptium for the Java core provider; the Node.js dist catalog, the Go
 //!   download catalog and python-build-standalone's current release for the
-//!   Node, Go and Python core providers; Apache's Maven archive, Gradle's
+//!   Node, Go and Python core providers; Apache's Maven and Ant archives, Gradle's
 //!   version catalog and the npm registry for Maven, Gradle, npm and pnpm (the
 //!   same feeds the CLI reads); and the publisher's git tags for Helm, kubectl,
 //!   k3d, Liquibase, Tailscale and Rust, whose CLI installs ask the publisher
@@ -543,6 +543,7 @@ pub const MAVEN_LISTINGS: [&str; 2] = [
     "https://archive.apache.org/dist/maven/maven-3/",
     "https://archive.apache.org/dist/maven/maven-4/",
 ];
+pub const ANT_LISTING: &str = "https://archive.apache.org/dist/ant/binaries/";
 pub const GRADLE_CATALOG: &str = "https://services.gradle.org/versions/all";
 pub const NPM_REGISTRY: &str = "https://registry.npmjs.org";
 
@@ -569,6 +570,37 @@ pub fn parse_maven(pages: &[String]) -> ToolListing {
                     prerelease: false,
                 });
             }
+        }
+    }
+    versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
+    listing("archive.apache.org", versions)
+}
+
+/// Ant releases from Apache's flat binaries listing, one
+/// `apache-ant-<version>-bin.tar.gz` link per release (`.zip`, checksum and
+/// signature siblings and pre-releases are not releases).
+pub async fn list_ant(url: &str) -> Result<ToolListing> {
+    let page = String::from_utf8_lossy(&get(url, 1 << 20).await?).into_owned();
+    Ok(parse_ant(&page))
+}
+
+pub fn parse_ant(page: &str) -> ToolListing {
+    let mut versions: Vec<Listed> = Vec::new();
+    for part in page.split("href=\"").skip(1) {
+        let Some(version) = part
+            .split('"')
+            .next()
+            .and_then(|h| h.strip_prefix("apache-ant-"))
+            .and_then(|h| h.strip_suffix("-bin.tar.gz"))
+        else {
+            continue;
+        };
+        if exact_release(version) && !versions.iter().any(|l| l.version == version) {
+            versions.push(Listed {
+                version: version.to_owned(),
+                published_at: None,
+                prerelease: false,
+            });
         }
     }
     versions.sort_by_key(|l| std::cmp::Reverse(sort_key(&l.version)));
@@ -846,6 +878,22 @@ mod tests {
         let python = parse_python(tag, &sums);
         let names: Vec<_> = python.versions.iter().map(|v| v.version.as_str()).collect();
         assert_eq!(names, ["3.13.7", "3.9.23"], "3.14.0 lacks two platforms");
+    }
+
+    #[test]
+    fn ant_lists_final_tarball_releases_only() {
+        let ant = parse_ant(concat!(
+            r#"<a href="apache-ant-1.10.17-bin.tar.gz">x</a>"#,
+            r#"<a href="apache-ant-1.10.17-bin.tar.gz.sha512">x</a>"#,
+            r#"<a href="apache-ant-1.10.18-bin.tar.gz">x</a>"#,
+            r#"<a href="apache-ant-1.10.18-bin.zip">x</a>"#,
+            r#"<a href="apache-ant-1.9.16-bin.tar.gz">x</a>"#,
+            r#"<a href="apache-ant-1.10.0RC1-bin.tar.gz">x</a>"#,
+            r#"<a href="apache-ant-1.8-bin.tar.gz">x</a>"#,
+        ));
+        let names: Vec<_> = ant.versions.iter().map(|v| v.version.as_str()).collect();
+        assert_eq!(names, ["1.10.18", "1.10.17", "1.9.16"]);
+        assert_eq!(ant.source, "archive.apache.org");
     }
 
     #[test]
