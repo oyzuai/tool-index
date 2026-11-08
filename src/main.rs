@@ -211,6 +211,10 @@ async fn main() -> Result<()> {
                         "archive.apache.org",
                         versions::list_maven(&versions::MAVEN_LISTINGS).await,
                     ),
+                    "ant" => (
+                        "archive.apache.org",
+                        versions::list_ant(versions::ANT_LISTING).await,
+                    ),
                     "gradle" => (
                         "services.gradle.org",
                         versions::list_gradle(versions::GRADLE_CATALOG).await,

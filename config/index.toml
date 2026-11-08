@@ -126,6 +126,16 @@ line = 2
 lines = 3
 keep_records = 3
 
+# Apache Ant from archive.apache.org/dist/ant/binaries. Lines are minors
+# (1.10); the CLI's native Java builds lock 1.10.18 by default.
+[core.ant]
+names = ["ant"]
+max_versions = 20
+verified = true
+line = 2
+lines = 2
+keep_records = 3
+
 # Gradle from services.gradle.org. Lines are majors.
 [core.gradle]
 names = ["gradle"]

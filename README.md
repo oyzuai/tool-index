@@ -15,7 +15,7 @@ re-signs daily.
 | Step | Command | Network |
 | --- | --- | --- |
 | Fetch the pinned aqua registry snapshot, its license (the `NOTICE`) and the mise name catalog, each checked against its pinned digest | `tool-index fetch` | yes |
-| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token; for the core providers, Adoptium, nodejs.org, go.dev, python-build-standalone, archive.apache.org (Maven), services.gradle.org and the npm registry, and `git ls-remote` of the publisher's tags for Helm, kubectl, k3d, Liquibase, Tailscale and Rust | `tool-index list` | yes |
+| List upstream versions: GitHub GraphQL in production (`git ls-remote` for owners whose IP allow list refuses the token), `git ls-remote` without a token; for the core providers, Adoptium, nodejs.org, go.dev, python-build-standalone, archive.apache.org (Maven and Ant), services.gradle.org and the npm registry, and `git ls-remote` of the publisher's tags for Helm, kubectl, k3d, Liquibase, Tailscale and Rust | `tool-index list` | yes |
 | Build `index/index.json` from the listing and the previous index; run `oyzu tools resolve` and `oyzu tools evidence` for new launch-set versions, and `oyzu tools evidence --provider <name>` for new core-provider versions | `tool-index build` | evidence downloads |
 | Decide whether the change is routine or needs a person, and write the pull request body | `tool-index review` | no |
 | Find the highest `index-v<serial>` tag, failing on a gap or an odd tag | `tool-index-release serial` | no |
@@ -81,7 +81,7 @@ breaks, and the index cannot expire for that reason.
   read from the registry, indexed as `oyzu:<name>` with origin `core:<name>`:
   Java (Eclipse Temurin, listed from Adoptium), Node (nodejs.org/dist), Go
   (go.dev/dl), Python (python-build-standalone's current release), Zig
-  (ziglang.org's stable download catalog), Maven
+  (ziglang.org's stable download catalog), Maven, Ant
   (archive.apache.org), Gradle (services.gradle.org), npm and pnpm (the npm
   registry), the same feeds the CLI installs from, and Helm, kubectl, k3d,
   Liquibase, Tailscale (stable track) and Rust, listed from the publisher's
@@ -99,7 +99,7 @@ breaks, and the index cannot expire for that reason.
   ships them); the other configured platforms get
   `unsupported` records. With `line = N`, versions, the backfill and the
   records kept count per release line (Node, Java, Gradle, npm and pnpm by
-  major; Go, Python, Zig, Maven, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
+  major; Go, Python, Zig, Maven, Ant, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
   records even when newer lines release more often. Managed clients resolve
   these providers only from their records; standalone clients prefer them.
   Zig currently admits Intel macOS and Linux amd64 GNU only; the remaining
