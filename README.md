@@ -298,8 +298,9 @@ detections, withdrawals) in TOML, in the order the contract requires.
 `tests/fixtures/plugins-v1alpha1/plugins.go-preview.toml` is a full example.
 Go and Java 0.1.0 and Python 0.1.1 are available for Linux amd64 and arm64
 with musl. Java 0.1.0 requires the `gradle-compiler-facts` engine capability;
-Python 0.1.1 requires `python-test-case-facts`. Existing releases remain
-listed for eligible engines. Listed runtimes do not imply native execution
+Python 0.1.1 requires `python-test-case-facts`. Node 0.1.0, Java 0.1.5 and
+GitHub Pages 0.1.0 are listed for Linux amd64 (musl) and Windows amd64 (msvc).
+Existing releases remain listed for eligible engines. Listed runtimes do not imply native execution
 qualification. The generator
 checks the whole file against the contract's
 rules, so a mistake in an entry that is not advertised yet still fails review.
