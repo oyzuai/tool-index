@@ -636,6 +636,47 @@ tested = []
 [packages.releases.qualification.support]
 status = "supported"
 
+[[packages.releases]]
+version = "0.1.5"
+major = 0
+preview = false
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:1fdf8bc99dbf20d6cccea84ba5017b5adfc4bfdd832b48b18f283dabd8a3e881"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["ant-native-model", "build-options", "captured-plan", "gradle-compiler-facts", "gradle-kotlin-jvm", "maven-reactor-coverage", "native-adapter", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:f19872f28581e6852230da562293d3a5e908f35a4d21ffd078278215f94ccab3"
+payload_digest = "sha256:edf340c728381c34d0095b2b6090dc2f9759151469ed54032a0d07fa46eae4b2"
+size = 2434240
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:2071f15fbb85a66f95a455e8df7dea3aab7ed3f375c450c04e2515a5b275883d"
+payload_digest = "sha256:26428e029b6c8b95301af41c23b429f5b7ab4d57b6a1ce7091490a61b814b785"
+size = 2436845
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/java@sha256:1fdf8bc99dbf20d6cccea84ba5017b5adfc4bfdd832b48b18f283dabd8a3e881"
+
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
 [[packages]]
 publisher = "oyzu"
 name = "node"
@@ -833,6 +874,51 @@ reference = "ghcr.io/oyzuai/plugins/node@sha256:0632680e7481e9547fa49e6e9c12d400
 
 # No core or platform is recorded as tested: add them (--tested CORE=os/arch[/abi],...)
 # once they have run a build with this release.
+[packages.releases.qualification]
+tested = []
+
+[packages.releases.qualification.support]
+status = "supported"
+
+[[packages.releases]]
+version = "0.1.0"
+major = 0
+preview = false
+protocol_generations = ["v1alpha1"]
+root_digest = "sha256:efb6557f06ef6067b84431e04269eb501238884f68c5b9e65ff9b372bc43fef1"
+
+[[packages.releases.roles]]
+role = "builder"
+features = ["build-options", "captured-plan", "jest-reports", "native-adapter", "node-workspace-complete-read", "prepared-native"]
+
+[[packages.releases.profiles]]
+name = "app"
+role = "builder"
+
+[[packages.releases.profiles]]
+name = "package"
+role = "builder"
+
+[[packages.releases.platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:a893c39a95416b754722013323aedf3ba084ab71909bceeb16d30dd3afd5c48c"
+payload_digest = "sha256:a2e10b3696402fd1e7b858ddde2e06cd09b8d43ed768855f0b8a551ed2c190f0"
+size = 3679704
+
+[[packages.releases.platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:65ac26acbb3fb0b7a3155f239ae24ff2238bea82d9f1d35eec2a70ba42b9d72c"
+payload_digest = "sha256:f5668b62c84508c2797d2bb303e19b99fb8e995d787ec25f5d21f429694f5bad"
+size = 3573323
+
+[[packages.releases.routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/node@sha256:efb6557f06ef6067b84431e04269eb501238884f68c5b9e65ff9b372bc43fef1"
+
 [packages.releases.qualification]
 tested = []
 
