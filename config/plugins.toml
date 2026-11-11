@@ -145,52 +145,6 @@ status = "supported"
 
 [[packages]]
 publisher = "oyzu"
-name = "github-pages"
-maintainer = "Oyzu maintainers"
-
-[[packages.releases]]
-version = "0.1.0"
-major = 0
-preview = false
-protocol_generations = ["v1alpha1"]
-root_digest = "sha256:f233326b7e3f8c7e19c119f3399a404120ce1229f6ec3aaa0cb1a736064fc427"
-
-[[packages.releases.roles]]
-role = "deployer"
-features = []
-
-[[packages.releases.profiles]]
-name = "site"
-role = "deployer"
-
-[[packages.releases.platforms]]
-os = "linux"
-arch = "amd64"
-abi = "musl"
-manifest_digest = "sha256:bbdb49151299d30ee683d88c040cedaabcb57c126f599e850b1b1d1dedaa8e6e"
-payload_digest = "sha256:229a221f57fdee82055ed2a0b955507de852a0d74101c501baed55cf83ea95d9"
-size = 1349898
-
-[[packages.releases.platforms]]
-os = "windows"
-arch = "amd64"
-abi = "msvc"
-manifest_digest = "sha256:08dbd90751e13f4e4db83086ae749d57bbeab103fead3bba91f65b77393e5936"
-payload_digest = "sha256:3442376a4fe2128989aeaabcc4e5da07151960ed6e675bf7ffe664ae4a9be9a5"
-size = 1271250
-
-[[packages.releases.routes]]
-type = "oci"
-reference = "ghcr.io/oyzuai/plugins/github-pages@sha256:f233326b7e3f8c7e19c119f3399a404120ce1229f6ec3aaa0cb1a736064fc427"
-
-[packages.releases.qualification]
-tested = []
-
-[packages.releases.qualification.support]
-status = "supported"
-
-[[packages]]
-publisher = "oyzu"
 name = "go"
 maintainer = "Oyzu maintainers"
 
@@ -1634,13 +1588,6 @@ package = "oyzu/dotnet"
 profile = "sdk"
 role = "builder"
 description = "Build, test and publish .NET projects and solutions with the dotnet SDK."
-
-[[references]]
-reference = "github-pages/site"
-package = "oyzu/github-pages"
-profile = "site"
-role = "deployer"
-description = "Publish a verified static documentation site to GitHub Pages."
 
 [[references]]
 reference = "go/app"
