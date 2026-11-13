@@ -1,17 +1,32 @@
+<!-- oyzu-context:start -->
+FIRST, before project work/planning/delegation/edits, MUST open reviewed
+`oyzuai/context` snapshot: `CONSTITUTION.md`, `INDEX.md`,
+`policy/working-agreements.md`, `accounts/maintainer-profile.md`, matching
+`providers/codex.md`/`providers/claude-code.md`, and relevant index entries; apply
+them.
+
+Print exact `context commit <sha>`/`context snapshot <digest>`. Use
+trusted-hook Context root or clean canonical checkout; verify remote. Never
+reset/overwrite dirty/divergent checkouts.
+
+Unreadable required files: report exact
+failure; STOP dependent work. Disclose cached-reviewed/offline use; supported
+updater online. Pointers/installations prove no reads.
+
+Supersedes obsolete loading
+prose only; preserve project/security rules.
+[Setup/trust](https://github.com/oyzuai/context/blob/main/adoption/repository-setup.md).
+Native defaults grant no installation/trust/adoption.
+<!-- oyzu-context:end -->
+
 # Repository instructions
-
-## Before anything else
-
-Get the shared context: run `git clone --depth 1 https://github.com/oyzuai/context ../context`, or `git -C ../context pull --ff-only` if it exists. Read `CONSTITUTION.md` and `INDEX.md` there, open the entries and skills your task touches, and print `context commit <sha>`.
-
-Generic skills live in https://github.com/oyzuai/agent-workflows under `skills/`; clone it the same way when a task needs one. This repo's rules below add to the context; they never weaken the constitution's gates.
 
 ## Issue taxonomy
 
 Before creating, splitting, transferring or reclassifying an issue in any
 `oyzuai` repository, read and apply the shared
-[`classify-issues` skill](https://github.com/oyzuai/agent-workflows/blob/main/skills/classify-issues/SKILL.md) and its bundled
-[taxonomy catalog](https://github.com/oyzuai/agent-workflows/blob/main/skills/classify-issues/references/taxonomy.json).
+[`classify-issues` skill](https://github.com/oyzuai/context/blob/main/skills/classify-issues/SKILL.md) and its bundled
+[taxonomy catalog](https://github.com/oyzuai/context/blob/main/skills/classify-issues/references/taxonomy.json).
 Explicitly fetch these files with repository tools if the skill is not installed;
 a link is not an automatic import. Apply exactly one `type:*` and one or two
 `area:*` labels, with relevant optional ecosystem, surface, host and concern
