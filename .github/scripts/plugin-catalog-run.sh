@@ -12,6 +12,10 @@ tool=${RELEASE_TOOL:-./release-tool/target/release/tool-index-release}
 source=${PLUGIN_SOURCE:-config/plugins.toml}
 availability=${PLUGIN_AVAILABILITY:-"$(dirname "$0")/plugin-availability.sh"}
 cosign=${COSIGN:-cosign}
+# A fixed clock (RFC 3339) for reproducible runs and tests; unset in the
+# release workflow, where generation and checking use the real time.
+clock=()
+[ -z "${PLUGIN_NOW:-}" ] || clock=(--now "$PLUGIN_NOW")
 
 rm -f "$dir/plugins.json" "$dir/plugins.json.sigstore.json"
 work=$(mktemp -d)
@@ -28,8 +32,9 @@ if [ "$(jq length "$work/candidates.json")" -gt 0 ]; then
 fi
 
 "$tool" plugins generate --source "$source" --index "$dir/index.json" \
-  "${verified[@]}" --out "$work/plugins.json"
-"$tool" plugins check --file "$work/plugins.json" --index "$dir/index.json"
+  "${verified[@]}" "${clock[@]}" --out "$work/plugins.json"
+"$tool" plugins check --file "$work/plugins.json" --index "$dir/index.json" \
+  "${clock[@]}"
 
 cp "$work/plugins.json" "$dir/plugins.json"
 "$tool" plugins statement --file "$dir/plugins.json" > "$work/statement.json"
