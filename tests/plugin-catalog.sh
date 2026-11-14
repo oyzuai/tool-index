@@ -72,8 +72,12 @@ setup() {
   command -v zstd > /dev/null && zstd -19 -q -o "$work/release/index.json.zst" "$work/release/index.json" || true
 }
 
-run_plugins() { # source file
+# The index is stamped at a fixed clock, so generation and checking use a
+# fixed clock too (an hour after the stamp unless $2 says otherwise): with the
+# real time the catalog would fail once the stamped index has expired.
+run_plugins() { # source file [RFC 3339 clock]
   RELEASE_DIR=$work/release RELEASE_TOOL=$tool PLUGIN_SOURCE=$1 COSIGN=$work/cosign \
+    PLUGIN_NOW=${2:-2026-10-19T07:00:00Z} \
     CURL=$work/curl "$scripts/plugin-catalog.sh" > "$work/log" 2>&1 || fail "wrapper exited non-zero"
 }
 
@@ -105,7 +109,7 @@ digest=$(jq -r .content_digest "$work/release/plugins.json")
 setup
 "$tool" stamp --index "$fixtures/sample-index.json" --published "$work/release/index.json" \
   --out "$work/release/index.json" --now 2026-10-20T06:00:00Z --config "$root/config" > /dev/null
-run_plugins "$root/config/plugins.toml"
+run_plugins "$root/config/plugins.toml" 2026-10-20T07:00:00Z
 [ "$(jq -r .content_digest "$work/release/plugins.json")" = "$digest" ] || fail "digest moved"
 
 # 3. A listed release is advertised only when its root and evidence are available.
