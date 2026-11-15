@@ -199,6 +199,7 @@ async fn main() -> Result<()> {
                         versions::list_node(versions::NODE_CATALOG).await,
                     ),
                     "go" => ("go.dev", versions::list_go(versions::GO_CATALOG).await),
+                    "dotnet" => ("builds.dotnet.microsoft.com", versions::list_dotnet().await),
                     "python" => (
                         "python-build-standalone",
                         versions::list_python(versions::PYTHON_RELEASE).await,

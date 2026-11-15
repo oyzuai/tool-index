@@ -101,6 +101,16 @@ line = 2
 lines = 4
 keep_records = 3
 
+# .NET SDK archives from Microsoft's release feed, checked against SHA-512.
+# Only linux/amd64/gnu and windows/amd64/msvc are admitted by the provider.
+[core.dotnet]
+names = ["dotnet"]
+max_versions = 30
+verified = true
+line = 2
+lines = 3
+keep_records = 10
+
 # CPython from python-build-standalone's current release (install_only
 # builds), verified against the release's SHA256SUMS. Lines are minors (3.13).
 # The publisher's current release carries one patch per minor; earlier

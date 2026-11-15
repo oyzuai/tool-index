@@ -435,6 +435,15 @@ reviewed = true
 class = "direct"
 note = "Bundles LGPL-2.1 jcifs and trove4j, whose sources Gradle's -src archive lacks; served direct until counsel answers or those sources are mirrored (2026-10-11)."
 
+# Microsoft's Linux distributions use MIT; Windows binaries use the .NET
+# Library License. Keep acquisition direct pending a distribution review.
+# https://github.com/dotnet/core/blob/main/license-information.md
+[tools."core:dotnet"]
+license = "MIT AND LicenseRef-Dotnet-Library"
+class = "direct"
+reviewed = false
+note = "Platform-specific binary terms and bundled notices require review; this entry grants no proxy redistribution permission."
+
 # Helm: Apache-2.0 (LICENSE in helm/helm). get.helm.sh archive not opened.
 [tools."core:helm"]
 license = "Apache-2.0"
