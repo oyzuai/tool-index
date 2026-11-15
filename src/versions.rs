@@ -398,6 +398,71 @@ pub const GO_CATALOG: &str = "https://go.dev/dl/?mode=json&include=all";
 pub const PYTHON_RELEASE: &str = "https://raw.githubusercontent.com/astral-sh/python-build-standalone/latest-release/latest-release.json";
 pub const ZIG_CATALOG: &str = "https://ziglang.org/download/index.json";
 
+/// SDK versions, never runtime release versions. Only canonical Microsoft
+/// channel URLs are followed; evidence collection owns archive admission.
+pub async fn list_dotnet() -> Result<ToolListing> {
+    const BASE: &str = "https://builds.dotnet.microsoft.com/dotnet/release-metadata";
+    let index: Value =
+        serde_json::from_slice(&get(&format!("{BASE}/releases-index.json"), 1 << 20).await?)?;
+    let mut versions = BTreeMap::new();
+    for channel in index["releases-index"]
+        .as_array()
+        .context("missing .NET release index")?
+    {
+        let name = channel["channel-version"]
+            .as_str()
+            .context("missing .NET channel")?;
+        if !exact_release(&format!("{name}.0")) {
+            continue;
+        }
+        let url = format!("{BASE}/{name}/releases.json");
+        anyhow::ensure!(
+            channel["releases.json"] == url,
+            "unexpected .NET channel URL"
+        );
+        let feed: Value = serde_json::from_slice(&get(&url, 64 << 20).await?)?;
+        for sdk in parse_dotnet(&feed)?.versions {
+            versions.entry(sdk.version.clone()).or_insert(sdk);
+        }
+    }
+    let mut versions: Vec<_> = versions.into_values().collect();
+    versions.sort_by_key(|v| std::cmp::Reverse(sort_key(&v.version)));
+    Ok(listing("builds.dotnet.microsoft.com", versions))
+}
+
+pub fn parse_dotnet(feed: &Value) -> Result<ToolListing> {
+    let mut versions = BTreeMap::new();
+    for release in feed["releases"]
+        .as_array()
+        .context("missing .NET releases")?
+    {
+        let date = release["release-date"]
+            .as_str()
+            .filter(|d| d.parse::<jiff::civil::Date>().is_ok())
+            .map(|d| format!("{d}T00:00:00Z"));
+        for sdk in release["sdks"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .chain(release.get("sdk"))
+        {
+            let version = sdk["version"]
+                .as_str()
+                .context("missing .NET SDK version")?;
+            if exact_release(version) {
+                versions.entry(version.to_owned()).or_insert(Listed {
+                    version: version.into(),
+                    published_at: date.clone(),
+                    prerelease: false,
+                });
+            }
+        }
+    }
+    let mut versions: Vec<_> = versions.into_values().collect();
+    versions.sort_by_key(|v| std::cmp::Reverse(sort_key(&v.version)));
+    Ok(listing("builds.dotnet.microsoft.com", versions))
+}
+
 /// Stable Zig releases from the same publisher catalog the CLI reads.
 /// Platform archives and checksums remain owned by provider evidence.
 pub async fn list_zig(url: &str) -> Result<ToolListing> {
@@ -978,4 +1043,24 @@ mod tests {
             .collect();
         assert_eq!(names, ["1.88.3", "1.86.0"]);
     }
+}
+#[test]
+fn dotnet_lists_sdk_versions_instead_of_runtime_releases() {
+    let feed = parse_dotnet(&json!({"releases":[
+            {"release-version":"10.0.13","release-date":"2026-08-11",
+             "sdk":{"version":"10.0.401"},"sdks":[{"version":"10.0.401"},{"version":"10.0.100-preview.1"}]},
+            {"release-version":"10.0.14","release-date":"2026-09-08","sdks":[{"version":"10.0.402"}]}
+        ]})).unwrap();
+    assert_eq!(
+        feed.versions
+            .iter()
+            .map(|v| v.version.as_str())
+            .collect::<Vec<_>>(),
+        ["10.0.402", "10.0.401"]
+    );
+    assert_eq!(
+        feed.versions[1].published_at.as_deref(),
+        Some("2026-08-11T00:00:00Z")
+    );
+    assert!(parse_dotnet(&json!({})).is_err());
 }

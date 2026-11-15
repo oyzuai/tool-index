@@ -80,7 +80,7 @@ breaks, and the index cannot expire for that reason.
 - **Core providers**: Oyzu's own providers, built into the job rather than
   read from the registry, indexed as `oyzu:<name>` with origin `core:<name>`:
   Java (Eclipse Temurin, listed from Adoptium), Node (nodejs.org/dist), Go
-  (go.dev/dl), Python (python-build-standalone's current release), Zig
+  (go.dev/dl), .NET SDKs (Microsoft's release metadata), Python (python-build-standalone's current release), Zig
   (ziglang.org's stable download catalog), Maven, Ant
   (archive.apache.org), Gradle (services.gradle.org), npm and pnpm (the npm
   registry), the same feeds the CLI installs from, and Helm, kubectl, k3d,
@@ -93,13 +93,17 @@ breaks, and the index cannot expire for that reason.
   launch-set tool (same `backfill` and per-run budget): `oyzu tools evidence
   --provider <name> --version <v> --platform <p>…` builds the records from
   the publisher's listing and checks each archive against the publisher's
-  SHA-256 file. Records are produced for the platforms oyzu installs each
+  checksum. .NET SDK archives are checked against the feed's SHA-512 and
+  retain their computed SHA-256 and size, without asserting a publisher
+  signature. The .NET provider admits Linux amd64 GNU and Windows amd64 MSVC;
+  its serving class stays `direct` pending review of platform-specific binary
+  terms and bundled notices. Records are produced for the platforms oyzu installs each
   provider on (Linux x86-64 and arm64, macOS arm64, Windows x86-64, plus
   Intel macOS for Rust, Go and Node-family providers where the publisher
   ships them); the other configured platforms get
   `unsupported` records. With `line = N`, versions, the backfill and the
   records kept count per release line (Node, Java, Gradle, npm and pnpm by
-  major; Go, Python, Zig, Maven, Ant, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
+  major; Go, .NET, Python, Zig, Maven, Ant, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
   records even when newer lines release more often. Managed clients resolve
   these providers only from their records; standalone clients prefer them.
   Zig currently admits Intel macOS and Linux amd64 GNU only; the remaining
