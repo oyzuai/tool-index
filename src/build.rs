@@ -299,6 +299,7 @@ fn candidates(
     versions: &[Version],
     previous: Option<&Tool>,
     cfg: &crate::config::Verified,
+    pins: &[String],
 ) -> Vec<String> {
     let first_run = previous.is_none_or(|p| p.versions.iter().all(|v| v.sets.is_empty()));
     let known: BTreeSet<&str> = previous
@@ -315,7 +316,9 @@ fn candidates(
         .enumerate()
         .filter(|(i, v)| {
             !index::complete(v)
-                && (*i < cfg.backfill || (!first_run && !known.contains(v.version.as_str())))
+                && (pins.contains(&v.version)
+                    || *i < cfg.backfill
+                    || (!first_run && !known.contains(v.version.as_str())))
         })
         .map(|(_, v)| v.version.clone())
         .collect()
@@ -324,13 +327,12 @@ fn candidates(
 /// A core provider's versions, newest first, cut to `max_versions`: overall,
 /// or per release line for the newest `lines` lines when it counts by line.
 fn keep_lines(versions: &mut Vec<Version>, core: &CoreProvider) {
-    if core.line.is_none() {
-        versions.truncate(core.max_versions);
-        return;
-    }
     let mut lines: Vec<String> = Vec::new();
     let mut counts: BTreeMap<String, usize> = BTreeMap::new();
     versions.retain(|v| {
+        if core.pin.contains(&v.version) {
+            return true;
+        }
         let line = core.line_of(&v.version).unwrap_or("").to_owned();
         if !lines.contains(&line) {
             lines.push(line.clone());
@@ -353,7 +355,7 @@ fn core_candidates(
     cfg: &crate::config::Verified,
 ) -> Vec<String> {
     if core.line.is_none() {
-        return candidates(versions, previous, cfg);
+        return candidates(versions, previous, cfg, &core.pin);
     }
     let mut lines: Vec<(&str, Vec<Version>)> = Vec::new();
     for v in versions {
@@ -375,7 +377,7 @@ fn core_candidates(
                     .collect(),
                 ..p.clone()
             });
-            candidates(group, previous.as_ref(), cfg)
+            candidates(group, previous.as_ref(), cfg, &core.pin)
         })
         .collect();
     let longest = per_line.iter().map(Vec::len).max().unwrap_or(0);
@@ -570,7 +572,7 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         } else {
             // Verify versions with no verified records yet: on a tool's first
             // run only the newest few, afterwards every new version.
-            for v in candidates(&versions, prev, &cfg.verified) {
+            for v in candidates(&versions, prev, &cfg.verified, &[]) {
                 if let Some(tag) = tag_of.get(&v) {
                     wants.push(Want {
                         due: due(&origin, &v),
@@ -733,25 +735,11 @@ pub fn build(inputs: Inputs<'_>) -> Result<(Index, Report, Attempts)> {
         let core = tool
             .origin
             .strip_prefix("core:")
-            .and_then(|p| cfg.core.get(p))
-            .filter(|c| c.line.is_some());
+            .and_then(|p| cfg.core.get(p));
         let keep = core
             .and_then(|c| c.keep_records)
             .unwrap_or(cfg.verified.keep_records);
-        let mut kept: BTreeMap<String, usize> = BTreeMap::new();
-        for v in tool
-            .versions
-            .iter_mut()
-            .filter(|v| !v.sets.is_empty() && v.withdrawn.is_none())
-        {
-            let line = core.and_then(|c| c.line_of(&v.version)).unwrap_or("");
-            let n = kept.entry(line.to_owned()).or_default();
-            if *n < keep {
-                *n += 1;
-            } else {
-                v.sets.clear();
-            }
-        }
+        tool.keep_records(keep, core);
         // A source archive goes with the records it backs, and only for a
         // tool that still needs one.
         for v in &mut tool.versions {
@@ -856,6 +844,7 @@ mod tests {
             line: Some(1),
             lines,
             keep_records: Some(2),
+            pin: Vec::new(),
         }
     }
 
@@ -909,6 +898,53 @@ mod tests {
             core_candidates(&versions, Some(&previous), &flat, &VERIFIED),
             ["24.9.0"]
         );
+    }
+
+    #[test]
+    fn pins_survive_version_limits_and_receive_backfill() {
+        for line in [None, Some(2)] {
+            let core = CoreProvider {
+                names: vec!["dotnet".into()],
+                max_versions: 1,
+                verified: true,
+                line,
+                lines: line.map(|_| 3),
+                keep_records: None,
+                pin: vec!["10.0.400".into(), "10.0.401".into()],
+            };
+            let mut versions: Vec<_> = [
+                "13.0.2", "13.0.1", "12.0.1", "11.0.1", "10.0.402", "10.0.401", "10.0.400",
+            ]
+            .into_iter()
+            .map(|v| version(v, false))
+            .collect();
+            keep_lines(&mut versions, &core);
+            let names: Vec<_> = versions.iter().map(|v| v.version.as_str()).collect();
+            let expected = if line.is_some() {
+                vec!["13.0.2", "12.0.1", "11.0.1", "10.0.401", "10.0.400"]
+            } else {
+                vec!["13.0.2", "10.0.401", "10.0.400"]
+            };
+            assert_eq!(names, expected);
+            // Already-listed pins with empty records still need backfill.
+            let previous = Tool {
+                id: "oyzu:dotnet".into(),
+                origin: "core:dotnet".into(),
+                serving_class: ServingClass::Direct,
+                source_mirror: false,
+                versions: versions.clone(),
+            };
+            for v in versions
+                .iter_mut()
+                .filter(|v| !core.pin.contains(&v.version))
+            {
+                v.sets = vec![json!({"tier": "verified", "verified": {"status": "ok"}})];
+            }
+            assert_eq!(
+                core_candidates(&versions, Some(&previous), &core, &VERIFIED),
+                ["10.0.401", "10.0.400"]
+            );
+        }
     }
 
     #[test]

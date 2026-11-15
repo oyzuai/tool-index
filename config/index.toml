@@ -107,6 +107,7 @@ keep_records = 3
 names = ["dotnet"]
 max_versions = 30
 verified = true
+pin = ["10.0.400", "10.0.401"]
 line = 2
 lines = 3
 keep_records = 10

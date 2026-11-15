@@ -100,6 +100,9 @@ pub struct CoreProvider {
     /// `verified.keep_records`). Needs `line`.
     #[serde(default)]
     pub keep_records: Option<usize>,
+    /// Exact releases retained and verified regardless of version or record limits.
+    #[serde(default)]
+    pub pin: Vec<String>,
 }
 
 impl CoreProvider {
@@ -304,6 +307,18 @@ impl Config {
         );
         for (name, core) in &self.index.core {
             ensure!(
+                core.pin.is_empty() || core.verified,
+                "core.{name}.pin requires verified = true"
+            );
+            let mut pins = BTreeSet::new();
+            for pin in &core.pin {
+                ensure!(
+                    crate::versions::exact_release(pin),
+                    "core.{name}.pin: {pin:?} must be an exact MAJOR.MINOR.PATCH release"
+                );
+                ensure!(pins.insert(pin), "core.{name}.pin: duplicate pin {pin:?}");
+            }
+            ensure!(
                 core.line.is_none_or(|n| (1..=3).contains(&n)),
                 "core.{name}.line must be 1, 2 or 3"
             );
@@ -362,4 +377,61 @@ impl Config {
 
 pub fn expand(template: &str, tag: &str) -> String {
     template.replace("{tag}", tag)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn config() -> Config {
+        Config::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("config")).unwrap()
+    }
+
+    #[test]
+    fn pins_require_verified() {
+        let mut config = config();
+        config.index.core.get_mut("dotnet").unwrap().verified = false;
+        assert!(config
+            .check()
+            .unwrap_err()
+            .to_string()
+            .contains("pin requires verified = true"));
+    }
+
+    #[test]
+    fn pins_require_exact_releases() {
+        for pin in [
+            "",
+            "10",
+            "10.0",
+            "10.0.*",
+            "v10.0.401",
+            "10.0.401-preview.1",
+            "10.0.401+build",
+            "10.0.401.0",
+        ] {
+            let mut config = config();
+            config.index.core.get_mut("dotnet").unwrap().pin = vec![pin.into()];
+            assert!(
+                config
+                    .check()
+                    .unwrap_err()
+                    .to_string()
+                    .contains("must be an exact MAJOR.MINOR.PATCH release"),
+                "{pin:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn duplicate_pins_are_rejected() {
+        let mut config = config();
+        config.index.core.get_mut("dotnet").unwrap().pin =
+            vec!["10.0.401".into(), "10.0.401".into()];
+        assert!(config
+            .check()
+            .unwrap_err()
+            .to_string()
+            .contains("duplicate pin"));
+    }
 }

@@ -106,6 +106,7 @@ breaks, and the index cannot expire for that reason.
   major; Go, .NET, Python, Zig, Maven, Ant, Helm and kubectl by minor), so `node@lts` or `java@21` finds verified
   records even when newer lines release more often. Managed clients resolve
   these providers only from their records; standalone clients prefer them.
+  Core providers with `verified = true` can `pin` exact `MAJOR.MINOR.PATCH` releases for backfill and retention beyond version, line and record limits.
   Zig currently admits Intel macOS and Linux amd64 GNU only; the remaining
   configured targets keep explicit unsupported records. Its newest three
   minor lines each receive the existing backfill and retain three versions
