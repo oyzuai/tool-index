@@ -61,6 +61,27 @@ pub struct Tool {
     pub versions: Vec<Version>,
 }
 
+impl Tool {
+    /// Keep the newest records overall or per release line. Withdrawals and
+    /// pins retain their records without counting toward the limit.
+    pub fn keep_records(&mut self, keep: usize, core: Option<&crate::config::CoreProvider>) {
+        let mut kept = std::collections::BTreeMap::new();
+        for v in self.versions.iter_mut().filter(|v| {
+            !v.sets.is_empty()
+                && v.withdrawn.is_none()
+                && core.is_none_or(|c| !c.pin.contains(&v.version))
+        }) {
+            let line = core.and_then(|c| c.line_of(&v.version)).unwrap_or("");
+            let n = kept.entry(line.to_owned()).or_insert(0);
+            if *n < keep {
+                *n += 1;
+            } else {
+                v.sets.clear();
+            }
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "kebab-case")]
 pub enum ServingClass {
@@ -369,6 +390,36 @@ mod tests {
     }
 
     use super::*;
+
+    #[test]
+    fn pins_keep_records_without_using_the_retention_budget() {
+        for line in [None, Some(2)] {
+            let core: crate::config::CoreProvider = toml::from_str(
+                "names = ['dotnet']\nmax_versions = 1\nverified = true\npin = ['10.0.403', '10.0.400']"
+            ).unwrap();
+            let core = crate::config::CoreProvider { line, ..core };
+            let versions = ["10.0.403", "10.0.402", "10.0.401", "10.0.400"].map(|version| {
+                serde_json::json!({
+                    "version": version,
+                    "released": {"time": "2026-11-01T00:00:00Z", "source": "publisher"},
+                    "sets": [{"tier": "verified", "verified": {"status": "ok"}}]
+                })
+            });
+            let mut tool: Tool = serde_json::from_value(serde_json::json!({
+                "id": "oyzu:dotnet", "origin": "core:dotnet", "serving_class": "direct",
+                "versions": versions
+            }))
+            .unwrap();
+            tool.keep_records(1, Some(&core));
+            let retained: Vec<_> = tool
+                .versions
+                .iter()
+                .filter(|v| !v.sets.is_empty())
+                .map(|v| v.version.as_str())
+                .collect();
+            assert_eq!(retained, ["10.0.403", "10.0.402", "10.0.400"]);
+        }
+    }
 
     #[test]
     fn ids() {

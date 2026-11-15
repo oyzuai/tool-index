@@ -377,7 +377,7 @@ async fn get(url: &str, max: usize) -> Result<Vec<u8>> {
 
 /// A `MAJOR.MINOR.PATCH` release of digits only: the core providers record
 /// exact stable releases.
-fn exact_release(version: &str) -> bool {
+pub(crate) fn exact_release(version: &str) -> bool {
     let parts: Vec<&str> = version.split('.').collect();
     parts.len() == 3
         && parts
