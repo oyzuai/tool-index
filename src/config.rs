@@ -313,7 +313,7 @@ impl Config {
             let mut pins = BTreeSet::new();
             for pin in &core.pin {
                 ensure!(
-                    crate::versions::exact_release(pin),
+                    exact_release(pin),
                     "core.{name}.pin: {pin:?} must be an exact MAJOR.MINOR.PATCH release"
                 );
                 ensure!(pins.insert(pin), "core.{name}.pin: duplicate pin {pin:?}");
@@ -379,12 +379,26 @@ pub fn expand(template: &str, tag: &str) -> String {
     template.replace("{tag}", tag)
 }
 
+/// A `MAJOR.MINOR.PATCH` release of digits only: the core providers record
+/// exact stable releases.
+pub(crate) fn exact_release(version: &str) -> bool {
+    let parts: Vec<&str> = version.split('.').collect();
+    parts.len() == 3
+        && parts
+            .iter()
+            .all(|p| !p.is_empty() && p.bytes().all(|b| b.is_ascii_digit()))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     fn config() -> Config {
-        Config::load(&Path::new(env!("CARGO_MANIFEST_DIR")).join("config")).unwrap()
+        // The release tool includes this file by path from its own crate, so
+        // find `config/` beside the real `src/` rather than in the manifest dir.
+        let source = Path::new(env!("CARGO_MANIFEST_DIR")).join(file!());
+        let root = source.parent().and_then(Path::parent).unwrap();
+        Config::load(&root.join("config")).unwrap()
     }
 
     #[test]
