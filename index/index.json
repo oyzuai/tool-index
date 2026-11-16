@@ -1300,6 +1300,14 @@
           "sets": []
         },
         {
+          "version": "1.59.2",
+          "released": {
+            "time": "2026-11-16T05:26:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.59.1",
           "released": {
             "time": "2026-11-14T06:50:12Z",
@@ -1679,14 +1687,6 @@
           "version": "1.25.0",
           "released": {
             "time": "2026-02-18T08:10:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.24.0",
-          "released": {
-            "time": "2026-02-12T22:17:00Z",
             "source": "publisher"
           },
           "sets": []
@@ -5439,6 +5439,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.8.3",
+          "released": {
+            "time": "2026-11-16T02:48:23Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.8.2",
           "released": {
             "time": "2026-11-13T04:27:42Z",
@@ -5829,14 +5837,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.2.7",
-          "released": {
-            "time": "2025-12-05T04:20:19Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -5845,6 +5845,510 @@
       "origin": "aqua:nektos/act",
       "serving_class": "cache",
       "versions": [
+        {
+          "version": "0.2.98",
+          "released": {
+            "time": "2026-11-16T03:26:32Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "act",
+                    "origin": "default",
+                    "src": "act"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:4b719c2946d2791be9015fff9adc64100306134c082cfb2c78538e28fdd6ee0a",
+                "full": "sha256:419eeb3d65c7453f39e6280da81d693da2da55bc023527c4b8dd5af67a4a920c"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "act_Darwin_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:nektos/act",
+                "name": "nektos/act",
+                "publisher": "nektos",
+                "repository": "nektos/act"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/act_Darwin_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a0885179705d0f3f5d27201cefa0309ac78e3fccda447ecdfb96877b66b565b0",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a0885179705d0f3f5d27201cefa0309ac78e3fccda447ecdfb96877b66b565b0"
+                  },
+                  "size": 8594053
+                },
+                "lock": {
+                  "evidence_digest": "sha256:366d7dfb0c2d76847d378c2ae41bd9983453c55ddcf1d4ef544c9dfda7e3153c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:a0885179705d0f3f5d27201cefa0309ac78e3fccda447ecdfb96877b66b565b0",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[4]",
+                "normalized": "0.2.98",
+                "requested": "v0.2.98",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "act",
+                    "origin": "default",
+                    "src": "act"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:b683a61f795d841acadea28f97e30931f63aa865d22878266cc6f04a3b14058a",
+                "full": "sha256:fb98f69c80f3af10e4899734197a964593170f5752f0426e6b37909e392b85c8"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "act_Darwin_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:nektos/act",
+                "name": "nektos/act",
+                "publisher": "nektos",
+                "repository": "nektos/act"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/act_Darwin_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:14477d7e076b12a885c54301beff2b524a905e4238a2b3ec9b3d1fd0efdc100f",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "14477d7e076b12a885c54301beff2b524a905e4238a2b3ec9b3d1fd0efdc100f"
+                  },
+                  "size": 7934852
+                },
+                "lock": {
+                  "evidence_digest": "sha256:366d7dfb0c2d76847d378c2ae41bd9983453c55ddcf1d4ef544c9dfda7e3153c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:14477d7e076b12a885c54301beff2b524a905e4238a2b3ec9b3d1fd0efdc100f",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[4]",
+                "normalized": "0.2.98",
+                "requested": "v0.2.98",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "act",
+                    "origin": "default",
+                    "src": "act"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:7d6eaa27d47d7ced81dec187883d7e38f56555c9c226feaa67a72d29ab7a0a4a",
+                "full": "sha256:c35f48d72986f64ad7a8738d00574c76fc94e2bba326f6389c3c863eac20a737"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "act_Linux_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:nektos/act",
+                "name": "nektos/act",
+                "publisher": "nektos",
+                "repository": "nektos/act"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/act_Linux_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d3344bd0810c04b000d2444030b08c90ab9fbf905bbe2c3e26298be00c620d65",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d3344bd0810c04b000d2444030b08c90ab9fbf905bbe2c3e26298be00c620d65"
+                  },
+                  "size": 8485973
+                },
+                "lock": {
+                  "evidence_digest": "sha256:366d7dfb0c2d76847d378c2ae41bd9983453c55ddcf1d4ef544c9dfda7e3153c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:d3344bd0810c04b000d2444030b08c90ab9fbf905bbe2c3e26298be00c620d65",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[4]",
+                "normalized": "0.2.98",
+                "requested": "v0.2.98",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "act",
+                    "origin": "default",
+                    "src": "act"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:f0cf4ad4ad0e1e5a4bd69444b52724e3b7a80e159e8b90eda0da72041820c7ef",
+                "full": "sha256:df3e9744a0a600b1d4c480b53d90e7a56434de6ab09b7968e0a1c3cc4552d1bb"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "act_Linux_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:nektos/act",
+                "name": "nektos/act",
+                "publisher": "nektos",
+                "repository": "nektos/act"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/act_Linux_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a30ba1a1582cb93810c77f743415cac33c16f60fc288116a8e0943144b6a6a4f",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a30ba1a1582cb93810c77f743415cac33c16f60fc288116a8e0943144b6a6a4f"
+                  },
+                  "size": 7657991
+                },
+                "lock": {
+                  "evidence_digest": "sha256:366d7dfb0c2d76847d378c2ae41bd9983453c55ddcf1d4ef544c9dfda7e3153c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:a30ba1a1582cb93810c77f743415cac33c16f60fc288116a8e0943144b6a6a4f",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[4]",
+                "normalized": "0.2.98",
+                "requested": "v0.2.98",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "act",
+                    "origin": "default",
+                    "src": "act.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:82d78bf48d287a08c5b3a98f0eb8b27223549eab77f55387af9ab3888069c747",
+                "full": "sha256:7038fb5d6c33f046945cfa6aea2e145b534f793390459d6bdc681c2c293721cb"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "act_Windows_x86_64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:nektos/act",
+                "name": "nektos/act",
+                "publisher": "nektos",
+                "repository": "nektos/act"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/act_Windows_x86_64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/nektos/act/releases/download/v0.2.98/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d0d868ee2b33bb710f4df82d69345ce3a10d2f9fc7bbee9522bf36a15779ada0",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d0d868ee2b33bb710f4df82d69345ce3a10d2f9fc7bbee9522bf36a15779ada0"
+                  },
+                  "size": 8698560
+                },
+                "lock": {
+                  "evidence_digest": "sha256:366d7dfb0c2d76847d378c2ae41bd9983453c55ddcf1d4ef544c9dfda7e3153c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:d0d868ee2b33bb710f4df82d69345ce3a10d2f9fc7bbee9522bf36a15779ada0",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[4]",
+                "normalized": "0.2.98",
+                "requested": "v0.2.98",
+                "source": "requested"
+              }
+            }
+          ]
+        },
         {
           "version": "0.2.97",
           "released": {
@@ -10387,503 +10891,7 @@
             "time": "2026-05-01T03:18:14Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "act",
-                    "origin": "default",
-                    "src": "act"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:7c35c0bee538bd2be0d197484612920376de285f4fbc7ea6039349e394a365ff",
-                "full": "sha256:74f0dff987534f2d13096d8980d42d026d296ae5c075622616f83a55c22b3cf5"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "act_Darwin_x86_64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:nektos/act",
-                "name": "nektos/act",
-                "publisher": "nektos",
-                "repository": "nektos/act"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/act_Darwin_x86_64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:887cd13013fdd866f80872ef2b473b7d34af6c2e366cc77542c9b75dceea7a82",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "887cd13013fdd866f80872ef2b473b7d34af6c2e366cc77542c9b75dceea7a82"
-                  },
-                  "size": 8297969
-                },
-                "lock": {
-                  "evidence_digest": "sha256:65678f7ff00818a9a3c97e9c2ad3efcaffb8485fabfcd403d3743f7ae18e080f",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:887cd13013fdd866f80872ef2b473b7d34af6c2e366cc77542c9b75dceea7a82",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[4]",
-                "normalized": "0.2.88",
-                "requested": "v0.2.88",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "act",
-                    "origin": "default",
-                    "src": "act"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:cc553df5d3b33ae780aa1ca8a1fdec9e09c83e53c6f15fab7fd8a17912092095",
-                "full": "sha256:4fe42be6e23b69e0f8a0b19e8c71c06e70a81e1f3782b073ea618cc790dcfe9f"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "act_Darwin_arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:nektos/act",
-                "name": "nektos/act",
-                "publisher": "nektos",
-                "repository": "nektos/act"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/act_Darwin_arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:5f52aa4151c1cc762b246534a7f5633ae2b4b89aa036fbba7d9ccf04ca37acd9",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "5f52aa4151c1cc762b246534a7f5633ae2b4b89aa036fbba7d9ccf04ca37acd9"
-                  },
-                  "size": 7706296
-                },
-                "lock": {
-                  "evidence_digest": "sha256:65678f7ff00818a9a3c97e9c2ad3efcaffb8485fabfcd403d3743f7ae18e080f",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:5f52aa4151c1cc762b246534a7f5633ae2b4b89aa036fbba7d9ccf04ca37acd9",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[4]",
-                "normalized": "0.2.88",
-                "requested": "v0.2.88",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "act",
-                    "origin": "default",
-                    "src": "act"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:585ffa40d4dc5332d0337fc4251a83422db1def8629bbb7525f311f351db3da1",
-                "full": "sha256:e74331f39997b2ecb4353a917d2eeff6151a0d578f502760e421cbea8dca2da9"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "act_Linux_x86_64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:nektos/act",
-                "name": "nektos/act",
-                "publisher": "nektos",
-                "repository": "nektos/act"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/act_Linux_x86_64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:1eb9996682dfcc053ac8f3f90f2ec50376f0cdfc229712d82da03d673c63a2b3",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "1eb9996682dfcc053ac8f3f90f2ec50376f0cdfc229712d82da03d673c63a2b3"
-                  },
-                  "size": 8191351
-                },
-                "lock": {
-                  "evidence_digest": "sha256:65678f7ff00818a9a3c97e9c2ad3efcaffb8485fabfcd403d3743f7ae18e080f",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:1eb9996682dfcc053ac8f3f90f2ec50376f0cdfc229712d82da03d673c63a2b3",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[4]",
-                "normalized": "0.2.88",
-                "requested": "v0.2.88",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "act",
-                    "origin": "default",
-                    "src": "act"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:1268ce9cced39bfd7ec439fb6c5868267a1b0ced532c08d5535d250366167eab",
-                "full": "sha256:d593a31093de3d13097b714b9a4467af1bc0c07c68b1a2d99b87472b3604592d"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "act_Linux_arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:nektos/act",
-                "name": "nektos/act",
-                "publisher": "nektos",
-                "repository": "nektos/act"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/act_Linux_arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:94d87738f7ea6650782c8505366c758c99db54cc67bd8c711583478c93305d78",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "94d87738f7ea6650782c8505366c758c99db54cc67bd8c711583478c93305d78"
-                  },
-                  "size": 7442548
-                },
-                "lock": {
-                  "evidence_digest": "sha256:65678f7ff00818a9a3c97e9c2ad3efcaffb8485fabfcd403d3743f7ae18e080f",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:94d87738f7ea6650782c8505366c758c99db54cc67bd8c711583478c93305d78",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[4]",
-                "normalized": "0.2.88",
-                "requested": "v0.2.88",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "act",
-                    "origin": "default",
-                    "src": "act.exe"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:7e44ffdf6a534d186b9f328ba2fe0205ffa689ebc33ade1604b03a3a9f556928",
-                "full": "sha256:9523279a05619e7cf4bb210c207299993d763da805e27d2634eab9fec54f7b91"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "act_Windows_x86_64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:33d72d76decfae87f86b20b60966c373c866080961388768f889557e36c386c4",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:nektos/act",
-                "name": "nektos/act",
-                "publisher": "nektos",
-                "repository": "nektos/act"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/act_Windows_x86_64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/nektos/act/releases/download/v0.2.88/checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:fb501a109f40193dbccf7124d3098e0802276ace86948507eedd5aee2b3bc18b",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "fb501a109f40193dbccf7124d3098e0802276ace86948507eedd5aee2b3bc18b"
-                  },
-                  "size": 8401666
-                },
-                "lock": {
-                  "evidence_digest": "sha256:65678f7ff00818a9a3c97e9c2ad3efcaffb8485fabfcd403d3743f7ae18e080f",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:fb501a109f40193dbccf7124d3098e0802276ace86948507eedd5aee2b3bc18b",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[4]",
-                "normalized": "0.2.88",
-                "requested": "v0.2.88",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "0.2.87",
@@ -11193,14 +11201,6 @@
           "version": "0.2.49",
           "released": {
             "time": "2023-08-01T02:27:40Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.2.48",
-          "released": {
-            "time": "2023-07-10T20:09:57Z",
             "source": "publisher"
           },
           "sets": []
@@ -48651,6 +48651,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.51.3",
+          "released": {
+            "time": "2026-11-16T04:06:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.51.2",
           "released": {
             "time": "2026-11-11T05:08:02Z",
@@ -49038,14 +49046,6 @@
           "version": "0.34.2",
           "released": {
             "time": "2025-01-27T22:48:52Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.34.1",
-          "released": {
-            "time": "2025-01-26T05:54:54Z",
             "source": "publisher"
           },
           "sets": []
@@ -62094,6 +62094,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.11.5-preview.20261115.1",
+          "released": {
+            "time": "2026-11-16T01:45:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.11.5-preview.20261114.1",
           "released": {
             "time": "2026-11-15T01:50:24Z",
@@ -62129,14 +62137,6 @@
           "version": "2.11.4-preview.20261111.1",
           "released": {
             "time": "2026-11-12T02:13:16Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.11.4-preview.20261110.1",
-          "released": {
-            "time": "2026-11-10T22:40:25Z",
             "source": "publisher"
           },
           "sets": []
@@ -64736,6 +64736,14 @@
       "origin": "aqua:azu/dockerfile-pin",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.7.0",
+          "released": {
+            "time": "2026-11-16T06:38:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.6.0",
           "released": {
@@ -75874,6 +75882,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.38.1",
+          "released": {
+            "time": "2026-11-16T11:10:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.38.0",
           "released": {
             "time": "2026-11-14T08:01:39Z",
@@ -76261,14 +76277,6 @@
           "version": "2.1.1",
           "released": {
             "time": "2023-03-01T17:04:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.1.0",
-          "released": {
-            "time": "2023-02-26T02:37:39Z",
             "source": "publisher"
           },
           "sets": []
@@ -113958,6 +113966,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.60.2",
+          "released": {
+            "time": "2026-11-16T02:28:50Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.60.1",
           "released": {
             "time": "2026-11-15T03:13:33Z",
@@ -114348,14 +114364,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "1.23.0",
-          "released": {
-            "time": "2026-04-19T09:21:23Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -114364,6 +114372,14 @@
       "origin": "aqua:carvel-dev/imgpkg",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.49.2",
+          "released": {
+            "time": "2026-11-16T06:54:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.49.0",
           "released": {
@@ -114752,14 +114768,6 @@
           "version": "0.36.4",
           "released": {
             "time": "2023-06-13T11:06:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.36.2",
-          "released": {
-            "time": "2023-05-08T06:24:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -115179,6 +115187,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.50.0",
+          "released": {
+            "time": "2026-11-16T09:21:58Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.49.2",
           "released": {
             "time": "2026-09-29T11:38:39Z",
@@ -115569,14 +115585,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.36.3",
-          "released": {
-            "time": "2023-01-27T06:35:05Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -115656,6 +115664,14 @@
       "origin": "aqua:carvel-dev/vendir",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.47.0",
+          "released": {
+            "time": "2026-11-16T09:19:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.46.3",
           "released": {
@@ -116047,14 +116063,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.33.5",
-          "released": {
-            "time": "2023-10-17T12:23:26Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -116063,6 +116071,14 @@
       "origin": "aqua:carvel-dev/ytt",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.56.0",
+          "released": {
+            "time": "2026-11-16T09:23:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.55.4",
           "released": {
@@ -116451,14 +116467,6 @@
           "version": "0.44.0",
           "released": {
             "time": "2022-11-17T23:44:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.43.6",
-          "released": {
-            "time": "2023-10-19T12:00:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -118105,6 +118113,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.5.1",
+          "released": {
+            "time": "2026-11-16T00:34:09Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.5.0",
           "released": {
             "time": "2026-11-12T20:55:46Z",
@@ -118495,14 +118511,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "1.2.18",
-          "released": {
-            "time": "2026-06-22T01:12:09Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -118511,6 +118519,14 @@
       "origin": "aqua:chainguard-dev/melange",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.65.0",
+          "released": {
+            "time": "2026-11-16T00:29:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.64.1",
           "released": {
@@ -118899,14 +118915,6 @@
           "version": "0.48.0",
           "released": {
             "time": "2026-03-31T22:28:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.47.0",
-          "released": {
-            "time": "2026-03-30T00:36:30Z",
             "source": "publisher"
           },
           "sets": []
@@ -121436,6 +121444,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "20261116093204",
+          "released": {
+            "time": "2026-11-16T09:35:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "20261113130955",
           "released": {
             "time": "2026-11-13T13:12:43Z",
@@ -121823,14 +121839,6 @@
           "version": "20260814062912",
           "released": {
             "time": "2026-08-14T06:33:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "20260811073034",
-          "released": {
-            "time": "2026-08-11T07:34:37Z",
             "source": "publisher"
           },
           "sets": []
@@ -134440,6 +134448,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.235.0-nightly.43781998083",
+          "released": {
+            "time": "2026-11-16T01:08:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.235.0-nightly.43659219335",
           "released": {
             "time": "2026-11-15T01:35:21Z",
@@ -134467,14 +134483,6 @@
           "version": "1.235.0-nightly.43128581167",
           "released": {
             "time": "2026-11-12T01:09:38Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.235.0-nightly.42932635723",
-          "released": {
-            "time": "2026-11-11T01:03:38Z",
             "source": "publisher"
           },
           "sets": []
@@ -141590,6 +141598,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.39.4",
+          "released": {
+            "time": "2026-11-16T05:55:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.39.2",
+          "released": {
+            "time": "2026-11-16T03:37:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.39.1",
           "released": {
             "time": "2026-11-10T15:49:07Z",
@@ -141601,6 +141625,22 @@
           "version": "2.39.0",
           "released": {
             "time": "2026-11-03T16:31:55Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.38.10",
+          "released": {
+            "time": "2026-11-16T05:55:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.38.8",
+          "released": {
+            "time": "2026-11-16T04:02:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -141665,6 +141705,22 @@
           "version": "2.38.0",
           "released": {
             "time": "2026-10-06T14:29:14Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.37.14",
+          "released": {
+            "time": "2026-11-16T05:57:01Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.37.12",
+          "released": {
+            "time": "2026-11-16T04:02:51Z",
             "source": "publisher"
           },
           "sets": []
@@ -141937,54 +141993,6 @@
           "version": "2.35.2",
           "released": {
             "time": "2026-07-14T08:13:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.35.1",
-          "released": {
-            "time": "2026-07-07T19:16:29Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.34.19",
-          "released": {
-            "time": "2026-11-10T16:59:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.34.18",
-          "released": {
-            "time": "2026-11-03T19:24:33Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.34.17",
-          "released": {
-            "time": "2026-10-30T22:11:38Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.34.16",
-          "released": {
-            "time": "2026-10-28T22:46:22Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.34.15",
-          "released": {
-            "time": "2026-10-27T01:00:17Z",
             "source": "publisher"
           },
           "sets": []
@@ -167244,6 +167252,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.27.0",
+          "released": {
+            "time": "2026-11-16T10:20:24Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.26.0",
           "released": {
             "time": "2026-11-07T16:00:16Z",
@@ -167631,14 +167647,6 @@
           "version": "2.9.1",
           "released": {
             "time": "2026-07-02T04:56:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.9.0",
-          "released": {
-            "time": "2026-07-01T14:48:12Z",
             "source": "publisher"
           },
           "sets": []
@@ -210881,6 +210889,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "43.9.0",
+          "released": {
+            "time": "2026-11-16T09:17:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "43.8.3",
           "released": {
             "time": "2026-11-15T03:37:27Z",
@@ -211268,14 +211284,6 @@
           "version": "19.0.0",
           "released": {
             "time": "2026-09-25T09:11:01Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "18.0.0",
-          "released": {
-            "time": "2026-09-24T12:50:48Z",
             "source": "publisher"
           },
           "sets": []
@@ -221323,6 +221331,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.13.5-nightly.202611160626.76f1b5129",
+          "released": {
+            "time": "2026-11-16T06:36:10Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.13.5-nightly.202611131617.95eabf579",
           "released": {
             "time": "2026-11-13T16:25:31Z",
@@ -221366,14 +221382,6 @@
           "version": "0.13.3",
           "released": {
             "time": "2026-11-12T19:40:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.13.3-nightly.202611120616.ee6751e92",
-          "released": {
-            "time": "2026-11-12T06:27:01Z",
             "source": "publisher"
           },
           "sets": []
@@ -236456,6 +236464,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.17.0",
+          "released": {
+            "time": "2026-11-16T10:00:12Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.16.6",
           "released": {
             "time": "2026-10-26T20:26:20Z",
@@ -246456,6 +246472,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.76.1",
+          "released": {
+            "time": "2026-11-16T06:24:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.76.0",
           "released": {
             "time": "2026-10-11T01:56:31Z",
@@ -246843,14 +246867,6 @@
           "version": "1.60.1",
           "released": {
             "time": "2023-09-14T21:00:44Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.60.0",
-          "released": {
-            "time": "2023-09-14T00:32:00Z",
             "source": "publisher"
           },
           "sets": []
@@ -261257,6 +261273,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.8.3-snapshot.20261116.7214fdc",
+          "released": {
+            "time": "2026-11-16T09:28:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.8.3-snapshot.20261104.7de8b00",
           "released": {
             "time": "2026-11-04T06:52:26Z",
@@ -261284,14 +261308,6 @@
           "version": "3.8.3-snapshot.20261103.7bba28f",
           "released": {
             "time": "2026-11-03T16:59:11Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.8.3-snapshot.20261103.7b0bdf3",
-          "released": {
-            "time": "2026-11-03T12:18:01Z",
             "source": "publisher"
           },
           "sets": []
@@ -367725,6 +367741,510 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "0.10.50",
+          "released": {
+            "time": "2026-11-16T09:07:04Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "infracost",
+                    "origin": "recipe",
+                    "src": "infracost-darwin-amd64"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:155d46a679d75d2b12af94cfd671d1de4bca8b233a815840f2adfce9c35163d9",
+                "full": "sha256:161fb9449056b62b66e35b30b26f0455cef8201a9059773d6dd8d1085f00cf0c"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "infracost-darwin-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:9b5a667b237f987d2cb96a9f8864a0463c90d77a6c0550e439408db2b267f292",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:infracost/infracost",
+                "name": "infracost/infracost",
+                "publisher": "infracost",
+                "repository": "infracost/infracost"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-darwin-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-darwin-amd64.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:df09371cc10cd44572fe3a43a59b782cb9e6c2ccb2108a3dcf7bbed9000bfb3c",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "df09371cc10cd44572fe3a43a59b782cb9e6c2ccb2108a3dcf7bbed9000bfb3c"
+                  },
+                  "size": 32670275
+                },
+                "lock": {
+                  "evidence_digest": "sha256:f94e8a6e162ebd2a16244556865ac38edb0aa7bdeddfa594d7e647d0ed293617",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:df09371cc10cd44572fe3a43a59b782cb9e6c2ccb2108a3dcf7bbed9000bfb3c",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "0.10.50",
+                "requested": "v0.10.50",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "infracost",
+                    "origin": "recipe",
+                    "src": "infracost-darwin-arm64"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:0c6df70aea1f5cd9ed5819f19cc14b088e7b1526282603cd3c299595a7bce749",
+                "full": "sha256:1254a92d131cdb755207b9ca14e5550e62f501a3076c5a159744f2e157985ff1"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "infracost-darwin-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:9b5a667b237f987d2cb96a9f8864a0463c90d77a6c0550e439408db2b267f292",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:infracost/infracost",
+                "name": "infracost/infracost",
+                "publisher": "infracost",
+                "repository": "infracost/infracost"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-darwin-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-darwin-arm64.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:e96377baaf85694e8e77ee8dc72a8e5ea58ed241f63521788a9929bba9623bc0",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "e96377baaf85694e8e77ee8dc72a8e5ea58ed241f63521788a9929bba9623bc0"
+                  },
+                  "size": 30261666
+                },
+                "lock": {
+                  "evidence_digest": "sha256:1afd15e762d49bbbc207feb77302862bc4e8201262fb9e42061a7844650b3c28",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:e96377baaf85694e8e77ee8dc72a8e5ea58ed241f63521788a9929bba9623bc0",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "0.10.50",
+                "requested": "v0.10.50",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "infracost",
+                    "origin": "recipe",
+                    "src": "infracost-linux-amd64"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:ea7a61e1a8b1bfcc4b5b89b8b17909f258fcd71ef9e0588095e1f65991d292c3",
+                "full": "sha256:2345d5d2f951b541d6d0e4392d2cdba195fa4cc6ef6c33a5db84c655a3bbe07a"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "infracost-linux-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:9b5a667b237f987d2cb96a9f8864a0463c90d77a6c0550e439408db2b267f292",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:infracost/infracost",
+                "name": "infracost/infracost",
+                "publisher": "infracost",
+                "repository": "infracost/infracost"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-linux-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-linux-amd64.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:409b2d530738fccb7c52b50c63af606b782965ac3c25e213782efca44dd7b293",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "409b2d530738fccb7c52b50c63af606b782965ac3c25e213782efca44dd7b293"
+                  },
+                  "size": 31622720
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2744327fc32459ed16fb0c81fb2f3d0b6225f696da0eb7b6468051f46a758692",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:409b2d530738fccb7c52b50c63af606b782965ac3c25e213782efca44dd7b293",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "0.10.50",
+                "requested": "v0.10.50",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "infracost",
+                    "origin": "recipe",
+                    "src": "infracost-linux-arm64"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:403941ad23153f587a610c876d0c25c05fbccb033ee2384364ac924005bf0633",
+                "full": "sha256:013e2ff510eb129c52893e7270f77dbd101084440bb5e7ee5986c0fe3d5a114a"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "infracost-linux-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:9b5a667b237f987d2cb96a9f8864a0463c90d77a6c0550e439408db2b267f292",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:infracost/infracost",
+                "name": "infracost/infracost",
+                "publisher": "infracost",
+                "repository": "infracost/infracost"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-linux-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-linux-arm64.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a68ca6f5562f8ce2d2281f663ae7b0cb4951df9824cd2c7d9be53c0b51e637e7",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a68ca6f5562f8ce2d2281f663ae7b0cb4951df9824cd2c7d9be53c0b51e637e7"
+                  },
+                  "size": 28370749
+                },
+                "lock": {
+                  "evidence_digest": "sha256:0917cfa43948570255674c4612a5a02002954645881eba350d454f2a122169d6",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:a68ca6f5562f8ce2d2281f663ae7b0cb4951df9824cd2c7d9be53c0b51e637e7",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "0.10.50",
+                "requested": "v0.10.50",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "infracost",
+                    "origin": "recipe",
+                    "src": "infracost.exe"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:b57c267339f4b1fda5c0e58c143ab166475659b3916832acf59bf6d59e0cd2d4",
+                "full": "sha256:9087d1c733bc31845177bab9df2bae0f4f906fa6434517dc85ab88429b81afe8"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "infracost-windows-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:9b5a667b237f987d2cb96a9f8864a0463c90d77a6c0550e439408db2b267f292",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:infracost/infracost",
+                "name": "infracost/infracost",
+                "publisher": "infracost",
+                "repository": "infracost/infracost"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-windows-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/infracost/infracost/releases/download/v0.10.50/infracost-windows-amd64.tar.gz.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:2af264b0e35504123b5bd09836fc2bbe745ed32cbf145e6f0df86fd7a11db133",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "2af264b0e35504123b5bd09836fc2bbe745ed32cbf145e6f0df86fd7a11db133"
+                  },
+                  "size": 32253674
+                },
+                "lock": {
+                  "evidence_digest": "sha256:7a84d4c8af5eac75091ae60c74912793807369b729610bfc51404d57b6f030f9",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:2af264b0e35504123b5bd09836fc2bbe745ed32cbf145e6f0df86fd7a11db133",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "0.10.50",
+                "requested": "v0.10.50",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "0.10.49",
           "released": {
             "time": "2026-11-10T12:49:00Z",
@@ -370595,14 +371115,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.10.0-beta.1",
-          "released": {
-            "time": "2022-05-10T10:04:16Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -373470,6 +373982,14 @@
       "origin": "aqua:IohannRabeson/tmignore-rs",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.4.2",
+          "released": {
+            "time": "2026-11-16T00:13:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.4.1",
           "released": {
@@ -378149,6 +378669,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.5.11",
+          "released": {
+            "time": "2026-11-16T06:43:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.5.10",
           "released": {
             "time": "2026-11-04T01:50:06Z",
@@ -378536,14 +379064,6 @@
           "version": "0.2.18",
           "released": {
             "time": "2025-11-21T12:54:16Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.2.17",
-          "released": {
-            "time": "2025-11-18T15:18:40Z",
             "source": "publisher"
           },
           "sets": []
@@ -395750,6 +396270,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2026.11.9",
+          "released": {
+            "time": "2026-11-16T11:14:16Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2026.11.8",
           "released": {
             "time": "2026-11-13T13:07:07Z",
@@ -396137,14 +396665,6 @@
           "version": "2026.9.4",
           "released": {
             "time": "2026-09-09T21:41:36Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2026.9.3",
-          "released": {
-            "time": "2026-09-08T13:55:29Z",
             "source": "publisher"
           },
           "sets": []
@@ -466345,6 +466865,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.25.3",
+          "released": {
+            "time": "2026-11-16T09:17:07Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.25.2",
           "released": {
             "time": "2026-10-01T13:39:26Z",
@@ -466732,14 +467260,6 @@
           "version": "0.16.3",
           "released": {
             "time": "2023-10-18T19:27:23Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.16.2",
-          "released": {
-            "time": "2023-09-12T15:43:19Z",
             "source": "publisher"
           },
           "sets": []
@@ -468032,6 +468552,14 @@
       "origin": "aqua:kubernetes-sigs/zeitgeist",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.9.0",
+          "released": {
+            "time": "2026-11-16T09:01:40Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.8.0",
           "released": {
@@ -560169,6 +560697,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.116.1",
+          "released": {
+            "time": "2026-11-16T08:42:39Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.116.0",
           "released": {
             "time": "2026-11-12T10:54:32Z",
@@ -560556,14 +561092,6 @@
           "version": "0.112.10",
           "released": {
             "time": "2026-06-03T11:10:47Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.112.9",
-          "released": {
-            "time": "2026-05-28T16:47:32Z",
             "source": "publisher"
           },
           "sets": []
@@ -586391,6 +586919,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.11.1",
+          "released": {
+            "time": "2026-11-15T23:57:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.11.0",
           "released": {
             "time": "2026-11-13T00:51:44Z",
@@ -592154,6 +592690,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.132.0",
+          "released": {
+            "time": "2026-11-16T00:32:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.131.0",
           "released": {
             "time": "2026-11-09T00:28:56Z",
@@ -592541,14 +593085,6 @@
           "version": "1.83.0",
           "released": {
             "time": "2025-12-08T01:56:49Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.82.0",
-          "released": {
-            "time": "2025-12-01T02:11:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -599459,6 +599995,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.171.0-alpha.7",
+          "released": {
+            "time": "2026-11-15T23:13:50Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.171.0-alpha.6",
           "released": {
             "time": "2026-11-15T18:58:35Z",
@@ -599486,14 +600030,6 @@
           "version": "0.171.0-alpha.2",
           "released": {
             "time": "2026-11-13T07:59:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.171.0-alpha.1",
-          "released": {
-            "time": "2026-11-13T04:15:28Z",
             "source": "publisher"
           },
           "sets": []
@@ -601340,6 +601876,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.48.1",
+          "released": {
+            "time": "2026-11-16T06:34:52Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.48.0",
           "released": {
             "time": "2026-11-05T21:09:15Z",
@@ -601730,14 +602274,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.7.0",
-          "released": {
-            "time": "2026-01-17T21:05:08Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -601746,6 +602282,14 @@
       "origin": "aqua:openclaw/wacli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.26.1",
+          "released": {
+            "time": "2026-11-16T06:18:19Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.26.0",
           "released": {
@@ -660080,6 +660624,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.33.1",
+          "released": {
+            "time": "2026-11-16T02:55:01Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.33.0",
           "released": {
             "time": "2026-10-01T23:22:05Z",
@@ -660467,14 +661019,6 @@
           "version": "3.25.1",
           "released": {
             "time": "2023-03-31T01:20:32Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.25.0",
-          "released": {
-            "time": "2023-01-13T00:35:40Z",
             "source": "publisher"
           },
           "sets": []
@@ -664527,6 +665071,14 @@
       "origin": "aqua:protonpass/pass-cli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "2.7.1",
+          "released": {
+            "time": "2026-11-16T10:05:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "2.7.0",
           "released": {
@@ -774302,6 +774854,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2026-11-16",
+          "released": {
+            "time": "2026-11-16T05:33:34Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2026-11-09",
           "released": {
             "time": "2026-11-09T05:46:26Z",
@@ -774689,14 +775249,6 @@
           "version": "2025-12-22",
           "released": {
             "time": "2025-12-22T07:17:20Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2025-12-15",
-          "released": {
-            "time": "2025-12-15T08:57:33Z",
             "source": "publisher"
           },
           "sets": []
@@ -788829,6 +789381,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "14.0.1",
+          "released": {
+            "time": "2026-11-16T08:46:56Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "14.0.0",
           "released": {
             "time": "2026-11-15T07:06:03Z",
@@ -789216,14 +789776,6 @@
           "version": "8.3.2",
           "released": {
             "time": "2024-10-05T14:04:55Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "8.3.1",
-          "released": {
-            "time": "2024-10-05T13:02:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -831928,6 +832480,14 @@
           "sets": []
         },
         {
+          "version": "2.44.3",
+          "released": {
+            "time": "2026-11-15T23:37:03Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.44.2",
           "released": {
             "time": "2026-11-12T00:54:38Z",
@@ -832291,14 +832851,6 @@
           "version": "2.14.1",
           "released": {
             "time": "2022-12-02T05:03:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.14.0",
-          "released": {
-            "time": "2022-11-22T22:12:42Z",
             "source": "publisher"
           },
           "sets": []
@@ -914299,6 +914851,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "4.219.0-canary.2",
+          "released": {
+            "time": "2026-11-16T11:07:26Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "4.219.0-canary.1",
+          "released": {
+            "time": "2026-11-16T08:46:24Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "4.218.0-rc.1",
+          "released": {
+            "time": "2026-11-16T06:47:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "4.218.0-canary.48",
           "released": {
             "time": "2026-11-15T21:34:39Z",
@@ -914315,25 +914891,9 @@
           "sets": []
         },
         {
-          "version": "4.218.0-canary.46",
+          "version": "4.217.0",
           "released": {
-            "time": "2026-11-15T18:26:40Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.218.0-canary.45",
-          "released": {
-            "time": "2026-11-14T20:55:15Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.218.0-canary.44",
-          "released": {
-            "time": "2026-11-14T18:30:20Z",
+            "time": "2026-11-16T06:34:31Z",
             "source": "publisher"
           },
           "sets": []
@@ -918540,6 +919100,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.765.0",
+          "released": {
+            "time": "2026-11-16T09:28:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.764.0",
+          "released": {
+            "time": "2026-11-16T08:33:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.763.0",
+          "released": {
+            "time": "2026-11-16T06:10:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.762.0",
           "released": {
             "time": "2026-11-15T20:22:27Z",
@@ -918911,30 +919495,6 @@
           "version": "0.716.0",
           "released": {
             "time": "2026-11-08T16:35:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.715.0",
-          "released": {
-            "time": "2026-11-08T04:20:16Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.714.0",
-          "released": {
-            "time": "2026-11-08T03:18:14Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.713.0",
-          "released": {
-            "time": "2026-11-08T02:36:02Z",
             "source": "publisher"
           },
           "sets": []
@@ -919464,6 +920024,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.9.0",
+          "released": {
+            "time": "2026-11-16T09:59:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.8.0",
           "released": {
             "time": "2026-11-10T10:01:59Z",
@@ -919534,6 +920102,22 @@
       "origin": "aqua:unikraft/kraftkit",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.13.1",
+          "released": {
+            "time": "2026-11-16T10:12:00Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.13.0",
+          "released": {
+            "time": "2026-11-16T08:42:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.12.16",
           "released": {
@@ -947764,6 +948348,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.7.1",
+          "released": {
+            "time": "2026-11-15T23:30:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.7.0",
           "released": {
             "time": "2026-11-15T18:28:03Z",
@@ -957238,6 +957830,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.269.0",
+          "released": {
+            "time": "2026-11-16T09:11:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.268.2",
           "released": {
             "time": "2026-11-15T21:19:03Z",
@@ -957625,14 +958225,6 @@
           "version": "0.239.0",
           "released": {
             "time": "2026-10-26T06:34:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.238.1",
-          "released": {
-            "time": "2026-10-26T00:08:27Z",
             "source": "publisher"
           },
           "sets": []
