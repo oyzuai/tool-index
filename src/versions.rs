@@ -375,15 +375,9 @@ async fn get(url: &str, max: usize) -> Result<Vec<u8>> {
     Ok(body.to_vec())
 }
 
-/// A `MAJOR.MINOR.PATCH` release of digits only: the core providers record
-/// exact stable releases.
-pub(crate) fn exact_release(version: &str) -> bool {
-    let parts: Vec<&str> = version.split('.').collect();
-    parts.len() == 3
-        && parts
-            .iter()
-            .all(|p| !p.is_empty() && p.bytes().all(|b| b.is_ascii_digit()))
-}
+// The check lives in `config` so the release tool, which includes `config.rs`
+// by path but not this module, can validate pins with it.
+pub(crate) use crate::config::exact_release;
 
 fn listing(source: &str, versions: Vec<Listed>) -> ToolListing {
     ToolListing {
