@@ -999,6 +999,13 @@
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
       },
+      "11.28.13": {
+        "first_failed": "2026-11-18T11:47:03.188875155Z",
+        "last_attempt": "2026-11-18T11:47:03.188875155Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "no record reached the verified tier"
+      },
       "11.28.5": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
         "last_attempt": "2026-10-22T19:03:57.538842589Z",
