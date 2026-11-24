@@ -51,6 +51,13 @@
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24063"
       },
+      "3.4.14": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24119"
+      },
       "3.5.5": {
         "first_failed": "2026-10-13T10:40:30.012573449Z",
         "last_attempt": "2026-10-22T19:03:57.538842589Z",
@@ -72,28 +79,33 @@
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24187"
       },
+      "3.5.8": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23967"
+      },
       "3.6.0": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 1,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23747"
       },
       "3.6.1": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 1,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23663"
-      }
-    },
-    "aqua:atuinsh/atuin": {
-      "18.2.0": {
-        "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-10-11T10:04:54.495778694Z",
+      },
+      "3.6.2": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
         "attempts": 1,
-        "engine": "813dc7b58d367ebdb378988504c495c36938ff42",
-        "reason": "darwin/amd64/native artifact: no evidence entry could be verified; the record stays at the discovery tier"
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24083"
       }
     },
     "aqua:caddyserver/caddy": {
@@ -143,17 +155,24 @@
     "aqua:fluxcd/flux2": {
       "2.10.0": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 1,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 25079"
+      },
+      "2.10.1": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 25379"
       }
     },
     "aqua:golang-migrate/migrate": {
       "4.20.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 6,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 7,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native artifact: HTTP 404 Not Found"
       }
@@ -161,15 +180,15 @@
     "aqua:google/osv-scanner": {
       "2.7.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 5,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 6,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23623"
       },
       "2.7.1": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 1,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 23299"
       }
@@ -177,15 +196,15 @@
     "aqua:ko-build/ko": {
       "0.19.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 6,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 7,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: provenance file: HTTP 404 Not Found"
       },
       "0.19.1": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 6,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 7,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 25375"
       }
@@ -207,24 +226,31 @@
       },
       "5.5.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 6,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 7,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 22931"
       },
       "5.6.0": {
         "first_failed": "2026-10-12T10:53:37.076086902Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 5,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 6,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24779"
+      },
+      "5.7.0": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 24183"
       }
     },
     "aqua:pulumi/pulumi": {
       "3.275.0": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 1,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native checksum#0: the artifact's sha512 is c7d96eea15d8dadb9514ad874220a661492c374117db7336c75e479781e0ca02fdbb5fdf00c155a78eb90308e2af6f61e1463ee4b11a5e484290b2c9e4a330bf, the publisher lists a92f37054fa1ab51fb56bdb6202f5e5f94b9b0ae1a2f76f256c01510f7b676842bd8b86eb71dfb27bdfa836c31d33fe233c4167ca3f6aa281215c4a493e127c4"
       }
@@ -246,8 +272,8 @@
       },
       "5.0.0": {
         "first_failed": "2026-10-11T10:04:54.495778694Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 6,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 7,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "darwin/amd64/native slsa-provenance#0: the provenance file is not a DSSE envelope: missing field `payloadType` at line 1 column 30307"
       }
@@ -411,6 +437,13 @@
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "this oyzu does not install it on a rechecked platform"
       },
+      "8.14.8": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
       "9.8.0": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
         "last_attempt": "2026-11-15T23:03:05.347556261Z",
@@ -442,6 +475,13 @@
       "9.9.1": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
         "last_attempt": "2026-11-15T23:03:05.347556261Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "9.9.2": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
         "attempts": 1,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "this oyzu does not install it on a rechecked platform"
@@ -934,6 +974,13 @@
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "this oyzu does not install it on a rechecked platform"
       },
+      "3.10.2": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "this oyzu does not install it on a rechecked platform"
+      },
       "3.8.7": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
         "last_attempt": "2026-11-15T23:03:05.347556261Z",
@@ -994,7 +1041,14 @@
       },
       "11.28.12": {
         "first_failed": "2026-11-15T23:03:05.347556261Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 2,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "no record reached the verified tier"
+      },
+      "11.28.13": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
         "attempts": 1,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
@@ -1033,34 +1087,41 @@
         "attempts": 1,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
+      },
+      "11.29.0": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "no record reached the verified tier"
       }
     },
     "core:python": {
       "3.10.22": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 3,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 4,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
       },
       "3.13.16": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 3,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 4,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
       },
       "3.14.8": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 3,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 4,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
       },
       "3.15.0": {
         "first_failed": "2026-10-22T14:01:51.717252603Z",
-        "last_attempt": "2026-11-15T23:03:05.347556261Z",
-        "attempts": 3,
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 4,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "no record reached the verified tier"
       }
@@ -1121,6 +1182,13 @@
         "attempts": 1,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "1.106.0": {
+        "first_failed": "2026-11-24T13:49:16.413234384Z",
+        "last_attempt": "2026-11-24T13:49:16.413234384Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "no record reached the verified tier"
       }
     },
     "core:zig": {
