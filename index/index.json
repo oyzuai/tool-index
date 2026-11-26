@@ -1308,6 +1308,14 @@
           "sets": []
         },
         {
+          "version": "1.61.1",
+          "released": {
+            "time": "2026-11-26T00:09:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.61.0",
           "released": {
             "time": "2026-11-25T03:31:49Z",
@@ -1687,14 +1695,6 @@
           "version": "1.26.1",
           "released": {
             "time": "2026-02-27T23:45:05Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.26.0",
-          "released": {
-            "time": "2026-02-26T20:06:57Z",
             "source": "publisher"
           },
           "sets": []
@@ -21179,6 +21179,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.14.4",
+          "released": {
+            "time": "2026-11-26T02:35:15Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.14.3",
           "released": {
             "time": "2026-11-24T08:25:00Z",
@@ -21566,14 +21574,6 @@
           "version": "1.9.7",
           "released": {
             "time": "2026-08-19T06:37:11Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.9.6",
-          "released": {
-            "time": "2026-08-18T13:08:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -24625,6 +24625,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.4.2",
+          "released": {
+            "time": "2026-11-26T00:59:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.4.1",
           "released": {
             "time": "2026-11-23T15:57:40Z",
@@ -25012,14 +25020,6 @@
           "version": "1.18.7",
           "released": {
             "time": "2026-07-27T07:33:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.18.6",
-          "released": {
-            "time": "2026-07-27T02:47:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -33253,6 +33253,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.15.48",
+          "released": {
+            "time": "2026-11-26T09:10:55Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.15.47",
           "released": {
             "time": "2026-11-25T14:26:49Z",
@@ -33640,14 +33648,6 @@
           "version": "0.15.0",
           "released": {
             "time": "2026-10-14T15:45:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.14.8",
-          "released": {
-            "time": "2026-10-13T06:22:11Z",
             "source": "publisher"
           },
           "sets": []
@@ -49598,6 +49598,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.0.111",
+          "released": {
+            "time": "2026-11-25T22:24:17Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.0.110",
           "released": {
             "time": "2026-11-25T06:12:16Z",
@@ -49985,14 +49993,6 @@
           "version": "0.0.62",
           "released": {
             "time": "2026-07-22T01:03:35Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.61",
-          "released": {
-            "time": "2026-07-18T01:40:53Z",
             "source": "publisher"
           },
           "sets": []
@@ -57849,6 +57849,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.29.0",
+          "released": {
+            "time": "2026-11-26T10:14:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.28.0",
           "released": {
             "time": "2026-11-22T09:23:11Z",
@@ -62124,6 +62132,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.11.6-preview.20261125.1",
+          "released": {
+            "time": "2026-11-25T23:10:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.11.5",
           "released": {
             "time": "2026-11-25T06:43:28Z",
@@ -62159,14 +62175,6 @@
           "version": "2.11.5-preview.20261121.1",
           "released": {
             "time": "2026-11-22T02:09:54Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.11.5-preview.20261120.1",
-          "released": {
-            "time": "2026-11-21T01:31:52Z",
             "source": "publisher"
           },
           "sets": []
@@ -65644,6 +65652,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.40.0",
+          "released": {
+            "time": "2026-11-25T21:31:27Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.39.1",
           "released": {
             "time": "2026-11-18T22:21:27Z",
@@ -68636,6 +68652,22 @@
       "origin": "aqua:bahdotsh/wrkflw",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.9.0",
+          "released": {
+            "time": "2026-11-26T10:46:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.9.0-rc.1",
+          "released": {
+            "time": "2026-11-26T10:35:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.8.0",
           "released": {
@@ -100662,6 +100694,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "7.19.1",
+          "released": {
+            "time": "2026-11-26T11:43:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "7.19.0",
           "released": {
             "time": "2026-11-25T20:54:14Z",
@@ -101049,14 +101089,6 @@
           "version": "7.9.14",
           "released": {
             "time": "2026-04-03T16:55:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "7.9.13",
-          "released": {
-            "time": "2026-03-27T22:46:04Z",
             "source": "publisher"
           },
           "sets": []
@@ -122036,6 +122068,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "20261126084616",
+          "released": {
+            "time": "2026-11-26T08:50:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "20261123142640",
           "released": {
             "time": "2026-11-23T14:29:38Z",
@@ -122423,14 +122463,6 @@
           "version": "20260915065407",
           "released": {
             "time": "2026-09-15T06:58:15Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "20260914063347",
-          "released": {
-            "time": "2026-09-14T06:37:50Z",
             "source": "publisher"
           },
           "sets": []
@@ -135104,6 +135136,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.235.0",
+          "released": {
+            "time": "2026-11-26T04:29:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.235.0-nightly.45729914245",
+          "released": {
+            "time": "2026-11-26T01:14:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.235.0-nightly.45519518476",
           "released": {
             "time": "2026-11-25T01:20:50Z",
@@ -135131,14 +135179,6 @@
           "version": "1.235.0-nightly.44967635975",
           "released": {
             "time": "2026-11-22T01:05:31Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.235.0-nightly.44844889806",
-          "released": {
-            "time": "2026-11-21T01:05:17Z",
             "source": "publisher"
           },
           "sets": []
@@ -156141,6 +156181,670 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "3.1.6",
+          "released": {
+            "time": "2026-11-25T22:06:06Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "cosign",
+                    "origin": "default",
+                    "src": "cosign"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:acc10b83a47b6e7454a9a92dd5cf6c1c090bc7a930d5fd3e6f3e84d767373aa1",
+                "full": "sha256:0f1b31049a9a4165f3427cd7271aa208147687a265cb2b436a4287b7fd18c7d2"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "cosign-darwin-amd64"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "cosign#0",
+                  "lock_kind": "publisher-signature",
+                  "method": "cosign",
+                  "origin": "recipe",
+                  "params": {
+                    "opts": [
+                      "--certificate-identity",
+                      "keyless@projectsigstore.iam.gserviceaccount.com",
+                      "--certificate-oidc-issuer",
+                      "https://accounts.google.com"
+                    ]
+                  },
+                  "subject": "checksum-file",
+                  "supplement": null,
+                  "uses": [
+                    "checksum",
+                    "bundle"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:2cc66cf010fd7483c10803a92936adb1811f382dae762df12e1522fd79b61945",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:sigstore/cosign",
+                "name": "sigstore/cosign",
+                "publisher": "sigstore",
+                "repository": "sigstore/cosign"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign-darwin-amd64"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt"
+                },
+                {
+                  "role": "bundle",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt.sigstore.json"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a91eebd5824c1d40a2f3fb730a65f470ec0acf99e5c63dc7b79c322eeb9b5549",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a91eebd5824c1d40a2f3fb730a65f470ec0acf99e5c63dc7b79c322eeb9b5549"
+                  },
+                  "size": 106948067
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b49a1a585b46c225a951e4138da2a233cdd2396867b5aeaa13f6405e7968281d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:a91eebd5824c1d40a2f3fb730a65f470ec0acf99e5c63dc7b79c322eeb9b5549",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `cosign` verifier; the evidence is declared but unchecked",
+                    "evidence": "cosign#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[8]",
+                "normalized": "3.1.6",
+                "requested": "v3.1.6",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "cosign",
+                    "origin": "default",
+                    "src": "cosign"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:850e23afed974a9f7cf6c6ab3943167d5d8a5c51229100aab27d6f59d679415b",
+                "full": "sha256:02fb411286b3c64ace005fb0ce284a5e2e899f52e3379bda91522b8f6f3d4aea"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "cosign-darwin-arm64"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "cosign#0",
+                  "lock_kind": "publisher-signature",
+                  "method": "cosign",
+                  "origin": "recipe",
+                  "params": {
+                    "opts": [
+                      "--certificate-identity",
+                      "keyless@projectsigstore.iam.gserviceaccount.com",
+                      "--certificate-oidc-issuer",
+                      "https://accounts.google.com"
+                    ]
+                  },
+                  "subject": "checksum-file",
+                  "supplement": null,
+                  "uses": [
+                    "checksum",
+                    "bundle"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:2cc66cf010fd7483c10803a92936adb1811f382dae762df12e1522fd79b61945",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:sigstore/cosign",
+                "name": "sigstore/cosign",
+                "publisher": "sigstore",
+                "repository": "sigstore/cosign"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign-darwin-arm64"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt"
+                },
+                {
+                  "role": "bundle",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt.sigstore.json"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:0ce6045c42e9f21427b3a8b70d54b130ca35cdd88a38358cc303fc6fec7366ba",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "0ce6045c42e9f21427b3a8b70d54b130ca35cdd88a38358cc303fc6fec7366ba"
+                  },
+                  "size": 99904258
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b49a1a585b46c225a951e4138da2a233cdd2396867b5aeaa13f6405e7968281d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:0ce6045c42e9f21427b3a8b70d54b130ca35cdd88a38358cc303fc6fec7366ba",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `cosign` verifier; the evidence is declared but unchecked",
+                    "evidence": "cosign#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[8]",
+                "normalized": "3.1.6",
+                "requested": "v3.1.6",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "cosign",
+                    "origin": "default",
+                    "src": "cosign"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:5781b37756536ed7380fef6825271a36c9a8b762075b9a553088c18570596f3a",
+                "full": "sha256:aecb7b993a5ca5c71c4cfa031c1fde629a1346b775b91b7c20a419ea39099d9a"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "cosign-linux-amd64"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "cosign#0",
+                  "lock_kind": "publisher-signature",
+                  "method": "cosign",
+                  "origin": "recipe",
+                  "params": {
+                    "opts": [
+                      "--certificate-identity",
+                      "keyless@projectsigstore.iam.gserviceaccount.com",
+                      "--certificate-oidc-issuer",
+                      "https://accounts.google.com"
+                    ]
+                  },
+                  "subject": "checksum-file",
+                  "supplement": null,
+                  "uses": [
+                    "checksum",
+                    "bundle"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:2cc66cf010fd7483c10803a92936adb1811f382dae762df12e1522fd79b61945",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:sigstore/cosign",
+                "name": "sigstore/cosign",
+                "publisher": "sigstore",
+                "repository": "sigstore/cosign"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign-linux-amd64"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt"
+                },
+                {
+                  "role": "bundle",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt.sigstore.json"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:318a99ade4156a0c4113aa983b46c0a0830fa7896a096c63121ee47b610a94c6",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "318a99ade4156a0c4113aa983b46c0a0830fa7896a096c63121ee47b610a94c6"
+                  },
+                  "size": 147143814
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b49a1a585b46c225a951e4138da2a233cdd2396867b5aeaa13f6405e7968281d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:318a99ade4156a0c4113aa983b46c0a0830fa7896a096c63121ee47b610a94c6",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `cosign` verifier; the evidence is declared but unchecked",
+                    "evidence": "cosign#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[8]",
+                "normalized": "3.1.6",
+                "requested": "v3.1.6",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "cosign",
+                    "origin": "default",
+                    "src": "cosign"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:5058fdc0f292e3a0a229ada8933d607bcb7fb520dd42a087a8ef8ddefda277da",
+                "full": "sha256:87bbc913930d319de5f842b2f6a332156cfa4563915e8b0ea2bd1e6dcce02037"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "cosign-linux-arm64"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "cosign#0",
+                  "lock_kind": "publisher-signature",
+                  "method": "cosign",
+                  "origin": "recipe",
+                  "params": {
+                    "opts": [
+                      "--certificate-identity",
+                      "keyless@projectsigstore.iam.gserviceaccount.com",
+                      "--certificate-oidc-issuer",
+                      "https://accounts.google.com"
+                    ]
+                  },
+                  "subject": "checksum-file",
+                  "supplement": null,
+                  "uses": [
+                    "checksum",
+                    "bundle"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:2cc66cf010fd7483c10803a92936adb1811f382dae762df12e1522fd79b61945",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:sigstore/cosign",
+                "name": "sigstore/cosign",
+                "publisher": "sigstore",
+                "repository": "sigstore/cosign"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign-linux-arm64"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt"
+                },
+                {
+                  "role": "bundle",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt.sigstore.json"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:bbb2ebc765f483cf9fac42da8763dddc2b55b350ee12ea0c44a520a6d6d52334",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "bbb2ebc765f483cf9fac42da8763dddc2b55b350ee12ea0c44a520a6d6d52334"
+                  },
+                  "size": 137823539
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b49a1a585b46c225a951e4138da2a233cdd2396867b5aeaa13f6405e7968281d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:bbb2ebc765f483cf9fac42da8763dddc2b55b350ee12ea0c44a520a6d6d52334",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `cosign` verifier; the evidence is declared but unchecked",
+                    "evidence": "cosign#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[8]",
+                "normalized": "3.1.6",
+                "requested": "v3.1.6",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "cosign",
+                    "origin": "default",
+                    "src": "cosign.exe"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:13657310b0ff88d8031a17fe604ae5d6c88082d221600a742e833a2aaff27174",
+                "full": "sha256:699672879657d2ece5b97c36a709dede5e03f59a0a7f40a1cacd6fcb2b6de6a7"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "cosign-windows-amd64.exe"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "cosign#0",
+                  "lock_kind": "publisher-signature",
+                  "method": "cosign",
+                  "origin": "recipe",
+                  "params": {
+                    "opts": [
+                      "--certificate-identity",
+                      "keyless@projectsigstore.iam.gserviceaccount.com",
+                      "--certificate-oidc-issuer",
+                      "https://accounts.google.com"
+                    ]
+                  },
+                  "subject": "checksum-file",
+                  "supplement": null,
+                  "uses": [
+                    "checksum",
+                    "bundle"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:2cc66cf010fd7483c10803a92936adb1811f382dae762df12e1522fd79b61945",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:sigstore/cosign",
+                "name": "sigstore/cosign",
+                "publisher": "sigstore",
+                "repository": "sigstore/cosign"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign-windows-amd64.exe"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt"
+                },
+                {
+                  "role": "bundle",
+                  "url": "https://github.com/sigstore/cosign/releases/download/v3.1.6/cosign_checksums.txt.sigstore.json"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:0a5abb35f16b18266d6f3991cb69f8933c4449c1eafb475ae57bde554b273ddf",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "0a5abb35f16b18266d6f3991cb69f8933c4449c1eafb475ae57bde554b273ddf"
+                  },
+                  "size": 192786944
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b49a1a585b46c225a951e4138da2a233cdd2396867b5aeaa13f6405e7968281d",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:0a5abb35f16b18266d6f3991cb69f8933c4449c1eafb475ae57bde554b273ddf",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": "this build has no `cosign` verifier; the evidence is declared but unchecked",
+                    "evidence": "cosign#0",
+                    "identity": null,
+                    "outcome": "verifier-unavailable",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[8]",
+                "normalized": "3.1.6",
+                "requested": "v3.1.6",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "3.1.5",
           "released": {
             "time": "2026-11-24T15:47:22Z",
@@ -159808,14 +160512,6 @@
           "version": "1.10.1",
           "released": {
             "time": "2022-08-04T17:22:54Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.10.0",
-          "released": {
-            "time": "2022-07-22T10:10:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -186586,6 +187282,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.166.0",
+          "released": {
+            "time": "2026-11-26T07:57:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.165.0",
           "released": {
             "time": "2026-11-24T12:26:56Z",
@@ -186973,14 +187677,6 @@
           "version": "1.120.0",
           "released": {
             "time": "2026-08-03T09:40:02Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.119.0",
-          "released": {
-            "time": "2026-07-30T06:21:51Z",
             "source": "publisher"
           },
           "sets": []
@@ -193685,6 +194381,510 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "2.11.0",
+          "released": {
+            "time": "2026-11-26T09:52:31Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:a378a38fd70a2adbd52aac1eb48ea123de8fa7ce5b033b7cf84e13999bb5923c",
+                "full": "sha256:bc0830a7a3ec8bf70573a832407e58666c04c5a92993bb841523ab82edc183f4"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-2.11.0-darwin-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-darwin-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:160c6c5423878d5b04df129bef421a2d67a956569f6cdfcfac46935da7c39b53",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "160c6c5423878d5b04df129bef421a2d67a956569f6cdfcfac46935da7c39b53"
+                  },
+                  "size": 25807658
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2fe6bf535443985df3c53ee91b0a216f02d774b6e50783bfa321d5b93dba3c43",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:160c6c5423878d5b04df129bef421a2d67a956569f6cdfcfac46935da7c39b53",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "2.11.0",
+                "requested": "v2.11.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:84221fb769ae4abe9574e92c1b3321ac33ca70de8deff2a73c1a7a925afa5aaf",
+                "full": "sha256:b5ea02896bce49884a8c7eb4029ac3ff16c4ca2ee34b8b6d439d2b6fd5a03117"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-2.11.0-darwin-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-darwin-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:84c2809ba65cff06597f6b75531f18db63893e367d19769fafec0e11343dce6b",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "84c2809ba65cff06597f6b75531f18db63893e367d19769fafec0e11343dce6b"
+                  },
+                  "size": 24268626
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2fe6bf535443985df3c53ee91b0a216f02d774b6e50783bfa321d5b93dba3c43",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:84c2809ba65cff06597f6b75531f18db63893e367d19769fafec0e11343dce6b",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "2.11.0",
+                "requested": "v2.11.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:3ed9948157e3877fc54fbf990309ff265f50b7b97820758fc8b484d360afdab8",
+                "full": "sha256:da52637f7bc8a9d45f0dcfa35e3fffe63743d4297f5c0f822b7fd8ee9521b75d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-2.11.0-linux-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-linux-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:450bee1a6b7564971349992f7f57951635ad5cc62426ca0e0663bedb66dc3bfe",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "450bee1a6b7564971349992f7f57951635ad5cc62426ca0e0663bedb66dc3bfe"
+                  },
+                  "size": 24685757
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2fe6bf535443985df3c53ee91b0a216f02d774b6e50783bfa321d5b93dba3c43",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:450bee1a6b7564971349992f7f57951635ad5cc62426ca0e0663bedb66dc3bfe",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "2.11.0",
+                "requested": "v2.11.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:2edea8791548a1fd1ab685640d640d70e07d47c806e0adcfba8b15ec2d667305",
+                "full": "sha256:6b5586ac04e94c32f779795ff03f90e34591f62503d447212041ea6dc2d7a658"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-2.11.0-linux-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-linux-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:cbd32db3b9c13ff75222b90156e9f934c7af93cac8b5bab39fd4600b24aa5388",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "cbd32db3b9c13ff75222b90156e9f934c7af93cac8b5bab39fd4600b24aa5388"
+                  },
+                  "size": 22636087
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2fe6bf535443985df3c53ee91b0a216f02d774b6e50783bfa321d5b93dba3c43",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:cbd32db3b9c13ff75222b90156e9f934c7af93cac8b5bab39fd4600b24aa5388",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "2.11.0",
+                "requested": "v2.11.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "doctl",
+                    "origin": "default",
+                    "src": "doctl.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:9331b3da7d2bbf52e74caa7df8774f9db6be9269fc9e42fee42125c5179cd49f",
+                "full": "sha256:564956dc89f1b830c6dbea8f43f3087367448890cef7890c60348e74426f44c1"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "doctl-2.11.0-windows-amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:digitalocean/doctl",
+                "name": "digitalocean/doctl",
+                "publisher": "digitalocean",
+                "repository": "digitalocean/doctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-windows-amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.11.0/doctl-2.11.0-checksums.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:7f2f4a9772008f4504e29f8ed92d0a2dd8f481a6e4172cae631ff01accb794a2",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "7f2f4a9772008f4504e29f8ed92d0a2dd8f481a6e4172cae631ff01accb794a2"
+                  },
+                  "size": 25125615
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2fe6bf535443985df3c53ee91b0a216f02d774b6e50783bfa321d5b93dba3c43",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:7f2f4a9772008f4504e29f8ed92d0a2dd8f481a6e4172cae631ff01accb794a2",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "2.11.0",
+                "requested": "v2.11.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "2.10.0",
           "released": {
             "time": "2026-11-25T18:02:22Z",
@@ -198226,503 +199426,7 @@
             "time": "2026-11-04T17:11:15Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:920a7d9bafac0bf7c7f4a108e195d8301473ae43d038010a64068e704338b0f4",
-                "full": "sha256:a764e9ec32acd9b27ff10b827b1e20bb20ce5eebe69fa249781565a3f4d3cd87"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-2.3.0-darwin-amd64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-darwin-amd64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:8d36ffde119c41b5fe58445864c78b7ff5da7123906f0736ea805ee18b981673",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "8d36ffde119c41b5fe58445864c78b7ff5da7123906f0736ea805ee18b981673"
-                  },
-                  "size": 25108127
-                },
-                "lock": {
-                  "evidence_digest": "sha256:5c6f1e85e9bdd7e1670ced37c2c9afcd77a17c1aa3620b9e2ddaaaa7600ad999",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:8d36ffde119c41b5fe58445864c78b7ff5da7123906f0736ea805ee18b981673",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "2.3.0",
-                "requested": "v2.3.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:7dfae02673e76c03fc2a8a166f8f98b9e1092b168823be6d61cfe8b9c319bc01",
-                "full": "sha256:8f3d58590e844640b2dfa697a59a2448f13975551fa6fc1278d41bbf55ddab16"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-2.3.0-darwin-arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-darwin-arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:eaa265251dca393059c42864f539316c5add4ffa0990e4e4ffd1b223118ee010",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "eaa265251dca393059c42864f539316c5add4ffa0990e4e4ffd1b223118ee010"
-                  },
-                  "size": 23600991
-                },
-                "lock": {
-                  "evidence_digest": "sha256:5c6f1e85e9bdd7e1670ced37c2c9afcd77a17c1aa3620b9e2ddaaaa7600ad999",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:eaa265251dca393059c42864f539316c5add4ffa0990e4e4ffd1b223118ee010",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "2.3.0",
-                "requested": "v2.3.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:7905c7d8d35617d1b8b11f532576e039546ae269d9e8dae9cd70b28efb1e1288",
-                "full": "sha256:f00dab22d247fa8241e6ad70957435783326ef1000dfa14858ad1f05ec193af8"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-2.3.0-linux-amd64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-linux-amd64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:782f720843364bfe5e7eaffa561af7685987ec3658510faa64ec330c5ea87a3c",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "782f720843364bfe5e7eaffa561af7685987ec3658510faa64ec330c5ea87a3c"
-                  },
-                  "size": 24006280
-                },
-                "lock": {
-                  "evidence_digest": "sha256:5c6f1e85e9bdd7e1670ced37c2c9afcd77a17c1aa3620b9e2ddaaaa7600ad999",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:782f720843364bfe5e7eaffa561af7685987ec3658510faa64ec330c5ea87a3c",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "2.3.0",
-                "requested": "v2.3.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:616db61269e8c416c17487712c9672bbadd8ad61be2d7b8f53ac5394789e25da",
-                "full": "sha256:5941ba71a3a7034fd9726ff75a25fc44ecce3c7aef5cef8f94f374f8fcb8a703"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-2.3.0-linux-arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-linux-arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:5d90101beb19022f04d47af786f9de4019c17da3ffbb6eb1bd251b3e50aa42c9",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "5d90101beb19022f04d47af786f9de4019c17da3ffbb6eb1bd251b3e50aa42c9"
-                  },
-                  "size": 22007564
-                },
-                "lock": {
-                  "evidence_digest": "sha256:5c6f1e85e9bdd7e1670ced37c2c9afcd77a17c1aa3620b9e2ddaaaa7600ad999",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:5d90101beb19022f04d47af786f9de4019c17da3ffbb6eb1bd251b3e50aa42c9",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "2.3.0",
-                "requested": "v2.3.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "doctl",
-                    "origin": "default",
-                    "src": "doctl.exe"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:472e17407c4b33bf037bc6b9f2f797c853d54ce83d7c8daa557b612b37b3df5e",
-                "full": "sha256:806ca9696715bc88e615f104941c7194d48ea9d35219cbdaea0d1f99760477bf"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "doctl-2.3.0-windows-amd64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:a486dc673dcf94368e8616516dddff4a706984ff239b2b96f072a5a329b714e9",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:digitalocean/doctl",
-                "name": "digitalocean/doctl",
-                "publisher": "digitalocean",
-                "repository": "digitalocean/doctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-windows-amd64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/digitalocean/doctl/releases/download/v2.3.0/doctl-2.3.0-checksums.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:1f47f89698623fe5c4d6868047395f272132e85bcb0905fa545a4b944552a637",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "1f47f89698623fe5c4d6868047395f272132e85bcb0905fa545a4b944552a637"
-                  },
-                  "size": 24433407
-                },
-                "lock": {
-                  "evidence_digest": "sha256:5c6f1e85e9bdd7e1670ced37c2c9afcd77a17c1aa3620b9e2ddaaaa7600ad999",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:1f47f89698623fe5c4d6868047395f272132e85bcb0905fa545a4b944552a637",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "top-level",
-                "normalized": "2.3.0",
-                "requested": "v2.3.0",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "2.2.1",
@@ -199032,14 +199736,6 @@
           "version": "1.159.0",
           "released": {
             "time": "2026-05-14T16:14:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.158.0",
-          "released": {
-            "time": "2026-05-07T16:21:46Z",
             "source": "publisher"
           },
           "sets": []
@@ -214195,6 +214891,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "43.16.0",
+          "released": {
+            "time": "2026-11-26T11:59:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "43.15.0",
           "released": {
             "time": "2026-11-25T15:30:24Z",
@@ -214582,14 +215286,6 @@
           "version": "29.0.0",
           "released": {
             "time": "2026-10-08T23:08:29Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "28.0.0",
-          "released": {
-            "time": "2026-10-08T10:54:32Z",
             "source": "publisher"
           },
           "sets": []
@@ -224797,6 +225493,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.13.5-nightly.202611260617.e362dd9f9",
+          "released": {
+            "time": "2026-11-26T06:25:43Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.13.5-nightly.202611250617.c5f58fc0a",
           "released": {
             "time": "2026-11-25T06:27:16Z",
@@ -224824,14 +225528,6 @@
           "version": "0.13.5-nightly.202611160626.76f1b5129",
           "released": {
             "time": "2026-11-16T06:36:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.13.5-nightly.202611131617.95eabf579",
-          "released": {
-            "time": "2026-11-13T16:25:31Z",
             "source": "publisher"
           },
           "sets": []
@@ -233237,6 +233933,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.49.0",
+          "released": {
+            "time": "2026-11-26T12:26:11Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.48.0",
           "released": {
             "time": "2026-11-24T07:42:03Z",
@@ -233624,14 +234328,6 @@
           "version": "3.7.1",
           "released": {
             "time": "2026-07-20T10:29:09Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.7.0",
-          "released": {
-            "time": "2026-07-20T06:44:37Z",
             "source": "publisher"
           },
           "sets": []
@@ -266143,6 +266839,610 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "2.106.0",
+          "released": {
+            "time": "2026-11-25T22:48:46Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.106.0_macOS_amd64/bin/gh"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:05d740c33fb062e2abbed9a39a8bb3ea2b044a3b0898415f082a0d42bf70de4c",
+                "full": "sha256:68a09e49640ee585caaf2f443a40284df827d25c586f6aef29b32cbf46870880"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.106.0_macOS_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_macOS_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:f43a04a5ffe0717e2e39d7591cbc50db24c6c38d09d0ea4998be27cd197758e3",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "f43a04a5ffe0717e2e39d7591cbc50db24c6c38d09d0ea4998be27cd197758e3"
+                  },
+                  "size": 15785124
+                },
+                "lock": {
+                  "evidence_digest": "sha256:55b1ecafe84b2f647cd830586974da8b26888d5c74c3453a4286bf4ebf8c6647",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:f43a04a5ffe0717e2e39d7591cbc50db24c6c38d09d0ea4998be27cd197758e3",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.106.0",
+                "requested": "v2.106.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.106.0_macOS_arm64/bin/gh"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:07bceae02542e4f8c66bb7b4d6df88ef036691c7cbe45f487381b74087e0c93a",
+                "full": "sha256:8daa99df6911d7e16a07e3fa44ee7051110f2d5df820e43f7b182aa267588e0e"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.106.0_macOS_arm64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_macOS_arm64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:22b2b723dfbc69b6022b1b08604ff51c0db5aa8b6774b4ced1a47b8413a995d6",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "22b2b723dfbc69b6022b1b08604ff51c0db5aa8b6774b4ced1a47b8413a995d6"
+                  },
+                  "size": 14183624
+                },
+                "lock": {
+                  "evidence_digest": "sha256:55b1ecafe84b2f647cd830586974da8b26888d5c74c3453a4286bf4ebf8c6647",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:22b2b723dfbc69b6022b1b08604ff51c0db5aa8b6774b4ced1a47b8413a995d6",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.106.0",
+                "requested": "v2.106.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.106.0_linux_amd64/bin/gh"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:0d683c206ad072bad00b438fba83cf1ef1ff93d951520dd9527ff7b16ccfc19b",
+                "full": "sha256:efbb15931f98c9651d2ef1c90cfdef4fd0bf5a233cab2707f5cc649d31b71f81"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.106.0_linux_amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_linux_amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:a476449fa9625413c54a3734eded62e9e480e49f421ff08e7f3b3879c059a033",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "a476449fa9625413c54a3734eded62e9e480e49f421ff08e7f3b3879c059a033"
+                  },
+                  "size": 15101741
+                },
+                "lock": {
+                  "evidence_digest": "sha256:55b1ecafe84b2f647cd830586974da8b26888d5c74c3453a4286bf4ebf8c6647",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:a476449fa9625413c54a3734eded62e9e480e49f421ff08e7f3b3879c059a033",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.106.0",
+                "requested": "v2.106.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "gh_2.106.0_linux_arm64/bin/gh"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:b2ccc19396f923ed95ee0a24af551b751159418a210d75d514b27285a42cd615",
+                "full": "sha256:fd74df0a6ab2d43dd8dbf028d4556a759c167482d13acd7ecf7b50317405b463"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.106.0_linux_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_linux_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:5e8a0c51e1a8345f36bd0b8bb88604b6a5388df16f3ab3e3b9b6d794fa223a67",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "5e8a0c51e1a8345f36bd0b8bb88604b6a5388df16f3ab3e3b9b6d794fa223a67"
+                  },
+                  "size": 13734973
+                },
+                "lock": {
+                  "evidence_digest": "sha256:55b1ecafe84b2f647cd830586974da8b26888d5c74c3453a4286bf4ebf8c6647",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:5e8a0c51e1a8345f36bd0b8bb88604b6a5388df16f3ab3e3b9b6d794fa223a67",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.106.0",
+                "requested": "v2.106.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "gh",
+                    "origin": "recipe",
+                    "src": "bin/gh.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:e1665e51c5fd9d20d3e12bb248b13eeed4c1aea1b3a841e15c63bc30c5074c11",
+                "full": "sha256:182967cd26a9c75fdeb2e15189b0a97de65541a3fd0b9b7fc5942689674452a2"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "gh_2.106.0_windows_amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:cli/cli",
+                "name": "cli/cli",
+                "publisher": "cli",
+                "repository": "cli/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_windows_amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/cli/cli/releases/download/v2.106.0/gh_2.106.0_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d406f442ca0baa3d3e9c695e9cded1aa48e67dad3294b8947e5ab84f980b4844",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d406f442ca0baa3d3e9c695e9cded1aa48e67dad3294b8947e5ab84f980b4844"
+                  },
+                  "size": 15265298
+                },
+                "lock": {
+                  "evidence_digest": "sha256:55b1ecafe84b2f647cd830586974da8b26888d5c74c3453a4286bf4ebf8c6647",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:d406f442ca0baa3d3e9c695e9cded1aa48e67dad3294b8947e5ab84f980b4844",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[7]",
+                "normalized": "2.106.0",
+                "requested": "v2.106.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "2.105.0",
           "released": {
             "time": "2026-11-18T00:18:35Z",
@@ -271584,603 +272884,7 @@
             "time": "2026-09-03T15:43:20Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "gh",
-                    "origin": "recipe",
-                    "src": "gh_2.100.0_macOS_amd64/bin/gh"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:0bbd676ab2dec299c51c457da852042d547c55db78a40b5f523af1ecb96654f1",
-                "full": "sha256:7d06754c56b420e4d522e0c6481c836d7735e52a724a7b5736b08dc06e126a93"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "gh_2.100.0_macOS_amd64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                },
-                {
-                  "egress_hosts": [],
-                  "id": "github-attestation#0",
-                  "lock_kind": "attestation",
-                  "method": "github-attestation",
-                  "origin": "recipe",
-                  "params": {
-                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": []
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:cli/cli",
-                "name": "cli/cli",
-                "publisher": "cli",
-                "repository": "cli/cli"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_amd64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:fcd7799e85eb575f3c7d2b1679bfbfedaefa1269d4bc7d096b51e10939b4812b",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "fcd7799e85eb575f3c7d2b1679bfbfedaefa1269d4bc7d096b51e10939b4812b"
-                  },
-                  "size": 15818005
-                },
-                "lock": {
-                  "evidence_digest": "sha256:12dc9cece59c55c55a618896f4bcc4ae2997cf381e94c3837aa11985744a07e1",
-                  "kind": "attestation",
-                  "subject_digest": "sha256:fcd7799e85eb575f3c7d2b1679bfbfedaefa1269d4bc7d096b51e10939b4812b",
-                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  },
-                  {
-                    "detail": null,
-                    "evidence": "github-attestation#0",
-                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
-                    "outcome": "verified",
-                    "verifier": "sigstore-public-good"
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[7]",
-                "normalized": "2.100.0",
-                "requested": "v2.100.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "gh",
-                    "origin": "recipe",
-                    "src": "gh_2.100.0_macOS_arm64/bin/gh"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:91aad797bf63159f6149787db50291a63646d34f54d0b04e2ae588954608f2ed",
-                "full": "sha256:fa2b09d0ec396fe0b0ba841d63b8b79294b9faf55b7a48e8a59da4de86568590"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "gh_2.100.0_macOS_arm64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                },
-                {
-                  "egress_hosts": [],
-                  "id": "github-attestation#0",
-                  "lock_kind": "attestation",
-                  "method": "github-attestation",
-                  "origin": "recipe",
-                  "params": {
-                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": []
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:cli/cli",
-                "name": "cli/cli",
-                "publisher": "cli",
-                "repository": "cli/cli"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_macOS_arm64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:45f9a62da2f6e641a7fad57e2ce39656dfd7ef331372d80a2a2aed65abb01642",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "45f9a62da2f6e641a7fad57e2ce39656dfd7ef331372d80a2a2aed65abb01642"
-                  },
-                  "size": 14212224
-                },
-                "lock": {
-                  "evidence_digest": "sha256:12dc9cece59c55c55a618896f4bcc4ae2997cf381e94c3837aa11985744a07e1",
-                  "kind": "attestation",
-                  "subject_digest": "sha256:45f9a62da2f6e641a7fad57e2ce39656dfd7ef331372d80a2a2aed65abb01642",
-                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  },
-                  {
-                    "detail": null,
-                    "evidence": "github-attestation#0",
-                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
-                    "outcome": "verified",
-                    "verifier": "sigstore-public-good"
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[7]",
-                "normalized": "2.100.0",
-                "requested": "v2.100.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "gh",
-                    "origin": "recipe",
-                    "src": "gh_2.100.0_linux_amd64/bin/gh"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:a79a8e6ea236f1080cce24ae6027d80af5326072bc38f842c1efa97e724fa8b1",
-                "full": "sha256:280d30916a5eb5bbfe93eaf088d53548f80f816fa77433f3b73e87de03d473a1"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "gh_2.100.0_linux_amd64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                },
-                {
-                  "egress_hosts": [],
-                  "id": "github-attestation#0",
-                  "lock_kind": "attestation",
-                  "method": "github-attestation",
-                  "origin": "recipe",
-                  "params": {
-                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": []
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:cli/cli",
-                "name": "cli/cli",
-                "publisher": "cli",
-                "repository": "cli/cli"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_amd64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:e4d4bb4498e8d007abe545b6568926793ace1b6447da598294a610018cb164be",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "e4d4bb4498e8d007abe545b6568926793ace1b6447da598294a610018cb164be"
-                  },
-                  "size": 15152253
-                },
-                "lock": {
-                  "evidence_digest": "sha256:12dc9cece59c55c55a618896f4bcc4ae2997cf381e94c3837aa11985744a07e1",
-                  "kind": "attestation",
-                  "subject_digest": "sha256:e4d4bb4498e8d007abe545b6568926793ace1b6447da598294a610018cb164be",
-                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  },
-                  {
-                    "detail": null,
-                    "evidence": "github-attestation#0",
-                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
-                    "outcome": "verified",
-                    "verifier": "sigstore-public-good"
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[7]",
-                "normalized": "2.100.0",
-                "requested": "v2.100.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "gh",
-                    "origin": "recipe",
-                    "src": "gh_2.100.0_linux_arm64/bin/gh"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:6fce53b415d8a240b6c9de292231f08be2d5ad792c36ff24d40d40b80cb9d081",
-                "full": "sha256:b6d62c0b7cd63d933a3b95a7034e627154466902463af94e65cb43fd82a0b2b2"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "gh_2.100.0_linux_arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                },
-                {
-                  "egress_hosts": [],
-                  "id": "github-attestation#0",
-                  "lock_kind": "attestation",
-                  "method": "github-attestation",
-                  "origin": "recipe",
-                  "params": {
-                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": []
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:cli/cli",
-                "name": "cli/cli",
-                "publisher": "cli",
-                "repository": "cli/cli"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_linux_arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:ea4e7a581a32ccad6cc7923cb1576ac5859ba4b9a16ab22eb8f8a96e78e2e961",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "ea4e7a581a32ccad6cc7923cb1576ac5859ba4b9a16ab22eb8f8a96e78e2e961"
-                  },
-                  "size": 13783869
-                },
-                "lock": {
-                  "evidence_digest": "sha256:12dc9cece59c55c55a618896f4bcc4ae2997cf381e94c3837aa11985744a07e1",
-                  "kind": "attestation",
-                  "subject_digest": "sha256:ea4e7a581a32ccad6cc7923cb1576ac5859ba4b9a16ab22eb8f8a96e78e2e961",
-                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  },
-                  {
-                    "detail": null,
-                    "evidence": "github-attestation#0",
-                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
-                    "outcome": "verified",
-                    "verifier": "sigstore-public-good"
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[7]",
-                "normalized": "2.100.0",
-                "requested": "v2.100.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "gh",
-                    "origin": "recipe",
-                    "src": "bin/gh.exe"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:0b4fdbf40cd21bb5c531f522d4c8cfa7652bdead841fab119717454b8f092819",
-                "full": "sha256:bebd349a013b031091aeabd7bc5eabb517a1553798b0615adc32e8810fc4b9c6"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "gh_2.100.0_windows_amd64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                },
-                {
-                  "egress_hosts": [],
-                  "id": "github-attestation#0",
-                  "lock_kind": "attestation",
-                  "method": "github-attestation",
-                  "origin": "recipe",
-                  "params": {
-                    "signer_workflow": "cli/cli/.github/workflows/deployment.yml"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": []
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:eb67c1a8b7f05a1dec256d674dc49a124afb8d289d017d9c1a9b5fd42c1b3ccb",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:cli/cli",
-                "name": "cli/cli",
-                "publisher": "cli",
-                "repository": "cli/cli"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_windows_amd64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/cli/cli/releases/download/v2.100.0/gh_2.100.0_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:227e35230b25db3fa1b997bab7cf4d67df0470a3b75b99e4ee66bce1a7cd4e72",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "227e35230b25db3fa1b997bab7cf4d67df0470a3b75b99e4ee66bce1a7cd4e72"
-                  },
-                  "size": 15326700
-                },
-                "lock": {
-                  "evidence_digest": "sha256:12dc9cece59c55c55a618896f4bcc4ae2997cf381e94c3837aa11985744a07e1",
-                  "kind": "attestation",
-                  "subject_digest": "sha256:227e35230b25db3fa1b997bab7cf4d67df0470a3b75b99e4ee66bce1a7cd4e72",
-                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  },
-                  {
-                    "detail": null,
-                    "evidence": "github-attestation#0",
-                    "identity": "https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk",
-                    "outcome": "verified",
-                    "verifier": "sigstore-public-good"
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[7]",
-                "normalized": "2.100.0",
-                "requested": "v2.100.0",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "2.99.0",
@@ -272490,14 +273194,6 @@
           "version": "2.72.0",
           "released": {
             "time": "2025-04-30T19:59:18Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.71.2",
-          "released": {
-            "time": "2025-04-24T17:00:42Z",
             "source": "publisher"
           },
           "sets": []
@@ -274764,6 +275460,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.0.117-2",
+          "released": {
+            "time": "2026-11-26T02:03:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.117-1",
+          "released": {
+            "time": "2026-11-25T23:48:58Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.117-0",
+          "released": {
+            "time": "2026-11-25T21:21:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.0.116",
           "released": {
             "time": "2026-11-25T17:03:13Z",
@@ -274783,30 +275503,6 @@
           "version": "1.0.116-4",
           "released": {
             "time": "2026-11-25T05:12:56Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.116-3",
-          "released": {
-            "time": "2026-11-25T02:54:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.116-2",
-          "released": {
-            "time": "2026-11-25T00:12:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.116-1",
-          "released": {
-            "time": "2026-11-24T20:19:11Z",
             "source": "publisher"
           },
           "sets": []
@@ -275090,6 +275786,14 @@
       "origin": "aqua:github/copilot-language-server-release",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.574.3",
+          "released": {
+            "time": "2026-11-26T01:50:31Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.574.2",
           "released": {
@@ -275478,14 +276182,6 @@
           "version": "1.549.0",
           "released": {
             "time": "2026-09-22T05:22:22Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.548.0",
-          "released": {
-            "time": "2026-09-21T05:28:57Z",
             "source": "publisher"
           },
           "sets": []
@@ -293345,6 +294041,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.0.28",
+          "released": {
+            "time": "2026-11-26T08:23:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.0.27",
           "released": {
             "time": "2026-10-20T13:30:39Z",
@@ -303934,6 +304638,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.5.18",
+          "released": {
+            "time": "2026-11-26T05:52:00Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.5.17",
           "released": {
             "time": "2026-11-25T07:23:02Z",
@@ -304321,14 +305033,6 @@
           "version": "1.2.7",
           "released": {
             "time": "2026-09-19T01:01:46Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.2.6",
-          "released": {
-            "time": "2026-09-18T04:21:05Z",
             "source": "publisher"
           },
           "sets": []
@@ -309361,6 +310065,14 @@
           "sets": []
         },
         {
+          "version": "2.21.0-aafac388-nightly",
+          "released": {
+            "time": "2026-11-26T01:02:57Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.21.0-a8f1c1ec-nightly",
           "released": {
             "time": "2026-11-10T19:18:14Z",
@@ -309380,14 +310092,6 @@
           "version": "2.21.0-8128d878-nightly",
           "released": {
             "time": "2026-11-13T01:00:23Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.21.0-6d90a8a1-nightly",
-          "released": {
-            "time": "2026-11-20T01:03:25Z",
             "source": "publisher"
           },
           "sets": []
@@ -322752,6 +323456,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.58.0",
+          "released": {
+            "time": "2026-11-26T09:48:07Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.57.0",
           "released": {
             "time": "2026-11-04T16:38:05Z",
@@ -323708,6 +324420,14 @@
       "origin": "aqua:grafana/gcx",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.9.0",
+          "released": {
+            "time": "2026-11-26T11:30:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.8.0",
           "released": {
@@ -366504,6 +367224,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.7.1",
+          "released": {
+            "time": "2026-11-26T05:02:54Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.7.0",
           "released": {
             "time": "2025-03-24T14:20:58Z",
@@ -388127,6 +388855,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "33.4.1",
+          "released": {
+            "time": "2026-11-26T07:42:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "33.4.0",
           "released": {
             "time": "2026-11-23T18:33:47Z",
@@ -388514,14 +389250,6 @@
           "version": "29.34.0",
           "released": {
             "time": "2026-07-21T06:50:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "29.33.0",
-          "released": {
-            "time": "2026-07-18T19:06:46Z",
             "source": "publisher"
           },
           "sets": []
@@ -410524,6 +411252,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.32.0",
+          "released": {
+            "time": "2026-11-25T21:17:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.31.0",
           "released": {
             "time": "2026-11-16T15:32:44Z",
@@ -411280,6 +412016,14 @@
       "origin": "aqua:jolars/panache",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "3.20.0",
+          "released": {
+            "time": "2026-11-26T08:17:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "3.19.0",
           "released": {
@@ -458427,6 +459171,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "17.4.0",
+          "released": {
+            "time": "2026-11-26T00:14:55Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "17.3.1",
           "released": {
             "time": "2026-11-18T18:15:39Z",
@@ -458814,14 +459566,6 @@
           "version": "16.5.1",
           "released": {
             "time": "2026-07-14T08:23:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "16.5.0",
-          "released": {
-            "time": "2026-06-29T20:00:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -497390,6 +498134,14 @@
           "sets": []
         },
         {
+          "version": "2.0.0-rc.19",
+          "released": {
+            "time": "2026-11-26T11:28:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.0.0-rc.17",
           "released": {
             "time": "2026-11-23T14:14:59Z",
@@ -497409,14 +498161,6 @@
           "version": "2.0.0-rc.14",
           "released": {
             "time": "2026-11-05T19:56:59Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.0.0-rc.12",
-          "released": {
-            "time": "2026-10-30T20:18:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -508681,6 +509425,610 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "2.2.4",
+          "released": {
+            "time": "2026-11-26T09:38:34Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "lefthook",
+                    "origin": "recipe",
+                    "src": "lefthook_2.2.4_MacOS_x86_64"
+                  }
+                ],
+                "format": "gz",
+                "layout_kind": "other"
+              },
+              "digests": {
+                "declared": "sha256:f1669a836ca9a218b5e3bcf4a168e4e1c5b1b1536378ed75bf9bb6084e689d33",
+                "full": "sha256:80fa692f7d04b85ebb97b02ac79cdd8fc73b1f0560a0489c14a180720bc51500"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "lefthook_2.2.4_MacOS_x86_64.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "evilmartians/lefthook/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:5fe77195a9df014705435a5a90b1a882b88cb54a68f3df1210ff37f229f407ab",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:evilmartians/lefthook",
+                "name": "evilmartians/lefthook",
+                "publisher": "evilmartians",
+                "repository": "evilmartians/lefthook"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_MacOS_x86_64.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:8f05ba19dfe0de79ff6246990896537f5f4b4b0d802d584be4c766c29b8a04c4",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "8f05ba19dfe0de79ff6246990896537f5f4b4b0d802d584be4c766c29b8a04c4"
+                  },
+                  "size": 5951811
+                },
+                "lock": {
+                  "evidence_digest": "sha256:bd2cc7880a8afbeef702b491605be31885962e890328c0db3d8bfe3df774cb3e",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:8f05ba19dfe0de79ff6246990896537f5f4b4b0d802d584be4c766c29b8a04c4",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/evilmartians/lefthook/.github/workflows/release.yml@refs/tags/v2.2.4",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[13]",
+                "normalized": "2.2.4",
+                "requested": "v2.2.4",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "lefthook",
+                    "origin": "recipe",
+                    "src": "lefthook_2.2.4_MacOS_arm64"
+                  }
+                ],
+                "format": "gz",
+                "layout_kind": "other"
+              },
+              "digests": {
+                "declared": "sha256:24784c6a083731fc27cfd068be53467885002bea5638a051becf37ee9d1f3292",
+                "full": "sha256:ac9258ad0517eaf03d5dfadaa3a83372d39c9d6922f932c32be927bdb77fc825"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "lefthook_2.2.4_MacOS_arm64.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "evilmartians/lefthook/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:5fe77195a9df014705435a5a90b1a882b88cb54a68f3df1210ff37f229f407ab",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:evilmartians/lefthook",
+                "name": "evilmartians/lefthook",
+                "publisher": "evilmartians",
+                "repository": "evilmartians/lefthook"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_MacOS_arm64.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d021736a6f73d308f65284f64b162675c8c579ee88baa8fd278c51c73edf7c40",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d021736a6f73d308f65284f64b162675c8c579ee88baa8fd278c51c73edf7c40"
+                  },
+                  "size": 5456059
+                },
+                "lock": {
+                  "evidence_digest": "sha256:bd2cc7880a8afbeef702b491605be31885962e890328c0db3d8bfe3df774cb3e",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:d021736a6f73d308f65284f64b162675c8c579ee88baa8fd278c51c73edf7c40",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/evilmartians/lefthook/.github/workflows/release.yml@refs/tags/v2.2.4",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[13]",
+                "normalized": "2.2.4",
+                "requested": "v2.2.4",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "lefthook",
+                    "origin": "recipe",
+                    "src": "lefthook_2.2.4_Linux_x86_64"
+                  }
+                ],
+                "format": "gz",
+                "layout_kind": "other"
+              },
+              "digests": {
+                "declared": "sha256:319a3743cf6b49518428ff33c64500fddef68ab150ca6e34f5e5ad029bbf3d16",
+                "full": "sha256:5bff3bb1660235972ad0ae0d59e2e28cfd9ca3725d698e55136759557fd2e00b"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "lefthook_2.2.4_Linux_x86_64.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "evilmartians/lefthook/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:5fe77195a9df014705435a5a90b1a882b88cb54a68f3df1210ff37f229f407ab",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:evilmartians/lefthook",
+                "name": "evilmartians/lefthook",
+                "publisher": "evilmartians",
+                "repository": "evilmartians/lefthook"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_Linux_x86_64.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d2ab071d60703a3d3fdc3ea4ac4172cc151a97a3623b83f1003ce1a8eb68e2b3",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d2ab071d60703a3d3fdc3ea4ac4172cc151a97a3623b83f1003ce1a8eb68e2b3"
+                  },
+                  "size": 5862154
+                },
+                "lock": {
+                  "evidence_digest": "sha256:bd2cc7880a8afbeef702b491605be31885962e890328c0db3d8bfe3df774cb3e",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:d2ab071d60703a3d3fdc3ea4ac4172cc151a97a3623b83f1003ce1a8eb68e2b3",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/evilmartians/lefthook/.github/workflows/release.yml@refs/tags/v2.2.4",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[13]",
+                "normalized": "2.2.4",
+                "requested": "v2.2.4",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "lefthook",
+                    "origin": "recipe",
+                    "src": "lefthook_2.2.4_Linux_aarch64"
+                  }
+                ],
+                "format": "gz",
+                "layout_kind": "other"
+              },
+              "digests": {
+                "declared": "sha256:bc8ececab0994a292f539eb3c5fc2a35829bb507da4e87984593a50cf1d67ed4",
+                "full": "sha256:5817e67250601ba3ec23dadf6af1d67c1063b5db7fdbc79cc5b116dd7805227d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "lefthook_2.2.4_Linux_aarch64.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "evilmartians/lefthook/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:5fe77195a9df014705435a5a90b1a882b88cb54a68f3df1210ff37f229f407ab",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:evilmartians/lefthook",
+                "name": "evilmartians/lefthook",
+                "publisher": "evilmartians",
+                "repository": "evilmartians/lefthook"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_Linux_aarch64.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:c3526916773c64e7a20a79aefd862b54eb3ec638762d2e32e054e576e9bfb08b",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "c3526916773c64e7a20a79aefd862b54eb3ec638762d2e32e054e576e9bfb08b"
+                  },
+                  "size": 5263844
+                },
+                "lock": {
+                  "evidence_digest": "sha256:bd2cc7880a8afbeef702b491605be31885962e890328c0db3d8bfe3df774cb3e",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:c3526916773c64e7a20a79aefd862b54eb3ec638762d2e32e054e576e9bfb08b",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/evilmartians/lefthook/.github/workflows/release.yml@refs/tags/v2.2.4",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[13]",
+                "normalized": "2.2.4",
+                "requested": "v2.2.4",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "lefthook",
+                    "origin": "recipe",
+                    "src": "lefthook_2.2.4_Windows_x86_64"
+                  }
+                ],
+                "format": "gz",
+                "layout_kind": "other"
+              },
+              "digests": {
+                "declared": "sha256:efe506c13bd3ee77dd901d739da167d52966aa6e6b9328f30b43964cab608a18",
+                "full": "sha256:8ac4c3617f09f44e3158ade47994824fd5716e977f7351cb63c7afd2bbe9fec4"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "lefthook_2.2.4_Windows_x86_64.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                },
+                {
+                  "egress_hosts": [],
+                  "id": "github-attestation#0",
+                  "lock_kind": "attestation",
+                  "method": "github-attestation",
+                  "origin": "recipe",
+                  "params": {
+                    "signer_workflow": "evilmartians/lefthook/.github/workflows/release.yml"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": []
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:5fe77195a9df014705435a5a90b1a882b88cb54a68f3df1210ff37f229f407ab",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:evilmartians/lefthook",
+                "name": "evilmartians/lefthook",
+                "publisher": "evilmartians",
+                "repository": "evilmartians/lefthook"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_2.2.4_Windows_x86_64.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/evilmartians/lefthook/releases/download/v2.2.4/lefthook_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:fd8223a1cbed688c80aa91b6ae0ee35d6ae7389fc789e5f2e2a28b9a5f6c06ac",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "fd8223a1cbed688c80aa91b6ae0ee35d6ae7389fc789e5f2e2a28b9a5f6c06ac"
+                  },
+                  "size": 6042693
+                },
+                "lock": {
+                  "evidence_digest": "sha256:bd2cc7880a8afbeef702b491605be31885962e890328c0db3d8bfe3df774cb3e",
+                  "kind": "attestation",
+                  "subject_digest": "sha256:fd8223a1cbed688c80aa91b6ae0ee35d6ae7389fc789e5f2e2a28b9a5f6c06ac",
+                  "verifier_digest": "sha256:f02b858ff49ed76ec45703ecf213d6d0b8e1bd2f32a0581d361b898328c4f67f"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  },
+                  {
+                    "detail": null,
+                    "evidence": "github-attestation#0",
+                    "identity": "https://github.com/evilmartians/lefthook/.github/workflows/release.yml@refs/tags/v2.2.4",
+                    "outcome": "verified",
+                    "verifier": "sigstore-public-good"
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[13]",
+                "normalized": "2.2.4",
+                "requested": "v2.2.4",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "2.2.3",
           "released": {
             "time": "2026-11-24T10:31:36Z",
@@ -512048,14 +513396,6 @@
           "version": "1.12.1",
           "released": {
             "time": "2025-07-09T08:44:03Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.12.0",
-          "released": {
-            "time": "2025-07-08T13:06:16Z",
             "source": "publisher"
           },
           "sets": []
@@ -589198,6 +590538,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "27.0.0-alpha.0.2.0",
+          "released": {
+            "time": "2026-11-26T08:45:39Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "27.0.0-alpha.0.1.1",
           "released": {
             "time": "2026-11-17T03:48:38Z",
@@ -589585,14 +590933,6 @@
           "version": "24.16.0",
           "released": {
             "time": "2026-05-21T13:24:48Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "24.15.0",
-          "released": {
-            "time": "2026-04-16T07:16:28Z",
             "source": "publisher"
           },
           "sets": []
@@ -611296,6 +612636,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.174.0-alpha.7",
+          "released": {
+            "time": "2026-11-26T04:36:47Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.174.0-alpha.6",
           "released": {
             "time": "2026-11-25T19:35:37Z",
@@ -611323,14 +612671,6 @@
           "version": "0.174.0-alpha.3",
           "released": {
             "time": "2026-11-24T20:14:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.174.0-alpha.2",
-          "released": {
-            "time": "2026-11-24T16:14:14Z",
             "source": "publisher"
           },
           "sets": []
@@ -615754,6 +617094,14 @@
           "sets": []
         },
         {
+          "version": "0.17.4-alpha-fef5e42",
+          "released": {
+            "time": "2026-11-26T02:06:31Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.17.4-alpha-fedb381",
           "released": {
             "time": "2026-11-25T17:28:37Z",
@@ -615765,14 +617113,6 @@
           "version": "0.17.4-alpha-f950090",
           "released": {
             "time": "2026-11-24T20:01:19Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.17.4-alpha-ed443dd",
-          "released": {
-            "time": "2026-11-25T15:20:53Z",
             "source": "publisher"
           },
           "sets": []
@@ -711720,6 +713060,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.21.3-nightly20261126+89d3fffe",
+          "released": {
+            "time": "2026-11-26T02:52:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.21.3-nightly20261125+11db0122",
           "released": {
             "time": "2026-11-25T03:35:21Z",
@@ -711747,14 +713095,6 @@
           "version": "0.21.3-nightly20261121+9a477f63",
           "released": {
             "time": "2026-11-21T01:30:45Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.21.3-nightly20261120+eb7ae405",
-          "released": {
-            "time": "2026-11-20T01:49:50Z",
             "source": "publisher"
           },
           "sets": []
@@ -723579,6 +724919,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.32.1",
+          "released": {
+            "time": "2026-11-26T10:05:22Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.32.0",
+          "released": {
+            "time": "2026-11-26T06:25:58Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.31.0",
           "released": {
             "time": "2026-11-24T13:47:59Z",
@@ -723958,22 +725314,6 @@
           "version": "0.24.2",
           "released": {
             "time": "2026-10-04T06:27:21Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.24.1",
-          "released": {
-            "time": "2026-10-04T04:56:35Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.24.0",
-          "released": {
-            "time": "2026-10-03T21:34:55Z",
             "source": "publisher"
           },
           "sets": []
@@ -817214,6 +818554,14 @@
           "sets": []
         },
         {
+          "version": "1.13.13",
+          "released": {
+            "time": "2026-11-26T10:47:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.13.12",
           "released": {
             "time": "2026-10-21T19:35:16Z",
@@ -817537,14 +818885,6 @@
           "version": "1.10.1",
           "released": {
             "time": "2025-05-07T11:46:40Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.10.0",
-          "released": {
-            "time": "2025-04-30T16:25:37Z",
             "source": "publisher"
           },
           "sets": []
@@ -821859,6 +823199,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.21.5",
+          "released": {
+            "time": "2026-11-26T00:27:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.21.4",
           "released": {
             "time": "2026-11-24T19:02:07Z",
@@ -822246,14 +823594,6 @@
           "version": "1.5.14",
           "released": {
             "time": "2026-05-11T12:47:52Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.5.13",
-          "released": {
-            "time": "2026-05-10T19:21:28Z",
             "source": "publisher"
           },
           "sets": []
@@ -825828,6 +827168,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.37.7",
+          "released": {
+            "time": "2026-11-26T03:07:03Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.37.6",
+          "released": {
+            "time": "2026-11-25T22:04:27Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.37.5",
           "released": {
             "time": "2026-11-25T10:16:32Z",
@@ -826210,22 +827566,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "1.25.0",
-          "released": {
-            "time": "2026-10-08T07:46:36Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.24.2",
-          "released": {
-            "time": "2026-10-07T23:22:29Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -826407,6 +827747,14 @@
       "origin": "aqua:snyk/cli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.1309.1-preview.c15cfa70a85ed9652378720e723eb2c23213697e",
+          "released": {
+            "time": "2026-11-26T11:38:34Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.1309.1-preview.7e8408e6c05031a85da7e4d6f7177e9574a01e7b",
           "released": {
@@ -826939,14 +828287,6 @@
           "version": "1.1309.0-preview.f60273a7bba7bb9b939c694c4e702af3e9532671",
           "released": {
             "time": "2026-11-04T14:33:49Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.1309.0-preview.e55d83898248a6acb4a9929424b496a3091bb4ee",
-          "released": {
-            "time": "2026-11-05T16:32:02Z",
             "source": "publisher"
           },
           "sets": []
@@ -846402,6 +847742,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.5.0",
+          "released": {
+            "time": "2026-11-26T07:13:53Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.4.0",
           "released": {
             "time": "2026-11-17T18:37:02Z",
@@ -860537,6 +861885,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.8.3",
+          "released": {
+            "time": "2026-11-26T07:45:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.8.2",
           "released": {
             "time": "2026-11-24T11:44:54Z",
@@ -860924,14 +862280,6 @@
           "version": "0.4.5",
           "released": {
             "time": "2026-05-07T01:53:11Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.4.4",
-          "released": {
-            "time": "2026-05-03T22:27:58Z",
             "source": "publisher"
           },
           "sets": []
@@ -882638,6 +883986,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.7.17",
+          "released": {
+            "time": "2026-11-26T02:41:13Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.7.16",
+          "released": {
+            "time": "2026-11-26T02:27:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.7.15",
           "released": {
             "time": "2026-11-24T12:26:34Z",
@@ -883017,22 +884381,6 @@
           "version": "0.1.43",
           "released": {
             "time": "2026-01-21T13:06:05Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.1.42",
-          "released": {
-            "time": "2026-01-20T22:45:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.1.41",
-          "released": {
-            "time": "2026-01-23T19:33:10Z",
             "source": "publisher"
           },
           "sets": []
@@ -884205,6 +885553,14 @@
           "sets": []
         },
         {
+          "version": "0.46.3",
+          "released": {
+            "time": "2026-11-26T02:29:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.46.2",
           "released": {
             "time": "2026-10-23T02:28:21Z",
@@ -884584,14 +885940,6 @@
           "version": "0.31.0",
           "released": {
             "time": "2023-05-10T07:26:47Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.30.2",
-          "released": {
-            "time": "2023-10-20T20:02:39Z",
             "source": "publisher"
           },
           "sets": []
@@ -933511,6 +934859,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "4.220.0-canary.29",
+          "released": {
+            "time": "2026-11-26T11:00:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "4.220.0-canary.28",
+          "released": {
+            "time": "2026-11-26T07:31:32Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "4.220.0-canary.27",
+          "released": {
+            "time": "2026-11-26T02:57:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "4.220.0-canary.26",
           "released": {
             "time": "2026-11-25T17:26:41Z",
@@ -933522,30 +934894,6 @@
           "version": "4.220.0-canary.25",
           "released": {
             "time": "2026-11-25T16:47:14Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.220.0-canary.24",
-          "released": {
-            "time": "2026-11-25T16:29:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.220.0-canary.23",
-          "released": {
-            "time": "2026-11-25T15:55:17Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.220.0-canary.22",
-          "released": {
-            "time": "2026-11-25T14:50:02Z",
             "source": "publisher"
           },
           "sets": []
@@ -937808,6 +939156,54 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.803.0",
+          "released": {
+            "time": "2026-11-26T10:47:25Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.802.0",
+          "released": {
+            "time": "2026-11-26T07:37:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.801.0",
+          "released": {
+            "time": "2026-11-26T06:15:47Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.800.0",
+          "released": {
+            "time": "2026-11-26T04:39:31Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.799.0",
+          "released": {
+            "time": "2026-11-26T02:07:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.798.0",
+          "released": {
+            "time": "2026-11-26T01:35:09Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.797.0",
           "released": {
             "time": "2026-11-25T11:08:25Z",
@@ -938155,54 +939551,6 @@
           "version": "0.754.0",
           "released": {
             "time": "2026-11-15T02:02:47Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.753.0",
-          "released": {
-            "time": "2026-11-14T19:17:53Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.752.0",
-          "released": {
-            "time": "2026-11-14T11:05:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.751.0",
-          "released": {
-            "time": "2026-11-12T16:37:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.750.0",
-          "released": {
-            "time": "2026-11-12T15:00:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.749.0",
-          "released": {
-            "time": "2026-11-12T14:29:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.748.0",
-          "released": {
-            "time": "2026-11-12T13:37:09Z",
             "source": "publisher"
           },
           "sets": []
@@ -961751,6 +963099,14 @@
           "sets": []
         },
         {
+          "version": "1.18.5-rc.1",
+          "released": {
+            "time": "2026-11-26T06:02:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.18.4",
           "released": {
             "time": "2026-09-28T06:20:12Z",
@@ -962770,14 +964126,6 @@
           "version": "1.18.3-rc.2",
           "released": {
             "time": "2026-09-08T11:01:46Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.18.3-rc.1",
-          "released": {
-            "time": "2026-08-31T10:36:55Z",
             "source": "publisher"
           },
           "sets": []
@@ -992787,6 +994135,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.49.0",
+          "released": {
+            "time": "2026-11-25T22:53:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.48.0",
           "released": {
             "time": "2026-11-19T12:41:18Z",
@@ -993174,14 +994530,6 @@
           "version": "2.11.0",
           "released": {
             "time": "2019-12-03T12:01:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.10.1",
-          "released": {
-            "time": "2019-10-31T23:12:09Z",
             "source": "publisher"
           },
           "sets": []
