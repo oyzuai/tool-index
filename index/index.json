@@ -23497,6 +23497,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.11.4",
+          "released": {
+            "time": "2026-11-26T19:06:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.11.1",
           "released": {
             "time": "2026-11-05T01:30:40Z",
@@ -23884,14 +23892,6 @@
           "version": "0.4.0",
           "released": {
             "time": "2025-11-12T18:07:07Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.3.14",
-          "released": {
-            "time": "2025-11-12T16:18:34Z",
             "source": "publisher"
           },
           "sets": []
@@ -33253,6 +33253,54 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.15.54",
+          "released": {
+            "time": "2026-11-27T10:22:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.15.53",
+          "released": {
+            "time": "2026-11-27T07:25:24Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.15.52",
+          "released": {
+            "time": "2026-11-27T06:51:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.15.51",
+          "released": {
+            "time": "2026-11-27T03:33:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.15.50",
+          "released": {
+            "time": "2026-11-26T23:54:37Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.15.49",
+          "released": {
+            "time": "2026-11-26T13:13:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.15.48",
           "released": {
             "time": "2026-11-26T09:10:55Z",
@@ -33600,54 +33648,6 @@
           "version": "0.15.6",
           "released": {
             "time": "2026-10-15T08:12:49Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.5",
-          "released": {
-            "time": "2026-10-15T07:40:06Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.4",
-          "released": {
-            "time": "2026-10-15T01:50:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.3",
-          "released": {
-            "time": "2026-10-15T00:01:07Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.2",
-          "released": {
-            "time": "2026-10-14T23:14:11Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.1",
-          "released": {
-            "time": "2026-10-14T16:21:49Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.0",
-          "released": {
-            "time": "2026-10-14T15:45:59Z",
             "source": "publisher"
           },
           "sets": []
@@ -49598,6 +49598,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.0.112",
+          "released": {
+            "time": "2026-11-26T16:24:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.0.111",
           "released": {
             "time": "2026-11-25T22:24:17Z",
@@ -49985,14 +49993,6 @@
           "version": "0.0.63",
           "released": {
             "time": "2026-07-23T11:42:36Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.62",
-          "released": {
-            "time": "2026-07-22T01:03:35Z",
             "source": "publisher"
           },
           "sets": []
@@ -62132,6 +62132,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.11.6-preview.20261126.1",
+          "released": {
+            "time": "2026-11-27T02:00:53Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.11.6-preview.20261125.1",
           "released": {
             "time": "2026-11-25T23:10:04Z",
@@ -62167,14 +62175,6 @@
           "version": "2.11.5-preview.20261122.1",
           "released": {
             "time": "2026-11-23T01:43:57Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.11.5-preview.20261121.1",
-          "released": {
-            "time": "2026-11-22T02:09:54Z",
             "source": "publisher"
           },
           "sets": []
@@ -71189,6 +71189,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.31.0",
+          "released": {
+            "time": "2026-11-26T14:54:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.30.0",
           "released": {
             "time": "2026-10-20T23:17:24Z",
@@ -71576,14 +71584,6 @@
           "version": "0.0.7",
           "released": {
             "time": "2019-06-04T16:45:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.6",
-          "released": {
-            "time": "2019-06-04T16:41:56Z",
             "source": "publisher"
           },
           "sets": []
@@ -96508,6 +96508,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "4.13.0",
+          "released": {
+            "time": "2026-11-27T06:29:01Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "4.12.0",
           "released": {
             "time": "2026-11-19T00:39:54Z",
@@ -96898,14 +96906,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "3.129.0",
-          "released": {
-            "time": "2026-06-24T04:30:18Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -96914,6 +96914,14 @@
       "origin": "aqua:buildkite/cli",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "3.71.0",
+          "released": {
+            "time": "2026-11-26T14:29:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "3.70.0",
           "released": {
@@ -97302,14 +97310,6 @@
           "version": "3.38.1",
           "released": {
             "time": "2026-04-24T03:57:47Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.38.0",
-          "released": {
-            "time": "2026-04-23T06:28:38Z",
             "source": "publisher"
           },
           "sets": []
@@ -99441,6 +99441,14 @@
       "origin": "aqua:bytecodealliance/wasm-pkg-tools",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.16.3",
+          "released": {
+            "time": "2026-11-26T22:13:47Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.16.2",
           "released": {
@@ -120939,6 +120947,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.103.0",
+          "released": {
+            "time": "2026-11-26T15:56:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.102.0",
           "released": {
             "time": "2026-11-19T17:30:03Z",
@@ -121326,14 +121342,6 @@
           "version": "0.66.1",
           "released": {
             "time": "2026-05-08T21:13:22Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.66.0",
-          "released": {
-            "time": "2026-05-06T20:52:24Z",
             "source": "publisher"
           },
           "sets": []
@@ -122068,6 +122076,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "20261127075959",
+          "released": {
+            "time": "2026-11-27T08:03:23Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "20261126084616",
           "released": {
             "time": "2026-11-26T08:50:02Z",
@@ -122455,14 +122471,6 @@
           "version": "20260922061030",
           "released": {
             "time": "2026-09-22T06:14:05Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "20260915065407",
-          "released": {
-            "time": "2026-09-15T06:58:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -128429,6 +128437,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.20.0",
+          "released": {
+            "time": "2026-11-26T21:35:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.19.0",
+          "released": {
+            "time": "2026-11-26T17:02:52Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.18.0",
           "released": {
             "time": "2026-11-19T21:21:41Z",
@@ -128808,22 +128832,6 @@
           "version": "1.0.50462",
           "released": {
             "time": "2026-09-15T21:44:56Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.50428",
-          "released": {
-            "time": "2026-09-14T21:34:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.50365",
-          "released": {
-            "time": "2026-09-14T11:48:21Z",
             "source": "publisher"
           },
           "sets": []
@@ -135136,6 +135144,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.235.1-nightly.45917741723",
+          "released": {
+            "time": "2026-11-27T01:10:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.235.0",
           "released": {
             "time": "2026-11-26T04:29:30Z",
@@ -135171,14 +135187,6 @@
           "version": "1.235.0-nightly.45090098255",
           "released": {
             "time": "2026-11-23T01:11:58Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.235.0-nightly.44967635975",
-          "released": {
-            "time": "2026-11-22T01:05:31Z",
             "source": "publisher"
           },
           "sets": []
@@ -135988,6 +135996,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.32.0",
+          "released": {
+            "time": "2026-11-26T16:55:20Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.31.4",
           "released": {
             "time": "2026-11-23T14:39:39Z",
@@ -136375,14 +136391,6 @@
           "version": "1.6.2",
           "released": {
             "time": "2025-03-27T12:54:37Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.6.1",
-          "released": {
-            "time": "2025-03-27T12:40:37Z",
             "source": "publisher"
           },
           "sets": []
@@ -144007,6 +144015,14 @@
       "origin": "aqua:comtrya/comtrya",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.12.0",
+          "released": {
+            "time": "2026-11-27T10:57:01Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.11.0",
           "released": {
@@ -154271,6 +154287,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.64.0",
+          "released": {
+            "time": "2026-11-26T12:49:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.63.1",
           "released": {
             "time": "2026-11-22T11:53:14Z",
@@ -154658,14 +154682,6 @@
           "version": "0.24.1",
           "released": {
             "time": "2025-07-09T12:12:17Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.24.0",
-          "released": {
-            "time": "2025-07-08T12:29:27Z",
             "source": "publisher"
           },
           "sets": []
@@ -154678,6 +154694,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.64.0",
+          "released": {
+            "time": "2026-11-26T12:49:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.63.1",
           "released": {
             "time": "2026-11-22T11:53:14Z",
@@ -155065,14 +155089,6 @@
           "version": "0.24.1",
           "released": {
             "time": "2025-07-09T12:12:17Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.24.0",
-          "released": {
-            "time": "2025-07-08T12:29:27Z",
             "source": "publisher"
           },
           "sets": []
@@ -156046,6 +156062,14 @@
       "origin": "aqua:corrupt952/closest",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "2.0.2",
+          "released": {
+            "time": "2026-11-27T10:45:19Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "2.0.1",
           "released": {
@@ -187282,6 +187306,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.167.0",
+          "released": {
+            "time": "2026-11-27T07:47:33Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.166.0",
           "released": {
             "time": "2026-11-26T07:57:42Z",
@@ -187669,14 +187701,6 @@
           "version": "1.121.0",
           "released": {
             "time": "2026-08-05T04:37:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.120.0",
-          "released": {
-            "time": "2026-08-03T09:40:02Z",
             "source": "publisher"
           },
           "sets": []
@@ -225493,6 +225517,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.13.5-nightly.202611270617.49965c10e",
+          "released": {
+            "time": "2026-11-27T06:25:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.13.5-nightly.202611260617.e362dd9f9",
           "released": {
             "time": "2026-11-26T06:25:43Z",
@@ -225520,14 +225552,6 @@
           "version": "0.13.5-nightly.202611230623.11d8511a0",
           "released": {
             "time": "2026-11-23T06:31:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.13.5-nightly.202611160626.76f1b5129",
-          "released": {
-            "time": "2026-11-16T06:36:10Z",
             "source": "publisher"
           },
           "sets": []
@@ -245361,6 +245385,535 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "0.5.19",
+          "released": {
+            "time": "2026-11-26T19:11:04Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:ddc71bb5a8bc44c918378d30cca703af9869dd1da644ae86261393ebac1ca046",
+                "full": "sha256:62d5d35ccf84c78fae6c970533aa563c217324ecd97bcfc15cfdb1e7df52330e"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.5.19_macOS_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_macOS_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:194f0d346576dd1266d2f92920d5dae8012b5e13bd98c74413fedba173341117",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "194f0d346576dd1266d2f92920d5dae8012b5e13bd98c74413fedba173341117"
+                  },
+                  "size": 54715083
+                },
+                "lock": {
+                  "evidence_digest": "sha256:707735947389ffd97389584f7b07cfd30e776c417a219f7b40ffea885b0686ce",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:194f0d346576dd1266d2f92920d5dae8012b5e13bd98c74413fedba173341117",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.5.19",
+                "requested": "v0.5.19",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:23cd1db566960cbfd879f2ff091e6ce60a0bb8be6eea4db6476424f6ea7b624e",
+                "full": "sha256:1fd69d4c479f1af8040ba99a3d306ee010b1b00fed265fd15762fefbb9565cd1"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.5.19_macOS_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_macOS_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:fa428301c552f69821056f6e59263cf85b10f2257176d37908806422e0300a16",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "fa428301c552f69821056f6e59263cf85b10f2257176d37908806422e0300a16"
+                  },
+                  "size": 51562283
+                },
+                "lock": {
+                  "evidence_digest": "sha256:707735947389ffd97389584f7b07cfd30e776c417a219f7b40ffea885b0686ce",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:fa428301c552f69821056f6e59263cf85b10f2257176d37908806422e0300a16",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.5.19",
+                "requested": "v0.5.19",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:5e5bdacc2921a8f625d9588fe6428f183b79180d59ac65cabf04f0ef6b200352",
+                "full": "sha256:032d31f5cee82d0c5d79351d2f8c032bb8028f12775618d63a0e1eba4a268473"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.5.19_Linux_x86_64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_Linux_x86_64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:403d14a46d495d112c98dcf42aacd397833f5e471eb2b6c6f42cde4bbca45a0a",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "403d14a46d495d112c98dcf42aacd397833f5e471eb2b6c6f42cde4bbca45a0a"
+                  },
+                  "size": 52794259
+                },
+                "lock": {
+                  "evidence_digest": "sha256:707735947389ffd97389584f7b07cfd30e776c417a219f7b40ffea885b0686ce",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:403d14a46d495d112c98dcf42aacd397833f5e471eb2b6c6f42cde4bbca45a0a",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.5.19",
+                "requested": "v0.5.19",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:30bb33c3cadc628171fb259070e2fbfe662fc846cadc5b3978c530df78385a1c",
+                "full": "sha256:4ffa3b676edd32a2aabef06b6514ee14c587967cc42ea80f737450fee5c3ed66"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.5.19_Linux_arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_Linux_arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:461d00c87ae9f28c5644b86317798b6d5ca48b40757e00ceb1d176bdc1d9e129",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "461d00c87ae9f28c5644b86317798b6d5ca48b40757e00ceb1d176bdc1d9e129"
+                  },
+                  "size": 48511524
+                },
+                "lock": {
+                  "evidence_digest": "sha256:707735947389ffd97389584f7b07cfd30e776c417a219f7b40ffea885b0686ce",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:461d00c87ae9f28c5644b86317798b6d5ca48b40757e00ceb1d176bdc1d9e129",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.5.19",
+                "requested": "v0.5.19",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "flyctl",
+                    "origin": "recipe",
+                    "src": "flyctl.exe"
+                  },
+                  {
+                    "name": "fly",
+                    "origin": "recipe",
+                    "src": "flyctl.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:247de52e09891b69f981a3b18ad5997e07fb4192462b57d499466c2528ff94b6",
+                "full": "sha256:2b3a8f79a9c8c119ab61fb9befe244d8cf1fb965e2ad834e97a5bfd759b37c80"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "flyctl_0.5.19_Windows_x86_64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:superfly/flyctl",
+                "name": "superfly/flyctl",
+                "publisher": "superfly",
+                "repository": "superfly/flyctl"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_Windows_x86_64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.19/flyctl_0.5.19_checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:9a3f66a34c4c7fadb7e3710e0db83dde38e8e958c201149d508d708c34d90a85",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "9a3f66a34c4c7fadb7e3710e0db83dde38e8e958c201149d508d708c34d90a85"
+                  },
+                  "size": 53327043
+                },
+                "lock": {
+                  "evidence_digest": "sha256:707735947389ffd97389584f7b07cfd30e776c417a219f7b40ffea885b0686ce",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:9a3f66a34c4c7fadb7e3710e0db83dde38e8e958c201149d508d708c34d90a85",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "0.5.19",
+                "requested": "v0.5.19",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "0.5.18",
           "released": {
             "time": "2026-11-25T19:10:52Z",
@@ -250127,528 +250680,7 @@
             "time": "2026-11-12T19:11:56Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "flyctl",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  },
-                  {
-                    "name": "fly",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:586abce00316022b62b9443bc558ba65896b6d3139497832eb6430ed5b4173d8",
-                "full": "sha256:7546f2db004a7bebd7f39bcc97207bf0e9f60eb029ce1287da64671487464e01"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "flyctl_0.5.9_macOS_x86_64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:superfly/flyctl",
-                "name": "superfly/flyctl",
-                "publisher": "superfly",
-                "repository": "superfly/flyctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_macOS_x86_64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:39ab1619d56e761644fe0e9784c0426fd6d9c3691d8eaab0b598ff07bc77dc1c",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "39ab1619d56e761644fe0e9784c0426fd6d9c3691d8eaab0b598ff07bc77dc1c"
-                  },
-                  "size": 54320475
-                },
-                "lock": {
-                  "evidence_digest": "sha256:0dc46b31ed8c751847af3b9c3a0ee394a3317f04915c32e4986628266e9690e3",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:39ab1619d56e761644fe0e9784c0426fd6d9c3691d8eaab0b598ff07bc77dc1c",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "0.5.9",
-                "requested": "v0.5.9",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "flyctl",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  },
-                  {
-                    "name": "fly",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:662024d15e867010b1523ceff13812cabc3474b0b61390d8de6b6113a3d8a111",
-                "full": "sha256:321a56c2d43eba20a6ad656b3b7d1e91149837127b73a5872d6e746fa916eb53"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "flyctl_0.5.9_macOS_arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:superfly/flyctl",
-                "name": "superfly/flyctl",
-                "publisher": "superfly",
-                "repository": "superfly/flyctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_macOS_arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:2ba4f0b45d6c63982664c043b4660a525a5b3f710c1e16c2ca2735e570b3b82a",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "2ba4f0b45d6c63982664c043b4660a525a5b3f710c1e16c2ca2735e570b3b82a"
-                  },
-                  "size": 51177727
-                },
-                "lock": {
-                  "evidence_digest": "sha256:0dc46b31ed8c751847af3b9c3a0ee394a3317f04915c32e4986628266e9690e3",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:2ba4f0b45d6c63982664c043b4660a525a5b3f710c1e16c2ca2735e570b3b82a",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "0.5.9",
-                "requested": "v0.5.9",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "flyctl",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  },
-                  {
-                    "name": "fly",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:bacd54abb3017e98a5e20d25593e89f09d73b03b3e0b009b9d74f4be2d003668",
-                "full": "sha256:2cb552542873750e6042102f64eff8af72ee976e247e95e8a0446bd1eda765cd"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "flyctl_0.5.9_Linux_x86_64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:superfly/flyctl",
-                "name": "superfly/flyctl",
-                "publisher": "superfly",
-                "repository": "superfly/flyctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_Linux_x86_64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:40fd8589159cad689ca689fed7072d00e15973497616277b81c56ac0334c6e00",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "40fd8589159cad689ca689fed7072d00e15973497616277b81c56ac0334c6e00"
-                  },
-                  "size": 52400610
-                },
-                "lock": {
-                  "evidence_digest": "sha256:0dc46b31ed8c751847af3b9c3a0ee394a3317f04915c32e4986628266e9690e3",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:40fd8589159cad689ca689fed7072d00e15973497616277b81c56ac0334c6e00",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "0.5.9",
-                "requested": "v0.5.9",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "flyctl",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  },
-                  {
-                    "name": "fly",
-                    "origin": "recipe",
-                    "src": "flyctl"
-                  }
-                ],
-                "format": "tar.gz",
-                "layout_kind": "tar.gz"
-              },
-              "digests": {
-                "declared": "sha256:04ac686028e30aea7cddb18bc9df9cdf0ec47f251498f7f444d7d366f58128b9",
-                "full": "sha256:8ac778f4b38dafac45b835175eacfe2faf434eb3ae310ea3de3e164eebc67333"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "flyctl_0.5.9_Linux_arm64.tar.gz"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:superfly/flyctl",
-                "name": "superfly/flyctl",
-                "publisher": "superfly",
-                "repository": "superfly/flyctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_Linux_arm64.tar.gz"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:20a7535599af0fb7f06524232a775041b2efaad1e4ff52922ee4e87629303bea",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "20a7535599af0fb7f06524232a775041b2efaad1e4ff52922ee4e87629303bea"
-                  },
-                  "size": 48167430
-                },
-                "lock": {
-                  "evidence_digest": "sha256:0dc46b31ed8c751847af3b9c3a0ee394a3317f04915c32e4986628266e9690e3",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:20a7535599af0fb7f06524232a775041b2efaad1e4ff52922ee4e87629303bea",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "0.5.9",
-                "requested": "v0.5.9",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "flyctl",
-                    "origin": "recipe",
-                    "src": "flyctl.exe"
-                  },
-                  {
-                    "name": "fly",
-                    "origin": "recipe",
-                    "src": "flyctl.exe"
-                  }
-                ],
-                "format": "zip",
-                "layout_kind": "zip"
-              },
-              "digests": {
-                "declared": "sha256:4cf9d9b383e4f893a7ec12763d176327944bc5c68e424e559f574666a7a61d83",
-                "full": "sha256:f4b020714723e674cd6574767faff404decafe1f30a809ec9977bf0d3ce9ad4a"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "flyctl_0.5.9_Windows_x86_64.zip"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:03358eaa1818730791ee21c0b98284f91003f37f6de5409bafecaf563682496b",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:superfly/flyctl",
-                "name": "superfly/flyctl",
-                "publisher": "superfly",
-                "repository": "superfly/flyctl"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_Windows_x86_64.zip"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/superfly/flyctl/releases/download/v0.5.9/flyctl_0.5.9_checksums.txt"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:1dbe298fb835022c05abd0f3c6bdbea2c3bd8a2245035e181bcd02a3c25dd494",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "1dbe298fb835022c05abd0f3c6bdbea2c3bd8a2245035e181bcd02a3c25dd494"
-                  },
-                  "size": 52935496
-                },
-                "lock": {
-                  "evidence_digest": "sha256:0dc46b31ed8c751847af3b9c3a0ee394a3317f04915c32e4986628266e9690e3",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:1dbe298fb835022c05abd0f3c6bdbea2c3bd8a2245035e181bcd02a3c25dd494",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "0.5.9",
-                "requested": "v0.5.9",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "0.5.8",
@@ -250958,14 +250990,6 @@
           "version": "0.4.93",
           "released": {
             "time": "2026-08-26T00:57:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.4.92",
-          "released": {
-            "time": "2026-08-25T19:18:48Z",
             "source": "publisher"
           },
           "sets": []
@@ -251870,6 +251894,14 @@
       "origin": "aqua:foundry-rs/foundry",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.10.1",
+          "released": {
+            "time": "2026-11-26T20:19:09Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.10.0",
           "released": {
@@ -262287,6 +262319,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "5.1.0",
+          "released": {
+            "time": "2026-11-27T08:44:21Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "5.0.0",
           "released": {
             "time": "2026-11-22T11:07:23Z",
@@ -262674,14 +262714,6 @@
           "version": "2.0.1",
           "released": {
             "time": "2026-07-12T03:00:26Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.0.0",
-          "released": {
-            "time": "2026-07-11T23:45:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -275460,6 +275492,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.0.117-5",
+          "released": {
+            "time": "2026-11-27T01:02:40Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.117-4",
+          "released": {
+            "time": "2026-11-26T22:51:57Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.0.117-3",
+          "released": {
+            "time": "2026-11-26T20:17:35Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.0.117-2",
           "released": {
             "time": "2026-11-26T02:03:04Z",
@@ -275476,33 +275532,9 @@
           "sets": []
         },
         {
-          "version": "1.0.117-0",
-          "released": {
-            "time": "2026-11-25T21:21:51Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
           "version": "1.0.116",
           "released": {
             "time": "2026-11-25T17:03:13Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.116-5",
-          "released": {
-            "time": "2026-11-25T07:44:21Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.0.116-4",
-          "released": {
-            "time": "2026-11-25T05:12:56Z",
             "source": "publisher"
           },
           "sets": []
@@ -275786,6 +275818,14 @@
       "origin": "aqua:github/copilot-language-server-release",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.575.0",
+          "released": {
+            "time": "2026-11-27T02:52:14Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.574.3",
           "released": {
@@ -276174,14 +276214,6 @@
           "version": "1.550.0",
           "released": {
             "time": "2026-09-23T06:39:29Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.549.0",
-          "released": {
-            "time": "2026-09-22T05:22:22Z",
             "source": "publisher"
           },
           "sets": []
@@ -307108,6 +307140,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.0.20",
+          "released": {
+            "time": "2026-11-27T05:03:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.0.19",
           "released": {
             "time": "2026-11-17T09:24:47Z",
@@ -324420,6 +324460,14 @@
       "origin": "aqua:grafana/gcx",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "1.9.1",
+          "released": {
+            "time": "2026-11-26T15:05:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "1.9.0",
           "released": {
@@ -348449,6 +348497,510 @@
       "serving_class": "cache",
       "versions": [
         {
+          "version": "1.71.0",
+          "released": {
+            "time": "2026-11-26T15:56:41Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "hcloud",
+                    "origin": "recipe",
+                    "src": "hcloud"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:b81ae73c979b39dda60ef312055ef54b2cced42882de8ca91b028fe5f046d640",
+                "full": "sha256:921edc30a011072f9563bb0b00ee55afe04f55e8f9790e3da2cf94c7314e2668"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "hcloud-darwin-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:e90074eab2762166ef2a7e2621a2713cb4ec33aa733a76b507b6518a9804e396",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hetznercloud/cli",
+                "name": "hetznercloud/cli",
+                "publisher": "hetznercloud",
+                "repository": "hetznercloud/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/hcloud-darwin-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:ff744b9459d151efa357d4e846166d4738a462332b12539747bffa2405a93a21",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "ff744b9459d151efa357d4e846166d4738a462332b12539747bffa2405a93a21"
+                  },
+                  "size": 7728975
+                },
+                "lock": {
+                  "evidence_digest": "sha256:ade01b07d6226d0fd494987f3a4d6b758cb519d991ef9bcebdbb72aad9b8203c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:ff744b9459d151efa357d4e846166d4738a462332b12539747bffa2405a93a21",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.71.0",
+                "requested": "v1.71.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "hcloud",
+                    "origin": "recipe",
+                    "src": "hcloud"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:b1045dc72296c1343910cc2614e726098ab82b10c4cb6d4060dd2b2bd25f6fe6",
+                "full": "sha256:14670bd8b45762c0106a5f422610fa27dd5608f785d0b70b38a365ae69ee66b3"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "hcloud-darwin-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:e90074eab2762166ef2a7e2621a2713cb4ec33aa733a76b507b6518a9804e396",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hetznercloud/cli",
+                "name": "hetznercloud/cli",
+                "publisher": "hetznercloud",
+                "repository": "hetznercloud/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/hcloud-darwin-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:b31f529eb823de762884f40bc63a33f562f3a3a6ce160c395aa078d920029fde",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "b31f529eb823de762884f40bc63a33f562f3a3a6ce160c395aa078d920029fde"
+                  },
+                  "size": 6981584
+                },
+                "lock": {
+                  "evidence_digest": "sha256:ade01b07d6226d0fd494987f3a4d6b758cb519d991ef9bcebdbb72aad9b8203c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:b31f529eb823de762884f40bc63a33f562f3a3a6ce160c395aa078d920029fde",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.71.0",
+                "requested": "v1.71.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "hcloud",
+                    "origin": "recipe",
+                    "src": "hcloud"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:4f9c7adbcd53f5c2adc81e086e9c721eab8fbf11b272b3e8ab7e2d721791c1e5",
+                "full": "sha256:7c1a09d36ff73d6e3b1d22e84d0d4794da52c7ead48495fea15c34e1415d35e5"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "hcloud-linux-amd64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:e90074eab2762166ef2a7e2621a2713cb4ec33aa733a76b507b6518a9804e396",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hetznercloud/cli",
+                "name": "hetznercloud/cli",
+                "publisher": "hetznercloud",
+                "repository": "hetznercloud/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/hcloud-linux-amd64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:ab14e964074ea61c9b103df852134833787da9df094ed6967f7bb0b588e7abc9",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "ab14e964074ea61c9b103df852134833787da9df094ed6967f7bb0b588e7abc9"
+                  },
+                  "size": 7387224
+                },
+                "lock": {
+                  "evidence_digest": "sha256:ade01b07d6226d0fd494987f3a4d6b758cb519d991ef9bcebdbb72aad9b8203c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:ab14e964074ea61c9b103df852134833787da9df094ed6967f7bb0b588e7abc9",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.71.0",
+                "requested": "v1.71.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "hcloud",
+                    "origin": "recipe",
+                    "src": "hcloud"
+                  }
+                ],
+                "format": "tar.gz",
+                "layout_kind": "tar.gz"
+              },
+              "digests": {
+                "declared": "sha256:ab220a447bfe1c52f7cfc95b17b665bc36b05611f05f1acdba8142beee318dc8",
+                "full": "sha256:ade46cd79a6798997789d8c70b4dfe1fbb5d0956fc36c635b640ce4f8ad746c3"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "hcloud-linux-arm64.tar.gz"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:e90074eab2762166ef2a7e2621a2713cb4ec33aa733a76b507b6518a9804e396",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hetznercloud/cli",
+                "name": "hetznercloud/cli",
+                "publisher": "hetznercloud",
+                "repository": "hetznercloud/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/hcloud-linux-arm64.tar.gz"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:78eea6ea143f99e57aa65394333df62cbf2a298d1a409c567a4321c269743494",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "78eea6ea143f99e57aa65394333df62cbf2a298d1a409c567a4321c269743494"
+                  },
+                  "size": 6656527
+                },
+                "lock": {
+                  "evidence_digest": "sha256:ade01b07d6226d0fd494987f3a4d6b758cb519d991ef9bcebdbb72aad9b8203c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:78eea6ea143f99e57aa65394333df62cbf2a298d1a409c567a4321c269743494",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.71.0",
+                "requested": "v1.71.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "hcloud",
+                    "origin": "recipe",
+                    "src": "hcloud.exe"
+                  }
+                ],
+                "format": "zip",
+                "layout_kind": "zip"
+              },
+              "digests": {
+                "declared": "sha256:f1c5a3bf006affac33c0115058b9419d275559b2853df70126f79b6410ee6c50",
+                "full": "sha256:1d93f02bc9e3dfe7e325fea22e1a965199e8343758cc98adc4a624ac82b6404d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "hcloud-windows-amd64.zip"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:e90074eab2762166ef2a7e2621a2713cb4ec33aa733a76b507b6518a9804e396",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:hetznercloud/cli",
+                "name": "hetznercloud/cli",
+                "publisher": "hetznercloud",
+                "repository": "hetznercloud/cli"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/hcloud-windows-amd64.zip"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/hetznercloud/cli/releases/download/v1.71.0/checksums.txt"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:91f8299a5497805de42485b1a42226cfc3a8b9186a426bc7cd77697e61bb15a0",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "91f8299a5497805de42485b1a42226cfc3a8b9186a426bc7cd77697e61bb15a0"
+                  },
+                  "size": 7788266
+                },
+                "lock": {
+                  "evidence_digest": "sha256:ade01b07d6226d0fd494987f3a4d6b758cb519d991ef9bcebdbb72aad9b8203c",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:91f8299a5497805de42485b1a42226cfc3a8b9186a426bc7cd77697e61bb15a0",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "top-level",
+                "normalized": "1.71.0",
+                "requested": "v1.71.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
+        {
           "version": "1.70.2",
           "released": {
             "time": "2026-10-23T14:47:15Z",
@@ -350820,14 +351372,6 @@
           "version": "1.38.1",
           "released": {
             "time": "2023-10-13T07:54:39Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.38.0",
-          "released": {
-            "time": "2023-10-12T13:32:09Z",
             "source": "publisher"
           },
           "sets": []
@@ -372516,6 +373060,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.10.14",
+          "released": {
+            "time": "2026-11-26T21:34:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.10.13",
           "released": {
             "time": "2026-11-12T22:18:55Z",
@@ -372903,14 +373455,6 @@
           "version": "0.3",
           "released": {
             "time": "2025-01-27T16:11:39Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.2",
-          "released": {
-            "time": "2025-01-14T09:58:38Z",
             "source": "publisher"
           },
           "sets": []
@@ -381882,6 +382426,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.1.4",
+          "released": {
+            "time": "2026-11-27T09:17:08Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.1.3",
           "released": {
             "time": "2026-10-14T06:47:23Z",
@@ -382269,14 +382821,6 @@
           "version": "0.0.24",
           "released": {
             "time": "2023-10-26T21:30:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.0.23",
-          "released": {
-            "time": "2023-10-12T17:39:54Z",
             "source": "publisher"
           },
           "sets": []
@@ -386975,6 +387519,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.5.12",
+          "released": {
+            "time": "2026-11-26T13:42:31Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.5.11",
           "released": {
             "time": "2026-11-16T06:43:15Z",
@@ -387362,14 +387914,6 @@
           "version": "0.2.19",
           "released": {
             "time": "2025-11-26T09:28:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.2.18",
-          "released": {
-            "time": "2025-11-21T12:54:16Z",
             "source": "publisher"
           },
           "sets": []
@@ -417586,6 +418130,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.29.8",
+          "released": {
+            "time": "2026-11-26T16:15:18Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.29.7",
           "released": {
             "time": "2026-10-30T09:55:40Z",
@@ -420790,6 +421342,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.34.0",
+          "released": {
+            "time": "2026-11-27T11:45:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.33.1",
           "released": {
             "time": "2026-09-21T12:13:27Z",
@@ -421177,14 +421737,6 @@
           "version": "0.15.0",
           "released": {
             "time": "2022-12-22T07:23:09Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.15.0-rc.1",
-          "released": {
-            "time": "2022-11-17T09:09:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -456470,6 +457022,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.31.2",
+          "released": {
+            "time": "2026-11-27T11:48:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.31.1",
+          "released": {
+            "time": "2026-11-27T09:07:14Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.31.0",
           "released": {
             "time": "2026-09-12T00:31:16Z",
@@ -456852,22 +457420,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.14.0",
-          "released": {
-            "time": "2023-09-23T06:59:48Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.13.0",
-          "released": {
-            "time": "2023-09-10T12:38:36Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -456876,6 +457428,14 @@
       "origin": "aqua:koki-develop/ghasec",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.18.1",
+          "released": {
+            "time": "2026-11-27T02:08:39Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.18.0",
           "released": {
@@ -459578,6 +460138,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "5.13.0",
+          "released": {
+            "time": "2026-11-26T20:18:29Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "5.12.0",
           "released": {
             "time": "2026-09-16T16:40:39Z",
@@ -459965,14 +460533,6 @@
           "version": "2.14.0",
           "released": {
             "time": "2023-05-04T15:42:46Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.13.0",
-          "released": {
-            "time": "2023-03-21T09:37:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -473680,6 +474240,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.15.1",
+          "released": {
+            "time": "2026-11-26T14:42:55Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.15.0",
           "released": {
             "time": "2026-11-13T15:42:12Z",
@@ -474067,14 +474635,6 @@
           "version": "1.7.2",
           "released": {
             "time": "2024-01-05T15:38:04Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.7.1",
-          "released": {
-            "time": "2023-11-10T11:29:34Z",
             "source": "publisher"
           },
           "sets": []
@@ -494919,6 +495479,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.12.0-alpha.3",
+          "released": {
+            "time": "2026-11-26T19:03:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.12.0-alpha.2",
           "released": {
             "time": "2026-11-21T16:47:02Z",
@@ -494970,14 +495538,6 @@
           "version": "1.11.0-alpha.5",
           "released": {
             "time": "2026-07-05T10:19:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.11.0-alpha.4",
-          "released": {
-            "time": "2026-06-28T21:50:42Z",
             "source": "publisher"
           },
           "sets": []
@@ -495326,6 +495886,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.12.0-alpha.3",
+          "released": {
+            "time": "2026-11-26T19:03:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.12.0-alpha.2",
           "released": {
             "time": "2026-11-21T16:47:02Z",
@@ -495377,14 +495945,6 @@
           "version": "1.11.0-alpha.5",
           "released": {
             "time": "2026-07-05T10:19:10Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.11.0-alpha.4",
-          "released": {
-            "time": "2026-06-28T21:50:42Z",
             "source": "publisher"
           },
           "sets": []
@@ -524724,6 +525284,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "7.7.0",
+          "released": {
+            "time": "2026-11-27T03:11:49Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "7.6.0",
           "released": {
             "time": "2026-10-30T01:50:11Z",
@@ -529362,6 +529930,14 @@
       "origin": "aqua:mashiike/acrun",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.9.3",
+          "released": {
+            "time": "2026-11-27T01:14:18Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.9.2",
           "released": {
@@ -543376,6 +543952,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.292.0",
+          "released": {
+            "time": "2026-11-26T19:13:41Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.291.2",
           "released": {
             "time": "2026-11-25T18:55:08Z",
@@ -543763,14 +544347,6 @@
           "version": "3.248.1",
           "released": {
             "time": "2026-08-16T19:08:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.247.0",
-          "released": {
-            "time": "2026-08-12T12:59:45Z",
             "source": "publisher"
           },
           "sets": []
@@ -567806,6 +568382,30 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.7.8",
+          "released": {
+            "time": "2026-11-27T06:06:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.7.7",
+          "released": {
+            "time": "2026-11-27T04:17:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.7.6",
+          "released": {
+            "time": "2026-11-27T01:27:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.7.5",
           "released": {
             "time": "2026-11-19T04:29:52Z",
@@ -568177,30 +568777,6 @@
           "version": "0.15.0",
           "released": {
             "time": "2026-03-22T12:18:37Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.14.3",
-          "released": {
-            "time": "2025-12-11T12:04:39Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.14.2",
-          "released": {
-            "time": "2025-12-05T16:27:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.14.1",
-          "released": {
-            "time": "2025-09-23T14:09:37Z",
             "source": "publisher"
           },
           "sets": []
@@ -600374,6 +600950,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.18.0",
+          "released": {
+            "time": "2026-11-26T16:34:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.17.13",
+          "released": {
+            "time": "2026-11-26T14:33:54Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.17.12",
           "released": {
             "time": "2026-11-05T11:53:43Z",
@@ -600753,22 +601345,6 @@
           "version": "1.15.7",
           "released": {
             "time": "2025-11-05T16:24:14Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.15.6",
-          "released": {
-            "time": "2025-10-27T19:00:44Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.15.5",
-          "released": {
-            "time": "2025-09-22T15:15:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -604924,6 +605500,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.40.19-rc0",
+          "released": {
+            "time": "2026-11-26T17:52:02Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.40.18",
           "released": {
             "time": "2026-11-24T04:18:13Z",
@@ -605069,14 +605653,6 @@
         },
         {
           "version": "0.40.4",
-          "released": {
-            "time": "2026-10-12T19:00:12Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.40.4-rc1",
           "released": {
             "time": "2026-10-12T19:00:12Z",
             "source": "publisher"
@@ -606454,6 +607030,510 @@
       "origin": "aqua:open-policy-agent/opa",
       "serving_class": "cache",
       "versions": [
+        {
+          "version": "1.23.0",
+          "released": {
+            "time": "2026-11-26T18:16:54Z",
+            "source": "publisher"
+          },
+          "sets": [
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "opa",
+                    "origin": "default",
+                    "src": "opa"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:d99684e1e385b40025130f1f1af872acbde1a9b7aaa5983c267a73476c4d0aff",
+                "full": "sha256:a9064163de5be6375e7fb9d6bf13aae4324ee0ecb7f0ec6f4d08abf921c75e96"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "opa_darwin_amd64"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/amd64/native",
+              "reason": null,
+              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:open-policy-agent/opa",
+                "name": "open-policy-agent/opa",
+                "publisher": "open-policy-agent",
+                "repository": "open-policy-agent/opa"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_darwin_amd64"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_darwin_amd64.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d62067007a9473aa9d7efc5936e901d7ef49afffdbcdadf23f5daa95045f9903",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d62067007a9473aa9d7efc5936e901d7ef49afffdbcdadf23f5daa95045f9903"
+                  },
+                  "size": 65258624
+                },
+                "lock": {
+                  "evidence_digest": "sha256:2ace06582b2cef43f00071ecff3e992dd994f9438f367d5efa6802fc77ab97e4",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:d62067007a9473aa9d7efc5936e901d7ef49afffdbcdadf23f5daa95045f9903",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "1.23.0",
+                "requested": "v1.23.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "opa",
+                    "origin": "default",
+                    "src": "opa"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:16810263af7ff925e4e5e5db11c5ed5f7ed6933027fe01a50b1a8c652219b7d8",
+                "full": "sha256:436a55da0434a72ca66445f63aa8ff5b69219d92d2a5314fa9ba82a4388a5a3d"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "opa_darwin_arm64_static"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "darwin/arm64/native",
+              "reason": null,
+              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:open-policy-agent/opa",
+                "name": "open-policy-agent/opa",
+                "publisher": "open-policy-agent",
+                "repository": "open-policy-agent/opa"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_darwin_arm64_static"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_darwin_arm64_static.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:d20ed65d9aefffa419eb59a270f95f00104d98177649c292eb2761eaa1e03651",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "d20ed65d9aefffa419eb59a270f95f00104d98177649c292eb2761eaa1e03651"
+                  },
+                  "size": 63001122
+                },
+                "lock": {
+                  "evidence_digest": "sha256:d949c6888f560c26945ec11e7b256f1da419003ab2231ee8ecbbc4d303147d36",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:d20ed65d9aefffa419eb59a270f95f00104d98177649c292eb2761eaa1e03651",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "1.23.0",
+                "requested": "v1.23.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "opa",
+                    "origin": "default",
+                    "src": "opa"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:358b7d600b88e8f7393df2de22a315b3262818fd0cc2492c20f2af5e2be0f7f0",
+                "full": "sha256:90668fb0523fd64c8ec32a1b47b457f1a64813aa15285b54bb85794731bd2d44"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "opa_linux_amd64_static"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/amd64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:open-policy-agent/opa",
+                "name": "open-policy-agent/opa",
+                "publisher": "open-policy-agent",
+                "repository": "open-policy-agent/opa"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_linux_amd64_static"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_linux_amd64_static.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:5a3fe2aee94c370a5cdf59acca2101e2a48ae17d2cf911d45f0af6cdd3fe4e6a",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "5a3fe2aee94c370a5cdf59acca2101e2a48ae17d2cf911d45f0af6cdd3fe4e6a"
+                  },
+                  "size": 64806307
+                },
+                "lock": {
+                  "evidence_digest": "sha256:c26227025713c45ad072a64c67b9dddc7394938018197640eb95a13af8754787",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:5a3fe2aee94c370a5cdf59acca2101e2a48ae17d2cf911d45f0af6cdd3fe4e6a",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "1.23.0",
+                "requested": "v1.23.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "opa",
+                    "origin": "default",
+                    "src": "opa"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:3f70d7dfd507342712db2a3b277b2722b5ba60ba841337860b0cee8460302214",
+                "full": "sha256:ebf93312d7229a216876811d02e5b2570a94a6ee57a3a4035db0af21da0edeb0"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "opa_linux_arm64_static"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "linux/arm64/gnu",
+              "reason": null,
+              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:open-policy-agent/opa",
+                "name": "open-policy-agent/opa",
+                "publisher": "open-policy-agent",
+                "repository": "open-policy-agent/opa"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_linux_arm64_static"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_linux_arm64_static.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:488a597d39a09eb2909663f75d6ab918bcf38cd31a67c4475eb73313938fbd6b",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "488a597d39a09eb2909663f75d6ab918bcf38cd31a67c4475eb73313938fbd6b"
+                  },
+                  "size": 60928994
+                },
+                "lock": {
+                  "evidence_digest": "sha256:0c1711a2e3d8104c6609265fb9e38456a134971b2f1d00a8e91e2e8fff7ec585",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:488a597d39a09eb2909663f75d6ab918bcf38cd31a67c4475eb73313938fbd6b",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "1.23.0",
+                "requested": "v1.23.0",
+                "source": "requested"
+              }
+            },
+            {
+              "archive": {
+                "files": [
+                  {
+                    "name": "opa",
+                    "origin": "default",
+                    "src": "opa.exe"
+                  }
+                ],
+                "format": "raw",
+                "layout_kind": "raw"
+              },
+              "digests": {
+                "declared": "sha256:2f0952047b938a1b316b43d934385db65147466185b68ec5df6dc47c747e71b4",
+                "full": "sha256:e1b0f7d054ad9e297970d79134f04ba2496708b10afcb721681ae0c25424ffbd"
+              },
+              "evidence": [
+                {
+                  "egress_hosts": [],
+                  "id": "checksum#0",
+                  "lock_kind": "digest-only",
+                  "method": "checksum",
+                  "origin": "recipe",
+                  "params": {
+                    "algorithm": "sha256",
+                    "entry_name": "opa_windows_amd64.exe"
+                  },
+                  "subject": "artifact",
+                  "supplement": null,
+                  "uses": [
+                    "checksum"
+                  ]
+                }
+              ],
+              "platform": "windows/amd64/msvc",
+              "reason": null,
+              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
+              "release": {
+                "precision": null,
+                "source": "none",
+                "time": null
+              },
+              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
+              "source_kind": "github_release",
+              "status": "resolved",
+              "tier": "verified",
+              "tool": {
+                "id": "aqua:open-policy-agent/opa",
+                "name": "open-policy-agent/opa",
+                "publisher": "open-policy-agent",
+                "repository": "open-policy-agent/opa"
+              },
+              "urls": [
+                {
+                  "role": "artifact",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_windows_amd64.exe"
+                },
+                {
+                  "role": "checksum",
+                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.23.0/opa_windows_amd64.exe.sha256"
+                }
+              ],
+              "verified": {
+                "artifact": {
+                  "agree": true,
+                  "digest": "sha256:ceac79fc9f9ee73a27429e8f291f8841d6638768db2e93be2bab277f5fdfaf1c",
+                  "publisher_digest": {
+                    "algorithm": "sha256",
+                    "value": "ceac79fc9f9ee73a27429e8f291f8841d6638768db2e93be2bab277f5fdfaf1c"
+                  },
+                  "size": 65259008
+                },
+                "lock": {
+                  "evidence_digest": "sha256:b50efbb360b7f07d35e5d1655b0f49b0804d42111599b582a8e5f245bb35a368",
+                  "kind": "digest-only",
+                  "subject_digest": "sha256:ceac79fc9f9ee73a27429e8f291f8841d6638768db2e93be2bab277f5fdfaf1c",
+                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
+                },
+                "observed_redirect_hosts": [
+                  "release-assets.githubusercontent.com"
+                ],
+                "results": [
+                  {
+                    "detail": null,
+                    "evidence": "checksum#0",
+                    "identity": null,
+                    "outcome": "verified",
+                    "verifier": null
+                  }
+                ],
+                "status": "ok"
+              },
+              "version": {
+                "branch": "override[9]",
+                "normalized": "1.23.0",
+                "requested": "v1.23.0",
+                "source": "requested"
+              }
+            }
+          ]
+        },
         {
           "version": "1.22.4",
           "released": {
@@ -610996,503 +612076,7 @@
             "time": "2026-09-24T13:44:11Z",
             "source": "publisher"
           },
-          "sets": [
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "opa",
-                    "origin": "default",
-                    "src": "opa"
-                  }
-                ],
-                "format": "raw",
-                "layout_kind": "raw"
-              },
-              "digests": {
-                "declared": "sha256:b309b5fad7e188f1e1a61f1653053a1138b62e1be04d39825d424b292cb83103",
-                "full": "sha256:34893305323d3360590510d36e0a1554553b6e132f436bbd585b58f2278581c0"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "opa_darwin_amd64"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/amd64/native",
-              "reason": null,
-              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:open-policy-agent/opa",
-                "name": "open-policy-agent/opa",
-                "publisher": "open-policy-agent",
-                "repository": "open-policy-agent/opa"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_darwin_amd64"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_darwin_amd64.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:0ceb96979d259b3ee31711a6b316a592b8ffcfdd4209cc37600ed85a6cd4a55c",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "0ceb96979d259b3ee31711a6b316a592b8ffcfdd4209cc37600ed85a6cd4a55c"
-                  },
-                  "size": 64603040
-                },
-                "lock": {
-                  "evidence_digest": "sha256:61b74fce7d08d00d737eac992c376bb639e967e9d9d80fd6c3a7958f10ecf9ab",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:0ceb96979d259b3ee31711a6b316a592b8ffcfdd4209cc37600ed85a6cd4a55c",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "1.21.0",
-                "requested": "v1.21.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "opa",
-                    "origin": "default",
-                    "src": "opa"
-                  }
-                ],
-                "format": "raw",
-                "layout_kind": "raw"
-              },
-              "digests": {
-                "declared": "sha256:3377af6de73883e279f5f89d2e18cf64bd574b68356f8d4291d4840e1b83091f",
-                "full": "sha256:9ae0377d0d78e176c759329e65b07df1c99eec2919cda86acaaf5b90ec1d6b90"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "opa_darwin_arm64_static"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "darwin/arm64/native",
-              "reason": null,
-              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:open-policy-agent/opa",
-                "name": "open-policy-agent/opa",
-                "publisher": "open-policy-agent",
-                "repository": "open-policy-agent/opa"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_darwin_arm64_static"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_darwin_arm64_static.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:f1e4da6467a2adb2846bb23eec6ea00d8c3a04786f9270bb11003d22dfd827a5",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "f1e4da6467a2adb2846bb23eec6ea00d8c3a04786f9270bb11003d22dfd827a5"
-                  },
-                  "size": 62413362
-                },
-                "lock": {
-                  "evidence_digest": "sha256:cbd689b8bbd3890c9394e30c79eb590aadea6cbf457717187085fbe8e6a557cb",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:f1e4da6467a2adb2846bb23eec6ea00d8c3a04786f9270bb11003d22dfd827a5",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "1.21.0",
-                "requested": "v1.21.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "opa",
-                    "origin": "default",
-                    "src": "opa"
-                  }
-                ],
-                "format": "raw",
-                "layout_kind": "raw"
-              },
-              "digests": {
-                "declared": "sha256:b4afceac9d4e1f224037db789676b661b16c53f30b446719efddb298cf7eed08",
-                "full": "sha256:33fbe76fb698694b15ca2e60335b7abcc6462508deba51285e0c7add2cce6c4f"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "opa_linux_amd64_static"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/amd64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:open-policy-agent/opa",
-                "name": "open-policy-agent/opa",
-                "publisher": "open-policy-agent",
-                "repository": "open-policy-agent/opa"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_linux_amd64_static"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_linux_amd64_static.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:5eef70644868bb04d0556bcc795ee42f2ab379e73f51d1bfa30f83e1305bc9b9",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "5eef70644868bb04d0556bcc795ee42f2ab379e73f51d1bfa30f83e1305bc9b9"
-                  },
-                  "size": 64160422
-                },
-                "lock": {
-                  "evidence_digest": "sha256:14e0266e800f8dba6f237a030340a91ff65168eba72ccd1d6cd7bb41ed118930",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:5eef70644868bb04d0556bcc795ee42f2ab379e73f51d1bfa30f83e1305bc9b9",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "1.21.0",
-                "requested": "v1.21.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "opa",
-                    "origin": "default",
-                    "src": "opa"
-                  }
-                ],
-                "format": "raw",
-                "layout_kind": "raw"
-              },
-              "digests": {
-                "declared": "sha256:884e9e0898aeaf933d86edc58937735df086b340d0b0c2c7e12a541f50961cb1",
-                "full": "sha256:505deeec70f745fd5b2697df305e9d087b7f8c98d96b6b79dd0a9cbe57cb29a8"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "opa_linux_arm64_static"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "linux/arm64/gnu",
-              "reason": null,
-              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:open-policy-agent/opa",
-                "name": "open-policy-agent/opa",
-                "publisher": "open-policy-agent",
-                "repository": "open-policy-agent/opa"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_linux_arm64_static"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_linux_arm64_static.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:0ec34027c15b4d969c21d01ed570fe14fbebd508a08157043ab09f9a0dccbee6",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "0ec34027c15b4d969c21d01ed570fe14fbebd508a08157043ab09f9a0dccbee6"
-                  },
-                  "size": 60309079
-                },
-                "lock": {
-                  "evidence_digest": "sha256:46b1c9f77f6f70998a6aaa660a8dccf277c0f9ab6353334d8dbf3e5326dca800",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:0ec34027c15b4d969c21d01ed570fe14fbebd508a08157043ab09f9a0dccbee6",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "1.21.0",
-                "requested": "v1.21.0",
-                "source": "requested"
-              }
-            },
-            {
-              "archive": {
-                "files": [
-                  {
-                    "name": "opa",
-                    "origin": "default",
-                    "src": "opa.exe"
-                  }
-                ],
-                "format": "raw",
-                "layout_kind": "raw"
-              },
-              "digests": {
-                "declared": "sha256:f27b786d531292d1ac6a35b8a793eb432b21225ba445b84f000732684a058ed9",
-                "full": "sha256:1332768d2ae877d4cdd2512d39c6297d9c3c6f8afd14ef3f08db87b58d516227"
-              },
-              "evidence": [
-                {
-                  "egress_hosts": [],
-                  "id": "checksum#0",
-                  "lock_kind": "digest-only",
-                  "method": "checksum",
-                  "origin": "recipe",
-                  "params": {
-                    "algorithm": "sha256",
-                    "entry_name": "opa_windows_amd64.exe"
-                  },
-                  "subject": "artifact",
-                  "supplement": null,
-                  "uses": [
-                    "checksum"
-                  ]
-                }
-              ],
-              "platform": "windows/amd64/msvc",
-              "reason": null,
-              "recipe_digest": "sha256:7749e26ed4c071a24d5eac5b00d184358f3d73141856b02895cf98235a786965",
-              "release": {
-                "precision": null,
-                "source": "none",
-                "time": null
-              },
-              "snapshot_digest": "sha256:52a43b0b2817a56fe7566625809d7cca41a1178ccae2b152941221b516e70228",
-              "source_kind": "github_release",
-              "status": "resolved",
-              "tier": "verified",
-              "tool": {
-                "id": "aqua:open-policy-agent/opa",
-                "name": "open-policy-agent/opa",
-                "publisher": "open-policy-agent",
-                "repository": "open-policy-agent/opa"
-              },
-              "urls": [
-                {
-                  "role": "artifact",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_windows_amd64.exe"
-                },
-                {
-                  "role": "checksum",
-                  "url": "https://github.com/open-policy-agent/opa/releases/download/v1.21.0/opa_windows_amd64.exe.sha256"
-                }
-              ],
-              "verified": {
-                "artifact": {
-                  "agree": true,
-                  "digest": "sha256:1e0e9639673615fa3a6d4974b07e335e44827e377ce7c7bffbb1a6605a26479b",
-                  "publisher_digest": {
-                    "algorithm": "sha256",
-                    "value": "1e0e9639673615fa3a6d4974b07e335e44827e377ce7c7bffbb1a6605a26479b"
-                  },
-                  "size": 64593920
-                },
-                "lock": {
-                  "evidence_digest": "sha256:408d85346a71ce1d1ad32c7e7cccf63678fea93cdd05e3db47f92bf43d07d148",
-                  "kind": "digest-only",
-                  "subject_digest": "sha256:1e0e9639673615fa3a6d4974b07e335e44827e377ce7c7bffbb1a6605a26479b",
-                  "verifier_digest": "sha256:bb1d8b2f1c3e90d5183e8ece9e8ef954b0ec2a094e61bbcf2caf478afab77ea3"
-                },
-                "observed_redirect_hosts": [
-                  "release-assets.githubusercontent.com"
-                ],
-                "results": [
-                  {
-                    "detail": null,
-                    "evidence": "checksum#0",
-                    "identity": null,
-                    "outcome": "verified",
-                    "verifier": null
-                  }
-                ],
-                "status": "ok"
-              },
-              "version": {
-                "branch": "override[9]",
-                "normalized": "1.21.0",
-                "requested": "v1.21.0",
-                "source": "requested"
-              }
-            }
-          ]
+          "sets": []
         },
         {
           "version": "1.20.2",
@@ -611802,14 +612386,6 @@
           "version": "1.4.0",
           "released": {
             "time": "2025-05-01T15:26:08Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.3.0",
-          "released": {
-            "time": "2025-03-27T14:52:49Z",
             "source": "publisher"
           },
           "sets": []
@@ -612636,6 +613212,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.174.0-alpha.8",
+          "released": {
+            "time": "2026-11-26T21:56:07Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.174.0-alpha.7",
           "released": {
             "time": "2026-11-26T04:36:47Z",
@@ -612663,14 +613247,6 @@
           "version": "0.174.0-alpha.4",
           "released": {
             "time": "2026-11-24T23:01:51Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.174.0-alpha.3",
-          "released": {
-            "time": "2026-11-24T20:14:27Z",
             "source": "publisher"
           },
           "sets": []
@@ -613465,6 +614041,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "7.28.0",
+          "released": {
+            "time": "2026-11-26T14:25:34Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "7.27.0",
           "released": {
             "time": "2026-11-02T05:17:40Z",
@@ -613852,14 +614436,6 @@
           "version": "5.0.0",
           "released": {
             "time": "2020-12-21T05:06:28Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "5.0.0-beta3",
-          "released": {
-            "time": "2020-11-20T09:02:25Z",
             "source": "publisher"
           },
           "sets": []
@@ -653685,6 +654261,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.0.0",
+          "released": {
+            "time": "2026-11-26T17:26:36Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.2.1",
           "released": {
             "time": "2026-10-02T11:26:58Z",
@@ -668185,6 +668769,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "12.24.0",
+          "released": {
+            "time": "2026-11-26T14:31:19Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "12.23.0",
           "released": {
             "time": "2026-11-22T13:22:32Z",
@@ -668572,14 +669164,6 @@
           "version": "11.28.11",
           "released": {
             "time": "2026-11-05T01:00:27Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "11.28.10",
-          "released": {
-            "time": "2026-10-30T21:18:23Z",
             "source": "publisher"
           },
           "sets": []
@@ -702144,6 +702728,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.11.10",
+          "released": {
+            "time": "2026-11-27T06:54:30Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "2.11.9",
           "released": {
             "time": "2026-11-21T21:06:55Z",
@@ -702531,14 +703123,6 @@
           "version": "2.0.6",
           "released": {
             "time": "2020-09-27T19:17:21Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "2.0.5",
-          "released": {
-            "time": "2020-09-27T08:59:36Z",
             "source": "publisher"
           },
           "sets": []
@@ -706662,6 +707246,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "4.120.0",
+          "released": {
+            "time": "2026-11-27T10:09:44Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "4.119.0",
           "released": {
             "time": "2026-11-20T08:10:15Z",
@@ -707049,14 +707641,6 @@
           "version": "4.89.1",
           "released": {
             "time": "2026-04-23T23:43:40Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "4.89.0",
-          "released": {
-            "time": "2026-04-23T16:22:30Z",
             "source": "publisher"
           },
           "sets": []
@@ -724919,6 +725503,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.33.0",
+          "released": {
+            "time": "2026-11-26T16:34:06Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.32.1",
           "released": {
             "time": "2026-11-26T10:05:22Z",
@@ -725306,14 +725898,6 @@
           "version": "0.24.3",
           "released": {
             "time": "2026-10-04T08:11:25Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.24.2",
-          "released": {
-            "time": "2026-10-04T06:27:21Z",
             "source": "publisher"
           },
           "sets": []
@@ -725733,6 +726317,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.7.0",
+          "released": {
+            "time": "2026-11-27T08:11:18Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.6.2",
           "released": {
             "time": "2026-11-13T16:47:07Z",
@@ -726120,14 +726712,6 @@
           "version": "0.1.2",
           "released": {
             "time": "2025-06-13T09:05:25Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.1.1",
-          "released": {
-            "time": "2025-05-02T07:51:19Z",
             "source": "publisher"
           },
           "sets": []
@@ -792030,6 +792614,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.3.7",
+          "released": {
+            "time": "2026-11-26T18:07:23Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.3.6",
           "released": {
             "time": "2026-11-24T16:49:02Z",
@@ -792417,14 +793009,6 @@
           "version": "0.2.38",
           "released": {
             "time": "2026-07-20T22:31:37Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.2.37",
-          "released": {
-            "time": "2026-07-19T14:34:13Z",
             "source": "publisher"
           },
           "sets": []
@@ -802970,6 +803554,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "11.6.7",
+          "released": {
+            "time": "2026-11-26T23:22:04Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "11.6.6",
           "released": {
             "time": "2026-11-21T14:09:01Z",
@@ -803357,14 +803949,6 @@
           "version": "10.4.3",
           "released": {
             "time": "2026-05-06T13:51:38Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "10.4.2",
-          "released": {
-            "time": "2026-03-11T02:13:41Z",
             "source": "publisher"
           },
           "sets": []
@@ -827748,6 +828332,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.1310.0-preview.66980f353c9d3699276bf761b7a8277b48032200",
+          "released": {
+            "time": "2026-11-26T13:29:57Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.1309.1-preview.c15cfa70a85ed9652378720e723eb2c23213697e",
           "released": {
             "time": "2026-11-26T11:38:34Z",
@@ -828282,14 +828874,6 @@
               }
             }
           ]
-        },
-        {
-          "version": "1.1309.0-preview.f60273a7bba7bb9b939c694c4e702af3e9532671",
-          "released": {
-            "time": "2026-11-04T14:33:49Z",
-            "source": "publisher"
-          },
-          "sets": []
         },
         {
           "version": "1.1308.4",
@@ -841651,6 +842235,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "1.813.0",
+          "released": {
+            "time": "2026-11-27T11:55:59Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "1.812.1",
+          "released": {
+            "time": "2026-11-26T13:51:28Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "1.812.0",
           "released": {
             "time": "2026-11-25T13:43:30Z",
@@ -842030,22 +842630,6 @@
           "version": "1.789.1",
           "released": {
             "time": "2026-07-09T18:51:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.789.0",
-          "released": {
-            "time": "2026-07-06T18:34:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "1.788.1",
-          "released": {
-            "time": "2026-07-03T19:42:15Z",
             "source": "publisher"
           },
           "sets": []
@@ -847439,6 +848023,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "5.0.1-rc.1",
+          "released": {
+            "time": "2026-11-27T07:04:50Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "5.0.0",
           "released": {
             "time": "2026-11-04T19:03:38Z",
@@ -847474,14 +848066,6 @@
           "version": "5.0.0-rc.2",
           "released": {
             "time": "2026-10-01T21:10:21Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "5.0.0-rc.1",
-          "released": {
-            "time": "2026-09-28T05:09:14Z",
             "source": "publisher"
           },
           "sets": []
@@ -860348,9 +860932,9 @@
           "sets": []
         },
         {
-          "version": "4.0.0-next.54",
+          "version": "4.0.0-next.56",
           "released": {
-            "time": "2026-11-25T16:40:17Z",
+            "time": "2026-11-27T04:15:44Z",
             "source": "publisher"
           },
           "sets": []
@@ -861478,6 +862062,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.125.2",
+          "released": {
+            "time": "2026-11-26T15:26:14Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.125.1",
           "released": {
             "time": "2026-11-25T01:10:08Z",
@@ -861865,14 +862457,6 @@
           "version": "0.95.0",
           "released": {
             "time": "2026-07-06T14:11:34Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.94.0",
-          "released": {
-            "time": "2026-07-06T09:09:11Z",
             "source": "publisher"
           },
           "sets": []
@@ -919733,6 +920317,22 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "2.0.1",
+          "released": {
+            "time": "2026-11-27T10:18:17Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "2.0.0",
+          "released": {
+            "time": "2026-11-27T09:59:48Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.16.3",
           "released": {
             "time": "2026-11-05T11:11:50Z",
@@ -920115,22 +920715,6 @@
             "source": "publisher"
           },
           "sets": []
-        },
-        {
-          "version": "0.8.3",
-          "released": {
-            "time": "2020-04-22T09:48:37Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.8.2",
-          "released": {
-            "time": "2020-04-16T18:21:20Z",
-            "source": "publisher"
-          },
-          "sets": []
         }
       ]
     },
@@ -920139,6 +920723,14 @@
       "origin": "aqua:trailbaseio/trailbase",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.37.0",
+          "released": {
+            "time": "2026-11-26T19:57:51Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.36.3",
           "released": {
@@ -920527,14 +921119,6 @@
           "version": "0.33.0",
           "released": {
             "time": "2026-08-18T15:54:42Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.32.2",
-          "released": {
-            "time": "2026-08-12T21:28:09Z",
             "source": "publisher"
           },
           "sets": []
@@ -934859,41 +935443,41 @@
       "serving_class": "direct",
       "versions": [
         {
-          "version": "4.220.0-canary.29",
+          "version": "4.220.0-canary.35",
           "released": {
-            "time": "2026-11-26T11:00:30Z",
+            "time": "2026-11-27T09:11:28Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.220.0-canary.28",
+          "version": "4.220.0-canary.34",
           "released": {
-            "time": "2026-11-26T07:31:32Z",
+            "time": "2026-11-26T18:18:25Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.220.0-canary.27",
+          "version": "4.220.0-canary.33",
           "released": {
-            "time": "2026-11-26T02:57:37Z",
+            "time": "2026-11-26T18:00:21Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.220.0-canary.26",
+          "version": "4.220.0-canary.32",
           "released": {
-            "time": "2026-11-25T17:26:41Z",
+            "time": "2026-11-26T17:05:36Z",
             "source": "publisher"
           },
           "sets": []
         },
         {
-          "version": "4.220.0-canary.25",
+          "version": "4.220.0-canary.31",
           "released": {
-            "time": "2026-11-25T16:47:14Z",
+            "time": "2026-11-26T16:38:26Z",
             "source": "publisher"
           },
           "sets": []
@@ -939156,6 +939740,38 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "0.807.0",
+          "released": {
+            "time": "2026-11-27T10:57:12Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.806.0",
+          "released": {
+            "time": "2026-11-27T10:11:05Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.805.0",
+          "released": {
+            "time": "2026-11-27T04:33:17Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
+          "version": "0.804.0",
+          "released": {
+            "time": "2026-11-26T13:21:42Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "0.803.0",
           "released": {
             "time": "2026-11-26T10:47:25Z",
@@ -939519,38 +940135,6 @@
           "version": "0.758.0",
           "released": {
             "time": "2026-11-15T16:59:00Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.757.0",
-          "released": {
-            "time": "2026-11-15T15:40:43Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.756.0",
-          "released": {
-            "time": "2026-11-15T14:10:51Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.755.0",
-          "released": {
-            "time": "2026-11-15T05:25:44Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "0.754.0",
-          "released": {
-            "time": "2026-11-15T02:02:47Z",
             "source": "publisher"
           },
           "sets": []
@@ -941474,6 +942058,14 @@
       "origin": "aqua:upx/upx",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "5.3.1",
+          "released": {
+            "time": "2026-11-26T13:43:38Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "5.3.0",
           "released": {
@@ -949843,6 +950435,14 @@
       "serving_class": "direct",
       "versions": [
         {
+          "version": "3.29.0",
+          "released": {
+            "time": "2026-11-26T14:25:40Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
+        {
           "version": "3.28.1",
           "released": {
             "time": "2026-11-19T15:04:13Z",
@@ -950230,14 +950830,6 @@
           "version": "3.2.1",
           "released": {
             "time": "2024-03-01T09:40:49Z",
-            "source": "publisher"
-          },
-          "sets": []
-        },
-        {
-          "version": "3.2.0",
-          "released": {
-            "time": "2024-02-27T09:29:19Z",
             "source": "publisher"
           },
           "sets": []
@@ -968931,6 +969523,14 @@
       "origin": "aqua:vladimirvivien/ktop",
       "serving_class": "direct",
       "versions": [
+        {
+          "version": "0.7.9",
+          "released": {
+            "time": "2026-11-26T14:16:16Z",
+            "source": "publisher"
+          },
+          "sets": []
+        },
         {
           "version": "0.7.8",
           "released": {
