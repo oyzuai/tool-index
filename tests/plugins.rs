@@ -157,3 +157,57 @@ fn nothing_about_the_catalog_can_stop_the_tools_release() {
     assert!(p.missing.contains(&PLUGINS_BUNDLE.to_string()));
     assert!(names(&p).contains(&PLUGINS));
 }
+
+/// The signed catalog is built from the repository source, so a published
+/// release is adoptable only once that source lists its exact root and payloads.
+#[test]
+fn the_catalog_source_lists_the_published_rust_0_1_3_release() {
+    let source =
+        std::fs::read_to_string(Path::new(env!("CARGO_MANIFEST_DIR")).join("config/plugins.toml"))
+            .unwrap();
+    let catalog: toml::Value = toml::from_str(&source).unwrap();
+    let rust = catalog["packages"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|p| p["publisher"].as_str() == Some("oyzu") && p["name"].as_str() == Some("rust"))
+        .unwrap();
+    let releases: Vec<_> = rust["releases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|r| r["version"].as_str() == Some("0.1.3"))
+        .collect();
+    assert_eq!(releases.len(), 1, "oyzu/rust 0.1.3 must be listed once");
+    assert_eq!(
+        releases[0]["root_digest"].as_str(),
+        Some("sha256:8edc749aede226fc2fe6223380036bf762be9286df2443ad4752d507ab1efc31")
+    );
+    // The complete published records, as the release run's catalog-entry artifact has them.
+    let published: toml::Value = toml::from_str(
+        r#"
+[[platforms]]
+os = "linux"
+arch = "amd64"
+abi = "musl"
+manifest_digest = "sha256:e1c71e0be4467373ba315b6a2870f8c143f0239c85bab90b7a8e8b924ad08f25"
+payload_digest = "sha256:72ea868fdc987c24457dfa75ebd6f7ebedb67e3e32d09b56b5c639239070fe98"
+size = 17983974
+
+[[platforms]]
+os = "windows"
+arch = "amd64"
+abi = "msvc"
+manifest_digest = "sha256:267c350d6f9bce66539b3d5264bf913fb9332b02aebf213d63770942e6ceb28e"
+payload_digest = "sha256:9b5a3152ed1d3335180493cc89abe82ace28fb5886030a144a794f0ec9e2535c"
+size = 17036409
+
+[[routes]]
+type = "oci"
+reference = "ghcr.io/oyzuai/plugins/rust@sha256:8edc749aede226fc2fe6223380036bf762be9286df2443ad4752d507ab1efc31"
+"#,
+    )
+    .unwrap();
+    assert_eq!(releases[0]["platforms"], published["platforms"]);
+    assert_eq!(releases[0]["routes"], published["routes"]);
+}
