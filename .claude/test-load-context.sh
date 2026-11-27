@@ -22,6 +22,11 @@ for name in context agent-workflows; do
   if [ "$name" = context ]; then
     printf '%s\n' 'fixture constitution' > "$scratch/seed-$name/CONSTITUTION.md"
     printf '%s\n' 'fixture INDEX' > "$scratch/seed-$name/INDEX.md"
+    mkdir -p "$scratch/seed-$name/policy" "$scratch/seed-$name/accounts" "$scratch/seed-$name/providers"
+    printf '%s\n' 'fixture agreements' > "$scratch/seed-$name/policy/working-agreements.md"
+    printf '%s\n' 'fixture profile' > "$scratch/seed-$name/accounts/maintainer-profile.md"
+    printf '%s\n' 'fixture claude' > "$scratch/seed-$name/providers/claude-code.md"
+    printf '%s\n' 'fixture codex' > "$scratch/seed-$name/providers/codex.md"
   fi
   git -C "$scratch/seed-$name" add .
   git -C "$scratch/seed-$name" commit --quiet -m fixture
@@ -32,6 +37,8 @@ for name in context agent-workflows; do
 done
 export CLAUDE_PROJECT_DIR="$scratch/workspace/$(basename -- "$repo_root")"
 export XDG_CACHE_HOME="$scratch/cache"
+# Hermetic session state: never read or leave guard state in the real user state directory.
+export XDG_STATE_HOME="$scratch/state" LOCALAPPDATA="$scratch/state"
 git init --quiet "$CLAUDE_PROJECT_DIR"
 git -C "$CLAUDE_PROJECT_DIR" commit --quiet --allow-empty -m project
 git -C "$CLAUDE_PROJECT_DIR" remote add origin "https://github.com/oyzuai/$(basename -- "$repo_root").git"
@@ -53,16 +60,14 @@ assert_success() {
   grep -Fxq "context commit $expected" "$scratch/stdout" || fail 'missing exact context SHA'
   grep -Fxq "$constitution" "$scratch/stdout" || fail 'missing committed constitution'
   grep -Fxq 'fixture INDEX' "$scratch/stdout" || fail 'missing committed INDEX'
+  grep -Fxq 'fixture agreements' "$scratch/stdout" || fail 'missing committed agreements'
+  grep -Fxq 'fixture profile' "$scratch/stdout" || fail 'missing committed profile'
   if grep -q '^ERROR:' "$scratch/stdout"; then fail 'unexpected ERROR on success'; fi
 }
 assert_failure() {
   grep -q '^ERROR: shared oyzuai/context' "$scratch/stdout" || fail 'no visible session ERROR'
   grep -q '^ERROR: shared oyzuai/context' "$scratch/stderr" || fail 'no stderr ERROR'
-  # A nonzero exit OR this explicit marker is required. Repository work can
-  # remain usable offline, but loading failure must never be silent.
-  if [ "$hook_status" = 0 ]; then
-    grep -q 'context load FAILED' "$scratch/stdout" || fail 'silent successful exit'
-  fi
+  [ "$hook_status" != 0 ] || fail 'loader must fail closed'
   if grep -q '^context commit ' "$scratch/stdout"; then fail 'failure advertised a loaded snapshot'; fi
 }
 constitution='fixture constitution'
@@ -70,6 +75,26 @@ expected="$(git -C "$scratch/seed-context" rev-parse HEAD)"
 run_hook
 assert_success
 printf 'PASS: clone prints constitution, INDEX and exact SHA (%s)\n' "$mode"
+if [ "$mode" = repository ]; then
+  # Run the real hook bytes from the disposable project root, so the trusted
+  # loader cannot refresh or mutate the source checkout's sibling Context.
+  mkdir -p "$CLAUDE_PROJECT_DIR/.claude/hooks"
+  cp "$repo_root/.claude/hooks/context-guard.mjs" "$repo_root/.claude/hooks/hook-runner.mjs" "$CLAUDE_PROJECT_DIR/.claude/hooks/"
+  cp "$hook" "$CLAUDE_PROJECT_DIR/.claude/load-context.sh"
+  node - "$CLAUDE_PROJECT_DIR" "$CLAUDE_PROJECT_DIR/.claude/hooks/context-guard.mjs" <<'NODE'
+const { spawnSync } = require('node:child_process');
+const [cwd, script] = process.argv.slice(2);
+const event = { cwd, session_id: 'loader-integration', tool_name: 'Edit', tool_input: { file_path: 'x' } };
+function call(mode) {
+  return spawnSync(process.execPath, [script, mode, 'claude'], { cwd, input: JSON.stringify(event), encoding: 'utf8' });
+}
+if (call('pre-tool-use').status !== 2) throw new Error('Edit allowed before startup');
+const loaded = call('session-start');
+if (loaded.status !== 0) throw new Error(`Real wrapper startup failed: ${loaded.stdout}\n${loaded.stderr}`);
+if (call('pre-tool-use').status !== 0) throw new Error('Edit denied after successful startup');
+console.log('PASS: real repository wrapper denies Edit before load and permits it after load');
+NODE
+fi
 constitution='fixture constitution updated'
 printf '%s\n' "$constitution" > "$scratch/seed-context/CONSTITUTION.md"
 git -C "$scratch/seed-context" commit --quiet -am refresh
@@ -78,10 +103,30 @@ expected="$(git -C "$scratch/seed-context" rev-parse HEAD)"
 run_hook
 assert_success
 printf 'PASS: refresh prints the updated committed snapshot\n'
+printf 'dirty\n' >> "$scratch/workspace/context/INDEX.md"
+run_hook
+assert_success
+grep -q '^WARNING: sibling context checkout unusable (.*local changes' "$scratch/stdout" || fail 'dirty sibling must be named and bypassed with a warning'
+[ "$(git -C "$scratch/workspace/context" status --porcelain | wc -l)" = 1 ] || fail 'the sibling checkout must not be touched'
+git -C "$scratch/workspace/context" checkout --quiet -- INDEX.md
+git -C "$scratch/workspace/context" checkout --quiet --detach
+run_hook
+assert_success
+grep -q 'not on branch main' "$scratch/stdout" || fail 'detached sibling must be named'
+git -C "$scratch/workspace/context" checkout --quiet main
+printf 'PASS: an unusable sibling (dirty or detached) loads a private clean clone with a named WARNING\n'
 mv "$scratch/remotes/context.git" "$scratch/remotes/context-unavailable.git"
 run_hook
+assert_success
+grep -q '^WARNING: .*cached' "$scratch/stdout" || fail 'offline cached use must be disclosed with a WARNING'
+grep -Fxq "context commit $(git -C "$scratch/workspace/context" rev-parse HEAD)" "$scratch/stdout" || fail 'cached load must print the exact SHA'
+printf 'PASS: unavailable remote with a clean cached checkout loads it with a visible WARNING\n'
+git -C "$scratch/workspace/context" checkout --quiet --detach
+rm -rf -- "$scratch/state"
+run_hook
 assert_failure
-printf 'PASS: unavailable cached remote is visible on both streams\n'
+grep -q 'fallback:' "$scratch/stdout" || fail 'both checkouts unusable must report both reasons'
+printf 'PASS: with the remote down and no usable checkout the loader still fails closed with both reasons\n'
 rm -rf -- "$scratch/workspace" "$scratch/cache"
 mkdir -p "$scratch/workspace"
 if [ "$mode" = repository ]; then

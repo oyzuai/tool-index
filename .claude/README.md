@@ -1,25 +1,36 @@
 # Session context
 
-`settings.json` runs `load-context.sh` at SessionStart with a 60-second timeout.
-It clones or fast-forwards the sibling `context` checkout on `main`, then prints
-the committed `CONSTITUTION.md`, `INDEX.md` and `context commit <sha>`. It also
-refreshes the sibling `agent-workflows` source and links shared/repository skills
-without replacing existing packages. Bash, Git and authenticated private access
-to `oyzuai/context` are required. Existing hooks and permissions are preserved.
+Claude runs `.claude/hooks/hook-runner.mjs` at SessionStart and before every tool.
+Codex uses the same runner through `.codex/hooks.json`. Review and trust the
+native hook definitions before use. These files do not install account hooks.
 
-A failed context load prints `ERROR: ... context load FAILED` to both stderr
-and session stdout; a skill refresh failure also prints an `ERROR`. The hook
-returns zero so offline repository work remains possible. The explicit error
-marker means shared context did **not** load; restore access or correct the cache
-branch/origin and retry before relying on shared policy. A host-enforced timeout
-may instead be reported by Claude. Skill collisions retain their existing warning.
+For Codex, the trusted launcher can set `OYZU_CONTEXT_PROJECT_ROOT` to the
+absolute checkout root. Otherwise, the hook derives the root with
+`git rev-parse --show-toplevel`. A relative or inaccessible root, missing hook
+configuration, or runner outside that root fails closed. The runner never walks
+up from the tool cwd to search for executable code.
 
-Run `bash .claude/test-load-context.sh` from the repository root. The plain Bash
-test uses temporary local bare remotes, isolates Git configuration, forbids all
-network protocols, and checks initial load, refresh, unavailable cached/fresh
-remotes and missing documents. It removes its own temporary files on exit.
+The loader refreshes the sibling `context` checkout on `main`, verifies its
+canonical origin and clean state, and reads the committed constitution, index,
+working agreements, maintainer profile and client adapter. It prints the exact
+context commit and root. Bash, Git, Node.js 24+ and repository access are required.
+An unusable sibling is preserved while the loader tries a private clean clone
+in the OS state directory. If refresh fails, a clean cached `main` checkout at
+its last-fetched `origin/main` is accepted with an offline warning. Shared skills
+are refreshed separately without replacing existing packages.
 
-Repository hooks apply to repository sessions. For a cloud session starting
-outside a repository, install the separately provisioned user-level hook as
-described in [agent-workflows adoption](https://github.com/oyzuai/agent-workflows/blob/main/adoption/README.md#cloud-session-context).
-These repository files do not install cloud user settings.
+State is stored per client/session in the OS state directory, outside the repo.
+Failed context loading invalidates prior success. Until context loads, mutations
+are denied and only narrow shell reads are allowed. Repair access outside the
+unloaded tool session, then retry the trusted SessionStart hook. A cwd repair
+script is not an exception. Runner failures and timeouts deny with exit 2.
+
+Publication requires a Test-first line and exactly one initiative label. Pushes
+allow one literal task-branch refspec. GitHub MCP writes, direct GitHub API calls,
+`git send-pack` and `gh alias` are denied. Hooks are guardrails, not a sandbox;
+normal review, signing and publication authority still apply.
+
+Run `node --test .claude/hooks/*.test.mjs` and
+`bash .claude/test-load-context.sh`. Tests use disposable local fixtures and
+remove them on exit. The loader integration test redirects Git to local bare
+remotes and forbids network protocols.
