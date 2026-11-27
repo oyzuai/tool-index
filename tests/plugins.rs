@@ -157,3 +157,38 @@ fn nothing_about_the_catalog_can_stop_the_tools_release() {
     assert!(p.missing.contains(&PLUGINS_BUNDLE.to_string()));
     assert!(names(&p).contains(&PLUGINS));
 }
+
+/// The signed catalog is built from the repository source, so a published
+/// release is adoptable only once that source lists its exact root and payloads.
+#[test]
+fn the_catalog_source_lists_the_published_rust_0_1_3_release() {
+    let source = std::fs::read_to_string(
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("config/plugins.toml"),
+    )
+    .unwrap();
+    let catalog: toml::Value = toml::from_str(&source).unwrap();
+    let rust = catalog["packages"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|p| p["publisher"].as_str() == Some("oyzu") && p["name"].as_str() == Some("rust"))
+        .unwrap();
+    let releases: Vec<_> = rust["releases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .filter(|r| r["version"].as_str() == Some("0.1.3"))
+        .collect();
+    assert_eq!(releases.len(), 1, "oyzu/rust 0.1.3 must be listed once");
+    assert_eq!(
+        releases[0]["root_digest"].as_str(),
+        Some("sha256:8edc749aede226fc2fe6223380036bf762be9286df2443ad4752d507ab1efc31")
+    );
+    let platforms: Vec<_> = releases[0]["platforms"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|p| (p["os"].as_str().unwrap(), p["abi"].as_str().unwrap()))
+        .collect();
+    assert_eq!(platforms, [("linux", "musl"), ("windows", "msvc")]);
+}
