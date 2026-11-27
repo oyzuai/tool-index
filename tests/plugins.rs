@@ -162,10 +162,9 @@ fn nothing_about_the_catalog_can_stop_the_tools_release() {
 /// release is adoptable only once that source lists its exact root and payloads.
 #[test]
 fn the_catalog_source_lists_the_published_rust_0_1_3_release() {
-    let source = std::fs::read_to_string(
-        Path::new(env!("CARGO_MANIFEST_DIR")).join("config/plugins.toml"),
-    )
-    .unwrap();
+    let source =
+        std::fs::read_to_string(Path::new(env!("CARGO_MANIFEST_DIR")).join("config/plugins.toml"))
+            .unwrap();
     let catalog: toml::Value = toml::from_str(&source).unwrap();
     let rust = catalog["packages"]
         .as_array()
