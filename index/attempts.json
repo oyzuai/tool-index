@@ -506,6 +506,13 @@
         "attempts": 1,
         "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
         "reason": "this oyzu does not install it on a rechecked platform"
+      },
+      "9.9.3": {
+        "first_failed": "2026-11-28T11:51:35.253183397Z",
+        "last_attempt": "2026-11-28T11:51:35.253183397Z",
+        "attempts": 1,
+        "engine": "865a1e80f45c2858acfce5076af6904a134758fd",
+        "reason": "this oyzu does not install it on a rechecked platform"
       }
     },
     "core:helm": {
